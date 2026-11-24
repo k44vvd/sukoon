@@ -1,0 +1,17 @@
+[
+ {
+  "id": "clip-02",
+  "title": "تلاوة خاشعة",
+  "file": "videos/clip-02.mp4",
+  "poster": "videos/clip-02.jpg",
+  "ratio": "4/3"
+ },
+ {
+  "id": "hadid-20",
+  "title": "وما الحياة الدنيا إلا متاع الغرور",
+  "surah": "سورة الحديد",
+  "file": "videos/hadid-20.mp4",
+  "poster": "videos/hadid-20.jpg",
+  "ratio": "16/9"
+ }
+]
