@@ -259,7 +259,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
       </a>
     </nav>
     <nav class="topnav" aria-label="أقسام الموقع">
-      <a href="#daily">دعاء اليوم</a><a href="#adiya">أدعية</a><a href="#quran">القرآن الكريم</a><a href="#clips">المقاطع</a><a href="#jumuah">يوم الجمعة</a><a href="#istighfar">الاستغفار</a><a href="#watan">دعاء للوطن</a><a href="#sadaqa">صدقة جارية</a><a href="#adhkar">الأذكار</a><a href="#save">طريقة الحفظ</a><a href="#fadl">فضل النشر</a><a href="#about">عن سكون</a><a href="#faq">أسئلة</a>
+      <a href="#daily">دعاء اليوم</a><a href="#hadith">حديث اليوم</a><a href="#adiya">أدعية</a><a href="#quran">القرآن الكريم</a><a href="#clips">المقاطع</a><a href="#jumuah">يوم الجمعة</a><a href="#istighfar">الاستغفار</a><a href="#watan">دعاء للوطن</a><a href="#sadaqa">صدقة جارية</a><a href="#adhkar">الأذكار</a><a href="#save">طريقة الحفظ</a><a href="#fadl">فضل النشر</a><a href="#about">عن سكون</a><a href="#faq">أسئلة</a>
     </nav>
     <div class="intro">
       <h1>مقاطع قرآنية تحمّلها وتنشرها</h1>
@@ -269,6 +269,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
         <a class="opt wide" href="#daily"><b>دعاء اليوم</b><span>دعاء جديد كل يوم من القرآن والسنة</span></a>
         <a class="opt wide" href="#quran"><b>القرآن الكريم</b><span>اقرأ المصحف كاملاً، ١١٤ سورة</span></a>
         <a class="opt" href="#jumuah"><b>يوم الجمعة</b><span>سنن الجمعة وعدّاد الصلاة على النبي</span></a>
+        <a class="opt" href="#hadith"><b>حديث اليوم</b><span>حديث صحيح جديد كل يوم</span></a>
         <a class="opt" href="#adiya"><b>أدعية</b><span>للموتى، المطر، التوفيق، الحزن وغيرها</span></a>
         <a class="opt" href="#sadaqa"><b>صدقة جارية</b><span>اصنع بطاقة صدقة جارية عن من تحب</span></a>
         <a class="opt" href="#istighfar"><b>عدّاد الاستغفار</b><span>هدفك اليوم مئة استغفار</span></a>
@@ -300,6 +301,22 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
         <button type="button" class="dl ghost" id="dnext">دعاء آخر</button>
       </div>
       <p class="status" id="dstatus" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="band" id="hadith">
+    <h2>حديث اليوم</h2>
+    <p class="lead">حديث صحيح جديد كل يوم، مع مصدره.</p>
+    <div class="daily">
+      <div class="dmeta"><span>قال رسول الله صلى الله عليه وسلم</span></div>
+      <p class="dtext" id="htext">…</p>
+      <p class="dsrc" id="hsrc"></p>
+      <div class="drow">
+        <button type="button" class="dl" id="hdl">تحميل كصورة</button>
+        <button type="button" class="dl ghost" id="hcopy">نسخ الحديث</button>
+        <button type="button" class="dl ghost" id="hnext">حديث آخر</button>
+      </div>
+      <p class="status" id="hstatus" aria-live="polite"></p>
     </div>
   </section>
 
@@ -741,7 +758,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
     watan = ['land', 'rulers', 'soldiers', 'martyrs'].map((k, i) => w[k][(n + i) % w[k].length]);
     $('wlist').innerHTML = watan.map(t => `<li>${esc(t)}</li>`).join('');
   };
-  fetch('duas.json').then(r => r.json()).then(d => { D = d; dIdx = dayNo() % D.daily.length; showD(); showW(); }).catch(() => { $('dtext').textContent = 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار'; });
+  fetch('duas.json').then(r => r.json()).then(d => { D = d; dIdx = dayNo() % D.daily.length; showD(); showW(); if (D.hadith) { hIdx = dayNo() % D.hadith.length; showH(); } }).catch(() => { $('dtext').textContent = 'ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار'; });
   $('dnext').addEventListener('click', () => { if (!D) return; dIdx++; showD(); });
   $('dcopy').addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(`${$('dtext').textContent}\n(${$('dsrc').textContent})\n\nمن موقع سكون: ${SITE}`); $('dstatus').textContent = 'تم نسخ الدعاء'; }
@@ -782,6 +799,37 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
     const b = e.target.closest('button[data-i]'); if (!b) return; const d = AD[acat].items[+b.dataset.i];
     try { await navigator.clipboard.writeText(`${d.t}\n(${d.src})\n\nمن موقع سكون: ${SITE}`); b.textContent = 'تم النسخ'; } catch { b.textContent = 'ما نسخ'; }
     setTimeout(() => { b.textContent = 'نسخ'; }, 1800);
+  });
+
+
+  // daily hadith
+  let hIdx = 0;
+  const showH = () => { const h = D.hadith[hIdx % D.hadith.length]; const el = $('htext'); el.style.opacity = 0; setTimeout(() => { el.textContent = `«${h.t}»`; $('hsrc').textContent = h.src; el.style.opacity = 1; }, 180); };
+  const cardBlob = async (title, txt, src, isQ) => {
+    if (document.fonts) { try { await document.fonts.load('700 40px Amiri'); await document.fonts.load('40px "Sukoon Quran"'); } catch {} }
+    const W = 1080, H = 1350, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+    const bg = x.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#022b2a'); bg.addColorStop(.3, '#022b2a'); bg.addColorStop(1, '#011d1c'); x.fillStyle = bg; x.fillRect(0, 0, W, H);
+    x.strokeStyle = 'rgba(201,178,124,.55)'; x.lineWidth = 3; x.strokeRect(48, 48, W - 96, H - 96);
+    if (logo.complete && logo.naturalWidth) x.drawImage(logo, 100, 300, 940, 470, 340, 90, 400, 200);
+    x.direction = 'rtl'; x.textAlign = 'center'; x.fillStyle = '#c9b27c'; x.font = '700 54px Amiri, serif'; x.fillText(title, W / 2, 360);
+    let fs = 54, ls = []; const fam = isQ ? '"Sukoon Quran", Amiri, serif' : 'Amiri, serif';
+    const wrap = () => { x.font = `${isQ ? 400 : 700} ${fs}px ${fam}`; ls = []; let line = ''; txt.split(' ').forEach(w => { const t = line ? line + ' ' + w : w; if (x.measureText(t).width > 860) { ls.push(line); line = w; } else line = t; }); ls.push(line); };
+    wrap(); while (ls.length * fs * 1.9 > 680 && fs > 28) { fs -= 2; wrap(); }
+    x.fillStyle = '#eeede6'; let y = 470 + (680 - ls.length * fs * 1.9) / 2; ls.forEach(l => { x.fillText(l, W / 2, y); y += fs * 1.9; });
+    x.fillStyle = '#a9bcb7'; x.font = '400 32px "IBM Plex Sans Arabic", sans-serif'; x.fillText(src, W / 2, 1180);
+    x.direction = 'ltr'; x.fillStyle = '#c9b27c'; x.font = '500 30px "IBM Plex Sans Arabic", sans-serif'; x.fillText('Instagram @6amx9   ·   TikTok @9zxn', W / 2, H - 100);
+    return new Promise(r => c.toBlob(r, 'image/png'));
+  };
+  $('hnext').addEventListener('click', () => { if (!D) return; hIdx++; showH(); });
+  $('hcopy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(`قال رسول الله صلى الله عليه وسلم: ${$('htext').textContent}\n(${$('hsrc').textContent})\n\nمن موقع سكون: ${SITE}`); $('hstatus').textContent = 'تم نسخ الحديث'; }
+    catch { $('hstatus').textContent = 'ما قدرت أنسخ، جرّب من متصفح ثاني'; }
+  });
+  $('hdl').addEventListener('click', async () => {
+    const st = $('hstatus'); if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
+    st.textContent = 'جاري التجهيز…';
+    try { const blob = await cardBlob('قال رسول الله ﷺ', $('htext').textContent, $('hsrc').textContent, false); await downloads.save({ filename: 'سكون - حديث اليوم.png', data: blob }); st.textContent = 'تم، الله يكتب أجرك'; }
+    catch (err) { st.textContent = err && err.code === 'declined' ? 'تم الإلغاء' : 'صار خطأ، جرب مرة ثانية'; }
   });
 
   // Standalone site: share sheet (saves straight to Photos on iPhone) or normal download
