@@ -213,6 +213,17 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .drow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
 .drow .dl{flex:0 1 200px;margin:0}
 .wnote{display:inline-block;margin-bottom:16px;padding:4px 12px;border:1px solid rgba(201,178,124,.4);border-radius:999px;color:var(--gold);font-size:14px}
+
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:18px;scrollbar-width:thin}
+.cats button{flex:none}
+.alist{display:grid;gap:14px}
+.acd{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:20px 22px;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.acd p{margin:0;font:400 clamp(20px,2.4vw,24px)/1.9 Amiri,serif}
+.acd p.q{font-family:"Sukoon Quran","Amiri Quran",Amiri,serif;line-height:2.2}
+.acd .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.acd small{color:var(--gold);font-size:14px}
+.acd button{min-height:40px;padding:4px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;font-size:14px}
+.acd button:focus-visible{outline:2px solid var(--gold)}
 .sgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:820px){.sgrid{grid-template-columns:1fr}}
 .form{display:grid;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:22px}
@@ -248,7 +259,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
       </a>
     </nav>
     <nav class="topnav" aria-label="أقسام الموقع">
-      <a href="#daily">دعاء اليوم</a><a href="#quran">القرآن الكريم</a><a href="#clips">المقاطع</a><a href="#jumuah">يوم الجمعة</a><a href="#istighfar">الاستغفار</a><a href="#watan">دعاء للوطن</a><a href="#sadaqa">صدقة جارية</a><a href="#adhkar">الأذكار</a><a href="#save">طريقة الحفظ</a><a href="#fadl">فضل النشر</a><a href="#about">عن سكون</a><a href="#faq">أسئلة</a>
+      <a href="#daily">دعاء اليوم</a><a href="#adiya">أدعية</a><a href="#quran">القرآن الكريم</a><a href="#clips">المقاطع</a><a href="#jumuah">يوم الجمعة</a><a href="#istighfar">الاستغفار</a><a href="#watan">دعاء للوطن</a><a href="#sadaqa">صدقة جارية</a><a href="#adhkar">الأذكار</a><a href="#save">طريقة الحفظ</a><a href="#fadl">فضل النشر</a><a href="#about">عن سكون</a><a href="#faq">أسئلة</a>
     </nav>
     <div class="intro">
       <h1>مقاطع قرآنية تحمّلها وتنشرها</h1>
@@ -258,6 +269,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
         <a class="opt wide" href="#daily"><b>دعاء اليوم</b><span>دعاء جديد كل يوم من القرآن والسنة</span></a>
         <a class="opt wide" href="#quran"><b>القرآن الكريم</b><span>اقرأ المصحف كاملاً، ١١٤ سورة</span></a>
         <a class="opt" href="#jumuah"><b>يوم الجمعة</b><span>سنن الجمعة وعدّاد الصلاة على النبي</span></a>
+        <a class="opt" href="#adiya"><b>أدعية</b><span>للموتى، المطر، التوفيق، الحزن وغيرها</span></a>
         <a class="opt" href="#sadaqa"><b>صدقة جارية</b><span>اصنع بطاقة صدقة جارية عن من تحب</span></a>
         <a class="opt" href="#istighfar"><b>عدّاد الاستغفار</b><span>هدفك اليوم مئة استغفار</span></a>
         <a class="opt" href="#watan"><b>دعاء للوطن</b><span>للسعودية وولاة أمرها وجنودها وشهدائها</span></a>
@@ -289,6 +301,13 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
       </div>
       <p class="status" id="dstatus" aria-live="polite"></p>
     </div>
+  </section>
+
+  <section class="band" id="adiya">
+    <h2>أدعية</h2>
+    <p class="lead">أدعية من القرآن الكريم والسنة الصحيحة، مع مصدر كل دعاء. اختر الموضوع.</p>
+    <div class="cats seg" id="cats" role="tablist"></div>
+    <div class="alist" id="alist"></div>
   </section>
 
   <section class="band" id="quran">
@@ -747,6 +766,22 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
     st.textContent = 'جاري التجهيز…';
     try { const blob = await new Promise(r => c.toBlob(r, 'image/png')); await downloads.save({ filename: 'سكون - دعاء اليوم.png', data: blob }); st.textContent = 'تم، الله يكتب أجرك'; }
     catch (err) { st.textContent = err && err.code === 'declined' ? 'تم الإلغاء' : 'صار خطأ، جرب مرة ثانية'; }
+  });
+
+
+  // adiya categories
+  let AD = [], acat = 0;
+  const renderAd = () => {
+    $('cats').innerHTML = AD.map((c, i) => `<button type="button" role="tab" aria-pressed="${i === acat}" data-c="${i}">${esc(c.name)}</button>`).join('');
+    const c = AD[acat]; if (!c) return;
+    $('alist').innerHTML = c.items.map((d, i) => `<div class="acd" style="animation-delay:${i * 60}ms"><p class="${d.q ? 'q' : ''}">${esc(d.t)}</p><div class="foot"><small>${esc(d.src)}</small><button type="button" data-i="${i}">نسخ</button></div></div>`).join('');
+  };
+  fetch('adiya.json').then(r => r.json()).then(d => { AD = d; renderAd(); }).catch(() => {});
+  $('cats').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; acat = +b.dataset.c; renderAd(); });
+  $('alist').addEventListener('click', async e => {
+    const b = e.target.closest('button[data-i]'); if (!b) return; const d = AD[acat].items[+b.dataset.i];
+    try { await navigator.clipboard.writeText(`${d.t}\n(${d.src})\n\nمن موقع سكون: ${SITE}`); b.textContent = 'تم النسخ'; } catch { b.textContent = 'ما نسخ'; }
+    setTimeout(() => { b.textContent = 'نسخ'; }, 1800);
   });
 
   // Standalone site: share sheet (saves straight to Photos on iPhone) or normal download
