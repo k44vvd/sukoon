@@ -159,8 +159,8 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .reset{background:none;border:0;color:var(--mute);font-size:14px;min-height:40px;text-decoration:underline}
 
 .ist{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(20px,5vw,60px);padding:28px 20px;background:var(--bg2);border:1px solid var(--line);border-radius:20px}
-.ringwrap{position:relative;width:220px;height:220px;display:grid;place-items:center}
-.ringwrap svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.ringwrap{isolation:isolate;position:relative;width:220px;height:220px;display:grid;place-items:center}
+.ringwrap svg{pointer-events:none;position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .ringwrap .trk{fill:none;stroke:rgba(238,237,230,.1);stroke-width:8}
 .ringwrap .prg{fill:none;stroke:var(--gold);stroke-width:8;stroke-linecap:round;stroke-dasharray:552.92;stroke-dashoffset:552.92;transition:stroke-dashoffset .5s cubic-bezier(.2,.7,.2,1)}
 .itext{display:flex;flex-direction:column;gap:8px;text-align:center}
