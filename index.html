@@ -235,6 +235,8 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .niyya .ayah small{display:block;font:400 13px/1.6 "IBM Plex Sans Arabic",sans-serif;color:var(--mute)}
 .niyya p{margin:0 0 10px;font-size:17px;line-height:1.9}
 .niyya p:last-child{margin:14px 0 0;font:700 20px/1.6 Amiri,serif;color:var(--gold)}
+@media(max-width:520px){.wx{position:static;display:inline-block;margin:0 auto 6px}.ptop{text-align:center}}
+:root[data-skin]:not([data-skin=light]):not([data-skin=sand]) .logo{-webkit-mask-image:none;mask-image:none;border-radius:22px;width:min(360px,80vw);border:1px solid rgba(201,178,124,.35)}
 @media(max-width:600px){.topnav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;-webkit-mask-image:linear-gradient(to left,#000 85%,transparent);mask-image:linear-gradient(to left,#000 85%,transparent)}.topnav::-webkit-scrollbar{display:none}.topnav a{flex:none}}
 
 .ltabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
@@ -340,16 +342,21 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 
 /* skins */
 :root[data-skin=light]{color-scheme:light;--bg:#f6f1e4;--bg2:#fffaf0;--card:#fffdf8;--ink:#12322f;--mute:#5b6e6a;--line:rgba(18,50,47,.14);--gold:#8a6a22}
+:root[data-skin=navy]{--bg:#0b1630;--bg2:#13234a;--card:#13234a;--ink:#eef0f6;--mute:#a6b0c8;--line:rgba(255,255,255,.12);--gold:#d4b97a}
+:root[data-skin=purple]{--bg:#1d1430;--bg2:#2a1f42;--card:#2a1f42;--ink:#f1ecf7;--mute:#b6a9c9;--line:rgba(255,255,255,.12);--gold:#d8b878}
+:root[data-skin=maroon]{--bg:#260d15;--bg2:#3a1622;--card:#3a1622;--ink:#f5eaea;--mute:#c9a9ae;--line:rgba(255,255,255,.12);--gold:#d9b46f}
+:root[data-skin=brown]{--bg:#1f1812;--bg2:#2c221a;--card:#2c221a;--ink:#f3ead6;--mute:#bfae8c;--line:rgba(255,255,255,.12);--gold:#d1b068}
+:root[data-skin=sand]{color-scheme:light;--bg:#efe4cf;--bg2:#f8f0de;--card:#fbf5e8;--ink:#3a2a18;--mute:#7a6650;--line:rgba(58,42,24,.15);--gold:#8a6420}
 :root[data-skin=black]{--bg:#050505;--bg2:#121212;--card:#121212;--ink:#f1ede3;--mute:#a4a4a4;--line:rgba(255,255,255,.12);--gold:#d4b97a}
 :root[data-skin] body::before,:root[data-skin] body::after{display:none}
 :root[data-skin] .daily,:root[data-skin] .niyya,:root[data-skin] .jcard,:root[data-skin] .opt.wide,:root[data-skin] .jbar,:root[data-skin] .pt.next,:root[data-skin] .acd.today,:root[data-skin] .todo label:has(input:checked){background:var(--bg2)!important}
 :root[data-skin] .daily::after{display:none}
 :root[data-skin] .form input[type=text],:root[data-skin] .qtop input{background:var(--card);color:var(--ink)}
-:root[data-skin=light] .logo{-webkit-mask-image:none;mask-image:none;border-radius:22px;width:min(360px,80vw);aspect-ratio:2/1}
-:root[data-skin=light] .niyya,:root[data-skin=light] .jcard,:root[data-skin=light] .daily{box-shadow:0 10px 30px rgba(18,50,47,.08)}
-:root[data-skin=light] .card,:root[data-skin=light] .acard,:root[data-skin=light] .dk,:root[data-skin=light] .acd,:root[data-skin=light] .steps .box,:root[data-skin=light] .hadiths figure{box-shadow:0 4px 14px rgba(18,50,47,.06)}
-:root[data-skin=light] .ehsan p{color:#d8d3c4}
-:root[data-skin=light] .waves i{background:var(--gold)}
+:root[data-skin=light] .logo,:root[data-skin=sand] .logo{-webkit-mask-image:none;mask-image:none;border-radius:22px;width:min(360px,80vw);aspect-ratio:2/1}
+:root[data-skin=light] .niyya,:root[data-skin=light] .jcard,:root[data-skin=light] .daily,:root[data-skin=sand] .niyya,:root[data-skin=sand] .jcard,:root[data-skin=sand] .daily{box-shadow:0 10px 30px rgba(18,50,47,.08)}
+:root[data-skin=light] .card,:root[data-skin=light] .acard,:root[data-skin=light] .dk,:root[data-skin=light] .acd,:root[data-skin=light] .steps .box,:root[data-skin=light] .hadiths figure,:root[data-skin=sand] .card,:root[data-skin=sand] .acard,:root[data-skin=sand] .dk,:root[data-skin=sand] .acd,:root[data-skin=sand] .steps .box,:root[data-skin=sand] .hadiths figure{box-shadow:0 4px 14px rgba(18,50,47,.06)}
+:root[data-skin=light] .ehsan p,:root[data-skin=sand] .ehsan p{color:#d8d3c4}
+:root[data-skin=light] .waves i,:root[data-skin=sand] .waves i{background:var(--gold)}
 .wrap,footer{zoom:var(--zoom,1)}
 :root.still *,:root.still *::before,:root.still *::after{animation:none!important;transition:none!important}
 :root.still .rv{opacity:1;transform:none}
@@ -364,7 +371,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .sheet h3 button{min-width:44px;min-height:44px;border-radius:12px;border:1px solid var(--line);background:transparent;font-size:15px}
 .srow{margin-bottom:18px}
 .srow>b{display:block;margin-bottom:8px;font-size:15px;color:var(--mute);font-weight:500}
-.skins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.skins{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .skins button{display:grid;gap:8px;justify-items:center;padding:12px 8px;border-radius:14px;border:1px solid var(--line);background:transparent;font-size:14px}
 .skins button[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,178,124,.35)}
 .skins i{width:42px;height:42px;border-radius:50%;border:2px solid #c9b27c}
@@ -417,8 +424,50 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .tsheet .row button{flex:1 1 120px;min-height:46px;border-radius:12px;border:1px solid #c9b27c;background:#022b2a;color:#eeede6;font-size:15px}
 .tsheet .row button.g{background:transparent;color:#022b2a}
 .ayday .tafs{margin:14px auto 0;max-width:760px;padding:14px 16px;border-radius:14px;background:rgba(0,0,0,.18);font-size:16px;line-height:1.9;text-align:start;color:var(--ink)}
-:root[data-skin=light] .ayday .tafs{background:rgba(18,50,47,.06)}
+:root[data-skin=light] .ayday .tafs,:root[data-skin=sand] .ayday .tafs{background:rgba(18,50,47,.06)}
 .ayday .tafs b{display:block;margin-bottom:4px;color:var(--gold);font-size:14px}
+
+.pcard{position:relative;overflow:hidden;margin:clamp(12px,2vw,20px) auto 0;max-width:720px;border-radius:28px;border:1px solid rgba(201,178,124,.45);background:#231e1a;color:#f3ead6;box-shadow:0 18px 40px rgba(0,0,0,.35);animation:rise .7s both}
+.sky{position:absolute;inset:0 0 auto 0;height:66%;overflow:hidden;background:linear-gradient(180deg,#0b1222 0%,#18233a 60%,#231e1a 100%);transition:background 1.2s}
+.pcard[data-sky=dawn] .sky{background:linear-gradient(180deg,#1d2a4a 0%,#5b4a6e 45%,#d58a5c 85%,#231e1a 100%)}
+.pcard[data-sky=day] .sky{background:linear-gradient(180deg,#3d7fc1 0%,#79aedb 55%,#c9dbe6 85%,#231e1a 100%)}
+.pcard[data-sky=after] .sky{background:linear-gradient(180deg,#4b79a8 0%,#d6a467 70%,#231e1a 100%)}
+.pcard[data-sky=sunset] .sky{background:linear-gradient(180deg,#2a2348 0%,#7c3f5e 45%,#e07a4c 80%,#231e1a 100%)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 25% 60%,#fff9,transparent),radial-gradient(1.5px 1.5px at 40% 15%,#fff,transparent),radial-gradient(1px 1px at 55% 40%,#fffa,transparent),radial-gradient(1px 1px at 70% 25%,#fff,transparent),radial-gradient(1.5px 1.5px at 85% 55%,#fffb,transparent),radial-gradient(1px 1px at 92% 12%,#fff,transparent),radial-gradient(1px 1px at 33% 35%,#fff8,transparent),radial-gradient(1px 1px at 62% 8%,#fff,transparent),radial-gradient(1px 1px at 18% 45%,#fff9,transparent);animation:tw 4s ease-in-out infinite alternate;transition:opacity 1s}
+.stars.s2{transform:translate(7%,9%) scale(1.2);animation-delay:-2s;opacity:.7}
+@keyframes tw{from{opacity:.45}to{opacity:1}}
+.pcard:not([data-sky=night]) .stars{opacity:0}
+.pcard[data-sky=dawn] .stars{opacity:.25}
+.orb{position:absolute;top:9%;right:8%;width:48px;height:48px;border-radius:50%;box-shadow:inset -14px 6px 0 0 #f3ead6;transform:rotate(-20deg);filter:drop-shadow(0 0 14px rgba(243,234,214,.55));transition:all 1.2s}
+.pcard:not([data-sky=night]) .orb{box-shadow:none;background:radial-gradient(circle,#fff6d5 0 38%,#ffd36b 60%,rgba(255,200,90,0) 72%);width:76px;height:76px;filter:none}
+.pcard[data-sky=sunset] .orb,.pcard[data-sky=dawn] .orb{top:46%;background:radial-gradient(circle,#ffe2b0 0 36%,#ff9b52 60%,rgba(255,140,70,0) 72%)}
+.cloud{position:absolute;border-radius:50%;background:rgba(255,255,255,.08);filter:blur(14px);animation:drift2 40s linear infinite}
+.cloud.c1{width:260px;height:70px;top:48%;left:-10%}.cloud.c2{width:200px;height:60px;top:30%;left:50%;animation-duration:55s;animation-direction:reverse}.cloud.c3{width:320px;height:80px;top:58%;left:35%;animation-duration:70s}
+.pcard[data-sky=day] .cloud,.pcard[data-sky=after] .cloud{background:rgba(255,255,255,.45)}
+@keyframes drift2{from{transform:translateX(-30px)}to{transform:translateX(30px)}}
+.ptop,.plabel,.pcd,.plow{position:relative;z-index:1}
+[hidden]{display:none!important}
+.ptop{position:relative;padding:16px 18px 0;min-height:64px}
+.wx{position:absolute;top:14px;left:14px;padding:8px 14px;border-radius:16px;background:rgba(20,28,48,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);direction:ltr;text-align:center}
+.wnow{display:flex;align-items:center;justify-content:center;gap:8px;font-size:30px;font-weight:600;line-height:1.1}
+.wnow svg{width:26px;height:26px}
+.wrow{display:flex;align-items:center;gap:4px;font-size:13px;margin-top:4px;direction:rtl}
+.wrow svg{width:14px;height:14px;margin-inline-end:6px}
+.pdate{text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.5);padding-top:4px}
+.pdate b{display:block;font:700 19px/1.3 Amiri,serif}
+.pdate span{font-size:13px;opacity:.85}
+.plabel{margin:14px 0 0;text-align:center;font:700 clamp(26px,6vw,34px)/1.3 Amiri,serif;color:#ead9b4;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.pcd{text-align:center;direction:ltr;font-size:clamp(54px,14vw,80px);font-weight:700;line-height:1.15;color:#e7cfa0;text-shadow:0 4px 18px rgba(0,0,0,.45);font-variant-numeric:tabular-nums;letter-spacing:1px}
+.plow{padding:14px clamp(18px,5vw,32px) 16px}
+.ptrack{position:relative;height:14px;border-radius:999px;background:rgba(255,255,255,.1);margin:6px 8px 0}
+.pfill{position:absolute;inset-block:0;right:0;border-radius:999px;background:linear-gradient(90deg,#e8d3a2,#d1b068);transition:width .6s}
+.pknob{position:absolute;top:50%;width:30px;height:30px;margin-right:-15px;transform:translateY(-50%);border-radius:50%;background:#231e1a;border:3px solid #d1b068;box-shadow:0 0 16px rgba(209,176,104,.6);transition:right .6s}
+.pends{display:flex;justify-content:space-between;margin-top:14px}
+.pends b{display:block;font:700 22px/1.2 Amiri,serif;color:#d8c49b}
+.pends span{font-size:17px;color:#d8c49b;direction:ltr;display:block}
+.pends>div:last-child{text-align:left}
+.pnote{margin:12px 0 0;text-align:center;font-size:15px;color:#bfae8c}
+.pnote span{display:block;font-size:12px;opacity:.75;margin-bottom:2px}
 .sgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:820px){.sgrid{grid-template-columns:1fr}}
 .form{display:grid;gap:14px;background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:22px}
@@ -440,7 +489,20 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar" id="topbar"><div class="td"><b id="tbh"></b><span id="tbg"></span></div><a class="tn" href="#mawaqit"><span><small id="tbc">الصلاة القادمة</small><b id="tbn">…</b></span><strong id="tbcd"></strong></a></div>
+  <div class="pcard" id="pcard" data-sky="night">
+    <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
+    <div class="ptop">
+      <div class="wx" id="wx" hidden><div class="wnow"><span id="wxt">--°</span><svg id="wxi" viewBox="0 0 24 24" aria-hidden="true"></svg></div><div class="wrow"><span id="wxmax">--°</span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span id="wxmin">--°</span><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span id="wxf">--°</span><svg viewBox="0 0 24 24"><path d="M10 4a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="17" r="1.6" fill="currentColor"/></svg></div></div>
+      <div class="pdate"><b id="tbh"></b><span id="tbg"></span></div>
+    </div>
+    <p class="plabel">باقي على <span id="tbn">…</span></p>
+    <div class="pcd" id="tbcd">٠٠:٠٠:٠٠</div>
+    <div class="plow">
+      <div class="ptrack"><i class="pfill" id="pfill"></i><i class="pknob" id="pknob"></i></div>
+      <div class="pends"><div><b id="pprevN"></b><span id="pprevT"></span></div><div><b id="pnextN"></b><span id="pnextT"></span></div></div>
+      <p class="pnote"><span id="tbc"></span>لا يجوز تأخير الصلاة عن وقتها إلا لعذر شرعي</p>
+    </div>
+  </div>
   <header>
     <img class="logo" src="logo.jpg" alt="سكون SUKOON">
     <div class="waves" aria-hidden="true"><i style="animation-delay:-0s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.7s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.15s"></i><i style="animation-delay:-.55s"></i><i style="animation-delay:-.35s"></i></div>
@@ -779,6 +841,11 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
         <button type="button" data-skin=""><i style="background:#022b2a"></i>الأخضر</button>
         <button type="button" data-skin="light"><i style="background:#f6f1e4"></i>فاتح</button>
         <button type="button" data-skin="black"><i style="background:#050505"></i>أسود</button>
+        <button type="button" data-skin="navy"><i style="background:#0b1630"></i>كحلي</button>
+        <button type="button" data-skin="purple"><i style="background:#2a1f42"></i>بنفسجي</button>
+        <button type="button" data-skin="maroon"><i style="background:#3a1622"></i>عنّابي</button>
+        <button type="button" data-skin="brown"><i style="background:#2c221a"></i>بنّي</button>
+        <button type="button" data-skin="sand"><i style="background:#efe4cf"></i>رملي</button>
       </div>
     </div>
     <div class="srow"><b>حجم الخط</b>
@@ -1197,6 +1264,30 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
   });
 
 
+
+  // prayer card (sky + progress)
+  const h24 = h => { h = ((h % 24) + 24) % 24; let H = Math.floor(h), M = Math.round((h - H) * 60); if (M === 60) { H = (H + 1) % 24; M = 0; } return `${String(H).padStart(2, '0')}:${String(M).padStart(2, '0')}`; };
+  function updCard(now, nx) {
+    const P = PN.filter(([k]) => k !== 'sunrise'); const t = k => Math.round(ptT[k] * 60) / 60;
+    let prev, pT, nT = nx[0] === 'fajr' && now > t('isha') ? t('fajr') + 24 : t(nx[0]);
+    const ni = P.findIndex(([k]) => k === nx[0]);
+    if (nx[0] === 'fajr') { prev = P[4]; pT = now >= t('isha') ? t('isha') : t('isha') - 24; } else { prev = P[ni - 1]; pT = t(prev[0]); }
+    const frac = Math.min(1, Math.max(0, (now - pT) / (nT - pT)));
+    $('pfill').style.width = `${frac * 100}%`; $('pknob').style.right = `${frac * 100}%`;
+    $('pprevN').textContent = prev[1]; $('pprevT').textContent = h24(pT); $('pnextN').textContent = nx[1]; $('pnextT').textContent = h24(nT);
+    const sky = now < t('fajr') || now >= t('isha') ? 'night' : now < ptT.sunrise + .5 ? 'dawn' : now < t('asr') ? 'day' : now < t('maghrib') - .35 ? 'after' : 'sunset';
+    $('pcard').dataset.sky = sky;
+  }
+  // weather (open-meteo, optional)
+  const ICON = { sun: '<circle cx="12" cy="12" r="5" fill="#ffd36b"/><path d="M12 1v3M12 20v3M3.5 3.5l2 2M18.5 18.5l2 2M1 12h3M20 12h3M3.5 20.5l2-2M18.5 5.5l2-2" stroke="#ffd36b" stroke-width="1.8" stroke-linecap="round"/>', moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="#f3ead6" stroke-width="1.8"/>' };
+  let wxCity = -1;
+  const loadWx = () => {
+    if (wxCity === CITY[0]) return; wxCity = CITY[0];
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${CITY[1]}&longitude=${CITY[2]}&current=temperature_2m,apparent_temperature,is_day&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FRiyadh&forecast_days=1`)
+      .then(r => r.json()).then(w => { const c = w.current, d = w.daily; $('wxt').textContent = `${Math.round(c.temperature_2m)}°`; $('wxi').innerHTML = c.is_day ? ICON.sun : ICON.moon; $('wxf').textContent = `${Math.round(c.apparent_temperature)}°`; $('wxmin').textContent = `${Math.round(d.temperature_2m_min[0])}°`; $('wxmax').textContent = `${Math.round(d.temperature_2m_max[0])}°`; $('wx').hidden = false; })
+      .catch(() => { $('wx').hidden = true; });
+  };
+
   // prayer times — Jeddah, Umm al-Qura
   const PT = (y, m, d, lat, lng, tz, ramadan) => {
     const D2R = Math.PI / 180, R2D = 180 / Math.PI;
@@ -1228,10 +1319,12 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
     else rem = Math.round(ptT[nx[0]] * 60) / 60 - now;
     $('mwq').innerHTML = PN.map(([k, n]) => `<div class="pt${k === nx[0] ? ' next' : ''}${k === 'sunrise' ? ' sun' : ''}"><b>${n}</b><strong>${hm(ptT[k])}</strong></div>`).join('');
     $('mnext').textContent = `${nx[1]} بعد`;
-    $('tbn').textContent = nx[1]; $('tbc').textContent = `الصلاة القادمة · ${CITY[0]}`;
-    const sec = Math.max(0, Math.floor(rem * 3600)); $('mcd').textContent = $('tbcd').textContent = `${String(Math.floor(sec / 3600)).padStart(2, '0')}:${String(Math.floor(sec % 3600 / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`;
+    $('tbn').textContent = nx[1]; $('tbc').textContent = `مواقيت ${CITY[0]}`; updCard(now, nx);
+    const sec = Math.max(0, Math.floor(rem * 3600)); $('mcd').textContent = `${String(Math.floor(sec / 3600)).padStart(2, '0')}:${String(Math.floor(sec % 3600 / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`; $('tbcd').textContent = ar($('mcd').textContent);
   };
   tickPT(); const ptTimer = setInterval(tickPT, 1000);
+  loadWx(); setInterval(() => { wxCity = -1; loadWx(); }, 30 * 60 * 1000);
+
 
   // grandfather sadaqa — daily dua with hijri dates
   const hijriOf = dt => { try { return new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Riyadh' }).format(dt); } catch { return ''; } };
@@ -1284,12 +1377,12 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
     const R = document.documentElement;
     if (S.skin) R.dataset.skin = S.skin; else delete R.dataset.skin;
     R.style.setProperty('--zoom', S.zoom); R.classList.toggle('still', !S.motion);
-    const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = S.skin === 'light' ? '#f6f1e4' : S.skin === 'black' ? '#050505' : '#022b2a';
+    const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#022b2a';
     document.querySelectorAll('#skins button').forEach(b => b.setAttribute('aria-pressed', b.dataset.skin === S.skin));
     document.querySelectorAll('#zooms button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.z === +S.zoom));
     document.querySelectorAll('#motion button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.m === +S.motion));
     $('cities').innerHTML = CITIES.map((c, i) => `<button type="button" data-c="${i}" aria-pressed="${i === +S.city}">${c[0]}</button>`).join('');
-    const c = CITIES[S.city] || CITIES[0]; CITY = c; ptDay = ''; tickPT();
+    const c = CITIES[S.city] || CITIES[0]; CITY = c; ptDay = ''; tickPT(); loadWx();
     document.querySelector('#mawaqit h2').textContent = `مواقيت الصلاة في ${c[0]}`;
     store.set('sk-set', S);
   };
