@@ -427,12 +427,12 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 :root[data-skin=light] .ayday .tafs,:root[data-skin=sand] .ayday .tafs{background:rgba(18,50,47,.06)}
 .ayday .tafs b{display:block;margin-bottom:4px;color:var(--gold);font-size:14px}
 
-.pcard{position:relative;overflow:hidden;margin:clamp(12px,2vw,20px) auto 0;max-width:720px;border-radius:28px;border:1px solid rgba(201,178,124,.45);background:#231e1a;color:#f3ead6;box-shadow:0 18px 40px rgba(0,0,0,.35);animation:rise .7s both}
-.sky{position:absolute;inset:0 0 auto 0;height:66%;overflow:hidden;background:linear-gradient(180deg,#0b1222 0%,#18233a 60%,#231e1a 100%);transition:background 1.2s}
-.pcard[data-sky=dawn] .sky{background:linear-gradient(180deg,#1d2a4a 0%,#5b4a6e 45%,#d58a5c 85%,#231e1a 100%)}
-.pcard[data-sky=day] .sky{background:linear-gradient(180deg,#3d7fc1 0%,#79aedb 55%,#c9dbe6 85%,#231e1a 100%)}
-.pcard[data-sky=after] .sky{background:linear-gradient(180deg,#4b79a8 0%,#d6a467 70%,#231e1a 100%)}
-.pcard[data-sky=sunset] .sky{background:linear-gradient(180deg,#2a2348 0%,#7c3f5e 45%,#e07a4c 80%,#231e1a 100%)}
+.pcard{--sk:color-mix(in srgb,var(--bg) 72%,#000);--lo:var(--bg2);position:relative;overflow:hidden;margin:clamp(12px,2vw,20px) auto 0;max-width:720px;border-radius:28px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);background:var(--lo);color:#f3ead6;box-shadow:0 18px 40px rgba(0,0,0,.35);animation:rise .7s both}
+.sky{position:absolute;inset:0 0 auto 0;height:66%;overflow:hidden;background:linear-gradient(180deg,var(--sk) 0%,color-mix(in srgb,var(--sk) 70%,var(--lo)) 60%,var(--lo) 100%);transition:background 1.2s}
+.pcard[data-sky=dawn] .sky{background:linear-gradient(180deg,var(--sk) 0%,color-mix(in srgb,var(--sk) 60%,var(--gold)) 70%,var(--lo) 100%)}
+.pcard[data-sky=day] .sky{background:linear-gradient(180deg,color-mix(in srgb,var(--bg2) 55%,#7fb2d8) 0%,color-mix(in srgb,var(--bg2) 70%,#a9cde6) 60%,var(--lo) 100%)}
+.pcard[data-sky=after] .sky{background:linear-gradient(180deg,color-mix(in srgb,var(--bg2) 60%,#6f9cc4) 0%,color-mix(in srgb,var(--bg2) 55%,var(--gold)) 70%,var(--lo) 100%)}
+.pcard[data-sky=sunset] .sky{background:linear-gradient(180deg,var(--sk) 0%,color-mix(in srgb,var(--sk) 50%,#b5624a) 55%,color-mix(in srgb,var(--gold) 60%,#e07a4c) 85%,var(--lo) 100%)}
 .stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 25% 60%,#fff9,transparent),radial-gradient(1.5px 1.5px at 40% 15%,#fff,transparent),radial-gradient(1px 1px at 55% 40%,#fffa,transparent),radial-gradient(1px 1px at 70% 25%,#fff,transparent),radial-gradient(1.5px 1.5px at 85% 55%,#fffb,transparent),radial-gradient(1px 1px at 92% 12%,#fff,transparent),radial-gradient(1px 1px at 33% 35%,#fff8,transparent),radial-gradient(1px 1px at 62% 8%,#fff,transparent),radial-gradient(1px 1px at 18% 45%,#fff9,transparent);animation:tw 4s ease-in-out infinite alternate;transition:opacity 1s}
 .stars.s2{transform:translate(7%,9%) scale(1.2);animation-delay:-2s;opacity:.7}
 @keyframes tw{from{opacity:.45}to{opacity:1}}
@@ -445,10 +445,14 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .cloud.c1{width:260px;height:70px;top:48%;left:-10%}.cloud.c2{width:200px;height:60px;top:30%;left:50%;animation-duration:55s;animation-direction:reverse}.cloud.c3{width:320px;height:80px;top:58%;left:35%;animation-duration:70s}
 .pcard[data-sky=day] .cloud,.pcard[data-sky=after] .cloud{background:rgba(255,255,255,.45)}
 @keyframes drift2{from{transform:translateX(-30px)}to{transform:translateX(30px)}}
+:root:is([data-skin=light],[data-skin=sand]) .pcard{--sk:color-mix(in srgb,var(--ink) 88%,#000)}
+:root:is([data-skin=light],[data-skin=sand]) .sky{height:72%}
+:root:is([data-skin=light],[data-skin=sand]) .pcd{color:#f1dfb6}:root:is([data-skin=light],[data-skin=sand]) .plabel{color:#efe2c4}
+:root:is([data-skin=light],[data-skin=sand]) .pcard[data-sky=night] .sky,:root:is([data-skin=light],[data-skin=sand]) .pcard[data-sky=sunset] .sky{background:linear-gradient(180deg,var(--sk) 0%,color-mix(in srgb,var(--sk) 85%,var(--lo)) 72%,var(--lo) 100%)}
 .ptop,.plabel,.pcd,.plow{position:relative;z-index:1}
 [hidden]{display:none!important}
 .ptop{position:relative;padding:16px 18px 0;min-height:64px}
-.wx{position:absolute;top:14px;left:14px;padding:8px 14px;border-radius:16px;background:rgba(20,28,48,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);direction:ltr;text-align:center}
+.wx{position:absolute;top:14px;left:14px;padding:8px 14px;border-radius:16px;background:color-mix(in srgb,var(--sk) 60%,transparent);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);direction:ltr;text-align:center}
 .wnow{display:flex;align-items:center;justify-content:center;gap:8px;font-size:30px;font-weight:600;line-height:1.1}
 .wnow svg{width:26px;height:26px}
 .wrow{display:flex;align-items:center;gap:4px;font-size:13px;margin-top:4px;direction:rtl}
@@ -456,17 +460,17 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .pdate{text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.5);padding-top:4px}
 .pdate b{display:block;font:700 19px/1.3 Amiri,serif}
 .pdate span{font-size:13px;opacity:.85}
-.plabel{margin:14px 0 0;text-align:center;font:700 clamp(26px,6vw,34px)/1.3 Amiri,serif;color:#ead9b4;text-shadow:0 2px 10px rgba(0,0,0,.5)}
-.pcd{text-align:center;direction:ltr;font-size:clamp(54px,14vw,80px);font-weight:700;line-height:1.15;color:#e7cfa0;text-shadow:0 4px 18px rgba(0,0,0,.45);font-variant-numeric:tabular-nums;letter-spacing:1px}
+.plabel{margin:14px 0 0;text-align:center;font:700 clamp(26px,6vw,34px)/1.3 Amiri,serif;color:color-mix(in srgb,var(--gold) 55%,#fff);text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.pcd{text-align:center;direction:ltr;font-size:clamp(54px,14vw,80px);font-weight:700;line-height:1.15;color:color-mix(in srgb,var(--gold) 75%,#fff);text-shadow:0 4px 18px rgba(0,0,0,.45);font-variant-numeric:tabular-nums;letter-spacing:1px}
 .plow{padding:14px clamp(18px,5vw,32px) 16px}
-.ptrack{position:relative;height:14px;border-radius:999px;background:rgba(255,255,255,.1);margin:6px 8px 0}
-.pfill{position:absolute;inset-block:0;right:0;border-radius:999px;background:linear-gradient(90deg,#e8d3a2,#d1b068);transition:width .6s}
-.pknob{position:absolute;top:50%;width:30px;height:30px;margin-right:-15px;transform:translateY(-50%);border-radius:50%;background:#231e1a;border:3px solid #d1b068;box-shadow:0 0 16px rgba(209,176,104,.6);transition:right .6s}
+.ptrack{position:relative;height:14px;border-radius:999px;background:color-mix(in srgb,var(--ink) 12%,transparent);margin:6px 8px 0}
+.pfill{position:absolute;inset-block:0;right:0;border-radius:999px;background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 60%,#fff),var(--gold));transition:width .6s}
+.pknob{position:absolute;top:50%;width:30px;height:30px;margin-right:-15px;transform:translateY(-50%);border-radius:50%;background:var(--lo);border:3px solid var(--gold);box-shadow:0 0 16px color-mix(in srgb,var(--gold) 60%,transparent);transition:right .6s}
 .pends{display:flex;justify-content:space-between;margin-top:14px}
-.pends b{display:block;font:700 22px/1.2 Amiri,serif;color:#d8c49b}
-.pends span{font-size:17px;color:#d8c49b;direction:ltr;display:block}
+.pends b{display:block;font:700 22px/1.2 Amiri,serif;color:var(--gold)}
+.pends span{font-size:17px;color:var(--ink);direction:ltr;display:block}
 .pends>div:last-child{text-align:left}
-.pnote{margin:12px 0 0;text-align:center;font-size:15px;color:#bfae8c}
+.pnote{margin:12px 0 0;text-align:center;font-size:15px;color:var(--mute)}
 .pnote span{display:block;font-size:12px;opacity:.75;margin-bottom:2px}
 .sgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
 @media(max-width:820px){.sgrid{grid-template-columns:1fr}}
