@@ -1,0 +1,18 @@
+name: Update Ehsan numbers
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/ehsan.py
+      - run: |
+          git config user.name "sukoon-bot"
+          git config user.email "sukoon-bot@users.noreply.github.com"
+          git add ehsan.json
+          git diff --cached --quiet || (git commit -m "تحديث أرقام إحسان" && git push)

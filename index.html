@@ -2810,15 +2810,19 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // featured Ehsan cases (added manually from links Khalid sends)
   const FCASES = [
-    { tag: 'حالة مميزة من إحسان', btn: 'تبرّع لهذه الحالة', title: 'الأدوية الطبية لمرضى السكري', no: 'P84148', desc: 'ساهم في تقديم الرعاية الصحية لمرضى السكري، بتبرعك توفّر لهم الأدوية الطبية اللازمة لاستمرار علاجهم واستقرار صحتهم.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/Health/Medicines.png', url: 'https://ehsan.sa/referral/95B15550F7', got: 129733, left: 158267, asof: '٢٥ نوفمبر ٢٠٢٦', icon: 'heart' },
+    { tag: 'حالة مميزة من إحسان', btn: 'تبرّع لهذه الحالة', title: 'الأدوية الطبية لمرضى السكري', no: 'P84148', desc: 'ساهم في تقديم الرعاية الصحية لمرضى السكري، بتبرعك توفّر لهم الأدوية الطبية اللازمة لاستمرار علاجهم واستقرار صحتهم.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/Health/Medicines.png', url: 'https://ehsan.sa/referral/95B15550F7', got: 143827, left: 144173, asof: '2026-11-25T17:10:00Z', icon: 'heart' },
     { tag: 'مشروع من جمعية نجاة', btn: 'تبرّع للمشروع', title: 'المبنى الاستثماري', org: 'جمعية نجاة للدعوة والإرشاد وتوعية الجاليات بمركز الحميراء بجازان', desc: 'مشروع المبنى الاستثماري لجمعية نجاة، يدعم استدامة برامجها في الدعوة والإرشاد وتوعية الجاليات. التبرع من متجر الجمعية الرسمي، وتحدد المبلغ اللي تبيه.', img: 'images/najah-building.jpg', url: 'https://store.najah-h.sa/', icon: 'house', wide: 1 }
   ];
   const nf = n => ar(Math.round(n).toLocaleString('en'));
-  $('efeat').innerHTML = FCASES.map((c, i) => { const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
+  const renderFC = () => { $('efeat').innerHTML = FCASES.map((c, i) => { const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
     return `<article class="fcase"><div class="fimg">${ICO[c.icon] || ''}<img src="${esc(c.img)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0"></div>
     <div class="fbody"><span class="etag">${esc(c.tag)}</span><h3>${esc(c.title)}</h3><p class="fno">${c.no ? `رقم الحالة ${esc(c.no)}` : esc(c.org || '')}</p><p>${esc(c.desc)}</p>
-    ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">الأرقام حتى ${esc(c.asof)}، والمبلغ الحالي يظهر في صفحة الحالة</small></div>` : ''}
+    ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">آخر تحديث للأرقام ${esc(agoAr(c.asof))} · تتحدث تلقائياً كل ساعتين</small></div>` : ''}
     <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.btn)} ←</a><button type="button" class="dl ghost" data-fshare="${i}">مشاركة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
+  };
+  const agoAr = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000)); return m < 2 ? 'الآن' : m < 60 ? `قبل ${ar(m)} دقيقة` : m < 1440 ? `قبل ${ar(Math.round(m / 60))} ساعة` : `قبل ${ar(Math.round(m / 1440))} يوم`; };
+  renderFC();
+  fetch('ehsan.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(j => { if (!j || !j.cases) return; let ch = 0; FCASES.forEach(c => { const x = c.no && j.cases[c.no]; if (x && x.got >= 0 && x.left >= 0) { c.got = x.got; c.left = x.left; c.asof = x.asof; ch = 1; } }); if (ch) renderFC(); }).catch(() => {});
   $('efeat').addEventListener('click', async e => { const b = e.target.closest('[data-fshare]'); if (!b) return; const c = FCASES[+b.dataset.fshare], st = $('fst' + b.dataset.fshare), txt = `${c.title}\n${c.desc}\n\nتبرّع من هنا:\n${c.url}`;
     try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); st.textContent = 'تم نسخ الحالة مع الرابط'; } catch (err) { if (err && err.name === 'AbortError') return; st.textContent = 'ما قدرت أشارك، جرّب مرة ثانية'; } });
 
