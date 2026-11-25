@@ -402,6 +402,7 @@ body.qp-on .bell{bottom:calc(92px + env(safe-area-inset-bottom))}
 .minef{max-width:620px;margin-bottom:14px}
 .srcbox{margin:10px 0 0;padding:12px 14px;border-radius:14px;border:1px dashed rgba(201,178,124,.5);font-size:14px;line-height:1.9;color:var(--mute);text-align:start}
 .srcbox a{color:var(--gold)}.srcbox b{color:var(--ink)}
+.srch{margin:22px 0 8px;color:var(--gold);font:700 21px/1.3 Amiri,serif}
 .srclist{margin:0;padding-inline-start:20px;display:grid;gap:10px;line-height:1.9;color:var(--mute)}.srclist b{color:var(--ink)}.srclist a{color:var(--gold)}
 .ares{display:grid;gap:6px;margin-top:12px}.ares button{display:grid;gap:4px;text-align:start;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink)}
 .ares button span{font:400 18px/1.9 "Sukoon Quran",Amiri,serif}.ares button small{color:var(--gold);font-size:12px}
@@ -700,6 +701,12 @@ body[data-pg="studio"] [data-page]:not([data-page="studio"]){display:none!import
 body[data-pg="sadaqa"] [data-page]:not([data-page="sadaqa"]){display:none!important}
 body[data-pg="remind"] [data-page]:not([data-page="remind"]){display:none!important}
 body[data-pg="guide"] [data-page]:not([data-page="guide"]){display:none!important}
+body[data-pg="anbiya"] [data-page]:not([data-page="anbiya"]){display:none!important}
+body[data-pg="sources"] [data-page]:not([data-page="sources"]){display:none!important}
+.anbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 18px}.anbar .status{margin:0}
+.ayx{font-family:"Sukoon Quran",Amiri,serif;font-size:21px;line-height:2.2;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:8px}.ayx i{font-style:normal;color:var(--gold);font-size:15px}
+.qf{font-family:"Sukoon Quran",Amiri,serif;font-size:1.12em}
+.pst .pqs{display:flex;gap:8px;flex-wrap:wrap}
 .pnav{position:sticky;top:0;z-index:30;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * max(5vw,18px)) 14px;padding:10px max(5vw,18px);background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .pnav::-webkit-scrollbar{display:none}
 .pnav a{flex:none;min-height:40px;display:inline-flex;align-items:center;padding:6px 15px;border-radius:999px;border:1px solid var(--line);text-decoration:none;color:var(--mute);font-size:15px;white-space:nowrap;transition:background .25s,color .25s,border-color .25s}
@@ -786,7 +793,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 <body>
 <div class="wrap">
   <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai" class="aink">المساعد الذكي</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/anbiya" data-go="anbiya" data-more="1"><b>قصص الأنبياء</b><span>٢٥ نبياً من القرآن، مع تحميل PDF</span></a><a href="#/sources" data-go="sources" data-more="1"><b>المصادر</b><span>من وين أخذنا كل محتوى في الموقع</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -1227,19 +1234,42 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
-  <section class="band" id="sources" data-page="guide">
-    <h2>مصادر المحتوى</h2>
-    <p class="lead">كل نص في سكون له مصدر تقدر ترجع له وتتأكد منه:</p>
+  <section class="band" id="anbiya" data-page="anbiya">
+    <h2>قصص الأنبياء</h2>
+    <p class="lead">قصص الأنبياء والرسل الخمسة والعشرين المذكورين في القرآن الكريم، مقسّمة لمراحل، وكل مرحلة معها آياتها.</p>
+    <div class="anbar"><button type="button" class="dl" id="anpdf">تحميل القصص كاملة PDF</button><p class="status" aria-live="polite"></p></div>
+    <div id="anbody"><p class="lnote">جاري التحميل…</p></div>
+  </section>
+
+  <section class="band" id="sources" data-page="sources">
+    <h2>المصادر</h2>
+    <p class="lead">كل محتوى في سكون له مصدر موثوق تقدر ترجع له وتتأكد منه بنفسك.</p>
+    <h3 class="srch">القرآن الكريم</h3>
     <ul class="srclist">
       <li><b>نص القرآن الكريم</b> بالرسم العثماني، رواية حفص عن عاصم، من <a href="https://quranenc.com" target="_blank" rel="noopener">موسوعة القرآن الكريم</a> عبر مشروع quran-json. وتقدر تقارن أي آية في <a href="https://quran.com" target="_blank" rel="noopener">quran.com</a>.</li>
-      <li><b>ترقيم الصفحات والأجزاء والأحزاب</b> حسب مصحف المدينة النبوية (٦٠٤ صفحات)، من مكتبة quran-meta.</li>
-      <li><b>التفسير</b>: التفسير الميسر، إصدار مجمع الملك فهد لطباعة المصحف الشريف. للمراجعة: <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a>.</li>
-      <li><b>الأحاديث والأدعية</b>: من الصحيحين والسنن مع ذكر الكتاب ورقم الحديث تحت كل نص، ويمكن التحقق منها في <a href="https://dorar.net/hadith" target="_blank" rel="noopener">الموسوعة الحديثية (الدرر السنية)</a>.</li>
-      <li><b>حصن المسلم</b>: أذكار كتاب حصن المسلم للشيخ سعيد بن علي القحطاني.</li>
-      <li><b>التلاوات الصوتية</b>: من <a href="https://alquran.cloud" target="_blank" rel="noopener">alquran.cloud</a> (cdn.islamic.network) وquranicaudio.com وquran.com.</li>
-      <li><b>مواقيت الصلاة</b>: محسوبة بطريقة تقويم أم القرى، والإقامة حسب مدة وزارة الشؤون الإسلامية.</li>
-      <li><b>مواعيد الصرف</b>: جدول وزارة المالية للرواتب الحكومية، والقاعدة المعلنة لبقية المواعيد.</li>
+      <li><b>ترقيم الصفحات والأجزاء والأحزاب</b> حسب مصحف المدينة النبوية (٦٠٤ صفحات) الصادر عن <a href="https://qurancomplex.gov.sa" target="_blank" rel="noopener">مجمع الملك فهد لطباعة المصحف الشريف</a>.</li>
+      <li><b>التفسير</b>: التفسير الميسر، إصدار مجمع الملك فهد. للمراجعة: <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a>.</li>
+      <li><b>التلاوات الصوتية وتحميل السور</b>: من <a href="https://alquran.cloud" target="_blank" rel="noopener">alquran.cloud</a> و<a href="https://quranicaudio.com" target="_blank" rel="noopener">quranicaudio.com</a> و<a href="https://quran.com" target="_blank" rel="noopener">quran.com</a>.</li>
     </ul>
+    <h3 class="srch">الحديث والأذكار والقصص</h3>
+    <ul class="srclist">
+      <li><b>الأحاديث والأدعية وحديث اليوم</b>: من الصحيحين والسنن، مع اسم الكتاب ورقم الحديث تحت كل نص. تحقق منها في <a href="https://dorar.net/hadith" target="_blank" rel="noopener">الموسوعة الحديثية (الدرر السنية)</a>.</li>
+      <li><b>أذكار الصباح والمساء والنوم والصلاة</b>: كتاب «حصن المسلم» للشيخ سعيد بن علي القحطاني، والنصوص مطابقة لما في الدرر السنية.</li>
+      <li><b>قصص الأنبياء</b>: مأخوذة من آيات القرآن نفسها، وكل مرحلة مربوطة بسورتها وآياتها. وسيرة النبي ﷺ من الصحيحين وكتب السيرة المعتمدة.</li>
+      <li><b>فضل الجمعة وسننها، وفضل صيام الاثنين والخميس</b>: أحاديث صحيحة من البخاري ومسلم والسنن، والرقم مذكور تحت كل حديث.</li>
+    </ul>
+    <h3 class="srch">المواقيت والتقويم</h3>
+    <ul class="srclist">
+      <li><b>مواقيت الصلاة والضحى</b>: محسوبة بطريقة تقويم أم القرى المعتمدة في السعودية، والإقامة حسب المدد المعتمدة من <a href="https://www.moia.gov.sa" target="_blank" rel="noopener">وزارة الشؤون الإسلامية</a>.</li>
+      <li><b>التاريخ الهجري</b>: تقويم أم القرى.</li>
+      <li><b>مواعيد الصرف</b>: جدول <a href="https://www.mof.gov.sa" target="_blank" rel="noopener">وزارة المالية</a> للرواتب، والقاعدة المعلنة لبقية المواعيد (تقديم الصرف إذا وافق إجازة).</li>
+    </ul>
+    <h3 class="srch">البث والصدقة</h3>
+    <ul class="srclist">
+      <li><b>بث الحرمين</b>: قناة القرآن الكريم وقناة السنة النبوية من <a href="https://sba.sa" target="_blank" rel="noopener">هيئة الإذاعة والتلفزيون</a>، مع قنواتها الرسمية في يوتيوب احتياطاً.</li>
+      <li><b>الصدقة</b>: الحالات والمشاريع من منصة <a href="https://ehsan.sa" target="_blank" rel="noopener">إحسان</a> الرسمية، والتبرع يتم داخل المنصة نفسها.</li>
+    </ul>
+    <p class="mnote">لو لقيت خطأ في أي نص، راسلنا على إنستقرام <a href="https://instagram.com/6amx9" target="_blank" rel="noopener">@6amx9</a> ونصلحه.</p>
   </section>
 
   <section class="band" id="guide" data-page="guide">
@@ -1811,6 +1841,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     return `<div class="dk${left === 0 ? ' done' : ''}" style="animation-delay:${i * 40}ms"><div><p class="${d.q ? 'q' : ''}">${esc(txt)}</p><small>${esc(d.src)}${d.n > 1 ? ` · ${ar(d.n)} مرات` : ''}</small><button type="button" class="mini" data-card="1">بطاقة</button></div><button type="button" class="cnt" data-k="${k}" data-n="${d.n}" aria-label="عدّ">${ar(left)}</button></div>`;
   };
   const listCard = (d, i) => `<div class="acd" style="animation-delay:${i * 40}ms"><p class="${d.q ? 'q' : ''}">${esc(d.t)}</p><div class="foot"><small>${esc(d.src)}</small>${d.src === 'خلاصة' ? '' : '<button type="button" class="mini" data-card="1">بطاقة</button>'}</div></div>`;
+  const qf = t => esc(t).replace(/﴿[^﴾]*﴾/g, m => `<span class="qf">${m}</span>`);
+  const propH = items => `<div class="proph">${items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p>${x.f ? `<div class="pst">${x.f.map(([h0, t, r]) => `<div><h4>${esc(h0)}</h4><p>${qf(t)}</p>${r ? `<div class="pqs"><button type="button" class="pq" data-ayx="${r.join(':')}">اعرض الآيات: سورة ${esc(SURN[r[0] - 1])} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''}</button><button type="button" class="pq" data-qo="${r[0] - 1}:${r[1]}">افتح في المصحف ←</button></div>` : ''}</div>`).join('')}</div>` : ''}<p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-ayx]'); if (!b) return;
+    const nx = b.parentElement.nextElementSibling; if (nx && nx.classList.contains('ayx')) { nx.remove(); b.setAttribute('aria-expanded', 'false'); return; }
+    const [s1, a1, a2] = b.dataset.ayx.split(':').map(Number); await loadQ();
+    b.parentElement.insertAdjacentHTML('afterend', `<div class="ayx">${Q[s1 - 1][2].slice(a1 - 1, a2).map((t, k) => `${esc(t)} <i>﴿${ar(a1 + k)}﴾</i>`).join(' ')}</div>`); b.setAttribute('aria-expanded', 'true');
+  });
+  const renderAnb = () => { const c = L.find(x => x.type === 'prophets'); if (c && $('anbody')) $('anbody').innerHTML = (c.note ? `<p class="lnote">${esc(c.note)}</p>` : '') + propH(c.items); };
+  $('anpdf').addEventListener('click', e => save(e.currentTarget, 'anbiya.pdf', 'قصص الأنبياء'));
   const renderL = () => {
     $('ltabs').innerHTML = L.map((c, i) => `<button type="button" aria-pressed="${i === li}" data-l="${i}">${esc(c.name)}</button>`).join('');
     const c = L[li]; if (!c) return; let h = c.note ? `<p class="lnote">${esc(c.note)}</p>` : '';
@@ -1818,7 +1858,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (c.type === 'names') h += `<div class="names">${c.items.map((n, i) => `<div class="nm" style="animation-delay:${Math.min(i, 40) * 18}ms"><i>${ar(i + 1)}</i><b>${esc(n)}</b></div>`).join('')}</div>`;
     else if (c.type === 'dhikr') h += `<div class="alist">${c.items.map((d, i) => [d, i]).filter(([d]) => !c.toggle || !d.only || d.only === period).map(([d, i], j) => dkCard(d, `${c.id}-${c.toggle ? period : ''}-${i}`, j)).join('')}</div><button type="button" class="reset" id="lreset">تصفير العدّادات</button>`;
     else if (c.type === 'list') h += `${c.nahy && ptT ? `<table class="ftable"><thead><tr><th colspan="2">أوقات النهي اليوم في ${CITY[0]} (تقريبية)</th></tr></thead><tbody><tr><td style="font-size:17px">بعد صلاة الفجر</td><td>حتى ${hm(ptT.sunrise + .25)}</td></tr><tr><td style="font-size:17px">قبيل الظهر</td><td>${hm(ptT.dhuhr - 1 / 6)} – ${hm(ptT.dhuhr)}</td></tr><tr><td style="font-size:17px">بعد صلاة العصر</td><td>حتى ${hm(ptT.maghrib)}</td></tr></tbody></table>` : ''}<div class="alist">${c.items.map(listCard).join('')}</div>`;
-    else if (c.type === 'prophets') h += `<div class="proph">${c.items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p>${x.f ? `<div class="pst">${x.f.map(([h0, t, r]) => `<div><h4>${esc(h0)}</h4><p>${esc(t)}</p>${r ? `<button type="button" class="pq" data-qo="${r[0] - 1}:${r[1]}">سورة ${esc(SURN[r[0] - 1])} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''} · اقرأ ←</button>` : ''}</div>`).join('')}</div>` : ''}<p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
+    else if (c.type === 'prophets') h += propH(c.items);
     else if (c.type === 'prayers') h += `<table class="ftable"><thead><tr><th>الصلاة</th><th>الركعات</th><th>القراءة</th></tr></thead><tbody>${c.rows.map(([n, k, q]) => `<tr><td>${esc(n)}</td><td>${ar(k)}</td><td>${esc(q)}</td></tr>`).join('')}</tbody></table>${c.items.length ? `<div class="lgroup"><h3>صلاة الوتر</h3><div class="alist">${c.items.map(listCard).join('')}</div></div>` : ''}${(c.extra || []).map(g => `<div class="lgroup"><h3>${esc(g.title)}</h3>${g.nahy && ptT ? `<table class="ftable"><thead><tr><th colspan="2">أوقات النهي اليوم في ${CITY[0]} (تقريبية)</th></tr></thead><tbody><tr><td style="font-size:17px">بعد صلاة الفجر</td><td>حتى ${hm(ptT.sunrise + .25)}</td></tr><tr><td style="font-size:17px">قبيل الظهر</td><td>${hm(ptT.dhuhr - 1 / 6)} – ${hm(ptT.dhuhr)}</td></tr><tr><td style="font-size:17px">بعد صلاة العصر</td><td>حتى ${hm(ptT.maghrib)}</td></tr></tbody></table>` : ''}<div class="alist">${g.items.map(listCard).join('')}</div></div>`).join('')}`;
     else if (c.type === 'rawatib') {
       const day = store.get('sk-raw', {}); const td = today(); const st = day.d === td ? day : { d: td };
@@ -1827,7 +1867,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     } else if (c.type === 'steps') h += c.groups.map(g => `<div class="lgroup"><h3>${esc(g.title)}</h3>${g.steps ? `<ol class="steps2">${g.steps.map((t, i) => `<li style="animation-delay:${i * 50}ms">${esc(t)}</li>`).join('')}</ol>` : `<div class="alist">${g.items.map(listCard).join('')}</div>`}</div>`).join('');
     $('lbody').innerHTML = h;
   };
-  fetch('lib.json').then(r => r.json()).then(d => { L = d; renderL(); }).catch(() => {});
+  fetch('lib.json').then(r => r.json()).then(d => { L = d; renderL(); renderAnb(); }).catch(() => {});
   document.addEventListener('click', e => { const a = e.target.closest('[data-tab]'); if (!a || !L.length) return; const i = L.findIndex(c => c.id === a.dataset.tab); if (i >= 0) { li = i; renderL(); } });
   $('ltabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; li = +b.dataset.l; renderL(); });
   $('lsub').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (!b) return; period = b.dataset.p; renderL(); });
@@ -2091,7 +2131,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // ===================== pages =====================
-  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide'];
+  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources'];
   let page = '';
   const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); };
   $('pmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
@@ -2546,7 +2586,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', sources: 'مصادر محتوى الموقع' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
@@ -2767,7 +2807,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (k === 'ay' && ayCur) { const s2 = ayCur.s + 1, a = ayCur.a; h = `<b>الآية:</b> ${esc($('aysrc').textContent)} · نص المصحف برواية حفص · <a href="https://quran.com/${s2}/${a}" target="_blank" rel="noopener">تحقق في quran.com</a><br><b>التفسير:</b> التفسير الميسر (مجمع الملك فهد لطباعة المصحف الشريف) · <a href="https://tafsir.app/muyassar/${s2}/${a}" target="_blank" rel="noopener">افتح التفسير</a>`; }
     if (k === 'd' && D) { const d = D.daily[dIdx % D.daily.length]; h = `<b>المصدر:</b> ${esc(d.src)} · ` + (d.q ? `<a href="${qcom(d.t)}" target="_blank" rel="noopener">تحقق من الآية في quran.com</a>` : `<a href="${dorar(d.t)}" target="_blank" rel="noopener">ابحث عن الحديث في الدرر السنية</a>`); }
     if (k === 'h' && D && D.hadith) { const d = D.hadith[hIdx % D.hadith.length]; h = `<b>المصدر:</b> ${esc(d.src)} · <a href="${dorar(d.t)}" target="_blank" rel="noopener">ابحث عن الحديث وحكمه في الدرر السنية</a>`; }
-    h += `<br><a href="#sources">كل مصادر الموقع ←</a>`; box.innerHTML = h; box.hidden = false; });
+    h += `<br><a href="#/sources" data-go="sources">كل مصادر الموقع ←</a>`; box.innerHTML = h; box.hidden = false; });
 
 
   // ===================== adhkar hub =====================
