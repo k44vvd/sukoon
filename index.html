@@ -3057,7 +3057,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== accounts (optional) + cloud sync via Supabase =====================
   {
-  const SB = { url: '', key: '' };   // ← Supabase project URL + anon public key
+  const SB = { url: 'https://sgndqaovouvoixgtyint.supabase.co', key: 'sb_publishable_gn7kvN0F3jsWY1URmaeA-w_YoNVfP6u' };   // ← Supabase project URL + anon public key
   const SBON = !!(SB.url && SB.key);
   const AKEY = 'sukoon-auth', SKIP = ['sk-ntf', 'sk-adn'];
   let AU = (() => { try { return JSON.parse(localStorage.getItem(AKEY) || 'null'); } catch { return null; } })();
