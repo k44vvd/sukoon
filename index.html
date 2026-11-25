@@ -751,6 +751,16 @@ footer .fdesc{max-width:560px;margin:10px auto 4px;line-height:1.9}footer .fdua{
 .spi i{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-size:13px;color:var(--gold);border:1px solid rgba(201,178,124,.45)}
 .spi span{flex:1}.spi b{display:block;font:700 17px/1.4 Amiri,serif}.spi small{color:var(--mute);font-size:12px}.spi em{font-style:normal;color:var(--gold)}
 .spi.on{border-color:var(--gold);background:linear-gradient(90deg,rgba(201,178,124,.18),transparent)}
+.mwlist li.occ i{background:rgba(201,178,124,.16)}
+.adpop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,0);transition:background .3s}
+.adpop.on{background:rgba(0,0,0,.6)}
+.adpop .in{position:relative;width:100%;max-width:420px;max-height:88vh;overflow:auto;border-radius:26px;background:var(--bg2);border:1px solid rgba(201,178,124,.55);box-shadow:0 30px 80px rgba(0,0,0,.5);transform:translateY(30px) scale(.96);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.adpop.on .in{transform:none;opacity:1}
+.adimg{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#0f4a45,#022b2a);overflow:hidden}.adimg img{width:100%;height:100%;object-fit:cover}
+.adimg span{position:absolute;top:12px;inset-inline-start:12px;background:var(--gold);color:var(--bg);font-weight:700;font-size:13px;border-radius:999px;padding:4px 12px}
+.adx{position:absolute;top:10px;inset-inline-end:10px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:15px;cursor:pointer}
+.adb{padding:16px 18px 18px}.adb small{color:var(--gold);font-weight:700}.adb h3{margin:4px 0 6px;font:700 24px/1.35 Amiri,serif}.adb p{margin:0 0 10px;color:var(--mute);line-height:1.8;font-size:15px}
+.adb .adq{color:var(--gold);font-size:14px}.adb .row{display:flex;gap:10px}.adb .row>*{flex:1;text-align:center}
 .srow{margin-bottom:18px}
 .srow>b{display:block;margin-bottom:8px;font-size:15px;color:var(--mute);font-weight:500}
 .langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:46vh;overflow-y:auto;padding:2px}
@@ -1125,7 +1135,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </section>
 
   <section class="band" id="mawaid" data-page="home">
-    <div class="pwhead"><h2>مواعيد الصرف</h2><button type="button" class="mall" id="mwall" aria-expanded="false">عرض الكل ‹</button></div>
+    <div class="pwhead"><h2>المواعيد</h2><button type="button" class="mall" id="mwall" aria-expanded="false">عرض الكل ‹</button></div>
     <div class="mwcard" id="mwtop"></div>
     <ul class="mwlist" id="mwlist"></ul>
     <p class="mnote" id="mwnote"></p>
@@ -3089,7 +3099,21 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     { k: 'gov', n: 'الرواتب الحكومية', ic: '🏛', at: (y, m) => y === 2026 ? { d: MOF2026[m], off: 1 } : shiftWk(y, m, 27) },
     { k: 'ret', n: 'رواتب المتقاعدين', ic: '🧓', at: (y, m) => shiftWk(y, m, 1) },
     { k: 'ss', n: 'الضمان الاجتماعي المطوّر', ic: '👪', at: (y, m) => shiftWk(y, m, 1) },
-    { k: 'ca', n: 'حساب المواطن', ic: '💳', at: (y, m) => shiftWk(y, m, 10) }
+    { k: 'ca', n: 'حساب المواطن', ic: '💳', at: (y, m) => shiftWk(y, m, 10) },
+    { k: 'hs', n: 'الدعم السكني', ic: '🏠', all: 1, at: (y, m) => { const d = new Date(Date.UTC(y, m, 24)), wd = d.getUTCDay(); if (wd === 5) d.setUTCDate(26); else if (wd === 6) d.setUTCDate(25); return { d: ymd(d), moved: wd === 5 || wd === 6 }; } }
+  ];
+  const HFMT = (() => { try { return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric', month: 'numeric', timeZone: 'UTC' }); } catch { return null; } })();
+  const nextHijri = (hm, hd) => { if (!HFMT) return null; const t0 = Date.parse(today() + 'T12:00:00Z'); for (let i = 0; i < 400; i++) { const x = new Date(t0 + i * 864e5), pp = HFMT.formatToParts(x); if (+pp.find(q => q.type === 'month').value === hm && +pp.find(q => q.type === 'day').value === hd) return ymd(x); } return null; };
+  const nextGreg = (m, d) => { const r = riyadhNow(); let y = r.getFullYear(); let x = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`; if (x < today()) x = `${y + 1}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`; return x; };
+  const OCC = [
+    { k: 'ram', n: 'رمضان', ic: '🌙', at: () => nextHijri(9, 1), note: 'أول أيام رمضان' },
+    { k: 'fitr', n: 'عيد الفطر', ic: '🎉', at: () => nextHijri(10, 1) },
+    { k: 'arafa', n: 'يوم عرفة', ic: '⛰️', at: () => nextHijri(12, 9) },
+    { k: 'adha', n: 'عيد الأضحى', ic: '🕌', at: () => nextHijri(12, 10) },
+    { k: 'hny', n: 'رأس السنة الهجرية', ic: '🗓️', at: () => nextHijri(1, 1) },
+    { k: 'ashura', n: 'عاشوراء', ic: '🌘', at: () => nextHijri(1, 10) },
+    { k: 'found', n: 'يوم التأسيس', ic: '🇸🇦', at: () => nextGreg(2, 22), g: 1 },
+    { k: 'nat', n: 'اليوم الوطني', ic: '🇸🇦', at: () => nextGreg(9, 23), g: 1 }
   ];
   const payList = months => { const t = today(), r = riyadhNow(); const out = [];
     PAY.forEach(p => { for (let i = 0; i < months + 2; i++) { const y = r.getFullYear() + Math.floor((r.getMonth() + i) / 12), m = (r.getMonth() + i) % 12; const x = p.at(y, m); if (x.d >= t) out.push({ ...p, d: x.d, moved: x.moved, off: x.off, days: dBetween(t, x.d) }); } });
@@ -3097,14 +3121,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const dayTxt = n => n === 0 ? 'اليوم' : n === 1 ? 'غداً' : n === 2 ? 'بعد يومين' : n <= 10 ? `${ar(n)} أيام` : `${ar(n)} يوماً`;
   const fmtD = (d, o) => { try { return new Intl.DateTimeFormat('ar-SA-u-ca-gregory-nu-arab', Object.assign({ timeZone: 'UTC' }, o)).format(new Date(d + 'T12:00:00Z')); } catch { return d; } };
   let mwAll = false;
-  const renderMW = () => { if (!$('mwtop')) return;
-    const all = payList(mwAll ? 3 : 1), next = []; const seen = new Set();
-    all.forEach(x => { if (mwAll || !seen.has(x.k)) { seen.add(x.k); next.push(x); } });
-    const top = next[0]; if (!top) return;
-    $('mwtop').innerHTML = `<div class="mwbig">${esc(dayTxt(top.days))}</div><div><small>القادم</small><b>${esc(top.n)}</b><span>${esc(fmtD(top.d, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}${top.moved ? ' · متوقع' : ''}</span></div>`;
-    $('mwlist').innerHTML = next.slice(1).map(x => `<li><i aria-hidden="true">${x.ic}</i><div><b>${esc(x.n)}</b><span>${esc(fmtD(x.d, { weekday: 'long', day: 'numeric', month: 'long' }))}${x.moved ? ' · متوقع' : ''}</span></div><em>${esc(dayTxt(x.days))}</em></li>`).join('');
+  const renderMW = () => { if (!$('mwtop')) return; const t = today();
+    const pays = payList(1), seen = new Set(), next = []; pays.forEach(x => { if (!seen.has(x.k)) { seen.add(x.k); next.push(x); } });
+    const occ = OCC.map(o => { const d = o.at(); return d ? { ...o, d, days: dBetween(t, d), occ: 1, moved: !o.g } : null; }).filter(Boolean);
+    let list = mwAll ? [...next, ...occ].sort((a, b) => a.days - b.days) : next.filter(x => !x.all);
+    const top = list[0]; if (!top) return;
+    const row = x => `<li class="${x.occ ? 'occ' : ''}"><i aria-hidden="true">${x.ic}</i><div><b>${esc(x.n)}</b><span>${esc(fmtD(x.d, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}${x.moved && !x.occ ? ' · متوقع' : ''}</span></div><em>${esc(dayTxt(x.days))}</em></li>`;
+    $('mwtop').innerHTML = `<div class="mwbig">${esc(dayTxt(top.days))}</div><div><small>القادم</small><b>${esc(top.n)}</b><span>${esc(fmtD(top.d, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}${top.moved && !top.occ ? ' · متوقع' : ''}</span></div>`;
+    $('mwlist').innerHTML = list.slice(1).map(row).join('');
     $('mwall').textContent = mwAll ? 'عرض أقل ›' : 'عرض الكل ‹'; $('mwall').setAttribute('aria-expanded', mwAll);
-    $('mwnote').textContent = 'الرواتب الحكومية حسب جدول وزارة المالية لعام ٢٠٢٦ (يوم ٢٧ من كل شهر ميلادي). المتقاعدون والضمان يوم ١، وحساب المواطن يوم ١٠. إذا وافق الموعد جمعة يُقدَّم للخميس، وإذا وافق سبت يؤخَّر للأحد؛ والمكتوب عليه «متوقع» قد يتغير بإعلان رسمي.';
+    $('mwnote').textContent = mwAll ? 'الرواتب الحكومية حسب جدول وزارة المالية (يوم ٢٧)، والمتقاعدون والضمان يوم ١، وحساب المواطن يوم ١٠ (الجمعة يُقدَّم للخميس والسبت يؤخَّر للأحد)، والدعم السكني يوم ٢٤ (إذا وافق جمعة أو سبت يُودع الأحد). المناسبات الهجرية حسب تقويم أم القرى، ودخول رمضان والعيدين يُعتمد بإعلان الرؤية الرسمي. كل التواريخ تتحدث تلقائياً.' : 'اضغط «عرض الكل» لمواعيد الدعم السكني ورمضان والعيدين ويوم عرفة وعاشوراء والمناسبات الوطنية.';
   };
   $('mwall').addEventListener('click', () => { mwAll = !mwAll; renderMW(); });
 
@@ -3538,6 +3564,32 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     $('tdw').textContent = w; $('tdn').textContent = fix(hd.replace(/[^\d٠-٩]/g, '')); $('tdm').textContent = fix(`${hm2} (${hmn}) ${hy.replace(/[^\d٠-٩]/g, '')}هـ`); $('tdg').innerHTML = `${fix(g)}<br>حسب تقويم أم القرى`;
     $('tdsh').onclick = async () => { const txt = `اليوم ${w} ${fix(hd)} ${hm2} ${fix(hy)}\nالموافق ${fix(g)}\n\nمن «سكون»: ${PUB}`; try { if (navigator.share) await navigator.share({ text: txt }); else { await navigator.clipboard.writeText(txt); toast('تم نسخ التاريخ'); } } catch {} }; };
   dayCard(); tick(); setInterval(tick, 1000); setInterval(dayCard, 60000);
+  }
+
+  // ===================== sadaqa popup (once a day) =====================
+  {
+  const showAd = () => { if (store.get('sk-adday', '') === today()) return; const c = FCASES.find(x => x.no) || FCASES[0]; if (!c) return;
+    const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
+    const w = document.createElement('div'); w.className = 'adpop'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'فرصة صدقة');
+    w.innerHTML = `<div class="in"><button type="button" class="adx" data-adx="1" aria-label="إغلاق">✕</button>
+      <div class="adimg"><img src="${esc(c.img)}" alt="" onerror="this.remove()"><span>صدقة اليوم</span></div>
+      <div class="adb"><small>${esc(c.tag || 'من منصة إحسان')}</small><h3>${esc(c.title)}</h3><p>${esc(c.desc)}</p>
+      ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع ${nf(c.got)} ﷼ (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div></div>` : ''}
+      <p class="adq">«ما نقصت صدقة من مال» صحيح مسلم (2588)</p>
+      <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener" data-adgo="1">تصدّق الآن ←</a><button type="button" class="dl ghost" data-adx="1">إغلاق</button></div></div></div>`;
+    document.body.appendChild(w); requestAnimationFrame(() => w.classList.add('on'));
+    const close = () => { store.set('sk-adday', today()); w.classList.remove('on'); setTimeout(() => w.remove(), 300); };
+    w.addEventListener('click', e => { if (e.target === w || e.target.closest('[data-adx]') || e.target.closest('[data-adgo]')) close(); });
+    document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } }); };
+  window.addEventListener('load', () => setTimeout(showAd, 1400));
+  }
+
+  // ===================== auto-update: reload when a new version is published =====================
+  {
+  const BUILD = '1795636912'; let pend = false;
+  const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
+  setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
   }
   // ===================== coming soon + feedback =====================
   const soonUI = () => { const on = store.get('sk-soon', 0); $('soonme').textContent = on ? 'تم، بننبّهك ✓' : 'نبّهني عند الإطلاق'; };
