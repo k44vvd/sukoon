@@ -741,6 +741,16 @@ footer .fdesc{max-width:560px;margin:10px auto 4px;line-height:1.9}footer .fdua{
 .qpg .up{background:var(--bg);border:2px dashed var(--line);color:var(--gold);font-family:inherit;font-size:13px;font-weight:600;line-height:1.5;padding:6px}
 .qpick .row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .qrimg{background:none;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.qrnow{display:flex;align-items:center;gap:14px;width:100%;margin:0 0 16px;padding:14px 16px;border-radius:20px;border:1px solid rgba(201,178,124,.55);background:linear-gradient(135deg,rgba(201,178,124,.16),transparent),var(--bg2);color:var(--ink);font:inherit;text-align:start;cursor:pointer}
+.qrnow span{flex:1}.qrnow small{display:block;color:var(--mute);font-size:13px}.qrnow b{font-size:18px}.qrnow em{font-style:normal;color:var(--gold);font-weight:700;font-size:14px}
+.sph{display:flex;align-items:center;gap:12px;margin-bottom:12px}.sph>div{flex:1}.sph h4{margin:0}.sph p{margin:0}
+.spx{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:none;color:var(--ink);font-size:16px;cursor:pointer}
+.spq{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;margin-bottom:10px}
+.spl{display:grid;gap:6px}
+.spi{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;text-align:start;cursor:pointer}
+.spi i{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-size:13px;color:var(--gold);border:1px solid rgba(201,178,124,.45)}
+.spi span{flex:1}.spi b{display:block;font:700 17px/1.4 Amiri,serif}.spi small{color:var(--mute);font-size:12px}.spi em{font-style:normal;color:var(--gold)}
+.spi.on{border-color:var(--gold);background:linear-gradient(90deg,rgba(201,178,124,.18),transparent)}
 .srow{margin-bottom:18px}
 .srow>b{display:block;margin-bottom:8px;font-size:15px;color:var(--mute);font-weight:500}
 .langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:46vh;overflow-y:auto;padding:2px}
@@ -1311,7 +1321,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="band" id="qurra" data-page="quran" data-qt="qurra" hidden>
     <h2>مكتبة القرّاء</h2>
-    <p class="lead">اختر قارئك المفضّل. كل التلاوات برواية حفص عن عاصم، وتقدر تستمع لأي قارئ قبل ما تختاره.</p>
+    <p class="lead">اختر القارئ والسورة اللي تبي تسمعها. كل التلاوات برواية حفص عن عاصم.</p>
+    <button type="button" class="qrnow" id="qrnow"></button>
     <div class="qrgrid" id="qrgrid"></div>
   </section>
 
@@ -3393,15 +3404,30 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     w.querySelector('input').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { const c = document.createElement('canvas'), S2 = 240; c.width = c.height = S2; const x = c.getContext('2d'), m = Math.min(img.width, img.height);
       x.drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, S2, S2); setV(c.toDataURL('image/jpeg', .82)); URL.revokeObjectURL(img.src); toast('تم تغيير الصورة'); }; img.src = URL.createObjectURL(f); }); };
   window.openQPick = openPick;
+  const openSurahs = id => { const n = (qrList().find(r => r[0] === id) || [, ''])[1];
+    const w = document.createElement('div'); w.className = 'qpick'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', 'سور القرآن');
+    w.innerHTML = `<div class="in"><div class="sph">${qavHTML(id, n)}<div><h4>سور القرآن الكريم</h4><p>بصوت ${esc(n)} · اختر السورة وتشتغل على طول</p></div><button type="button" class="spx" data-x="1" aria-label="إغلاق">✕</button></div>
+      <input type="search" class="spq" placeholder="ابحث باسم السورة أو رقمها…" autocomplete="off"><div class="spl"></div></div>`;
+    document.body.appendChild(w);
+    const draw = () => { const q = nrm(w.querySelector('.spq').value.trim()), playing = QP && REC === id ? QP.s : -1;
+      w.querySelector('.spl').innerHTML = SURN.map((nm, i) => [nm, i]).filter(([nm, i]) => !q || nrm(nm).includes(q) || String(i + 1) === q.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))).map(([nm, i]) =>
+        `<button type="button" class="spi${i === playing ? ' on' : ''}" data-ss="${i}"><i>${ar(i + 1)}</i><span><b>سورة ${esc(nm)}</b><small>${ar(VC[i])} آية · صفحة ${ar(pageOfSA(i, 1))}</small></span><em>${i === playing ? '♪' : '▶'}</em></button>`).join('') || '<p class="fvempty">ما لقينا سورة بهذا الاسم</p>'; };
+    draw(); setTimeout(() => w.querySelector('.spq').focus(), 50);
+    w.querySelector('.spq').addEventListener('input', draw);
+    w.addEventListener('click', e => { if (e.target === w || e.target.closest('[data-x]')) { w.remove(); return; }
+      const b = e.target.closest('[data-ss]'); if (!b) return; setRecGlobal(id); qpPlay(+b.dataset.ss, 1); toast(`سورة ${SURN[+b.dataset.ss]} · ${n}`); setTimeout(draw, 300); }); };
+  window.openSurahs = openSurahs;
+
   window.renderQR = () => { if (!$('qrgrid')) return; $('qrgrid').innerHTML = qrList().map(([id, n]) => { const m = QR[id] || ['', 'مرتّل', '']; const on = id === REC;
-    return `<div class="qr${on ? ' on' : ''}"><div class="qrh">${qavHTML(id, n)}<div><b>${esc(n)}</b><small>${esc(m[0])}</small></div>${on ? '<span class="qrbadge">قارئك</span>' : ''}</div><div class="qrt"><span>حفص عن عاصم</span><span>${esc(m[1])}</span>${RX[id] ? '<span>السورة كاملة</span>' : '<span>آية بآية</span>'}</div><p>${esc(m[2])}</p><div class="row"><button type="button" class="dl ghost" data-qrl="${id}">▶ استمع للفاتحة</button><button type="button" class="qrimg" data-qri="${id}">🖼 الصورة</button>${on ? '' : `<button type="button" class="dl" data-qrs="${id}">اختره قارئي</button>`}</div></div>`; }).join(''); };
+    return `<div class="qr${on ? ' on' : ''}"><div class="qrh">${qavHTML(id, n)}<div><b>${esc(n)}</b><small>${esc(m[0])}</small></div>${on ? '<span class="qrbadge">قارئك</span>' : ''}</div><div class="qrt"><span>حفص عن عاصم</span><span>${esc(m[1])}</span>${RX[id] ? '<span>السورة كاملة</span>' : '<span>آية بآية</span>'}</div><p>${esc(m[2])}</p><div class="row"><button type="button" class="dl ghost" data-qrl="${id}">▶ استمع للفاتحة</button><button type="button" class="dl" data-qrsu="${id}">📖 اختر سورة</button>${on ? '' : `<button type="button" class="dl" data-qrs="${id}">اختره قارئي</button>`}</div></div>`; }).join(''); };
   const setRec = id => { REC = id; store.set('sk-rec', REC); document.querySelectorAll('select').forEach(sl => { if ([...sl.options].some(o => o.value === id) && sl.options.length > 10) sl.value = id; }); renderQR(); };
   window.setRecGlobal = setRec;
   $('qrgrid').addEventListener('click', e => { const s1 = e.target.closest('[data-qrs]'); if (s1) { setRec(s1.dataset.qrs); toast('صار قارئك: ' + recName()); return; }
     const l = e.target.closest('[data-qrl]'); if (l) { setRec(l.dataset.qrl); qpPlay(0, 1); return; }
-    const im = e.target.closest('[data-qri]'); if (im) openQPick(im.dataset.qri);
-    const av = e.target.closest('.qr .qav'); if (av) { const card = av.closest('.qr'); const bb = card && card.querySelector('[data-qri]'); if (bb) openQPick(bb.dataset.qri); } });
-  renderQR();
+    const su = e.target.closest('[data-qrsu]'); if (su) openSurahs(su.dataset.qrsu); });
+  const qrNow = () => { if ($('qrnow')) $('qrnow').innerHTML = `${qavHTML(REC, recName())}<span><small>قارئك الحالي</small><b>${esc(recName())}</b></span><em>📖 اختر سورة ←</em>`; };
+  const _rq = renderQR; window.renderQR = () => { _rq(); qrNow(); }; renderQR();
+  $('qrnow').addEventListener('click', () => openSurahs(REC));
   }
 
   // ===================== listening mode + tap-to-play =====================
