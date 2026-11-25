@@ -1898,6 +1898,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       if (k === 'fast') { const wd = riyadhNow().getDay(); const add = [0, 3].map(x => (x - wd + 7) % 7); start = addDays(today(), Math.min(...add)).replace(/-/g, ''); }
       return ['BEGIN:VEVENT', `UID:sukoon-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${start}T${h}${m}00`, 'DURATION:PT10M', k === 'fast' ? 'RRULE:FREQ=WEEKLY;BYDAY=SU,WE' : 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc('سكون · ' + RINFO[k][0])}`, `DESCRIPTION:${icsEsc(RINFO[k][2] + '\n' + SITE)}`, `URL:${SITE}`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:PT0M', `DESCRIPTION:${icsEsc(RINFO[k][2])}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'); });
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sukoon//Reminders//AR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:سكون', ...ev, 'END:VCALENDAR'].join('\r\n');
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
     st.textContent = 'جاري التجهيز…';
     try { await downloads.save({ filename: 'تذكيرات سكون.ics', data: new Blob([ics], { type: 'text/calendar' }) }); st.textContent = 'تم. افتح الملف واختر «إضافة الكل» عشان تنضاف لتقويمك.'; }
