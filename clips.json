@@ -1,5 +1,21 @@
 [
  {
+  "id": "sad-35",
+  "title": "ربّ اغفر لي وهب لي ملكاً",
+  "surah": "سورة ص",
+  "file": "videos/sad-35.mp4",
+  "poster": "videos/sad-35.jpg",
+  "ratio": "16/9"
+ },
+ {
+  "id": "qiyamah-26",
+  "title": "كلا إذا بلغت التراقي",
+  "surah": "سورة القيامة",
+  "file": "videos/qiyamah-26.mp4",
+  "poster": "videos/qiyamah-26.jpg",
+  "ratio": "16/9"
+ },
+ {
   "id": "clip-02",
   "title": "تلاوة خاشعة",
   "file": "videos/clip-02.mp4",
