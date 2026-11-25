@@ -299,6 +299,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 
 .pduha{position:relative;margin:2px auto 10px;width:fit-content;padding:5px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);font-size:14px;color:var(--gold);background:color-mix(in srgb,var(--bg) 35%,transparent)}
 .pduha.on{background:var(--gold);color:var(--bg);font-weight:700}
+.pnav a.aink{border-color:rgba(201,178,124,.6);color:var(--gold)}.pnav a.aink[aria-current=page]{color:var(--bg)}
 .pmore{flex:none;min-height:40px;display:inline-flex;align-items:center;gap:4px;padding:6px 15px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:15px;white-space:nowrap}
 .pmore svg{width:16px;height:16px;transition:transform .2s}.pmore[aria-expanded=true] svg{transform:rotate(180deg)}
 .pmore.on,.pmore[aria-expanded=true]{border-color:var(--gold);color:var(--gold)}
@@ -693,8 +694,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 </head>
 <body>
 <div class="wrap">
-  <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><a href="#/tasbih" data-go="tasbih">المسبحة</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/ai" data-go="ai" data-more="1"><b>المساعد الذكي</b><span>اسأله ويوديك لأي شي في الموقع</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
+  <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/ai" data-go="ai" class="aink">المساعد الذكي</a><a href="#/home" data-go="home">الرئيسية</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -726,12 +727,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <p class="tagline">سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.</p>
     <div class="intro">
       <div class="opts main4">
+        <a class="opt ai" href="#/ai"><b>المساعد الذكي</b><span>اسأله ويوديك لأي شي في الموقع</span></a>
         <a class="opt" href="#/quran"><b>القرآن الكريم</b><span>المصحف، الاستماع، والختمة</span></a>
         <a class="opt" href="#/salah"><b>الصلاة</b><span>المواقيت والإقامة والقبلة</span></a>
         <a class="opt" href="#/adhkar"><b>الأذكار والأدعية</b><span>الصباح والمساء، والأدعية</span></a>
-        <a class="opt" href="#/tasbih"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a>
       </div>
-      <button type="button" class="moreall" id="moreall">المزيد من الخدمات <span>المساعد، المقاطع، التصاميم، الصدقة، الوطن، التذكيرات</span></button>
+      <button type="button" class="moreall" id="moreall">المزيد من الخدمات <span>المسبحة، المقاطع، التصاميم، الصدقة، الوطن، التذكيرات</span></button>
     </div>
   </header>
 
