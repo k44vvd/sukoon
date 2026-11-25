@@ -347,6 +347,27 @@ header .logo,:root[data-skin] header .logo{-webkit-mask-image:none!important;mas
 .lframe iframe{width:100%;height:100%;border:0;display:block}
 .lplay{display:grid;justify-items:center;gap:8px;background:none;border:0;color:#fff}.lplay svg{width:64px;height:64px;padding:14px;border-radius:50%;background:var(--gold);color:var(--bg)}
 .lbody{padding:14px 16px}.lbody h3{margin:0 0 4px;font:700 20px Amiri,serif}.lbody p{margin:0 0 8px;color:var(--mute)}.lbody a{color:var(--gold)}
+.qtabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:6px 0 4px;padding:4px;border-radius:16px;border:1px solid var(--line);background:var(--bg2)}
+.qtabs::-webkit-scrollbar{display:none}
+.qtabs button{flex:1 0 auto;min-height:44px;padding:8px 14px;border-radius:12px;border:0;background:transparent;color:var(--mute);font-size:15px;white-space:nowrap}
+.qtabs button[aria-selected=true]{background:var(--gold);color:var(--bg);font-weight:700}
+.bell{position:fixed;z-index:40;bottom:max(16px,env(safe-area-inset-bottom));inset-inline-end:78px;width:52px;height:52px;border-radius:50%;border:1px solid rgba(201,178,124,.6);background:var(--bg2);color:var(--gold);display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.bell svg{width:24px;height:24px}.bell i{position:absolute;top:10px;inset-inline-end:12px;width:9px;height:9px;border-radius:50%;background:#e0a46b;display:none}
+.bell.off i{display:block}.bell.on{background:var(--gold);color:var(--bg)}
+body.qp-on .bell{bottom:calc(92px + env(safe-area-inset-bottom))}
+.sharebox{display:flex;flex-wrap:wrap;gap:8px}.sharebox input{flex:1 1 220px;min-height:44px;padding:8px 12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--mute);font:inherit;font-size:14px;direction:ltr}
+.sharebox .dl{margin:0;flex:0 0 auto}
+.rstars{display:flex;gap:6px;direction:ltr;justify-content:flex-end}.rstars button{width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--line);font-size:26px;line-height:1}
+.rstars button.on{color:var(--gold);border-color:var(--gold)}
+.hcal{border:1px solid var(--line);border-radius:16px;padding:12px}
+.hch{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.hch b{font:700 20px Amiri,serif}.hch small{display:block;color:var(--mute);font-size:12px;font-weight:400;text-align:center}
+.hch button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:18px}
+.hgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.hgrid .wd{font-size:12px;color:var(--mute);padding:4px 0}
+.hgrid .d{display:grid;padding:6px 2px;border-radius:10px;font-size:16px;font-weight:600;line-height:1.2}.hgrid .d small{font-size:10px;color:var(--mute);font-weight:400}
+.hgrid .d.ev{box-shadow:inset 0 0 0 1px var(--gold)}.hgrid .d.wh{background:rgba(201,178,124,.12)}
+.hgrid .d.td{background:var(--gold);color:var(--bg)}.hgrid .d.td small{color:var(--bg)}
+.hev{margin:10px 0 0;padding:0;list-style:none;font-size:13px;color:var(--mute);display:grid;gap:4px}.hev b{color:var(--gold);font-weight:600}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -918,13 +939,14 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <button type="button" class="morebtn" id="moreopen">المزيد <span>أكثر من ٩٠ موضوعاً من الأذكار والأدعية</span></button>
   </section>
 
-  <section class="band" id="khatma" data-page="quran">
+  <div class="qtabs" id="qtabs" data-page="quran" role="tablist"><button type="button" data-qt="quran" aria-selected="true">المصحف</button><button type="button" data-qt="khatma" aria-selected="false">الختمة</button><button type="button" data-qt="qmarks" aria-selected="false">تقدّمي وعلاماتي</button><button type="button" data-qt="qdl" aria-selected="false">تحميل السور</button></div>
+  <section class="band" id="khatma" data-page="quran" data-qt="khatma">
     <h2>ختمة القرآن</h2>
     <p class="lead">اختر مدة الختمة أو عدد الصفحات يومياً، والموقع يحدد لك ورد كل يوم بأرقام الصفحات (مصحف المدينة ٦٠٤ صفحات) ويتابع نسبة إنجازك.</p>
     <div id="kbox"></div>
   </section>
 
-  <section class="band" id="qmarks" data-page="quran">
+  <section class="band" id="qmarks" data-page="quran" data-qt="qmarks">
     <h2>تقدّمي وعلاماتي</h2>
     <p class="lead">آخر موضع قرأت فيه، وآخر ما استمعت له، وعلامات الحفظ اللي تحطها. لحفظ علامة: افتح السورة، اضغط على الآية، واختر «حفظ علامة هنا».</p>
     <div class="qprog" id="qprog"></div>
@@ -932,7 +954,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <ul class="mklist" id="mklist"></ul>
   </section>
 
-  <section class="band" id="quran" data-page="quran">
+  <section class="band" id="quran" data-page="quran" data-qt="quran">
     <h2>القرآن الكريم</h2>
     <p class="lead">المصحف كاملاً بالرسم العثماني. اختر السورة وابدأ القراءة، والموقع يحفظ لك آخر سورة قرأتها.</p>
     <div class="qtop">
@@ -944,7 +966,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <div class="slist" id="slist"><div class="empty" style="grid-column:1/-1">جاري تحميل السور…</div></div>
   </section>
 
-  <section class="band" id="qdl" data-page="quran">
+  <section class="band" id="qdl" data-page="quran" data-qt="qdl">
     <h2>تحميل السور</h2>
     <p class="lead">اختر السورة والقارئ، وتتحمّل السورة كاملة ملف صوت (MP3) على جهازك تسمعها بدون إنترنت.</p>
     <div class="form qdlf">
@@ -1197,6 +1219,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </div>
 </div>
 
+<button class="bell" id="bell" type="button" aria-label="تفعيل التنبيهات"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><i></i></button>
 <button class="gear" id="gear" aria-label="الإعدادات" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="stitle2">
@@ -1225,6 +1248,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
     <div class="srow"><b>المدينة لمواقيت الصلاة</b>
       <div class="seg" id="cities"></div>
+    </div>
+    <div class="srow"><b>شارك الموقع</b>
+      <div class="sharebox"><input type="text" id="slink" readonly aria-label="رابط الموقع"><button type="button" class="dl" id="sshare">مشاركة</button><button type="button" class="dl ghost" id="scopyl">نسخ الرابط</button></div>
+      <p class="status" id="sshst" aria-live="polite"></p>
+    </div>
+    <div class="srow"><b>قيّم الموقع</b>
+      <div class="rstars" id="stars" role="radiogroup" aria-label="تقييم الموقع"><button type="button" role="radio" data-r="1" aria-label="1 من ٥">★</button><button type="button" role="radio" data-r="2" aria-label="2 من ٥">★</button><button type="button" role="radio" data-r="3" aria-label="3 من ٥">★</button><button type="button" role="radio" data-r="4" aria-label="4 من ٥">★</button><button type="button" role="radio" data-r="5" aria-label="5 من ٥">★</button></div>
+      <p class="status" id="ratest" aria-live="polite"></p>
+    </div>
+    <div class="srow"><b>التقويم الهجري</b>
+      <div class="hcal" id="hcal"></div>
     </div>
     <button type="button" class="reset" id="sreset">إعادة الإعدادات الافتراضية</button>
   </div>
@@ -1937,6 +1971,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     const act = document.querySelector(`#pnav a[data-go="${pg}"]`); if (act) { const n = $('pnav'); n.scrollTo({ left: act.offsetLeft - n.clientWidth / 2 + act.clientWidth / 2, behavior: 'smooth' }); }
     if (how === 'push' && location.hash !== '#/' + pg) history.pushState(null, '', '#/' + pg); else if (how === 'replace') history.replaceState(null, '', '#/' + pg);
     try { onPage(pg); } catch (e) { console.error(e); }
+    if (target && target.closest && target.closest('section[data-qt]') && typeof setQT === 'function') { try { setQT(target.closest('section[data-qt]').dataset.qt); } catch {} }
     requestAnimationFrame(() => document.querySelectorAll(`[data-page="${pg}"] .rv:not(.in),[data-page="${pg}"].rv:not(.in)`).forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }));
     if (target) requestAnimationFrame(() => requestAnimationFrame(() => target.scrollIntoView({ behavior: changed ? 'auto' : 'smooth', block: 'start' })));
     else if (changed) window.scrollTo(0, 0);
@@ -2502,6 +2537,50 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const LIVE_CH = ['UCos52azQNBgW63_9uDJoPDA', 'UCROKYPep-UuODNwyipe6JMw'];
   $('live').addEventListener('click', e => { const b = e.target.closest('[data-live]'); if (!b) return; const i = +b.dataset.live; AU.pause();
     $('lf' + i).innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${LIVE_CH[i]}&autoplay=1&playsinline=1" title="بث مباشر" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`; });
+
+
+  // ===================== quran tabs =====================
+  let qtab = 'quran';
+  const setQT = t => { qtab = t; document.querySelectorAll('#qtabs [data-qt]').forEach(b => b.setAttribute('aria-selected', b.dataset.qt === t)); document.querySelectorAll('section[data-qt]').forEach(sec => { sec.hidden = sec.dataset.qt !== t; }); };
+  $('qtabs').addEventListener('click', e => { const b = e.target.closest('[data-qt]'); if (b) { setQT(b.dataset.qt); window.scrollTo({ top: $('qtabs').getBoundingClientRect().top + scrollY - 70 }); } });
+  setQT('quran');
+
+  // ===================== bell =====================
+  const bellUI = () => { const b = $('bell'); const has = 'Notification' in window; const g = has && Notification.permission === 'granted'; b.classList.toggle('on', g); b.classList.toggle('off', !g); b.setAttribute('aria-label', g ? 'التنبيهات مفعّلة، اضغط لإعداداتها' : 'تفعيل التنبيهات'); };
+  $('bell').addEventListener('click', async () => {
+    if (!('Notification' in window)) { toast('المتصفح هذا ما يدعم التنبيهات. أضف التذكيرات لتقويم جوالك من قسم التذكيرات.'); go('remind'); return; }
+    if (Notification.permission === 'granted') { go('remind'); return; }
+    if (Notification.permission === 'denied') { toast('التنبيهات مقفلة من إعدادات المتصفح. فعّلها من هناك، أو أضف التذكيرات لتقويم جوالك.'); go('remind'); return; }
+    try { const r = await Notification.requestPermission(); bellUI(); if (r === 'granted') { toast('تم تفعيل التنبيهات. تقدر تحدد أوقاتها من قسم التذكيرات.'); try { new Notification('سكون', { body: 'تم تفعيل التنبيهات، الله يعينك على الذكر والطاعة.', icon: 'icon.png' }); } catch {} } else toast('ما تم السماح بالتنبيهات. تقدر تضيف التذكيرات لتقويم جوالك من قسم التذكيرات.'); } catch { go('remind'); }
+  });
+  bellUI();
+
+  // ===================== share + rate =====================
+  const PUB = 'https://k44vvd.github.io/sukoon/'; $('slink').value = PUB;
+  $('sshare').addEventListener('click', async () => { const t = 'سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة.'; try { if (navigator.share) { await navigator.share({ title: 'سكون', text: t, url: PUB }); return; } await navigator.clipboard.writeText(`${t}\n${PUB}`); $('sshst').textContent = 'تم نسخ الرابط، انشره ولك الأجر بإذن الله'; } catch (err) { if (err && err.name === 'AbortError') return; $('sshst').textContent = 'انسخ الرابط من الخانة'; } });
+  $('scopyl').addEventListener('click', async () => { try { await navigator.clipboard.writeText(PUB); $('sshst').textContent = 'تم نسخ الرابط'; } catch { $('slink').select(); $('sshst').textContent = 'حدد الرابط وانسخه'; } });
+  const rateUI = () => { const r = store.get('sk-rate', 0); document.querySelectorAll('#stars button').forEach(b => { const on = +b.dataset.r <= r; b.classList.toggle('on', on); b.setAttribute('aria-checked', +b.dataset.r === r); });
+    $('ratest').innerHTML = r ? `شكراً لتقييمك (${ar(r)} من ٥)، الله يجزاك خير. <a href="https://ig.me/m/6amx9" target="_blank" rel="noopener">أرسل لنا رأيك أو اقتراحك</a>` : ''; };
+  $('stars').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (b) { store.set('sk-rate', +b.dataset.r); rateUI(); } });
+  rateUI();
+
+  // ===================== hijri calendar =====================
+  const HM = ['محرم', 'صفر', 'ربيع الأول', 'ربيع الآخر', 'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'];
+  const hjFmt = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura-nu-latn', { day: 'numeric', month: 'numeric', year: 'numeric', timeZone: 'UTC' });
+  const hjOf = d => { const p = {}; hjFmt.formatToParts(d).forEach(x => { p[x.type] = x.value; }); return { d: +p.day, m: +p.month, y: parseInt(p.year) }; };
+  const HEV = { '1-1': 'رأس السنة الهجرية', '1-10': 'يوم عاشوراء', '9-1': 'بداية رمضان', '10-1': 'عيد الفطر', '12-9': 'يوم عرفة', '12-10': 'عيد الأضحى' };
+  let hOff = 0;
+  const renderHC = () => { const t0 = new Date(Date.parse(today() + 'T12:00:00Z')); let start = new Date(t0); start.setUTCDate(start.getUTCDate() - (hjOf(t0).d - 1));
+    for (let i = 0; i < Math.abs(hOff); i++) { if (hOff > 0) { start.setUTCDate(start.getUTCDate() + 30); start.setUTCDate(start.getUTCDate() - (hjOf(start).d - 1)); } else { start.setUTCDate(start.getUTCDate() - 1); start.setUTCDate(start.getUTCDate() - (hjOf(start).d - 1)); } }
+    const h0 = hjOf(start), days = []; const d = new Date(start); while (hjOf(d).m === h0.m) { days.push(new Date(d)); d.setUTCDate(d.getUTCDate() + 1); }
+    const tIso = today(), evs = [];
+    let cells = ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'].map(w => `<div class="wd">${w}</div>`).join('') + '<div></div>'.repeat(start.getUTCDay());
+    days.forEach((x, i) => { const hd = i + 1, iso = x.toISOString().slice(0, 10), ev = HEV[`${h0.m}-${hd}`]; if (ev) evs.push(`<li><b>${ar(hd)} ${HM[h0.m - 1]}</b> · ${ev} (${fmtD(iso, { day: 'numeric', month: 'long' })})</li>`);
+      cells += `<div class="d${iso === tIso ? ' td' : ''}${ev ? ' ev' : ''}${hd >= 13 && hd <= 15 ? ' wh' : ''}" title="${esc(fmtD(iso, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}">${ar(hd)}<small>${ar(x.getUTCDate())}</small></div>`; });
+    const g0 = fmtD(days[0].toISOString().slice(0, 10), { month: 'long' }), g1 = fmtD(days[days.length - 1].toISOString().slice(0, 10), { month: 'long', year: 'numeric' });
+    $('hcal').innerHTML = `<div class="hch"><button type="button" data-h="1" aria-label="الشهر التالي">‹</button><b>${HM[h0.m - 1]} ${ar(h0.y)} هـ<small>${g0 === g1.split(' ')[0] ? g1 : `${g0} – ${g1}`}</small></b><button type="button" data-h="-1" aria-label="الشهر السابق">›</button></div><div class="hgrid">${cells}</div><ul class="hev">${evs.join('')}<li><b>الأيام البيض</b> · ١٣ و١٤ و١٥ من الشهر (مظلّلة)</li><li>حسب تقويم أم القرى، ودخول رمضان والأعياد يُعتمد برؤية الهلال وإعلان المحكمة العليا.</li></ul>${hOff ? '<button type="button" class="reset" data-h="0">الرجوع للشهر الحالي</button>' : ''}`; };
+  $('hcal').addEventListener('click', e => { const b = e.target.closest('[data-h]'); if (!b) return; const v = +b.dataset.h; hOff = v === 0 ? 0 : hOff + v; renderHC(); });
+  renderHC();
 
   // initial route
   { const h = location.hash; if (h.startsWith('#/')) go(h.slice(2), null, 'replace'); else { const el = h.length > 1 && document.getElementById(h.slice(1)); go(pageOf(el) || 'home', el || null, 'replace'); } }
