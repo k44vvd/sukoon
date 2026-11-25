@@ -392,6 +392,7 @@ body.qp-on .bell{bottom:calc(92px + env(safe-area-inset-bottom))}
 .ares{display:grid;gap:6px;margin-top:12px}.ares button{display:grid;gap:4px;text-align:start;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink)}
 .ares button span{font:400 18px/1.9 "Sukoon Quran",Amiri,serif}.ares button small{color:var(--gold);font-size:12px}
 .ares h4{margin:6px 0 0;color:var(--mute);font-weight:500;font-size:14px}
+.codbox{max-width:420px;margin:0 auto}.codbox .card{margin:0}.codbox .meta .dl{width:100%;margin-top:8px}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -814,6 +815,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="band" id="lastq" data-page="home">
     <div class="lq" id="lqbox"></div>
+  </section>
+
+  <section class="band" id="clipofday" data-page="home" hidden>
+    <div class="pwhead"><h2>مقطع اليوم</h2><a class="mall" href="#/clips">كل المقاطع ‹</a></div>
+    <p class="lead" id="codsub">يتغير كل يوم. شاهده، حمّله، وانشره.</p>
+    <div class="codbox" id="codbox"></div>
   </section>
 
   <section class="band" id="mawaid" data-page="home">
@@ -1399,11 +1406,15 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     el.className = jtab === 'clips' ? 'grid' : 'agrid';
     el.innerHTML = list.length ? list.map(jtab === 'clips' ? clipCard : aCard).join('') : '';
   };
+  const renderCOD = () => { const box = $('codbox'); if (!box) return; if (!clips.length) { $('clipofday').hidden = true; return; }
+    const c = clips[dayNo() % clips.length]; if (box.dataset.id === c.id && box.dataset.dl === String(downloads)) return; box.dataset.id = c.id; box.dataset.dl = String(downloads);
+    box.innerHTML = clipCard(c); $('clipofday').hidden = false;
+    const meta = box.querySelector('.meta'); if (meta) meta.insertAdjacentHTML('beforeend', `<button type="button" class="dl ghost" data-cshare="${esc(c.id)}">مشاركة المقطع</button><p class="status" aria-live="polite"></p>`); };
   const render = () => {
     const list = active === 'الكل' ? clips : clips.filter(c => c.reciter === active);
     $('empty').hidden = true; document.body.classList.toggle('noclips', !clips.length);
     $('count').textContent = clips.length ? `${clips.length} مقطع` : '';
-    $('grid').innerHTML = list.map(clipCard).join('');
+    $('grid').innerHTML = list.map(clipCard).join(''); renderCOD();
     renderJ();
   };
 
@@ -1441,6 +1452,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         code === 'host_unavailable' ? 'افتح الصفحة من المتصفح عشان تحمل' : 'صار خطأ، جرب مرة ثانية';
     } finally { b.disabled = false; }
   }
+  $('codbox').addEventListener('click', async e => {
+    const sh = e.target.closest('[data-cshare]');
+    if (sh) { const cc = clips.find(x => x.id === sh.dataset.cshare); if (!cc) return; const st = sh.nextElementSibling, txt = `${cc.title}${cc.surah ? ' · ' + cc.surah : ''}\nمقطع اليوم من «سكون»: ${typeof PUB !== 'undefined' ? PUB : SITE}`;
+      try { if (navigator.canShare) { const blob = await (await fetch(cc.file)).blob(); const f = new File([blob], 'sukoon.mp4', { type: blob.type || 'video/mp4' }); if (navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text: txt }); return; } }
+        if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); st.textContent = 'تم نسخ الرابط للمشاركة'; } catch (err) { if (!(err && err.name === 'AbortError')) st.textContent = 'ما قدرت أشارك، حمّل المقطع وانشره'; } return; }
+    const b = e.target.closest('.dl'); if (!b) return; const cc = clips.find(x => x.id === b.dataset.id); if (cc) save(b, cc.file, cc.title); });
   $('grid').addEventListener('click', e => {
     const b = e.target.closest('.dl'); if (!b) return;
     const c = clips.find(x => x.id === b.dataset.id); if (c) save(b, c.file, c.title);
@@ -2284,7 +2301,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (wd === 4) items.push({ t: 'اليوم الخميس، يوم يُسن صيامه', s: FT, info: 1, f: 1 });
     $('hrem').innerHTML = items.map(x => x.witr ? `<li class="${x.ok ? 'ok' : ''}"><button type="button" data-witr="${x.witr}"><i></i><b>${x.t}</b><span>${x.s}</span></button></li>` : x.info ? `<li class="info${x.f ? ' fast' : ''}"><div><i></i><b>${x.t}</b><span>${x.s}</span></div></li>` : `<li class="${x.ok ? 'ok' : ''}"><a href="${x.href}"${x.az ? ` data-azp="${x.az}"` : ''}><i></i><b>${x.t}</b><span>${x.s}</span></a></li>`).join('') || '<li class="info"><div><b>ما عندك تذكيرات الحين</b></div></li>';
     if (DZ.length) { const z = DZ[(dayNo() * 7) % DZ.length]; $('dzt').textContent = z.t; $('dzs').textContent = z.src || ''; }
-    if (clips.length) { const c = clips[dayNo() % clips.length]; $('cdt').textContent = c.title; $('clipday').dataset.id = c.id; $('clipday').hidden = false; }
+    renderCOD();
   };
   $('hrem').addEventListener('click', e => { const w = e.target.closest('[data-witr]'); if (w) { store.set('sk-witr', store.get('sk-witr', '') === w.dataset.witr ? '' : w.dataset.witr); renderHome(); } const a = e.target.closest('[data-azp]'); if (a) { azP = a.dataset.azp; setTimeout(() => setAT('azkar'), 0); } });
   $('clipday').addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const b = document.querySelector(`#grid [data-id="${$('clipday').dataset.id}"]`); go('clips', b ? b.closest('.card') || b : $('clips')); });
