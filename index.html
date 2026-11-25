@@ -1899,23 +1899,28 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const nameTxt = () => ($('sname').value || '').trim();
   const draw = () => {
     const W = 1080, H = 1350; cx.clearRect(0, 0, W, H);
-    const bg = cx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#022b2a'); bg.addColorStop(.4, '#022b2a'); bg.addColorStop(1, '#011d1c'); cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
-    cx.strokeStyle = 'rgba(201,178,124,.55)'; cx.lineWidth = 3; cx.strokeRect(48, 48, W - 96, H - 96);
-    cx.strokeStyle = 'rgba(201,178,124,.25)'; cx.lineWidth = 1.5; cx.strokeRect(64, 64, W - 128, H - 128);
-    if (logo.complete && logo.naturalWidth) { cx.drawImage(logo, 270, 130, 540, 540 * logo.naturalHeight / logo.naturalWidth); }
-    cx.direction = 'rtl'; cx.textAlign = 'center'; cx.fillStyle = '#c9b27c';
+    const cs = getComputedStyle(document.documentElement), V = (n, d) => (cs.getPropertyValue(n).trim() || d);
+    const BG = V('--bg', '#022b2a'), BG2 = V('--bg2', '#0b3a38'), INK = V('--ink', '#eeede6'), MUTE = V('--mute', '#a9bcb7'), GOLD = V('--gold', '#c9b27c');
+    const sk = document.documentElement.dataset.skin || '', light = sk === 'light' || sk === 'sand';
+    const bg = cx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, BG2); bg.addColorStop(.45, BG); bg.addColorStop(1, BG); cx.fillStyle = bg; cx.fillRect(0, 0, W, H);
+    cx.globalAlpha = .6; cx.strokeStyle = GOLD; cx.lineWidth = 3; cx.strokeRect(48, 48, W - 96, H - 96); cx.globalAlpha = .28; cx.lineWidth = 1.5; cx.strokeRect(64, 64, W - 128, H - 128); cx.globalAlpha = 1;
+    if (logo.complete && logo.naturalWidth) { const lw = 540, lh = lw * logo.naturalHeight / logo.naturalWidth;
+      if (light) { cx.fillStyle = '#022b2a'; cx.beginPath(); cx.roundRect ? cx.roundRect(W / 2 - lw / 2 - 30, 130 - 24, lw + 60, lh + 48, 36) : cx.rect(W / 2 - lw / 2 - 30, 130 - 24, lw + 60, lh + 48); cx.fill(); }
+      cx.drawImage(logo, 270, 130, lw, lh); }
+    cx.direction = 'rtl'; cx.textAlign = 'center'; cx.fillStyle = GOLD;
     cx.font = '700 64px Amiri, serif'; cx.fillText('صدقة جارية', W / 2, 520);
     const nm = g === 'me' ? 'عنّي' : (nameTxt() ? 'عن ' + nameTxt() : (g === 'f' ? 'عن فقيدتي' : 'عن فقيدي'));
-    cx.fillStyle = '#eeede6'; let fs = 92; cx.font = `700 ${fs}px Amiri, serif`; while (cx.measureText(nm).width > 880 && fs > 40) { fs -= 4; cx.font = `700 ${fs}px Amiri, serif`; }
+    cx.fillStyle = INK; let fs = 92; cx.font = `700 ${fs}px Amiri, serif`; while (cx.measureText(nm).width > 880 && fs > 40) { fs -= 4; cx.font = `700 ${fs}px Amiri, serif`; }
     cx.fillText(nm, W / 2, 660);
-    cx.fillStyle = 'rgba(201,178,124,.7)'; cx.fillRect(W / 2 - 60, 720, 120, 3);
-    cx.fillStyle = '#eeede6'; cx.font = '400 46px Amiri, serif';
+    cx.fillStyle = GOLD; cx.globalAlpha = .75; cx.fillRect(W / 2 - 60, 720, 120, 3); cx.globalAlpha = 1;
+    cx.fillStyle = INK; cx.font = '400 46px Amiri, serif';
     const words = duaFor().split(' '); let line = '', y = 820; const lines = [];
     words.forEach(w => { const t = line ? line + ' ' + w : w; if (cx.measureText(t).width > 820) { lines.push(line); line = w; } else line = t; }); lines.push(line);
     lines.forEach(l => { cx.fillText(l, W / 2, y); y += 78; });
-    cx.fillStyle = '#a9bcb7'; cx.font = '400 30px "IBM Plex Sans Arabic", sans-serif'; cx.fillText('نسأل الله أن يجعل هذا العمل سبباً في نشر القرآن،', W / 2, 1110); cx.fillText('وأن يكتب الأجر لكل من ساهم في نشره', W / 2, 1156);
-    cx.direction = 'ltr'; cx.fillStyle = '#c9b27c'; cx.font = '500 32px "IBM Plex Sans Arabic", sans-serif'; cx.fillText('Instagram @6amx9   ·   TikTok @9zxn', W / 2, 1210);
+    cx.fillStyle = MUTE; cx.font = '400 30px "IBM Plex Sans Arabic", sans-serif'; cx.fillText('نسأل الله أن يجعل هذا العمل سبباً في نشر القرآن،', W / 2, 1110); cx.fillText('وأن يكتب الأجر لكل من ساهم في نشره', W / 2, 1156);
+    cx.direction = 'ltr'; cx.fillStyle = GOLD; cx.font = '500 32px "IBM Plex Sans Arabic", sans-serif'; cx.fillText('Instagram @6amx9   ·   TikTok @9zxn', W / 2, 1210);
   };
+  new MutationObserver(() => setTimeout(draw, 30)).observe(document.documentElement, { attributes: true, attributeFilter: ['data-skin'] });;
   logo.onload = draw; (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => Promise.all([document.fonts && document.fonts.load('700 40px Amiri'), document.fonts && document.fonts.load('400 40px Amiri')])).then(draw, draw);
   $('sname').addEventListener('input', draw);
   $('sg').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; g = b.dataset.g; $('sg').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); $('sname').closest('label').style.display = g === 'me' ? 'none' : ''; draw(); });
