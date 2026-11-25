@@ -271,6 +271,8 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .steps2 li::before{content:counter(s);position:absolute;inset-inline-start:16px;top:14px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--bg);display:grid;place-items:center;font-size:14px;font-weight:600}
 .lgroup h3{margin:18px 0 10px;font:700 24px/1.3 Amiri,serif;color:var(--gold)}
 
+.pduha{position:relative;margin:2px auto 10px;width:fit-content;padding:5px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);font-size:14px;color:var(--gold);background:color-mix(in srgb,var(--bg) 35%,transparent)}
+.pduha.on{background:var(--gold);color:var(--bg);font-weight:700}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -656,6 +658,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
     <p class="plabel">باقي على <span id="tbn">…</span></p>
     <div class="pcd" id="tbcd">٠٠:٠٠:٠٠</div>
+    <p class="pduha" id="pduha"></p>
     <div class="plow">
       <div class="ptrack"><i class="pfill" id="pfill"></i><i class="pknob" id="pknob"></i></div>
       <div class="pends"><div><b id="pprevN"></b><span id="pprevT"></span></div><div><b id="pnextN"></b><span id="pnextT"></span></div></div>
@@ -1630,10 +1633,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     else rem = Math.round(ptT[nx[0]] * 60) / 60 - now;
     const fri = r.getDay() === 5, iqP = PN.find(([k]) => IQ[k] && !(k === 'dhuhr' && fri) && now >= Math.round(ptT[k] * 60) / 60 && now < Math.round(ptT[k] * 60) / 60 + IQ[k] / 60);
     if (iqP) rem = Math.round(ptT[iqP[0]] * 60) / 60 + IQ[iqP[0]] / 60 - now;
-    const duS = ptT.sunrise + 0.25, duE = Math.round(ptT.dhuhr * 60) / 60 - 0.25;
+    const duS = ptT.sunrise + 0.25, duE = Math.round(ptT.dhuhr * 60) / 60 - 0.25, duWait = !iqP && now >= ptT.sunrise && now < duS, duIn = now >= duS && now < duE;
+    if (duWait) rem = duS - now;
+    const pd = $('pduha'); pd.classList.toggle('on', duIn); pd.textContent = isAr() ? (duIn ? `وقت الضحى الآن · حتى ${hm(duE)}` : `الضحى ${hm(duS)} – ${hm(duE)}`) : (duIn ? `Duha now · until ${hm(duE)}` : `Duha ${hm(duS)} – ${hm(duE)}`);
     $('mwq').innerHTML = PN.map(([k, n]) => `<div class="pt${k === nx[0] ? ' next' : ''}${k === 'sunrise' ? ' sun' : ''}"><b>${T(n)}</b><strong>${hm(ptT[k])}</strong>${IQ[k] ? `<small class="iq">${k === 'dhuhr' && fri ? 'صلاة الجمعة' : `${isAr() ? 'الإقامة' : 'Iqama'} ${hm(Math.round(ptT[k] * 60) / 60 + IQ[k] / 60)}`}</small>` : ''}</div>${k === 'sunrise' ? `<div class="pt duha${now >= duS && now < duE ? ' now' : ''}"><b>${isAr() ? 'الضحى' : 'Duha'}</b><strong>${hm(duS)}</strong><small class="iq">${isAr() ? 'إلى' : 'until'} ${hm(duE)}</small></div>` : ''}`).join('');
-    $('mnext').textContent = iqP ? (isAr() ? `إقامة ${iqP[1]} بعد` : `Iqama ${T(iqP[1])}`) : isAr() ? `${nx[1]} بعد` : `${T('بعد')}: ${T(nx[1])}`;
-    $('tbn').textContent = iqP ? (isAr() ? `إقامة ${iqP[1]}` : `Iqama ${T(iqP[1])}`) : T(nx[1]); $('tbc').textContent = isAr() ? `مواقيت ${CITY[0]}` : `${T(CITY[0])} · `; updCard(now, nx);
+    $('mnext').textContent = duWait ? (isAr() ? 'الضحى بعد' : 'Duha in') : iqP ? (isAr() ? `إقامة ${iqP[1]} بعد` : `Iqama ${T(iqP[1])}`) : isAr() ? `${nx[1]} بعد` : `${T('بعد')}: ${T(nx[1])}`;
+    $('tbn').textContent = duWait ? (isAr() ? 'الضحى' : 'Duha') : iqP ? (isAr() ? `إقامة ${iqP[1]}` : `Iqama ${T(iqP[1])}`) : T(nx[1]); $('tbc').textContent = isAr() ? `مواقيت ${CITY[0]}` : `${T(CITY[0])} · `; updCard(now, nx);
     const sec = Math.max(0, Math.floor(rem * 3600)); $('mcd').textContent = `${String(Math.floor(sec / 3600)).padStart(2, '0')}:${String(Math.floor(sec % 3600 / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`; $('tbcd').textContent = nd($('mcd').textContent);
   };
   tickPT(); const ptTimer = setInterval(tickPT, 1000);
