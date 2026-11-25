@@ -29,5 +29,37 @@
   "file": "videos/hadid-20.mp4",
   "poster": "videos/hadid-20.jpg",
   "ratio": "16/9"
+ },
+ {
+  "id": "taha-56",
+  "title": "ولقد أريناه آياتنا كلها فكذّب وأبى",
+  "surah": "سورة طه",
+  "file": "videos/taha-56.mp4",
+  "poster": "videos/taha-56.jpg",
+  "ratio": "16/9"
+ },
+ {
+  "id": "zumar-4",
+  "title": "خلق السماوات والأرض بالحق",
+  "surah": "سورة الزمر",
+  "reciter": "أحمد بن طالب",
+  "file": "videos/zumar-4.mp4",
+  "poster": "videos/zumar-4.jpg",
+  "ratio": "16/9"
+ },
+ {
+  "id": "anam-14",
+  "title": "قل أغير الله أتخذ ولياً فاطر السماوات والأرض",
+  "surah": "سورة الأنعام",
+  "file": "videos/anam-14.mp4",
+  "poster": "videos/anam-14.jpg",
+  "ratio": "16/9"
+ },
+ {
+  "id": "clip-05",
+  "title": "تلاوة خاشعة",
+  "file": "videos/clip-05.mp4",
+  "poster": "videos/clip-05.jpg",
+  "ratio": "16/9"
  }
 ]
