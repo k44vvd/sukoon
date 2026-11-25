@@ -5,7 +5,8 @@
   "surah": "سورة ص",
   "file": "videos/sad-35.mp4",
   "poster": "videos/sad-35.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-07-22"
  },
  {
   "id": "qiyamah-26",
@@ -13,14 +14,16 @@
   "surah": "سورة القيامة",
   "file": "videos/qiyamah-26.mp4",
   "poster": "videos/qiyamah-26.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-04-29"
  },
  {
   "id": "clip-02",
   "title": "تلاوة خاشعة",
   "file": "videos/clip-02.mp4",
   "poster": "videos/clip-02.jpg",
-  "ratio": "4/3"
+  "ratio": "4/3",
+  "date": "2026-11-24"
  },
  {
   "id": "hadid-20",
@@ -28,7 +31,8 @@
   "surah": "سورة الحديد",
   "file": "videos/hadid-20.mp4",
   "poster": "videos/hadid-20.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-11-17"
  },
  {
   "id": "taha-56",
@@ -36,7 +40,8 @@
   "surah": "سورة طه",
   "file": "videos/taha-56.mp4",
   "poster": "videos/taha-56.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-09-20"
  },
  {
   "id": "zumar-4",
@@ -45,7 +50,8 @@
   "reciter": "أحمد بن طالب",
   "file": "videos/zumar-4.mp4",
   "poster": "videos/zumar-4.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-11-24"
  },
  {
   "id": "anam-14",
@@ -53,13 +59,15 @@
   "surah": "سورة الأنعام",
   "file": "videos/anam-14.mp4",
   "poster": "videos/anam-14.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-10-30"
  },
  {
   "id": "clip-05",
   "title": "تلاوة خاشعة",
   "file": "videos/clip-05.mp4",
   "poster": "videos/clip-05.jpg",
-  "ratio": "16/9"
+  "ratio": "16/9",
+  "date": "2026-09-24"
  }
 ]

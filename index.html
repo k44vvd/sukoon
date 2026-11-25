@@ -854,6 +854,13 @@ body[data-pg="sources"] [data-page]:not([data-page="sources"]){display:none!impo
 body[data-pg="fadail"] [data-page]:not([data-page="fadail"]){display:none!important}
 body[data-pg="dawah"] [data-page]:not([data-page="dawah"]){display:none!important}
 body[data-pg="fav"] [data-page]:not([data-page="fav"]){display:none!important}
+body[data-pg="archive"] [data-page]:not([data-page="archive"]){display:none!important}
+.dnew{color:var(--gold)!important}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:start}
+.dlab{display:inline-block;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--bg);background:var(--gold);border-radius:999px;padding:3px 12px}
+.cdate{margin:2px 0 6px;color:var(--mute);font-size:13px}.cdate b{color:var(--gold);font-weight:700}
+.arcm{margin:24px 0 10px;display:flex;align-items:center;gap:10px;color:var(--gold);font:700 20px/1.3 Amiri,serif}.arcm::after{content:"";flex:1;height:1px;background:var(--line)}
+.arcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .dwl{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px}
 .dwl::-webkit-scrollbar{display:none}
 .dwl button{flex:none;background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:15px;cursor:pointer}
@@ -1010,7 +1017,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 <body>
 <div class="wrap">
   <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai" class="aink">المساعد الذكي</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/fav" data-go="fav" data-more="1"><b>المفضلة</b><span>آياتك وأدعيتك وأحاديثك المحفوظة</span></a><a href="#/dawah" data-go="dawah" data-more="1"><b>دعوة الجاليات</b><span>تعريف بالإسلام بـ٧ لغات للمشاركة</span></a><a href="#/fadail" data-go="fadail" data-more="1"><b>الفضائل</b><span>فضل الأعمال من الأحاديث الصحيحة</span></a><a href="#/anbiya" data-go="anbiya" data-more="1"><b>قصص الأنبياء</b><span>٢٥ نبياً من القرآن، مع تحميل PDF</span></a><a href="#/sources" data-go="sources" data-more="1"><b>المصادر</b><span>من وين أخذنا كل محتوى في الموقع</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/archive" data-go="archive" data-more="1"><b>الأرشيف</b><span>كل المقاطع وصور الأذكار المنشورة</span></a><a href="#/fav" data-go="fav" data-more="1"><b>المفضلة</b><span>آياتك وأدعيتك وأحاديثك المحفوظة</span></a><a href="#/dawah" data-go="dawah" data-more="1"><b>دعوة الجاليات</b><span>تعريف بالإسلام بـ٧ لغات للمشاركة</span></a><a href="#/fadail" data-go="fadail" data-more="1"><b>الفضائل</b><span>فضل الأعمال من الأحاديث الصحيحة</span></a><a href="#/anbiya" data-go="anbiya" data-more="1"><b>قصص الأنبياء</b><span>٢٥ نبياً من القرآن، مع تحميل PDF</span></a><a href="#/sources" data-go="sources" data-more="1"><b>المصادر</b><span>من وين أخذنا كل محتوى في الموقع</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -1056,9 +1063,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </section>
 
   <section class="band" id="clipofday" data-page="home" hidden>
-    <div class="pwhead"><h2>مقطع اليوم</h2><a class="mall" href="#/clips">كل المقاطع ‹</a></div>
-    <p class="lead" id="codsub">يتغير كل يوم. شاهده، حمّله، وانشره.</p>
-    <div class="codbox" id="codbox"></div>
+    <div class="pwhead"><h2>جديد سكون</h2><a class="mall" href="#/archive">الأرشيف كامل ‹</a></div>
+    <p class="lead dnew">محتوى إيماني يتجدد يومياً، شارك الخير وكن سبباً في نشره.</p>
+    <div class="dgrid">
+      <div><span class="dlab">أحدث مقطع</span><div class="codbox" id="codbox"></div></div>
+      <div id="iodw" hidden><span class="dlab">أحدث صورة ذكر</span><div class="codbox" id="iodbox"></div></div>
+    </div>
   </section>
 
   <section class="band" id="mawaid" data-page="home">
@@ -1471,6 +1481,13 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
+  <section class="band" id="archive" data-page="archive">
+    <h2>أرشيف سكون</h2>
+    <p class="lead">محتوى إيماني يتجدد يومياً، شارك الخير وكن سبباً في نشره. كل مقطع وصورة نُشرت في سكون تبقى هنا، مرتّبة من الأحدث.</p>
+    <div class="seg" id="arctabs"><button type="button" data-arc="all" aria-pressed="true">الكل</button><button type="button" data-arc="clip" aria-pressed="false">المقاطع</button><button type="button" data-arc="img" aria-pressed="false">صور الأذكار</button></div>
+    <div id="arclist"></div>
+  </section>
+
   <section class="band" id="favp" data-page="fav">
     <h2>المفضلة</h2>
     <p class="lead">كل اللي حفظته بعلامة ♡ من الآيات والأدعية والأحاديث والفضائل، في مكان واحد.</p>
@@ -1763,7 +1780,9 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <div class="meta">
           <h3>${esc(c.title)}</h3>
           ${c.reciter || c.surah ? `<p class="sub">${esc([c.reciter, c.surah].filter(Boolean).join(' · '))}</p>` : ''}
+          ${c.date ? `<p class="cdate">${pubDate(c.date)}</p>` : ''}
           <button class="dl" data-id="${esc(c.id)}" ${downloads === false ? 'hidden' : ''}>${dlIcon}تحميل المقطع</button>
+          <button type="button" class="dl ghost" data-cshare="${esc(c.id)}">مشاركة المقطع</button>
           <p class="status" aria-live="polite"></p>
         </div>
       </article>`;
@@ -1772,7 +1791,9 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <img src="${esc(a.file)}" alt="${esc(a.title)}" loading="lazy">
         <div class="meta">
           ${a.title ? `<h3>${esc(a.title)}</h3>` : ''}
+          ${a.date ? `<p class="cdate">${pubDate(a.date)}</p>` : ''}
           <button class="dl" data-aid="${esc(a.id)}" ${downloads === false ? 'hidden' : ''}>${dlIcon}تحميل الصورة</button>
+          <button type="button" class="dl ghost" data-ashare="${esc(a.id)}">مشاركة الصورة</button>
           <p class="status" aria-live="polite"></p>
         </div>
       </article>`;
@@ -1784,10 +1805,33 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     $('jclipsec').hidden = !jc.length;
     el.innerHTML = jc.map(clipCard).join('');
   };
+  const byDate = L => L.map((x, i) => [x, i]).sort((p1, p2) => (p2[0].date || '').localeCompare(p1[0].date || '') || p2[1] - p1[1]).map(p3 => p3[0]);
+  const pubDate = d => { const td = today(), dd = Math.round((Date.parse(td) - Date.parse(d)) / 864e5); let g = d; try { g = new Intl.DateTimeFormat('ar-SA-u-ca-gregory', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(d + 'T12:00:00Z')); } catch {} if (SET0 && SET0.num === 'en') g = g.replace(/[٠-٩]/g, x => '٠١٢٣٤٥٦٧٨٩'.indexOf(x));
+    return dd === 0 ? `نُشر <b>اليوم</b> · ${g}` : dd === 1 ? `نُشر <b>أمس</b> · ${g}` : `نُشر في ${g}`; };
   const renderCOD = () => { const box = $('codbox'); if (!box) return; if (!clips.length) { $('clipofday').hidden = true; return; }
-    const c = clips[dayNo() % clips.length]; if (box.dataset.id === c.id && box.dataset.dl === String(downloads)) return; box.dataset.id = c.id; box.dataset.dl = String(downloads);
-    box.innerHTML = clipCard(c); $('clipofday').hidden = false;
-    const meta = box.querySelector('.meta'); if (meta) meta.insertAdjacentHTML('beforeend', `<button type="button" class="dl ghost" data-cshare="${esc(c.id)}">مشاركة المقطع</button><p class="status" aria-live="polite"></p>`); };
+    const c = byDate(clips)[0]; if (box.dataset.id === c.id && box.dataset.dl === String(downloads)) return; box.dataset.id = c.id; box.dataset.dl = String(downloads);
+    box.innerHTML = clipCard(c); $('clipofday').hidden = false; try { renderARC(); } catch {} };
+  const renderIOD = () => { const box = $('iodbox'); if (!box || typeof adhkar === 'undefined' || !adhkar.length) return; const a = byDate(adhkar)[0]; box.innerHTML = aCard(a); $('iodw').hidden = false; try { renderARC(); } catch {} };
+  let arcF = 'all';
+  function renderARC() { const el = $('arclist'); if (!el) return; const ad0 = typeof adhkar !== 'undefined' ? adhkar : [];
+    const items = byDate([...(arcF === 'img' ? [] : clips.map(c => ({ ...c, _t: 'clip' }))), ...(arcF === 'clip' ? [] : ad0.map(a => ({ ...a, _t: 'img' })))]);
+    if (!items.length) { el.innerHTML = '<p class="fvempty">ما فيه محتوى للحين.</p>'; return; }
+    const MN = d => { try { return new Intl.DateTimeFormat('ar-SA-u-ca-gregory', { month: 'long', year: 'numeric' }).format(new Date(d + 'T12:00:00Z')); } catch { return d.slice(0, 7); } };
+    let h = '', cur = null, open = false; items.forEach(x => { const m = x.date ? x.date.slice(0, 7) : 'x'; if (m !== cur) { if (open) h += '</div>'; h += `<h3 class="arcm">${x.date ? MN(x.date) : 'بدون تاريخ'}</h3><div class="arcg">`; cur = m; open = true; } h += x._t === 'clip' ? clipCard(x) : aCard(x); });
+    el.innerHTML = h + (open ? '</div>' : ''); }
+  $('arctabs').addEventListener('click', e => { const b = e.target.closest('[data-arc]'); if (!b) return; arcF = b.dataset.arc; $('arctabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderARC(); });
+  // shared handlers: download + share for clip/image cards in the daily boxes and the archive
+  ['iodbox', 'arclist'].forEach(id => $(id).addEventListener('click', e => { const b = e.target.closest('.dl'); if (!b || b.dataset.cshare || b.dataset.ashare) return;
+    if (b.dataset.id) { const c = clips.find(x => x.id === b.dataset.id); if (c) save(b, c.file, c.title); } else if (b.dataset.aid) { const a = adhkar.find(x => x.id === b.dataset.aid); if (a) save(b, a.file, a.title || 'ذكر'); } }));
+  document.addEventListener('click', async e => { const b = e.target.closest('[data-cshare],[data-ashare]'); if (!b) return; e.stopPropagation(); const isC = !!b.dataset.cshare;
+    const it = isC ? clips.find(x => x.id === b.dataset.cshare) : adhkar.find(x => x.id === b.dataset.ashare); if (!it) return;
+    const st = b.parentElement.querySelector('.status'), say = t => { if (st) st.textContent = t; }, url = typeof PUB !== 'undefined' ? PUB : SITE;
+    const txt = `${it.title || 'ذكر'}${it.surah ? ' · ' + it.surah : ''}\nمن «سكون»: ${url}`, t0 = b.textContent; b.textContent = 'جاري التجهيز…';
+    try { if (navigator.canShare) { const blob = await (await fetch(it.file)).blob(); const f = new File([blob], isC ? 'sukoon.mp4' : 'sukoon.jpg', { type: blob.type || (isC ? 'video/mp4' : 'image/jpeg') }); if (navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text: txt }); b.textContent = t0; return; } }
+      if (navigator.share) { await navigator.share({ text: txt }); } else { await navigator.clipboard.writeText(txt); say('تم نسخ الرابط للمشاركة'); } }
+    catch (err) { if (!(err && err.name === 'AbortError')) say(isC ? 'ما قدرت أشارك، حمّل المقطع وانشره' : 'ما قدرت أشارك، حمّل الصورة وانشرها'); }
+    b.textContent = t0; }, true);
+
   const render = () => {
     const list = active === 'الكل' ? clips : clips.filter(c => c.reciter === active);
     $('empty').hidden = true; document.body.classList.toggle('noclips', !clips.length);
@@ -1852,7 +1896,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     const b = e.target.closest('.dl'); if (!b) return;
     const a = adhkar.find(x => x.id === b.dataset.aid); if (a) save(b, a.file, a.title || 'ذكر');
   });
-  fetch('adhkar.json').then(r => r.json()).then(d => { adhkar = Array.isArray(d) ? d : []; }).catch(() => { adhkar = []; }).finally(renderA);
+  fetch('adhkar.json').then(r => r.json()).then(d => { adhkar = Array.isArray(d) ? d : []; }).catch(() => { adhkar = []; }).finally(() => { renderA(); try { renderIOD(); renderARC(); } catch {} });
 
   fetch('clips.json').then(r => r.json()).then(d => { clips = Array.isArray(d) ? d : []; }).catch(() => { clips = []; })
     .finally(() => { renderFilters(); render(); });
@@ -2457,7 +2501,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // ===================== pages =====================
-  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail', 'dawah', 'fav'];
+  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail', 'dawah', 'fav', 'archive'];
   let page = '';
   const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); };
   $('pmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
@@ -2917,7 +2961,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', archive: 'الأرشيف (كل المقاطع وصور الأذكار المنشورة بالتاريخ)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
