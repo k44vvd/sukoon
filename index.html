@@ -78,6 +78,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 .acard img{display:block;width:100%;height:auto;background:#011d1c}
 .acard .meta{padding:12px 14px 14px}
 .acard h3{font-size:19px}
+.eday{margin-top:18px;padding:clamp(18px,3vw,28px);border-radius:24px;border:1px solid rgba(201,178,124,.4);background:var(--bg2)}
+.ehead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.etag{padding:6px 14px;border-radius:999px;background:var(--gold);color:var(--bg);font-weight:700;font-size:14px}.edate{color:var(--mute);font-size:13px}
+.ecard{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:center}
+@media(max-width:700px){.ecard{grid-template-columns:1fr}}
+.eimg{aspect-ratio:4/3;border-radius:18px;display:grid;place-items:center;overflow:hidden;position:relative}
+.eimg svg{width:46%;height:auto;color:#fff;filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));position:relative}
+.eimg::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.28),transparent 55%)}
+.ebody h3{margin:0 0 8px;font:700 clamp(24px,3vw,30px)/1.3 Amiri,serif}
+.ebody p{margin:0 0 10px;color:var(--mute);line-height:1.8}
+.ebody blockquote{margin:0 0 14px;padding:10px 14px;border-inline-start:3px solid var(--gold);font:400 18px/1.8 Amiri,serif;color:var(--ink);background:rgba(238,237,230,.04);border-radius:8px}
+.ebody blockquote small{display:block;font:500 12px "IBM Plex Sans Arabic",sans-serif;color:var(--gold);margin-top:4px}
+.echips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.echips button{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:14px}
+.echips button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
 .ehsan{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(24px,4vw,44px)}
 .ehsan h2{margin:0 0 8px;font:700 clamp(28px,4vw,40px)/1.15 Amiri,serif}
 .ehsan p{margin:0;font-size:17px;max-width:560px;color:#2d4a47}
@@ -953,6 +968,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <p>المنصة الوطنية للعمل الخيري في المملكة. فرص تبرع موثوقة في مجالات كثيرة، وتقدر تخليها صدقة جارية عنك أو عن من تحب.</p>
       </div>
       <a href="https://ehsan.sa" rel="noopener">زيارة منصة إحسان ←</a>
+    </div>
+    <div class="eday" id="eday">
+      <div class="ehead"><span class="etag">فرصة اليوم في إحسان</span><span class="edate" id="edate"></span></div>
+      <div class="ecard">
+        <div class="eimg" id="eimg" aria-hidden="true"></div>
+        <div class="ebody"><h3 id="etitle"></h3><p id="edesc"></p><blockquote id="evirtue"></blockquote>
+          <div class="row"><a class="dl" href="https://ehsan.sa/all" target="_blank" rel="noopener" id="ego">تبرّع الحين عبر إحسان ←</a><button type="button" class="dl ghost" id="eshare">مشاركة الفرصة</button></div>
+          <p class="status" id="estat" aria-live="polite"></p></div>
+      </div>
+      <div class="echips" id="echips"></div>
+      <p class="mnote">تتغير فرصة اليوم كل يوم بين مجالات التبرع في منصة إحسان. الزر يوديك لفرص التبرع الحالية في المنصة نفسها، والتبرع يتم هناك فقط.</p>
     </div>
   </section>
 
@@ -2233,6 +2259,39 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   document.addEventListener('play', e => { if (e.target.tagName === 'VIDEO') AU.pause(); }, true);
   qpUIp();
 
+
+  // ===================== ehsan opportunity of the day =====================
+  const ICO = {
+    hands: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40l10-8c3-2 6-2 9 0l6 4h8c2 0 3 2 2 4l-1 1H30"/><path d="M8 40l12 12h22l14-14c2-2 0-5-3-4l-11 6"/><path d="M38 12a6 6 0 0 1 10 0 6 6 0 0 1 0 8l-5 5-5-5a6 6 0 0 1 0-8z"/></svg>',
+    basket: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 26h48l-6 28H14z"/><path d="M20 26l8-14M44 26l-8-14M22 36v10M32 36v10M42 36v10"/></svg>',
+    heart: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54S8 40 8 23a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 17-24 31-24 31z"/><path d="M14 32h10l4-8 6 14 4-6h12"/></svg>',
+    house: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30L32 10l24 20"/><path d="M14 26v28h36V26"/><path d="M27 54V40h10v14"/></svg>',
+    book: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16c-6-4-14-5-22-4v38c8-1 16 0 22 4 6-4 14-5 22-4V12c-8-1-16 0-22 4z"/><path d="M32 16v38"/></svg>',
+    globe: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c7 8 7 36 0 44M32 10c-7 8-7 36 0 44"/></svg>',
+    tree: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 56V34"/><path d="M32 8c10 0 16 8 14 16 6 2 6 12-2 14H20c-8-2-8-12-2-14-2-8 4-16 14-16z"/><path d="M32 42l-7-6M32 38l7-6"/></svg>',
+    family: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="18" r="6"/><circle cx="44" cy="22" r="5"/><path d="M10 52V40c0-7 5-12 12-12s12 5 12 12v12"/><path d="M36 52v-9c0-5 4-9 8-9s8 4 8 9v9"/></svg>',
+    water: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8s-16 18-16 30a16 16 0 0 0 32 0C48 26 32 8 32 8z"/><path d="M24 40a8 8 0 0 0 8 8"/></svg>'
+  };
+  const EF = [
+    { t: 'فُرجت', i: 'hands', c: ['#1f6f5c', '#0d3b33'], d: 'تساهم في سداد ديون المعسرين الموقوفين في حقوق مالية، ليرجعون لأهلهم وبيوتهم.', v: '«من نفّس عن مؤمن كربةً من كُرَب الدنيا، نفّس الله عنه كربةً من كُرَب يوم القيامة»', vs: 'صحيح مسلم (2699)' },
+    { t: 'السلال الغذائية', i: 'basket', c: ['#b7791f', '#6b4510'], d: 'توفير سلال غذائية للأسر المحتاجة، تسد حاجتهم الأساسية من الطعام.', v: '«أطعموا الجائع، وعودوا المريض، وفكّوا العاني»', vs: 'رواه البخاري' },
+    { t: 'الصحة والعلاج', i: 'heart', c: ['#b23a48', '#5e1622'], d: 'دعم علاج المرضى المحتاجين وتوفير الأدوية والأجهزة الطبية لهم.', v: '﴿وَمَنۡ أَحۡيَاهَا فَكَأَنَّمَآ أَحۡيَا ٱلنَّاسَ جَمِيعٗاۚ﴾', vs: 'سورة المائدة، الآية ٣٢' },
+    { t: 'الإسكان', i: 'house', c: ['#3d5a80', '#1b2a41'], d: 'المساهمة في توفير مسكن كريم للأسر المحتاجة وترميم بيوتهم.', v: '«من نفّس عن مؤمن كربةً من كُرَب الدنيا، نفّس الله عنه كربةً من كُرَب يوم القيامة»', vs: 'صحيح مسلم (2699)' },
+    { t: 'التعليم', i: 'book', c: ['#5b4a9b', '#2a1f4a'], d: 'دعم تعليم الطلاب المحتاجين وتوفير احتياجاتهم الدراسية.', v: '«إذا مات الإنسان انقطع عنه عمله إلا من ثلاثة: صدقة جارية، أو علم يُنتفع به، أو ولد صالح يدعو له»', vs: 'صحيح مسلم (1631)' },
+    { t: 'الإغاثة', i: 'globe', c: ['#2b6c8f', '#123349'], d: 'مشاريع إغاثية للمتضررين والمحتاجين داخل المملكة وخارجها.', v: '«مثل المؤمنين في توادّهم وتراحمهم وتعاطفهم مثل الجسد، إذا اشتكى منه عضو تداعى له سائر الجسد بالسهر والحمى»', vs: 'صحيح مسلم (2586)' },
+    { t: 'البيئة والسقيا', i: 'water', c: ['#2f8f83', '#134740'], d: 'مشاريع بيئية مثل السقيا والتشجير، أجرها يبقى ما دام النفع باقي.', v: '«ما من مسلم يغرس غرساً، أو يزرع زرعاً، فيأكل منه طيرٌ أو إنسانٌ أو بهيمةٌ، إلا كان له به صدقة»', vs: 'متفق عليه' },
+    { t: 'رعاية الأيتام والأسر', i: 'family', c: ['#8a5a2b', '#45290f'], d: 'دعم الأيتام والأسر المحتاجة في احتياجاتهم المعيشية والاجتماعية.', v: '«أنا وكافل اليتيم في الجنة هكذا» وأشار بالسبابة والوسطى', vs: 'رواه البخاري' }
+  ];
+  let eIdx = dayNo() % EF.length;
+  const renderE = () => { const f = EF[eIdx];
+    $('eimg').style.background = `linear-gradient(150deg,${f.c[0]},${f.c[1]})`; $('eimg').innerHTML = ICO[f.i];
+    $('etitle').textContent = f.t; $('edesc').textContent = f.d; $('evirtue').innerHTML = `${esc(f.v)}<small>${esc(f.vs)}</small>`;
+    $('edate').textContent = fmt({ weekday: 'long', day: 'numeric', month: 'long' }, 'ar-SA-u-ca-islamic-umalqura');
+    $('echips').innerHTML = EF.map((x, i) => `<button type="button" data-e="${i}" aria-pressed="${i === eIdx}">${x.t}</button>`).join(''); };
+  $('echips').addEventListener('click', e => { const b = e.target.closest('[data-e]'); if (b) { eIdx = +b.dataset.e; renderE(); } });
+  $('eshare').addEventListener('click', async () => { const f = EF[eIdx], txt = `${f.t}\n${f.d}\n${f.v}\n(${f.vs})\n\nتبرّع عبر منصة إحسان: https://ehsan.sa/all\nمن موقع سكون: ${SITE}`;
+    try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); $('estat').textContent = 'تم نسخ الفرصة مع الرابط'; } catch (err) { if (err && err.name === 'AbortError') return; $('estat').textContent = 'ما قدرت أشارك، جرّب مرة ثانية'; } });
+  renderE();
 
   // ===================== daily status =====================
   const stCfg = () => { const n = dayNo(), k = n % 3; const base = { t: k === 0 ? 'ayah' : k === 1 ? 'dua' : 'hadith', s: -1, a1: 1, a2: 1, dua: 0, had: 0, free: '', fsrc: '', size: 'story', th: n % STH.length, name: '', pre: 3, fs: 100, q: 2 };
