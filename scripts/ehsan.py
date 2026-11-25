@@ -11,10 +11,16 @@ for no, url in CASES.items():
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36", "Accept-Language": "ar"})
         h = urllib.request.urlopen(req, timeout=40).read().decode("utf-8", "ignore")
-        got = re.search(r"تم جمع[\s\S]{0,300}?([\d][\d,]*)", h)
-        left = re.search(r"المبلغ المتبقي[\s\S]{0,300}?([\d][\d,]*)", h)
+        print("html length", len(h))
+        for k in ("تم جمع", "المبلغ المتبقي"):
+            for m in re.finditer(k, h):
+                print("CTX", k, repr(h[m.start():m.start() + 160]))
+        got = re.search(r"تم جمع\s*</span>\s*<label[^>]*>\s*([\d][\d,]*)", h)
+        left = re.search(r"المبلغ المتبقي\s*</span>\s*<label[^>]*>\s*([\d][\d,]*)", h)
         if not (got and left):
             raise ValueError("numbers not found")
+        if num(got.group(1)) + num(left.group(1)) < 1000:
+            raise ValueError("numbers look wrong")
         out["cases"][no] = {"got": num(got.group(1)), "left": num(left.group(1)), "asof": out["updated"]}
         print(no, out["cases"][no])
     except Exception as e:
