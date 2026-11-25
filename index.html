@@ -704,6 +704,22 @@ footer .fdesc{max-width:560px;margin:10px auto 4px;line-height:1.9}footer .fdua{
 .kcardbtn{margin-top:10px}
 .kshare{display:grid;gap:10px;margin-top:12px}.kshare input{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
 .kshare canvas{width:100%;max-width:320px;border-radius:14px;margin:0 auto;display:block;border:1px solid var(--line)}
+.pexit{margin:4px 0 0;font-size:14px;color:#efe2c4;opacity:.92;text-align:center}.pexit b{font-variant-numeric:tabular-nums;color:#f1dfb6}
+.pchips{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:12px 0 0}
+.pch{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 2px;border-radius:16px;border:1px solid var(--line);background:var(--bg2);color:var(--mute);font-size:12px;text-decoration:none;transition:border-color .3s,background .3s}
+.pch svg{width:22px;height:22px;color:var(--gold);opacity:.8}.pch b{color:var(--ink);font-size:13px;font-weight:600}.pch span{font-variant-numeric:tabular-nums}
+.pch.cur{border-color:rgba(201,178,124,.7);background:linear-gradient(180deg,rgba(201,178,124,.2),transparent)}.pch.cur b{color:var(--gold)}
+.pch.nx{border-style:dashed;border-color:rgba(201,178,124,.55)}
+.tday{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 4px}
+.tdc{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:18px 12px;border-radius:22px;border:1px solid var(--line);background:radial-gradient(120% 90% at 50% 0%,rgba(201,178,124,.14),transparent 60%),var(--bg2);text-align:center;overflow:hidden}
+.tdc::before{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg,rgba(201,178,124,.05) 0 10deg,transparent 10deg 20deg);border-radius:50%;pointer-events:none}
+.tdw{font:700 30px/1.2 Amiri,serif;color:var(--gold)}.tdn{font:700 44px/1.05 Amiri,serif;color:var(--ink)}.tdm{font-size:15px;color:var(--ink)}.tdc small{color:var(--mute);font-size:12px;line-height:1.6}
+.tdsh{position:absolute;top:10px;inset-inline-start:10px;width:34px;height:34px;border-radius:10px;border:0;background:transparent;color:var(--gold);cursor:pointer;display:grid;place-items:center}.tdsh svg{width:20px;height:20px}
+.tds{display:grid;gap:12px}
+.tdt{display:flex;align-items:center;gap:12px;padding:14px;border-radius:22px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);text-decoration:none;min-height:0}
+.tdt i{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#e2c98f,#9b7a35);color:#2a2112}.tdt i svg{width:24px;height:24px}
+.tdt small{display:block;color:var(--mute);font-size:12px}.tdt b{display:block;font:700 18px/1.35 Amiri,serif;color:var(--gold)}
+@media(max-width:380px){.tday{grid-template-columns:1fr}.pchips{gap:4px}.pch{font-size:11px}}
 .srow{margin-bottom:18px}
 .srow>b{display:block;margin-bottom:8px;font-size:15px;color:var(--mute);font-weight:500}
 .langs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-height:46vh;overflow-y:auto;padding:2px}
@@ -1027,11 +1043,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <p class="plabel">باقي على <span id="tbn">…</span></p>
     <div class="pcd" id="tbcd">٠٠:٠٠:٠٠</div>
     <p class="pduha" id="pduha"></p>
+    <p class="pexit" id="pexit" hidden></p>
     <div class="plow">
       <div class="ptrack"><i class="pfill" id="pfill"></i><i class="pknob" id="pknob"></i></div>
       <div class="pends"><div><b id="pprevN"></b><span id="pprevT"></span></div><div><b id="pnextN"></b><span id="pnextT"></span></div></div>
       <p class="pnote"><a id="tbc" href="#mawaqit"></a>لا يجوز تأخير الصلاة عن وقتها إلا لعذر شرعي</p>
     </div>
+  </div>
+  <div class="pchips" id="pchips" data-page="home"></div>
+  <div class="tday" data-page="home">
+    <div class="tdc" id="tdc"><button type="button" class="tdsh" id="tdsh" aria-label="مشاركة تاريخ اليوم"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M6 12v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><b class="tdw" id="tdw"></b><span class="tdn" id="tdn"></span><span class="tdm" id="tdm"></span><small id="tdg"></small></div>
+    <div class="tds"><a class="tdt" id="tdt1" href="#/adhkar"></a><a class="tdt" id="tdt2" href="#/quran"></a></div>
   </div>
   <header data-page="home">
     <img class="logo" src="logo.png" alt="سكون SUKOON">
@@ -3389,6 +3411,44 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     $('kcshare').addEventListener('click', async () => { const st2 = $('kcst'); try { const b = await blobOf(), f = new File([b], 'khatma.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], text: 'الحمد لله الذي بنعمته تتم الصالحات 🤍' }); return; } if (downloads) { await downloads.save({ filename: 'سكون - ختمة.png', data: b }); st2.textContent = 'تم حفظ البطاقة'; } else st2.textContent = 'المشاركة غير متاحة هنا'; } catch (e) { if (!(e && e.name === 'AbortError')) st2.textContent = 'ما قدرت أشارك'; } });
     $('kcsave').addEventListener('click', async () => { const st2 = $('kcst'); if (!downloads) { st2.textContent = 'التحميل غير متاح هنا'; return; } try { await downloads.save({ filename: 'سكون - ختمة.png', data: await blobOf() }); st2.textContent = 'تم حفظ البطاقة، تقبّل الله منك'; } catch (e) { st2.textContent = e && e.code === 'declined' ? 'تم الإلغاء' : 'صار خطأ'; } }); };
+  }
+
+  // ===================== today strip: day card, smart tiles, prayer chips, prayer exit time =====================
+  {
+  const PI = { fajr: '<path d="M12 3v2M5 8l1.4 1M19 8l-1.4 1M4 17h16M7 17a5 5 0 0 1 10 0"/><path d="M9 21h6"/>', sunrise: '<path d="M4 18h16M7 18a5 5 0 0 1 10 0M12 4v5M9.5 6.5 12 4l2.5 2.5"/>', dhuhr: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.4 1.4M17.6 17.6 19 19M5 19l1.4-1.4M17.6 6.4 19 5"/>', asr: '<circle cx="12" cy="13" r="3.5"/><path d="M12 5v2M5.5 13H4M20 13h-1.5M7 8l1 1M17 8l-1 1M4 19h16"/>', maghrib: '<path d="M4 18h16M7 18a5 5 0 0 1 10 0M12 9V4M9.5 6.5 12 9l2.5-2.5"/>', isha: '<path d="M19 14.5A7 7 0 1 1 10 5a5.5 5.5 0 0 0 9 9.5z"/><path d="M17 4l.5 1.5L19 6l-1.5.5L17 8l-.5-1.5L15 6l1.5-.5z"/>' };
+  const PN6 = [['fajr', 'الفجر'], ['sunrise', 'الشروق'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']];
+  const nowH = () => { const r = riyadhNow(); return r.getHours() + r.getMinutes() / 60 + r.getSeconds() / 3600; };
+  const hms = h => { const t = Math.max(0, Math.round(h * 3600)); const H = Math.floor(t / 3600), M = Math.floor(t % 3600 / 60), S = t % 60; return nd(`${String(H).padStart(2, '0')}:${String(M).padStart(2, '0')}:${String(S).padStart(2, '0')}`); };
+  const tmr = () => { const r = riyadhNow(), r2 = new Date(r); r2.setDate(r.getDate() + 1); return PT(r2.getFullYear(), r2.getMonth() + 1, r2.getDate(), CITY[1], CITY[2], 3, isRamadan()); };
+  const tick = () => { if (!ptT) return; const n = nowH(), T = ptT, F2 = tmr().fajr + 24, mid = T.maghrib + (F2 - T.maghrib) / 2, last3 = T.maghrib + (F2 - T.maghrib) * 2 / 3;
+    // current window (prayer → end of its time)
+    let cur = null; if (n >= T.fajr && n < T.sunrise) cur = ['fajr', 'الفجر', T.sunrise]; else if (n >= T.dhuhr && n < T.asr) cur = ['dhuhr', 'الظهر', T.asr]; else if (n >= T.asr && n < T.maghrib) cur = ['asr', 'العصر', T.maghrib]; else if (n >= T.maghrib && n < T.isha) cur = ['maghrib', 'المغرب', T.isha]; else if (n >= T.isha && n < mid) cur = ['isha', 'العشاء', mid];
+    const ex = $('pexit');
+    if (cur) { ex.hidden = false; ex.innerHTML = `خروج وقت ${cur[1]} ${hm(cur[2])} · بعد <b>${hms(cur[2] - n)}</b>`; }
+    else if (n >= mid || n < T.fajr) { const l3 = n < T.fajr ? last3 - 24 : last3; ex.hidden = false; ex.innerHTML = n >= l3 || (n < T.fajr && n >= l3) ? `أنت في الثلث الأخير من الليل، وقت النزول الإلهي والدعاء` : `الثلث الأخير من الليل يبدأ ${hm(l3)} · بعد <b>${hms(l3 - n)}</b>`; }
+    else ex.hidden = true;
+    // chips
+    const curK = cur ? cur[0] : (n >= T.sunrise && n < T.dhuhr ? 'sunrise' : null); const nxK = (PN6.find(([k]) => k !== 'sunrise' && T[k] > n) || ['fajr'])[0];
+    const html = PN6.map(([k, nm]) => `<a class="pch${k === curK ? ' cur' : ''}${k === nxK ? ' nx' : ''}" href="#/salah"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PI[k]}</svg><b>${nm}</b><span>${hm(T[k]).replace(/ (ص|م|AM|PM)$/, '')}</span></a>`).join('');
+    if ($('pchips').dataset.h !== html) { $('pchips').innerHTML = html; $('pchips').dataset.h = html; }
+    // smart tile 1 (time-aware)
+    const r = riyadhNow(), fri = r.getDay() === 5; let t1;
+    if (fri && n < T.maghrib) t1 = ['#/quran', 'يوم الجمعة', 'سورة الكهف', 'book', '18'];
+    else if (n >= T.fajr && n < T.dhuhr) t1 = ['#/adhkar', 'بعد صلاة الفجر', 'أذكار الصباح', 'sun'];
+    else if (n >= T.asr && n < T.maghrib + .5) t1 = ['#/adhkar', 'بعد صلاة العصر', 'أذكار المساء', 'sunset'];
+    else if (n >= T.isha + .75 || n < T.fajr) t1 = ['#/adhkar', 'قبل أن تنام', 'أذكار النوم', 'moon'];
+    else t1 = ['#/tasbih', 'في كل وقت', 'سبّح واذكر الله', 'beads'];
+    const TI = { sun: PI.dhuhr, sunset: PI.maghrib, moon: '<path d="M19 14.5A7 7 0 1 1 10 5a5.5 5.5 0 0 0 9 9.5z"/>', book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h5"/>', beads: '<circle cx="12" cy="5" r="2"/><circle cx="17" cy="9" r="2"/><circle cx="17" cy="15" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="7" cy="15" r="2"/><circle cx="7" cy="9" r="2"/>' };
+    const svg = k => `<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TI[k]}</svg></i>`;
+    const h1 = `${svg(t1[3])}<span><small>${t1[1]}</small><b>${t1[2]}</b></span>`; if ($('tdt1').dataset.h !== h1) { $('tdt1').innerHTML = h1; $('tdt1').dataset.h = h1; $('tdt1').href = t1[0]; $('tdt1').dataset.open = t1[4] || ''; if (!t1[4]) delete $('tdt1').dataset.open; }
+    const K0 = store.get('sk-kh', null); const h2 = `${svg('book')}<span><small>ختمتي</small><b>${K0 && K0.done < 604 ? `${ar(Math.floor(K0.done / 604 * 100))}٪ · تابع وردك` : 'ابدأ ختمة جديدة'}</b></span>`; if ($('tdt2').dataset.h !== h2) { $('tdt2').innerHTML = h2; $('tdt2').dataset.h = h2; }
+  };
+  const dayCard = () => { const r = new Date(); let w = '', hd = '', hm2 = '', hmn = '', hy = '', g = '';
+    try { const f = o => new Intl.DateTimeFormat('ar-SA-u-ca-islamic-umalqura', { ...o, timeZone: 'Asia/Riyadh' }).format(r); w = new Intl.DateTimeFormat('ar', { weekday: 'long', timeZone: 'Asia/Riyadh' }).format(r); hd = f({ day: 'numeric' }); hm2 = f({ month: 'long' }); hmn = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { month: 'numeric', timeZone: 'Asia/Riyadh' }).format(r); hy = f({ year: 'numeric' }); g = new Intl.DateTimeFormat('ar-SA-u-ca-gregory', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Riyadh' }).format(r); } catch {}
+    const fix = x => SET0.num === 'en' ? x.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)) : x.replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+    $('tdw').textContent = w; $('tdn').textContent = fix(hd.replace(/[^\d٠-٩]/g, '')); $('tdm').textContent = fix(`${hm2} (${hmn}) ${hy.replace(/[^\d٠-٩]/g, '')}هـ`); $('tdg').innerHTML = `${fix(g)}<br>حسب تقويم أم القرى`;
+    $('tdsh').onclick = async () => { const txt = `اليوم ${w} ${fix(hd)} ${hm2} ${fix(hy)}\nالموافق ${fix(g)}\n\nمن «سكون»: ${PUB}`; try { if (navigator.share) await navigator.share({ text: txt }); else { await navigator.clipboard.writeText(txt); toast('تم نسخ التاريخ'); } } catch {} }; };
+  dayCard(); tick(); setInterval(tick, 1000); setInterval(dayCard, 60000);
   }
   // ===================== coming soon + feedback =====================
   const soonUI = () => { const on = store.get('sk-soon', 0); $('soonme').textContent = on ? 'تم، بننبّهك ✓' : 'نبّهني عند الإطلاق'; };
