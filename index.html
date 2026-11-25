@@ -980,17 +980,6 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <a href="https://ehsan.sa" rel="noopener">زيارة منصة إحسان ←</a>
     </div>
     <div class="efeat" id="efeat"></div>
-    <div class="eday" id="eday">
-      <div class="ehead"><span class="etag">فرصة اليوم في إحسان</span><span class="edate" id="edate"></span></div>
-      <div class="ecard">
-        <div class="eimg" id="eimg" aria-hidden="true"></div>
-        <div class="ebody"><h3 id="etitle"></h3><p id="edesc"></p><blockquote id="evirtue"></blockquote>
-          <div class="row"><a class="dl" href="https://ehsan.sa/all" target="_blank" rel="noopener" id="ego">تبرّع الحين عبر إحسان ←</a><button type="button" class="dl ghost" id="eshare">مشاركة الفرصة</button></div>
-          <p class="status" id="estat" aria-live="polite"></p></div>
-      </div>
-      <div class="echips" id="echips"></div>
-      <p class="mnote">تتغير فرصة اليوم كل يوم بين مجالات التبرع في منصة إحسان. الزر يوديك لفرص التبرع الحالية في المنصة نفسها، والتبرع يتم هناك فقط.</p>
-    </div>
   </section>
 
   <section class="band" id="adhkar" data-page="adhkar">
@@ -1081,21 +1070,6 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="dua" data-page="home">
     <p>اللهم اجعل هذا العمل خالصاً لوجهك الكريم، واجعله صدقةً جاريةً لكل من ساهم في نشره</p>
-  </section>
-
-  <section class="band" id="status" data-page="sadaqa">
-    <h2>حالة اليوم</h2>
-    <p class="lead">كل يوم حالة جديدة تلقائياً: آية أو دعاء أو حديث بتصميم جاهز للواتساب والانستقرام، مع رابط الموقع. انشرها وتكون صدقة جارية لك بإذن الله.</p>
-    <div class="sgrid stat">
-      <div class="preview"><canvas id="stcv" width="540" height="960" aria-label="صورة حالة اليوم"></canvas></div>
-      <div class="form">
-        <div class="lbl">نص الحالة</div>
-        <p class="sttxt" id="sttxt">…</p>
-        <div class="row"><button type="button" class="dl" id="stimg">تحميل صورة الحالة</button><button type="button" class="dl ghost" id="stshare">مشاركة</button></div>
-        <div class="row"><button type="button" class="dl ghost" id="stcopy">نسخ النص والرابط</button><button type="button" class="dl ghost" id="stlink">نسخ رابط الموقع</button></div>
-        <p class="status" id="ststat" aria-live="polite"></p>
-      </div>
-    </div>
   </section>
 
   <section class="jad" id="jad" data-page="sadaqa">
@@ -1889,7 +1863,6 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (pg === 'tasbih') renderTs();
     if (pg === 'studio') stuUI();
     if (pg === 'remind') renderR();
-    if (pg === 'sadaqa') renderStatus();
     if (pg === 'ai') aiInit();
   };
 
@@ -2283,61 +2256,25 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     family: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="18" r="6"/><circle cx="44" cy="22" r="5"/><path d="M10 52V40c0-7 5-12 12-12s12 5 12 12v12"/><path d="M36 52v-9c0-5 4-9 8-9s8 4 8 9v9"/></svg>',
     water: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8s-16 18-16 30a16 16 0 0 0 32 0C48 26 32 8 32 8z"/><path d="M24 40a8 8 0 0 0 8 8"/></svg>'
   };
-  const EF = [
-    { t: 'فُرجت', i: 'hands', c: ['#1f6f5c', '#0d3b33'], d: 'تساهم في سداد ديون المعسرين الموقوفين في حقوق مالية، ليرجعون لأهلهم وبيوتهم.', v: '«من نفّس عن مؤمن كربةً من كُرَب الدنيا، نفّس الله عنه كربةً من كُرَب يوم القيامة»', vs: 'صحيح مسلم (2699)' },
-    { t: 'السلال الغذائية', i: 'basket', c: ['#b7791f', '#6b4510'], d: 'توفير سلال غذائية للأسر المحتاجة، تسد حاجتهم الأساسية من الطعام.', v: '«أطعموا الجائع، وعودوا المريض، وفكّوا العاني»', vs: 'رواه البخاري' },
-    { t: 'الصحة والعلاج', i: 'heart', c: ['#b23a48', '#5e1622'], d: 'دعم علاج المرضى المحتاجين وتوفير الأدوية والأجهزة الطبية لهم.', v: '﴿وَمَنۡ أَحۡيَاهَا فَكَأَنَّمَآ أَحۡيَا ٱلنَّاسَ جَمِيعٗاۚ﴾', vs: 'سورة المائدة، الآية ٣٢' },
-    { t: 'الإسكان', i: 'house', c: ['#3d5a80', '#1b2a41'], d: 'المساهمة في توفير مسكن كريم للأسر المحتاجة وترميم بيوتهم.', v: '«من نفّس عن مؤمن كربةً من كُرَب الدنيا، نفّس الله عنه كربةً من كُرَب يوم القيامة»', vs: 'صحيح مسلم (2699)' },
-    { t: 'التعليم', i: 'book', c: ['#5b4a9b', '#2a1f4a'], d: 'دعم تعليم الطلاب المحتاجين وتوفير احتياجاتهم الدراسية.', v: '«إذا مات الإنسان انقطع عنه عمله إلا من ثلاثة: صدقة جارية، أو علم يُنتفع به، أو ولد صالح يدعو له»', vs: 'صحيح مسلم (1631)' },
-    { t: 'الإغاثة', i: 'globe', c: ['#2b6c8f', '#123349'], d: 'مشاريع إغاثية للمتضررين والمحتاجين داخل المملكة وخارجها.', v: '«مثل المؤمنين في توادّهم وتراحمهم وتعاطفهم مثل الجسد، إذا اشتكى منه عضو تداعى له سائر الجسد بالسهر والحمى»', vs: 'صحيح مسلم (2586)' },
-    { t: 'البيئة والسقيا', i: 'water', c: ['#2f8f83', '#134740'], d: 'مشاريع بيئية مثل السقيا والتشجير، أجرها يبقى ما دام النفع باقي.', v: '«ما من مسلم يغرس غرساً، أو يزرع زرعاً، فيأكل منه طيرٌ أو إنسانٌ أو بهيمةٌ، إلا كان له به صدقة»', vs: 'متفق عليه' },
-    { t: 'رعاية الأيتام والأسر', i: 'family', c: ['#8a5a2b', '#45290f'], d: 'دعم الأيتام والأسر المحتاجة في احتياجاتهم المعيشية والاجتماعية.', v: '«أنا وكافل اليتيم في الجنة هكذا» وأشار بالسبابة والوسطى', vs: 'رواه البخاري' }
-  ];
-  let eIdx = dayNo() % EF.length;
-  const renderE = () => { const f = EF[eIdx];
-    $('eimg').style.background = `linear-gradient(150deg,${f.c[0]},${f.c[1]})`; $('eimg').innerHTML = ICO[f.i];
-    $('etitle').textContent = f.t; $('edesc').textContent = f.d; $('evirtue').innerHTML = `${esc(f.v)}<small>${esc(f.vs)}</small>`;
-    $('edate').textContent = fmt({ weekday: 'long', day: 'numeric', month: 'long' }, 'ar-SA-u-ca-islamic-umalqura');
-    $('echips').innerHTML = EF.map((x, i) => `<button type="button" data-e="${i}" aria-pressed="${i === eIdx}">${x.t}</button>`).join(''); };
-  $('echips').addEventListener('click', e => { const b = e.target.closest('[data-e]'); if (b) { eIdx = +b.dataset.e; renderE(); } });
-  $('eshare').addEventListener('click', async () => { const f = EF[eIdx], txt = `${f.t}\n${f.d}\n${f.v}\n(${f.vs})\n\nتبرّع عبر منصة إحسان: https://ehsan.sa/all\nمن موقع سكون: ${SITE}`;
-    try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); $('estat').textContent = 'تم نسخ الفرصة مع الرابط'; } catch (err) { if (err && err.name === 'AbortError') return; $('estat').textContent = 'ما قدرت أشارك، جرّب مرة ثانية'; } });
-  renderE();
 
   // featured Ehsan cases (added manually from links Khalid sends)
   const FCASES = [
-    { title: 'الأدوية الطبية لمرضى السكري', no: 'P84148', desc: 'ساهم في تقديم الرعاية الصحية لمرضى السكري، بتبرعك توفّر لهم الأدوية الطبية اللازمة لاستمرار علاجهم واستقرار صحتهم.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/Health/Medicines.png', url: 'https://ehsan.sa/referral/95B15550F7', got: 129733, left: 158267, asof: '٢٥ نوفمبر ٢٠٢٦', icon: 'heart' }
+    { tag: 'حالة مميزة من إحسان', btn: 'تبرّع لهذه الحالة', title: 'الأدوية الطبية لمرضى السكري', no: 'P84148', desc: 'ساهم في تقديم الرعاية الصحية لمرضى السكري، بتبرعك توفّر لهم الأدوية الطبية اللازمة لاستمرار علاجهم واستقرار صحتهم.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/Health/Medicines.png', url: 'https://ehsan.sa/referral/95B15550F7', got: 129733, left: 158267, asof: '٢٥ نوفمبر ٢٠٢٦', icon: 'heart' },
+    { tag: 'مشروع من جمعية نجاة', btn: 'تبرّع للمشروع', title: 'المبنى الاستثماري', org: 'جمعية نجاة للدعوة والإرشاد وتوعية الجاليات بمركز الحميراء بجازان', desc: 'مشروع المبنى الاستثماري لجمعية نجاة، يدعم استدامة برامجها في الدعوة والإرشاد وتوعية الجاليات. التبرع من متجر الجمعية الرسمي، وتحدد المبلغ اللي تبيه.', img: 'images/najah-building.jpg', url: 'https://store.najah-h.sa/', icon: 'house', wide: 1 }
   ];
   const nf = n => ar(Math.round(n).toLocaleString('en'));
-  $('efeat').innerHTML = FCASES.map((c, i) => { const tot = c.got + c.left, pct = tot ? Math.round(c.got / tot * 100) : 0;
+  $('efeat').innerHTML = FCASES.map((c, i) => { const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
     return `<article class="fcase"><div class="fimg">${ICO[c.icon] || ''}<img src="${esc(c.img)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0"></div>
-    <div class="fbody"><span class="etag">حالة مميزة من إحسان</span><h3>${esc(c.title)}</h3><p class="fno">رقم الحالة ${esc(c.no)}</p><p>${esc(c.desc)}</p>
+    <div class="fbody"><span class="etag">${esc(c.tag)}</span><h3>${esc(c.title)}</h3><p class="fno">${c.no ? `رقم الحالة ${esc(c.no)}` : esc(c.org || '')}</p><p>${esc(c.desc)}</p>
     ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">الأرقام حتى ${esc(c.asof)}، والمبلغ الحالي يظهر في صفحة الحالة</small></div>` : ''}
-    <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">تبرّع لهذه الحالة ←</a><button type="button" class="dl ghost" data-fshare="${i}">مشاركة الحالة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
-  $('efeat').addEventListener('click', async e => { const b = e.target.closest('[data-fshare]'); if (!b) return; const c = FCASES[+b.dataset.fshare], st = $('fst' + b.dataset.fshare), txt = `${c.title}\n${c.desc}\n\nتبرّع عبر منصة إحسان:\n${c.url}`;
+    <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.btn)} ←</a><button type="button" class="dl ghost" data-fshare="${i}">مشاركة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
+  $('efeat').addEventListener('click', async e => { const b = e.target.closest('[data-fshare]'); if (!b) return; const c = FCASES[+b.dataset.fshare], st = $('fst' + b.dataset.fshare), txt = `${c.title}\n${c.desc}\n\nتبرّع من هنا:\n${c.url}`;
     try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); st.textContent = 'تم نسخ الحالة مع الرابط'; } catch (err) { if (err && err.name === 'AbortError') return; st.textContent = 'ما قدرت أشارك، جرّب مرة ثانية'; } });
-
-  // ===================== daily status =====================
-  const stCfg = () => { const n = dayNo(), k = n % 3; const base = { t: k === 0 ? 'ayah' : k === 1 ? 'dua' : 'hadith', s: -1, a1: 1, a2: 1, dua: 0, had: 0, free: '', fsrc: '', size: 'story', th: n % STH.length, name: '', pre: 3, fs: 100, q: 2 };
-    if (D) { if (D.ayat) { const [s, a] = D.ayat[n % D.ayat.length]; base.s = s - 1; base.a1 = base.a2 = a; } base.dua = n % D.daily.length; base.had = n % D.hadith.length; } return base; };
-  const withCfg = (cfg, fn) => { const keep = SU; SU = cfg; try { return fn(); } finally { SU = keep; } };
-  const stText = () => { const c = withCfg(stCfg(), suContent); if (!c) return ''; return `${c.title ? c.title + ':\n' : ''}${c.txt}\n(${c.src})\n\nمن «سكون»، صدقة جارية انشرها ولك الأجر بإذن الله:\n${SITE}`; };
-  const renderStatus = async () => { if (!D) { setTimeout(() => { if (page === 'sadaqa') renderStatus(); }, 600); return; } await suFontsReady(); await loadQ(); withCfg(stCfg(), () => suDraw($('stcv'), .5)); $('sttxt').textContent = stText(); };
-  const stBlob = async () => { await suFontsReady(); await loadQ(); const cv = document.createElement('canvas'); withCfg(stCfg(), () => suDraw(cv, 2)); return new Promise(r => cv.toBlob(r, 'image/png')); };
-  $('stimg').addEventListener('click', async () => { const st = $('ststat'); if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; } st.textContent = 'جاري التجهيز…';
-    try { await downloads.save({ filename: `سكون - حالة اليوم.png`, data: await stBlob() }); st.textContent = 'تم، الله يكتب أجرك'; } catch (err) { st.textContent = err && err.code === 'declined' ? 'تم الإلغاء' : 'صار خطأ، جرب مرة ثانية'; } });
-  $('stcopy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(stText()); $('ststat').textContent = 'تم نسخ نص الحالة مع الرابط'; } catch { $('ststat').textContent = 'ما قدرت أنسخ، حدد النص وانسخه يدوي'; } });
-  $('stlink').addEventListener('click', async () => { try { await navigator.clipboard.writeText(SITE); $('ststat').textContent = 'تم نسخ رابط الموقع'; } catch { $('ststat').textContent = SITE; } });
-  $('stshare').addEventListener('click', async () => { const st = $('ststat');
-    try { const blob = await stBlob(); const file = new File([blob], 'sukoon-status.png', { type: 'image/png' });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: stText() }); st.textContent = 'تم، الله يكتب أجرك'; return; }
-      if (navigator.share) { await navigator.share({ text: stText() }); return; } throw 0;
-    } catch (err) { if (err && err.name === 'AbortError') return; st.textContent = 'المشاركة غير متاحة هنا. حمّل الصورة وانسخ النص.'; } });
 
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة والمصحف والاستماع)', adhkar: 'الأذكار والأدعية', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان، حالة اليوم، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة والمصحف والاستماع)', adhkar: 'الأذكار والأدعية', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
@@ -2360,7 +2297,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const AI_SYS = `أنت «مساعد سكون»، مساعد داخل موقع «سكون» (موقع إسلامي خالص لوجه الله، صدقة جارية، للمقاطع القرآنية والأذكار والأدعية).
 مهمتك: تساعد الزائر يستخدم الموقع ويوصل لمحتواه بسرعة. تكلم بالعربية بلهجة سعودية مهذبة وواضحة، ردود قصيرة ومباشرة (٢-٥ أسطر غالباً)، بدون مقدمات.
 أقسام الموقع: ${Object.entries(PG_NAMES).map(([k, v]) => `${v} [${k}]`).join('، ')}.
-ميزات مهمة: الختمة (٣٠ أو ٦٠ يوماً أو عدد صفحات يومي، من قسم القرآن)، الاستماع للقرآن مع تلوين الآية المتلوة واختيار القارئ من قائمة واحدة، مشغل ثابت أسفل الشاشة، المسبحة بهدف وسجل يومي، متابعة أذكار الصباح والمساء، التذكيرات (إضافتها لتقويم الجوال)، استوديو التصاميم لبطاقات الآيات والأدعية والأحاديث بمقاسات الواتساب والانستقرام، حالة اليوم في قسم الصدقة، تغيير اللغة والمظهر والمدينة من زر الترس.
+ميزات مهمة: الختمة (٣٠ أو ٦٠ يوماً أو عدد صفحات يومي، من قسم القرآن)، الاستماع للقرآن مع تلوين الآية المتلوة واختيار القارئ من قائمة واحدة، مشغل ثابت أسفل الشاشة، المسبحة بهدف وسجل يومي، متابعة أذكار الصباح والمساء، التذكيرات (إضافتها لتقويم الجوال)، استوديو التصاميم لبطاقات الآيات والأدعية والأحاديث بمقاسات الواتساب والانستقرام، تغيير اللغة والمظهر والمدينة من زر الترس.
 قواعد:
 - استخدم الأدوات: لو طلب يفتح أو يشغّل سورة أو يروح لقسم نفّذ بالأداة ثم أكّد باختصار. لو سأل عن دعاء ابحث بـ search_duas واذكر دعاءً منها مع مصدره، وافتح الموضوع إذا طلب.
 - لا تكتب آية من حفظك أبداً؛ استخدم get_ayah ثم انقلها حرفياً.
@@ -2369,7 +2306,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 - لو السؤال خارج الموقع والدين تماماً، اعتذر بلطف ووجّه لما يقدمه الموقع.`;
   const chatAdd = (cls, txt) => { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = txt; $('chat').appendChild(d); $('chat').scrollTop = $('chat').scrollHeight; return d; };
   const addActs = (el, acts) => { if (!acts.length) return; const w = document.createElement('div'); w.className = 'acts'; acts.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', fn); w.appendChild(b); }); el.appendChild(w); $('chat').scrollTop = $('chat').scrollHeight; };
-  const KW = [[['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'حالة اليوم في قسم الصدقة، تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية ورابط منصة إحسان وحالة اليوم.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
+  const KW = [[['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية، ورابط منصة إحسان مع حالة مميزة، ومشروع جمعية نجاة.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
   const localAnswer = async q => {
     const n = nrm(q), el = chatAdd('a', ''); const acts = []; let txt = '';
     await loadQ(); const wantS = /سوره|شغل|اسمع|استمع|افتح|اقرا|تلاو/.test(n) || Q.some(x => nrm(x[0]) === n.trim() || 'سوره ' + nrm(x[0]) === n.trim()); const si = wantS ? findSurah(q) : -1;
