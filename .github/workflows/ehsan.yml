@@ -1,4 +1,4 @@
-name: Update Ehsan numbers
+name: Update Ehsan numbers and gold price
 on:
   schedule:
     - cron: "23 * * * *"
@@ -11,8 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 scripts/ehsan.py
+        continue-on-error: true
+      - run: python3 scripts/gold.py
+        continue-on-error: true
       - run: |
           git config user.name "sukoon-bot"
           git config user.email "sukoon-bot@users.noreply.github.com"
-          git add ehsan.json
-          git diff --cached --quiet || (git commit -m "تحديث أرقام إحسان" && git push)
+          git add ehsan.json gold.json 2>/dev/null || git add ehsan.json
+          git diff --cached --quiet || (git commit -m "تحديث أرقام إحسان وسعر الذهب" && git push)
