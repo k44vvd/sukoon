@@ -345,6 +345,7 @@ header .logo,:root[data-skin] header .logo{-webkit-mask-image:none!important;mas
 .lcard{border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--bg2)}
 .lframe{aspect-ratio:16/9;background:#000 center/cover;display:grid;place-items:center}
 .lframe iframe{width:100%;height:100%;border:0;display:block}
+.lframe video{width:100%;height:100%;display:block;background:#000}.lsrc{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.lsrc button{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:13px}.lnote{margin:8px 0 0;font-size:12px;color:var(--mute)}
 .lplay{display:grid;justify-items:center;gap:8px;background:none;border:0;color:#fff}.lplay svg{width:64px;height:64px;padding:14px;border-radius:50%;background:var(--gold);color:var(--bg)}
 .lbody{padding:14px 16px}.lbody h3{margin:0 0 4px;font:700 20px Amiri,serif}.lbody p{margin:0 0 8px;color:var(--mute)}.lbody a{color:var(--gold)}
 .qtabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:6px 0 4px;padding:4px;border-radius:16px;border:1px solid var(--line);background:var(--bg2)}
@@ -1032,10 +1033,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <h2>بث الحرمين المباشر</h2>
     <p class="lead">بث مباشر على مدار الساعة من المسجد الحرام والمسجد النبوي، عبر القناتين الرسميتين: قناة القرآن الكريم وقناة السنة النبوية.</p>
     <div class="lgrid">
-      <div class="lcard"><div class="lframe" id="lf0"><button type="button" class="lplay" data-live="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>شغّل البث</span></button></div><div class="lbody"><h3>المسجد الحرام · مكة المكرمة</h3><p>قناة القرآن الكريم</p><a href="https://www.youtube.com/channel/UCos52azQNBgW63_9uDJoPDA/live" target="_blank" rel="noopener">افتح في يوتيوب ←</a></div></div>
-      <div class="lcard"><div class="lframe" id="lf1"><button type="button" class="lplay" data-live="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>شغّل البث</span></button></div><div class="lbody"><h3>المسجد النبوي · المدينة المنورة</h3><p>قناة السنة النبوية</p><a href="https://www.youtube.com/channel/UCROKYPep-UuODNwyipe6JMw/live" target="_blank" rel="noopener">افتح في يوتيوب ←</a></div></div>
+      <div class="lcard"><div class="lframe" id="lf0"><button type="button" class="lplay" data-live="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>شغّل البث</span></button></div><div class="lbody"><h3>المسجد الحرام · مكة المكرمة</h3><p>قناة القرآن الكريم</p><div class="lsrc"><button type="button" data-livesrc="0:0">المصدر ١ (الرسمي)</button><button type="button" data-livesrc="0:1">المصدر ٢ (يوتيوب)</button><a href="https://www.youtube.com/channel/UCos52azQNBgW63_9uDJoPDA/live" target="_blank" rel="noopener">افتح في يوتيوب ←</a></div><p class="lnote" id="ln0"></p></div></div>
+      <div class="lcard"><div class="lframe" id="lf1"><button type="button" class="lplay" data-live="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg><span>شغّل البث</span></button></div><div class="lbody"><h3>المسجد النبوي · المدينة المنورة</h3><p>قناة السنة النبوية</p><div class="lsrc"><button type="button" data-livesrc="1:0">المصدر ١ (الرسمي)</button><button type="button" data-livesrc="1:1">المصدر ٢ (يوتيوب)</button><a href="https://www.youtube.com/channel/UCROKYPep-UuODNwyipe6JMw/live" target="_blank" rel="noopener">افتح في يوتيوب ←</a></div><p class="lnote" id="ln1"></p></div></div>
     </div>
-    <p class="mnote">البث من يوتيوب ويحتاج إنترنت. لو ما اشتغل داخل الصفحة، اضغط «افتح في يوتيوب».</p>
+    <p class="mnote">البث يشتغل أولاً من المصدر الرسمي لهيئة الإذاعة والتلفزيون، ولو ما اشتغل يتحوّل ليوتيوب تلقائياً. وتقدر تبدّل بين المصدرين بنفسك.</p>
   </section>
 
   <section class="band" id="jumuah" data-page="jumuah">
@@ -2632,8 +2633,22 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== live =====================
   const LIVE_CH = ['UCos52azQNBgW63_9uDJoPDA', 'UCROKYPep-UuODNwyipe6JMw'];
-  $('live').addEventListener('click', e => { const b = e.target.closest('[data-live]'); if (!b) return; const i = +b.dataset.live; AU.pause();
-    $('lf' + i).innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${LIVE_CH[i]}&autoplay=1&playsinline=1" title="بث مباشر" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`; });
+  const LIVE_HLS = ['https://win.holol.com/live/quran/playlist.m3u8', 'https://win.holol.com/live/sunnah/playlist.m3u8'];
+  const liveHls = {};
+  const loadScript = src => new Promise((res, rej) => { if (window.Hls) return res(); const sc = document.createElement('script'); sc.src = src; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); });
+  const liveNote = (i, t) => { const n = $('ln' + i); if (n) n.textContent = t; };
+  const liveStop = i => { if (liveHls[i]) { try { liveHls[i].destroy(); } catch {} liveHls[i] = null; } };
+  const liveYT = i => { liveStop(i); $('lf' + i).innerHTML = `<iframe src="https://www.youtube.com/embed/live_stream?channel=${LIVE_CH[i]}&autoplay=1&mute=1&playsinline=1" title="بث مباشر" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`; liveNote(i, 'المصدر: يوتيوب. لو ما ظهر البث، اضغط «افتح في يوتيوب».'); };
+  const liveHLS = async i => { liveStop(i); AU.pause(); const box = $('lf' + i); box.innerHTML = '<video controls playsinline autoplay muted></video>'; const v = box.querySelector('video'); let done = false;
+    const fail = () => { if (done) return; done = true; liveNote(i, 'البث الرسمي ما اشتغل على جهازك، حوّلناك ليوتيوب.'); liveYT(i); };
+    const ok = () => { done = true; liveNote(i, 'البث الرسمي (هيئة الإذاعة والتلفزيون). الصوت مكتوم في البداية، اضغط على السمّاعة.'); };
+    v.addEventListener('playing', ok, { once: true }); setTimeout(() => { if (!done && v.readyState < 2) fail(); }, 12000);
+    liveNote(i, 'جاري تشغيل البث…');
+    if (v.canPlayType('application/vnd.apple.mpegurl')) { v.src = LIVE_HLS[i]; v.addEventListener('error', fail, { once: true }); v.play().catch(() => {}); return; }
+    try { await loadScript('js/hls.light.min.js'); } catch { return fail(); }
+    if (!window.Hls || !Hls.isSupported()) return fail();
+    const h = new Hls({ lowLatencyMode: false }); liveHls[i] = h; h.on(Hls.Events.ERROR, (e, d) => { if (d && d.fatal) fail(); }); h.loadSource(LIVE_HLS[i]); h.attachMedia(v); v.play().catch(() => {}); };
+  $('live').addEventListener('click', e => { const b = e.target.closest('[data-live]'); if (b) { liveHLS(+b.dataset.live); return; } const y = e.target.closest('[data-livesrc]'); if (y) { const [i, k] = y.dataset.livesrc.split(':').map(Number); if (k === 1) liveYT(i); else liveHLS(i); } });
 
 
   // ===================== quran tabs =====================
