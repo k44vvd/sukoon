@@ -9,6 +9,7 @@
 <meta property="og:title" content="سكون">
 <meta property="og:description" content="مقاطع قرآنية تحمّلها وتنشرها، والأجر للجميع">
 <meta property="og:image" content="logo.jpg">
+<meta name="description" content="سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -298,6 +299,24 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 
 .pduha{position:relative;margin:2px auto 10px;width:fit-content;padding:5px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);font-size:14px;color:var(--gold);background:color-mix(in srgb,var(--bg) 35%,transparent)}
 .pduha.on{background:var(--gold);color:var(--bg);font-weight:700}
+.pmore{flex:none;min-height:40px;display:inline-flex;align-items:center;gap:4px;padding:6px 15px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:15px;white-space:nowrap}
+.pmore svg{width:16px;height:16px;transition:transform .2s}.pmore[aria-expanded=true] svg{transform:rotate(180deg)}
+.pmore.on,.pmore[aria-expanded=true]{border-color:var(--gold);color:var(--gold)}
+.mpanel{position:fixed;z-index:36;top:64px;inset-inline:max(3vw,10px);max-width:760px;margin:0 auto;padding:12px;border-radius:20px;border:1px solid rgba(201,178,124,.45);background:color-mix(in srgb,var(--bg2) 96%,#000);box-shadow:0 24px 60px rgba(0,0,0,.45);animation:rise .25s ease both}
+.mpin{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,160px),1fr));gap:8px}
+.mpin a{display:grid;gap:2px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.mpin a b{font:700 19px/1.3 Amiri,serif}.mpin a span{font-size:13px;color:var(--mute)}
+.mpin a[aria-current=page]{border-color:var(--gold);background:rgba(201,178,124,.1)}
+.tagline{max-width:560px;margin:18px auto 0;text-align:center;color:var(--mute);font-size:16px;line-height:1.9}
+.opts.main4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opts.main4 .opt{min-height:118px;justify-content:center}
+@media(max-width:420px){.opts.main4{grid-template-columns:repeat(2,minmax(0,1fr))}.opts.main4 .opt{padding:16px 14px}.opts.main4 .opt b{font-size:21px}}
+.moreall{display:grid;gap:2px;width:100%;max-width:640px;margin:14px auto 0;padding:14px 18px;border-radius:16px;border:1px dashed rgba(201,178,124,.6);background:transparent;color:var(--gold);font:700 17px/1.4 inherit;text-align:center}
+.moreall span{font-weight:400;font-size:13px;color:var(--mute)}
+.mcity{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:-4px 0 12px}.mcity>span{color:var(--mute);font-size:14px}
+#tbc{color:inherit;text-decoration:underline;text-underline-offset:3px;display:block;margin-bottom:4px}
+body.noclips a[data-go="clips"],body.noclips #clipday{display:none!important}
+.niyyab .niyya{margin-top:0}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -674,7 +693,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 </head>
 <body>
 <div class="wrap">
-  <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai">المساعد الذكي</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/adhkar" data-go="adhkar">الأذكار والأدعية</a><a href="#/tasbih" data-go="tasbih">المسبحة</a><a href="#/clips" data-go="clips">المقاطع</a><a href="#/studio" data-go="studio">استوديو التصاميم</a><a href="#/sadaqa" data-go="sadaqa">الصدقة</a><a href="#/watan" data-go="watan">الوطن</a><a href="#/remind" data-go="remind">التذكيرات</a><a href="#/guide" data-go="guide">الإرشادات</a></nav>
+  <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><a href="#/tasbih" data-go="tasbih">المسبحة</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/ai" data-go="ai" data-more="1"><b>المساعد الذكي</b><span>اسأله ويوديك لأي شي في الموقع</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -687,7 +707,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <div class="plow">
       <div class="ptrack"><i class="pfill" id="pfill"></i><i class="pknob" id="pknob"></i></div>
       <div class="pends"><div><b id="pprevN"></b><span id="pprevT"></span></div><div><b id="pnextN"></b><span id="pnextT"></span></div></div>
-      <p class="pnote"><span id="tbc"></span>لا يجوز تأخير الصلاة عن وقتها إلا لعذر شرعي</p>
+      <p class="pnote"><a id="tbc" href="#mawaqit"></a>لا يجوز تأخير الصلاة عن وقتها إلا لعذر شرعي</p>
     </div>
   </div>
   <header data-page="home">
@@ -703,27 +723,15 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <span>@9zxn</span>
       </a>
     </nav>
-    <div class="niyya">
-      <h2>لماذا سكون؟</h2>
-      <p class="ayah">قُلۡ إِنَّ صَلَاتِي وَنُسُكِي وَمَحۡيَايَ وَمَمَاتِي لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ﴿١٦٢﴾<small>سورة الأنعام، الآية ١٦٢</small></p>
-      <p>أُنشئ هذا الموقع خالصاً لوجه الله الكريم، لا نرجو به شهرةً ولا مالاً، ولا نطلب عليه أجراً من أحد. هو صدقة جارية نرجو أن ينتفع بها كل من يمر هنا.</p>
-      <p>غايتنا أن يصل القرآن الكريم إلى أكبر عدد من الناس: مقاطع تُحمَّل وتُنشر، ودعاء وحديث يتجددان كل يوم، ومصحف بين يديك، وأدعية وأذكار تذكّر بالله. كل ما في الموقع مجاني ومتاح للجميع، فانشره بنية صالحة، ونسأل الله أن يكتب أجره لكل من ساهم فيه.</p>
-      <p>نسألك دعوة صادقة بظهر الغيب، والله الموفق.</p>
-    </div>
+    <p class="tagline">سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.</p>
     <div class="intro">
-      <div class="opts">
-        <a class="opt wide ai" href="#/ai"><b>المساعد الذكي</b><span>اسأله عن أي شي في الموقع، ويوديك له أو يشغّل لك السورة</span></a>
-        <a class="opt wide" href="#/salah"><b>الصلاة</b><span>مواقيت الصلاة، اتجاه القبلة، الصلوات الخمس والوتر والضحى</span></a>
-        <a class="opt wide" href="#/quran"><b>القرآن الكريم</b><span>المصحف كاملاً، وختمة ٣٠ أو ٦٠ يوماً مع متابعة الإنجاز</span></a>
-        <a class="opt" href="#/adhkar"><b>الأذكار والأدعية</b><span>الصباح والمساء مع مؤشر التقدم، والأدعية والسنن</span></a>
-        <a class="opt" href="#/tasbih"><b>المسبحة</b><span>حدد هدفك، والعدد ينحفظ مع سجل يومي</span></a>
-        <a class="opt" href="#/clips"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a>
-        <a class="opt" href="#/studio"><b>استوديو التصاميم</b><span>صمّم بطاقة آية أو دعاء أو حديث باسمك</span></a>
-        <a class="opt" href="#/sadaqa"><b>الصدقة</b><span>بطاقة صدقة جارية، منصة إحسان، وحالة يومية جاهزة للنشر</span></a>
-        <a class="opt" href="#/watan"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها وشهدائها</span></a>
-        <a class="opt" href="#/remind"><b>التذكيرات</b><span>الورد، الأذكار، الوتر، وصيام الإثنين والخميس</span></a>
-        <a class="opt wide" href="#/guide"><b>الإرشادات</b><span>طريقة استخدام الموقع وحفظ المقاطع، وعن سكون</span></a>
+      <div class="opts main4">
+        <a class="opt" href="#/quran"><b>القرآن الكريم</b><span>المصحف، الاستماع، والختمة</span></a>
+        <a class="opt" href="#/salah"><b>الصلاة</b><span>المواقيت والإقامة والقبلة</span></a>
+        <a class="opt" href="#/adhkar"><b>الأذكار والأدعية</b><span>الصباح والمساء، والأدعية</span></a>
+        <a class="opt" href="#/tasbih"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a>
       </div>
+      <button type="button" class="moreall" id="moreall">المزيد من الخدمات <span>المساعد، المقاطع، التصاميم، الصدقة، الوطن، التذكيرات</span></button>
     </div>
   </header>
 
@@ -790,13 +798,14 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="band" id="mawaqit" data-page="salah">
     <h2>مواقيت الصلاة في جدة</h2>
-    <p class="lead">تتحدّث تلقائياً كل يوم حسب تقويم أم القرى.</p>
+    <div class="mcity"><span>المدينة</span><div class="seg" id="mcities"></div></div>
+    <p class="lead">تتغير المواقيت تلقائياً حسب المدينة اللي تختارها، وتتحدّث كل يوم.</p>
     <div class="mtop"><div class="left"><span id="mdate"></span><strong id="mnext">…</strong></div><div class="cdn" id="mcd"></div></div>
     <div class="mwq" id="mwq"></div>
     <div class="row" style="max-width:520px;margin:16px 0 0"><a class="dl ghost" href="#lib" data-tab="salawat">الصلوات الخمس والسنن</a><a class="dl ghost" href="#lib" data-tab="witr">صلاة الوتر</a></div>
     <p class="mnote">الضحى يبدأ بعد الشروق بربع ساعة تقريباً (ارتفاع الشمس قيد رمح)، وينتهي قبل الظهر بنحو ربع ساعة (وقت الوقوف)، وأفضله عند اشتداد الحر.</p>
     <p class="mnote">الإقامة حسب المدة المعتمدة من وزارة الشؤون الإسلامية: ٢٥ دقيقة للفجر، و١٠ دقائق للمغرب، و٢٠ دقيقة لبقية الصلوات. قد تختلف في رمضان أو في بعض المساجد.</p>
-    <p class="mnote">محسوبة فلكياً لمدينة جدة بطريقة أم القرى (الفجر ١٨٫٥°، والعشاء بعد المغرب بـ ٩٠ دقيقة و١٢٠ دقيقة في رمضان). قد يختلف وقت بعض المساجد دقيقة أو دقيقتين.</p>
+    <p class="mnote" id="mcalc"></p>
   </section>
 
   <section class="band" id="qibla" data-page="salah">
@@ -835,7 +844,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
-  <section class="band" id="hadith" data-page="home">
+  <section class="band" id="hadith" data-page="adhkar">
     <h2>حديث اليوم</h2>
     <p class="lead">حديث صحيح جديد كل يوم، مع مصدره.</p>
     <div class="daily">
@@ -914,7 +923,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <button class="reset" id="treset">تصفير العدّاد</button>
       </div>
     </div>
-    <div class="head" style="margin-top:34px"><h2 style="font-size:clamp(24px,3vw,32px)">مقاطع وأذكار الجمعة</h2>
+    <div class="head" id="jhead" style="margin-top:34px"><h2 style="font-size:clamp(24px,3vw,32px)">مقاطع وأذكار للنشر يوم الجمعة</h2>
       <div class="seg" id="jtabs"><button type="button" data-t="clips" aria-pressed="true">مقاطع</button><button type="button" data-t="adhkar" aria-pressed="false">أذكار</button></div>
     </div>
     <div class="grid" id="jmedia"></div>
@@ -1034,6 +1043,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <p class="mnote" id="ainote">المساعد يدلّك على محتوى الموقع ويساعدك تستخدمه. للفتوى والأحكام ارجع لأهل العلم.</p>
   </section>
 
+  <section class="band niyyab" id="niyya" data-page="guide">
+    <div class="niyya">
+      <h2>لماذا سكون؟</h2>
+      <p class="ayah">قُلۡ إِنَّ صَلَاتِي وَنُسُكِي وَمَحۡيَايَ وَمَمَاتِي لِلَّهِ رَبِّ ٱلۡعَٰلَمِينَ ﴿١٦٢﴾<small>سورة الأنعام، الآية ١٦٢</small></p>
+      <p>أُنشئ هذا الموقع خالصاً لوجه الله الكريم، لا نرجو به شهرةً ولا مالاً، ولا نطلب عليه أجراً من أحد. هو صدقة جارية نرجو أن ينتفع بها كل من يمر هنا.</p>
+      <p>غايتنا أن يصل القرآن الكريم إلى أكبر عدد من الناس: مقاطع تُحمَّل وتُنشر، ودعاء وحديث يتجددان كل يوم، ومصحف بين يديك، وأدعية وأذكار تذكّر بالله. كل ما في الموقع مجاني ومتاح للجميع، فانشره بنية صالحة، ونسأل الله أن يكتب أجره لكل من ساهم فيه.</p>
+      <p>نسألك دعوة صادقة بظهر الغيب، والله الموفق.</p>
+    </div>
+  </section>
+
   <section class="band" id="guide" data-page="guide">
     <h2>إرشادات الاستخدام</h2>
     <div class="steps gsteps">
@@ -1061,8 +1080,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <img src="icon.png" alt="شعار سكون">
       <div>
         <h2>عن سكون</h2>
-        <p>سكون مساحة هادئة لمقاطع قرآنية قصيرة، مختارة عشان تلامس القلب وتذكّر بالله.</p>
-        <p>كل المقاطع مجانية، تحمّلها وتنشرها بدون أي مقابل. الهدف أن يوصل القرآن لأكبر عدد من الناس، ونسأل الله أن يكتب أجره لكل من شارك في نشره.</p>
+        <p>سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.</p>
+        <p>كل ما في الموقع مجاني، من المصحف والاستماع والأذكار إلى المقاطع والتصاميم، بدون أي مقابل. الهدف أن يوصل القرآن لأكبر عدد من الناس، ونسأل الله أن يكتب أجره لكل من شارك في نشره.</p>
       </div>
     </div>
   </section>
@@ -1209,14 +1228,15 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   let jtab = 'clips';
   const renderJ = () => {
     const el = $('jmedia'); if (!el) return;
-    const jc = clips.filter(c => c.jumuah), ja = (typeof adhkar !== 'undefined' ? adhkar : []).filter(a => a.jumuah);
+    const ad0 = typeof adhkar !== 'undefined' ? adhkar : []; let jc = clips.filter(c => c.jumuah), ja = ad0.filter(a => a.jumuah); if (!jc.length) jc = clips; if (!ja.length) ja = ad0;
+    const jh = $('jhead'); if (jh) { jh.hidden = !jc.length && !ja.length; el.hidden = jh.hidden; }
     const list = jtab === 'clips' ? jc : ja;
     el.className = jtab === 'clips' ? 'grid' : 'agrid';
-    el.innerHTML = list.length ? list.map(jtab === 'clips' ? clipCard : aCard).join('') : `<div class="empty" style="grid-column:1/-1"><b>${jtab === 'clips' ? 'مقاطع الجمعة' : 'أذكار الجمعة'} قريباً بإذن الله</b>بنضيفها هنا أول ما تجهز.</div>`;
+    el.innerHTML = list.length ? list.map(jtab === 'clips' ? clipCard : aCard).join('') : '';
   };
   const render = () => {
     const list = active === 'الكل' ? clips : clips.filter(c => c.reciter === active);
-    $('empty').hidden = clips.length > 0;
+    $('empty').hidden = true; document.body.classList.toggle('noclips', !clips.length);
     $('count').textContent = clips.length ? `${clips.length} مقطع` : '';
     $('grid').innerHTML = list.map(clipCard).join('');
     renderJ();
@@ -1263,7 +1283,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   var adhkar = [];
   const renderA = () => {
-    $('aempty').hidden = adhkar.length > 0;
+    $('aempty').hidden = true; $('adhkar').hidden = !adhkar.length;
     $('acount').textContent = adhkar.length ? `${adhkar.length} صورة` : '';
     $('agrid').innerHTML = adhkar.map(aCard).join('');
     renderJ();
@@ -1650,7 +1670,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     pd.textContent = isAr() ? (duIn ? `وقت الضحى الآن · ينتهي بعد ${hms(duE - now)}` : now < duS ? `الضحى ${hm(duS)} · بعد ${hms(duS - now)}` : `الضحى ${hm(duS)} – ${hm(duE)}`) : (duIn ? `Duha now · ends in ${hms(duE - now)}` : now < duS ? `Duha ${hm(duS)} · in ${hms(duS - now)}` : `Duha ${hm(duS)} – ${hm(duE)}`);
     $('mwq').innerHTML = PN.map(([k, n]) => `<div class="pt${k === nx[0] ? ' next' : ''}${k === 'sunrise' ? ' sun' : ''}"><b>${T(n)}</b><strong>${hm(ptT[k])}</strong>${IQ[k] ? `<small class="iq">${k === 'dhuhr' && fri ? 'صلاة الجمعة' : `${isAr() ? 'الإقامة' : 'Iqama'} ${hm(Math.round(ptT[k] * 60) / 60 + IQ[k] / 60)}`}</small>` : ''}</div>${k === 'sunrise' ? `<div class="pt duha${now >= duS && now < duE ? ' now' : ''}"><b>${isAr() ? 'الضحى' : 'Duha'}</b><strong>${hm(duS)}</strong><small class="iq">${isAr() ? 'إلى' : 'until'} ${hm(duE)}</small></div>` : ''}`).join('');
     $('mnext').textContent = duWait ? (isAr() ? 'الضحى بعد' : 'Duha in') : iqP ? (isAr() ? `إقامة ${iqP[1]} بعد` : `Iqama ${T(iqP[1])}`) : isAr() ? `${nx[1]} بعد` : `${T('بعد')}: ${T(nx[1])}`;
-    $('tbn').textContent = duWait ? (isAr() ? 'الضحى' : 'Duha') : iqP ? (isAr() ? `إقامة ${iqP[1]}` : `Iqama ${T(iqP[1])}`) : T(nx[1]); $('tbc').textContent = isAr() ? `مواقيت ${CITY[0]}` : `${T(CITY[0])} · `; updCard(now, nx);
+    $('tbn').textContent = duWait ? (isAr() ? 'الضحى' : 'Duha') : iqP ? (isAr() ? `إقامة ${iqP[1]}` : `Iqama ${T(iqP[1])}`) : T(nx[1]); $('tbc').textContent = isAr() ? `مواقيت ${CITY[0]} · تغيير المدينة` : `${T(CITY[0])} · `; updCard(now, nx);
     const sec = Math.max(0, Math.floor(rem * 3600)); $('mcd').textContent = `${String(Math.floor(sec / 3600)).padStart(2, '0')}:${String(Math.floor(sec % 3600 / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`; $('tbcd').textContent = nd($('mcd').textContent);
   };
   tickPT(); const ptTimer = setInterval(tickPT, 1000);
@@ -1674,7 +1694,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // qibla
   const KA = [21.422487, 39.826206];
-  let qBear = 0, heading = null;
+  let qBear = 0, heading = null, qGeo = false;
   const bearing = (la, lo) => { const r = Math.PI / 180, f1 = la * r, f2 = KA[0] * r, dl = (KA[1] - lo) * r; const y = Math.sin(dl) * Math.cos(f2), x = Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(dl); return (Math.atan2(y, x) / r + 360) % 360; };
   const distKm = (la, lo) => { const r = Math.PI / 180, a = Math.sin((KA[0] - la) * r / 2) ** 2 + Math.cos(la * r) * Math.cos(KA[0] * r) * Math.sin((KA[1] - lo) * r / 2) ** 2; return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); };
   const drawQ = () => {
@@ -1688,7 +1708,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('qloc').addEventListener('click', () => {
     if (!navigator.geolocation) { $('qsub').textContent = 'تحديد الموقع غير متاح في هذا المتصفح'; return; }
     $('qsub').textContent = 'جاري تحديد موقعك…';
-    navigator.geolocation.getCurrentPosition(p => setLoc(p.coords.latitude, p.coords.longitude, 'من موقعك الحالي'), () => { $('qsub').textContent = 'ما قدرت أحدد موقعك. فعّل خدمة الموقع للمتصفح وجرب مرة ثانية. الاتجاه المعروض حالياً من جدة.'; }, { enableHighAccuracy: true, timeout: 12000 });
+    navigator.geolocation.getCurrentPosition(p => { qGeo = true; setLoc(p.coords.latitude, p.coords.longitude, 'من موقعك الحالي'); }, () => { $('qsub').textContent = 'ما قدرت أحدد موقعك. فعّل خدمة الموقع للمتصفح وجرب مرة ثانية. الاتجاه المعروض حالياً من جدة.'; }, { enableHighAccuracy: true, timeout: 12000 });
   });
   const onOri = e => { let h = null; if (typeof e.webkitCompassHeading === 'number') h = e.webkitCompassHeading; else if (e.absolute && typeof e.alpha === 'number') h = (360 - e.alpha) % 360; if (h !== null) { heading = h; drawQ(); } };
   $('qcomp').addEventListener('click', async () => {
@@ -1712,8 +1732,9 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     document.querySelectorAll('#skins button').forEach(b => b.setAttribute('aria-pressed', b.dataset.skin === S.skin));
     document.querySelectorAll('#zooms button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.z === +S.zoom));
     document.querySelectorAll('#motion button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.m === +S.motion));
-    $('cities').innerHTML = CITIES.map((c, i) => `<button type="button" data-c="${i}" aria-pressed="${i === +S.city}">${T(c[0])}</button>`).join('');
-    const c = CITIES[S.city] || CITIES[0]; CITY = c; ptDay = ''; tickPT(); loadWx();
+    $('cities').innerHTML = $('mcities').innerHTML = CITIES.map((c, i) => `<button type="button" data-c="${i}" aria-pressed="${i === +S.city}">${T(c[0])}</button>`).join('');
+    const c = CITIES[S.city] || CITIES[0]; CITY = c; ptDay = ''; tickPT(); loadWx(); if (!qGeo) setLoc(c[1], c[2], 'من ' + c[0]);
+    $('mcalc').textContent = `محسوبة فلكياً لمدينة ${c[0]} (خط العرض ${ar(c[1].toFixed(2))}°، خط الطول ${ar(c[2].toFixed(2))}°) بطريقة تقويم أم القرى المعتمدة في المملكة: الفجر عند انخفاض الشمس ١٨٫٥° تحت الأفق، والعصر بالمذهب الجمهوري (ظل الشيء مثله)، والعشاء بعد المغرب بـ ٩٠ دقيقة (١٢٠ دقيقة في رمضان). قد يختلف أذان بعض المساجد دقيقة أو دقيقتين.`;
     document.querySelector('#mawaqit h2').textContent = isAr() ? `مواقيت الصلاة في ${c[0]}` : `${T('مواقيت الصلاة')} · ${T(c[0])}`;
     $('langs').innerHTML = LANGS.map(([k, n, e]) => `<button type="button" data-lang="${k}" aria-pressed="${k === LANG}" lang="${k}"><span><b>${n}</b><small>${e}</small></span><i>${k === LANG ? '✓' : ''}</i></button>`).join('');
     store.set('sk-set', S);
@@ -1723,6 +1744,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('sclose').addEventListener('click', () => openSet(false));
   $('scrim').addEventListener('click', () => openSet(false));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') openSet(false); });
+  $('mcities').addEventListener('click', e => { const b = e.target.closest('[data-c]'); if (b) { S.city = +b.dataset.c; applyS(); } });
   $('sheet').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     if ('skin' in b.dataset) S.skin = b.dataset.skin; else if (b.dataset.z) S.zoom = +b.dataset.z; else if (b.dataset.m) S.motion = +b.dataset.m; else if (b.dataset.c) S.city = +b.dataset.c; else if (b.dataset.lang) { setLang(b.dataset.lang); return; } else if (b.id === 'sreset') { S = { skin: '', zoom: 1, motion: 1, city: 0, lang: 'ar' }; setLang('ar'); return; } else return;
@@ -1836,11 +1858,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== pages =====================
   const PAGE_IDS = ['home', 'ai', 'watan', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide'];
   let page = '';
+  const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); };
+  $('pmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
+  $('moreall').addEventListener('click', e => { e.stopPropagation(); window.scrollTo({ top: 0, behavior: 'smooth' }); moreOpen(true); });
+  document.addEventListener('click', e => { if (!e.target.closest('#mpanel,#pmore')) moreOpen(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') moreOpen(false); });
   const pageOf = el => { const p = el && el.closest('[data-page]'); return p ? p.dataset.page : null; };
   const go = (pg, target, how = 'push') => {
     if (!PAGE_IDS.includes(pg)) pg = 'home';
     const changed = pg !== page; page = pg; document.body.dataset.pg = pg;
-    document.querySelectorAll('#pnav a').forEach(a => a.setAttribute('aria-current', a.dataset.go === pg ? 'page' : 'false'));
+    document.querySelectorAll('#pnav a,#mpanel a').forEach(a => a.setAttribute('aria-current', a.dataset.go === pg ? 'page' : 'false'));
+    const inMore = !!document.querySelector(`#mpanel a[data-go="${pg}"]`); $('pmore').classList.toggle('on', inMore); moreOpen(false);
     const act = document.querySelector(`#pnav a[data-go="${pg}"]`); if (act) { const n = $('pnav'); n.scrollTo({ left: act.offsetLeft - n.clientWidth / 2 + act.clientWidth / 2, behavior: 'smooth' }); }
     if (how === 'push' && location.hash !== '#/' + pg) history.pushState(null, '', '#/' + pg); else if (how === 'replace') history.replaceState(null, '', '#/' + pg);
     try { onPage(pg); } catch (e) { console.error(e); }
@@ -2294,7 +2322,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     { name: 'prayer_times_today', description: 'Today\'s prayer, iqama and duha times for the user\'s chosen Saudi city.', inputSchema: { type: 'object', properties: {} }, execute: () => prayerToday() },
     { name: 'user_progress', description: 'The visitor\'s saved progress on this device: khatma, tasbih today, morning/evening adhkar.', inputSchema: { type: 'object', properties: {} }, execute: () => { const o = { tasbih_today: tToday() }; if (K) { const I = kInfo(); o.khatma = { percent: I.pct, pages_done: K.done, today_from_page: I.from, today_to_page: I.to, done_today: I.doneToday }; } else o.khatma = null; if (AZL) { o.morning_adhkar_percent = azProg('m').pct; o.evening_adhkar_percent = azProg('e').pct; } return o; } }
   ];
-  const AI_SYS = `أنت «مساعد سكون»، مساعد داخل موقع «سكون» (موقع إسلامي خالص لوجه الله، صدقة جارية، للمقاطع القرآنية والأذكار والأدعية).
+  const AI_SYS = `أنت «مساعد سكون»، مساعد داخل موقع «سكون». تعريف الموقع: سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات. وهو خالص لوجه الله، صدقة جارية.
 مهمتك: تساعد الزائر يستخدم الموقع ويوصل لمحتواه بسرعة. تكلم بالعربية بلهجة سعودية مهذبة وواضحة، ردود قصيرة ومباشرة (٢-٥ أسطر غالباً)، بدون مقدمات.
 أقسام الموقع: ${Object.entries(PG_NAMES).map(([k, v]) => `${v} [${k}]`).join('، ')}.
 ميزات مهمة: الختمة (٣٠ أو ٦٠ يوماً أو عدد صفحات يومي، من قسم القرآن)، الاستماع للقرآن مع تلوين الآية المتلوة واختيار القارئ من قائمة واحدة، مشغل ثابت أسفل الشاشة، المسبحة بهدف وسجل يومي، متابعة أذكار الصباح والمساء، التذكيرات (إضافتها لتقويم الجوال)، استوديو التصاميم لبطاقات الآيات والأدعية والأحاديث بمقاسات الواتساب والانستقرام، تغيير اللغة والمظهر والمدينة من زر الترس.
