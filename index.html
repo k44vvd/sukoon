@@ -378,6 +378,19 @@ body.qp-on .bell{bottom:calc(92px + env(safe-area-inset-bottom))}
 .rmark{font-size:20px!important;padding:0 10px!important}.rmark.on{background:var(--gold)!important;border-color:var(--gold)!important}
 .basm.playing{color:#8a6a25}
 .rlist li.fast span{font-family:Amiri,serif;font-size:15px;line-height:1.7}
+.hubl{display:grid;gap:12px}
+.hubc{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;width:100%;padding:18px 18px;border-radius:22px;border:1px solid rgba(201,178,124,.35);background:linear-gradient(160deg,color-mix(in srgb,var(--gold) 9%,var(--bg2)),var(--bg2));color:var(--ink);text-align:start}
+.hubc .hi{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:rgba(201,178,124,.14);color:var(--gold)}.hubc .hi svg{width:30px;height:30px}
+.hubc .ht b{display:block;font:700 clamp(22px,5vw,27px)/1.3 Amiri,serif;color:var(--gold)}.hubc .ht small{color:var(--mute);font-size:14px;line-height:1.6}
+.hubc .hch2{font-size:26px;color:var(--mute)}
+.aback{position:sticky;top:62px;z-index:20;padding:6px 0}.aback button{padding:9px 16px;border-radius:999px;border:1px solid rgba(201,178,124,.5);background:var(--bg2);color:var(--gold);font-size:15px}
+.minef{max-width:620px;margin-bottom:14px}
+.srcbox{margin:10px 0 0;padding:12px 14px;border-radius:14px;border:1px dashed rgba(201,178,124,.5);font-size:14px;line-height:1.9;color:var(--mute);text-align:start}
+.srcbox a{color:var(--gold)}.srcbox b{color:var(--ink)}
+.srclist{margin:0;padding-inline-start:20px;display:grid;gap:10px;line-height:1.9;color:var(--mute)}.srclist b{color:var(--ink)}.srclist a{color:var(--gold)}
+.ares{display:grid;gap:6px;margin-top:12px}.ares button{display:grid;gap:4px;text-align:start;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);color:var(--ink)}
+.ares button span{font:400 18px/1.9 "Sukoon Quran",Amiri,serif}.ares button small{color:var(--gold);font-size:12px}
+.ares h4{margin:6px 0 0;color:var(--mute);font-weight:500;font-size:14px}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -848,10 +861,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="aydl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="aycopy">نسخ الآية</button>
-        <button type="button" class="dl ghost" data-share="ay">مشاركة</button>
+        <button type="button" class="dl" data-share="ay">مشاركة كصورة</button>
+        <button type="button" class="dl ghost" data-srcs="ay">المصدر</button>
         <button type="button" class="dl ghost" id="ayopen">اقرأ في المصحف</button>
         <button type="button" class="dl ghost" id="aynext">آية أخرى</button>
       </div>
+      <div class="srcbox" id="srcay" hidden></div>
       <p class="status" id="aystatus" aria-live="polite"></p>
     </div>
   </section>
@@ -866,9 +881,11 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="ddl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="dcopy">نسخ الدعاء</button>
-        <button type="button" class="dl ghost" data-share="d">مشاركة</button>
+        <button type="button" class="dl" data-share="d">مشاركة كصورة</button>
+        <button type="button" class="dl ghost" data-srcs="d">المصدر</button>
         <button type="button" class="dl ghost" id="dnext">دعاء آخر</button>
       </div>
+      <div class="srcbox" id="srcd" hidden></div>
       <p class="status" id="dstatus" aria-live="polite"></p>
     </div>
   </section>
@@ -921,7 +938,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
-  <section class="band" id="hadith" data-page="adhkar">
+  <section class="band" id="ahub" data-page="adhkar">
+    <h2>الأذكار والأدعية</h2>
+    <div class="hubl"><button type="button" class="hubc" data-at="azkar"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v2M12 18v2M4 12H2M22 12h-2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg></span><span class="ht"><b>أذكار الصباح والمساء</b><small>مع العدّاد ومؤشر التقدم اليومي</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="adiya"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M16 9.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-.5A6.5 6.5 0 0 1 5 15.5L4 12a1.5 1.5 0 0 1 2.8-1L8 13"/></svg></span><span class="ht"><b>الأدعية</b><small>من القرآن والسنة، مقسّمة حسب الحاجة</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="hisn"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="ht"><b>حصن المسلم</b><small>أكثر من ٩٠ موضوعاً من الأذكار والأدعية</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="lib"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14C17 4 14 4.5 12 6z"/><path d="M12 6v14"/></svg></span><span class="ht"><b>المكتبة والسنن</b><small>أسماء الله الحسنى، قصص الأنبياء، الرقية، الصلاة</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="hadith"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17c2 0 4-1.5 4-5V7H4v5h3M15 17c2 0 4-1.5 4-5V7h-5v5h3"/></svg></span><span class="ht"><b>حديث اليوم</b><small>حديث صحيح جديد كل يوم مع مصدره</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="mine"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></span><span class="ht"><b>أذكاري الخاصة</b><small>أضف أذكارك وأدعيتك واحفظ عدّادها</small></span><span class="hch2" aria-hidden="true">‹</span></button><button type="button" class="hubc" data-at="imgs"><span class="hi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-8 8"/></svg></span><span class="ht"><b>صور الأذكار</b><small>صور جاهزة للتحميل والنشر</small></span><span class="hch2" aria-hidden="true">‹</span></button></div>
+  </section>
+  <div class="aback" id="aback" data-page="adhkar" hidden><button type="button" id="abackb">› الأذكار والأدعية</button></div>
+  <section class="band" id="hadith" data-page="adhkar" data-at="hadith">
     <h2>حديث اليوم</h2>
     <p class="lead">حديث صحيح جديد كل يوم، مع مصدره.</p>
     <div class="daily">
@@ -931,14 +953,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="hdl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="hcopy">نسخ الحديث</button>
-        <button type="button" class="dl ghost" data-share="h">مشاركة</button>
+        <button type="button" class="dl" data-share="h">مشاركة كصورة</button>
+        <button type="button" class="dl ghost" data-srcs="h">المصدر</button>
         <button type="button" class="dl ghost" id="hnext">حديث آخر</button>
       </div>
+      <div class="srcbox" id="srch" hidden></div>
       <p class="status" id="hstatus" aria-live="polite"></p>
     </div>
   </section>
 
-  <section class="band" id="azkar" data-page="adhkar">
+  <section class="band" id="azkar" data-page="adhkar" data-at="azkar">
     <h2>أذكار الصباح والمساء</h2>
     <p class="lead">اضغط على كل ذكر مع كل مرة تقوله، ومؤشر التقدم يتابعك. يتغير القسم تلقائياً حسب الوقت (الصباح من الفجر للعصر، والمساء من العصر)، ويبدأ من جديد كل يوم.</p>
     <div class="seg" id="azper"><button type="button" data-p="m">أذكار الصباح</button><button type="button" data-p="e">أذكار المساء</button></div>
@@ -948,7 +972,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <button type="button" class="reset" id="azreset">تصفير أذكار هذا الوقت</button>
   </section>
 
-  <section class="band" id="adiya" data-page="adhkar">
+  <section class="band" id="adiya" data-page="adhkar" data-at="adiya">
     <h2>أدعية</h2>
     <p class="lead">أدعية من القرآن الكريم والسنة الصحيحة، مع مصدر كل دعاء. تتجدّد كل يوم، وأول دعاء في كل موضوع هو دعاء اليوم.</p>
     <div class="cats seg" id="cats" role="tablist"></div>
@@ -975,7 +999,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <h2>القرآن الكريم</h2>
     <p class="lead">المصحف كاملاً بالرسم العثماني. اختر السورة وابدأ القراءة، والموقع يحفظ لك آخر سورة قرأتها.</p>
     <div class="qtop">
-      <input type="search" id="qsearch" placeholder="ابحث باسم السورة أو رقمها" autocomplete="off" aria-label="ابحث عن سورة">
+      <input type="search" id="qsearch" placeholder="ابحث باسم السورة أو رقمها أو كلمة من آية" autocomplete="off" aria-label="ابحث عن سورة">
       <button type="button" class="dl" id="qcont" hidden>تابع القراءة</button>
     </div>
     <div class="qaudio"><label><span>القارئ</span><select class="recsel" id="qrec" aria-label="اختر القارئ"></select></label><button type="button" class="dl" id="qlisten">استمع للقرآن</button></div>
@@ -995,7 +1019,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
-  <section class="band" id="lib" data-page="adhkar">
+  <section class="band" id="lib" data-page="adhkar" data-at="lib">
     <h2>الأذكار والسنن</h2>
     <p class="lead">أسماء الله الحسنى، قصص الأنبياء، أذكار الصباح والمساء، أدعية من القرآن، الرقية الشرعية، أذكار الصلاة، السنن الرواتب، والحج والعمرة. اضغط على العدّاد مع كل ذكر.</p>
     <div class="book"><div><b>كتيّب الأذكار</b><span>أذكار الصباح والمساء والنوم والصلاة، وأدعية من القرآن والرقية، في ملف PDF للطباعة أو الجوال.</span></div><button type="button" class="dl" id="bookdl">تحميل الكتيّب PDF</button></div>
@@ -1096,7 +1120,14 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <div class="efeat" id="efeat"></div>
   </section>
 
-  <section class="band" id="adhkar" data-page="adhkar">
+  <section class="band" id="mine" data-page="adhkar" data-at="mine">
+    <h2>أذكاري الخاصة</h2>
+    <p class="lead">أضف أي ذكر أو دعاء تحافظ عليه، وحدد عدد مرّاته. العدّاد يبدأ من جديد كل يوم، وكل شي محفوظ في جهازك.</p>
+    <form class="form minef" id="minef"><label>الذكر أو الدعاء<textarea id="minet" rows="2" maxlength="400" placeholder="مثال: لا إله إلا أنت سبحانك إني كنت من الظالمين"></textarea></label><label>عدد المرات<input type="number" id="minen" min="1" max="1000" value="1" inputmode="numeric"></label><button type="submit" class="dl">إضافة</button></form>
+    <div class="alist" id="minel"></div>
+  </section>
+
+  <section class="band" id="adhkar" data-page="adhkar" data-at="imgs">
     <div class="head"><h2>صور الأذكار</h2><span class="count" id="acount"></span></div>
     <p class="lead">صور أذكار جاهزة، حمّلها وحطها خلفية أو انشرها في حالتك.</p>
     <div class="agrid" id="agrid"></div>
@@ -1156,6 +1187,21 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <p>غايتنا أن يصل القرآن الكريم إلى أكبر عدد من الناس: مقاطع تُحمَّل وتُنشر، ودعاء وحديث يتجددان كل يوم، ومصحف بين يديك، وأدعية وأذكار تذكّر بالله. كل ما في الموقع مجاني ومتاح للجميع، فانشره بنية صالحة، ونسأل الله أن يكتب أجره لكل من ساهم فيه.</p>
       <p>نسألك دعوة صادقة بظهر الغيب، والله الموفق.</p>
     </div>
+  </section>
+
+  <section class="band" id="sources" data-page="guide">
+    <h2>مصادر المحتوى</h2>
+    <p class="lead">كل نص في سكون له مصدر تقدر ترجع له وتتأكد منه:</p>
+    <ul class="srclist">
+      <li><b>نص القرآن الكريم</b> بالرسم العثماني، رواية حفص عن عاصم، من <a href="https://quranenc.com" target="_blank" rel="noopener">موسوعة القرآن الكريم</a> عبر مشروع quran-json. وتقدر تقارن أي آية في <a href="https://quran.com" target="_blank" rel="noopener">quran.com</a>.</li>
+      <li><b>ترقيم الصفحات والأجزاء والأحزاب</b> حسب مصحف المدينة النبوية (٦٠٤ صفحات)، من مكتبة quran-meta.</li>
+      <li><b>التفسير</b>: التفسير الميسر، إصدار مجمع الملك فهد لطباعة المصحف الشريف. للمراجعة: <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a>.</li>
+      <li><b>الأحاديث والأدعية</b>: من الصحيحين والسنن مع ذكر الكتاب ورقم الحديث تحت كل نص، ويمكن التحقق منها في <a href="https://dorar.net/hadith" target="_blank" rel="noopener">الموسوعة الحديثية (الدرر السنية)</a>.</li>
+      <li><b>حصن المسلم</b>: أذكار كتاب حصن المسلم للشيخ سعيد بن علي القحطاني.</li>
+      <li><b>التلاوات الصوتية</b>: من <a href="https://alquran.cloud" target="_blank" rel="noopener">alquran.cloud</a> (cdn.islamic.network) وquranicaudio.com وquran.com.</li>
+      <li><b>مواقيت الصلاة</b>: محسوبة بطريقة تقويم أم القرى، والإقامة حسب مدة وزارة الشؤون الإسلامية.</li>
+      <li><b>مواعيد الصرف</b>: جدول وزارة المالية للرواتب الحكومية، والقاعدة المعلنة لبقية المواعيد.</li>
+    </ul>
   </section>
 
   <section class="band" id="guide" data-page="guide">
@@ -1401,7 +1447,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   var adhkar = [];
   const renderA = () => {
-    $('aempty').hidden = true; $('adhkar').hidden = !adhkar.length;
+    $('aempty').hidden = true; $('adhkar').hidden = !adhkar.length || (typeof atab !== 'undefined' && atab !== 'imgs'); document.querySelectorAll('.hubc[data-at=imgs]').forEach(x => { x.hidden = !adhkar.length; });
     $('acount').textContent = adhkar.length ? `${adhkar.length} صورة` : '';
     $('agrid').innerHTML = adhkar.map(aCard).join('');
     renderJ();
@@ -1525,6 +1571,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // Quran reader
+  let QN = null;
   let Q = null, cur = 0, qs = store.get('sk-qs', 30);
   const ar = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
   // ---- language ----
@@ -1560,9 +1607,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const loadQ = () => Q ? Promise.resolve(Q) : fetch('quran.json').then(r => r.json()).then(d => (Q = d));
   const renderS = () => {
     if (!Q) return; const q = ($('qsearch').value || '').trim().replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
-    const strip = t => t.replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, '').replace(/[أإآٱ]/g, 'ا');
-    const list = Q.map((x, i) => [x, i]).filter(([x, i]) => !q || String(i + 1) === q || strip(x[0]).includes(strip(q)));
-    $('slist').innerHTML = list.length ? list.map(([x, i]) => `<div class="sitem"><button type="button" class="sbtn" data-s="${i}"><span class="n"><span>${ar(i + 1)}</span></span><span><b>${esc(x[0])}</b><small>${x[1] ? 'مكية' : 'مدنية'} · ${ar(x[2].length)} آية</small></span></button><button type="button" class="splay" data-play="${i}" aria-label="استمع لسورة ${esc(x[0])}"></button></div>`).join('') : '<div class="empty" style="grid-column:1/-1">ما لقيت سورة بهذا الاسم</div>';
+    const nq = nrm(q).replace(/^سوره\s*/, ''), nq2 = nq.replace(/^ال/, '');
+    const list = Q.map((x, i) => [x, i]).filter(([x, i]) => { if (!q) return true; if (/^\d+$/.test(q)) return String(i + 1) === q; const nm = nrm(x[0]); return nm.includes(nq) || nm.replace(/^ال/, '').startsWith(nq2); });
+    let ah = '';
+    if (q.length >= 3 && !/^\d+$/.test(q)) { if (!QN) QN = Q.map(x => x[2].map(nrm)); const res = []; for (let si = 0; si < 114 && res.length < 25; si++) QN[si].forEach((t, k) => { if (res.length < 25 && t.includes(nq)) res.push([si, k + 1]); });
+      if (res.length) ah = `<div class="ares" style="grid-column:1/-1"><h4>آيات فيها «${esc(q)}»</h4>${res.map(([si, a]) => `<button type="button" data-qo="${si}:${a}"><span>${esc(Q[si][2][a - 1].slice(0, 110))}</span><small>سورة ${esc(Q[si][0])} · الآية ${ar(a)} · صفحة ${ar(pageOfSA(si, a))}</small></button>`).join('')}</div>`; }
+    $('slist').innerHTML = (list.length ? list.map(([x, i]) => `<div class="sitem"><button type="button" class="sbtn" data-s="${i}"><span class="n"><span>${ar(i + 1)}</span></span><span><b>${esc(x[0])}</b><small>${x[1] ? 'مكية' : 'مدنية'} · ${ar(x[2].length)} آية · ص ${ar(pageOfSA(i, 1))}</small></span></button><button type="button" class="splay" data-play="${i}" aria-label="استمع لسورة ${esc(x[0])}"></button></div>`).join('') : (ah ? '' : '<div class="empty" style="grid-column:1/-1">ما لقيت سورة أو آية بهذا البحث</div>')) + ah;
     const mkx = store.get('sk-mark', null), ps = store.get('sk-pos', null), last = store.get('sk-last', null);
     const go = mkx || ps || (last !== null ? { s: last, a: 1 } : null);
     if (go && Q[go.s]) { $('qcont').hidden = false; $('qcont').textContent = `${mkx ? 'وقفت عند' : 'تابع القراءة'}: سورة ${Q[go.s][0]} — الآية ${ar(go.a)}`; }
@@ -2011,6 +2061,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (how === 'push' && location.hash !== '#/' + pg) history.pushState(null, '', '#/' + pg); else if (how === 'replace') history.replaceState(null, '', '#/' + pg);
     try { onPage(pg); } catch (e) { console.error(e); }
     if (target && target.closest && target.closest('section[data-qt]') && typeof setQT === 'function') { try { setQT(target.closest('section[data-qt]').dataset.qt); } catch {} }
+    if (pg === 'adhkar' && typeof setAT === 'function') { const at = target && target.closest && target.closest('section[data-at]'); try { setAT(at ? at.dataset.at : (changed ? 'hub' : atab)); } catch {} }
     requestAnimationFrame(() => document.querySelectorAll(`[data-page="${pg}"] .rv:not(.in),[data-page="${pg}"].rv:not(.in)`).forEach(el => { if (el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); }));
     if (target) requestAnimationFrame(() => requestAnimationFrame(() => target.scrollIntoView({ behavior: changed ? 'auto' : 'smooth', block: 'start' })));
     else if (changed) window.scrollTo(0, 0);
@@ -2025,7 +2076,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   window.addEventListener('popstate', () => { const h = location.hash; if (h.startsWith('#/')) go(h.slice(2), null, 'none'); else { const el = h && document.getElementById(h.slice(1)); go(pageOf(el) || 'home', el, 'none'); } });
   const onPage = pg => {
     if (pg === 'home') { renderHome(); renderMW(); renderQW(); renderLQ(); }
-    if (pg === 'quran') { renderK(); renderQM(); fillDl(); }
+    if (pg === 'quran') { renderK(); renderQM(); fillDl(); loadQ().then(renderS); }
     if (pg === 'adhkar') renderAz();
     if (pg === 'tasbih') renderTs();
     if (pg === 'studio') stuUI();
@@ -2234,7 +2285,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (DZ.length) { const z = DZ[(dayNo() * 7) % DZ.length]; $('dzt').textContent = z.t; $('dzs').textContent = z.src || ''; }
     if (clips.length) { const c = clips[dayNo() % clips.length]; $('cdt').textContent = c.title; $('clipday').dataset.id = c.id; $('clipday').hidden = false; }
   };
-  $('hrem').addEventListener('click', e => { const w = e.target.closest('[data-witr]'); if (w) { store.set('sk-witr', store.get('sk-witr', '') === w.dataset.witr ? '' : w.dataset.witr); renderHome(); } const a = e.target.closest('[data-azp]'); if (a) azP = a.dataset.azp; });
+  $('hrem').addEventListener('click', e => { const w = e.target.closest('[data-witr]'); if (w) { store.set('sk-witr', store.get('sk-witr', '') === w.dataset.witr ? '' : w.dataset.witr); renderHome(); } const a = e.target.closest('[data-azp]'); if (a) { azP = a.dataset.azp; setTimeout(() => setAT('azkar'), 0); } });
   $('clipday').addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); const b = document.querySelector(`#grid [data-id="${$('clipday').dataset.id}"]`); go('clips', b ? b.closest('.card') || b : $('clips')); });
   setInterval(() => { if (page === 'home') renderHome(); }, 60000);
 
@@ -2636,14 +2687,41 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     box.innerHTML = `<small>آخر تقدّمك في المصحف</small><h3>سورة ${esc(Q[ps.s][0])} · الآية ${ar(ps.a)}</h3><span class="lqm">${esc(L0.txt)}</span><p class="lqa">${esc(Q[ps.s][2][ps.a - 1])}</p><div class="bar"><i style="width:${pct}%"></i></div><span class="lqm">وصلت لصفحة ${ar(L0.page)} من ٦٠٤ (${ar(pct)}٪)</span><div class="row"><button type="button" class="dl" data-qo="${ps.s}:${ps.a}">تابع القراءة</button><button type="button" class="dl ghost" data-qp="${ps.s}:${ps.a}">▶ استمع من هنا</button></div>`; };
   new MutationObserver(() => { if (!$('reader').classList.contains('open') && page === 'home') renderLQ(); }).observe($('reader'), { attributes: true, attributeFilter: ['class'] });
 
-  // ===================== share daily items =====================
-  document.addEventListener('click', async e => { const b = e.target.closest('[data-share]'); if (!b) return; const k = b.dataset.share; let txt = '';
-    if (k === 'ay') txt = `﴿${$('aytext').textContent}﴾\n${$('aysrc').textContent}\n\nالتفسير الميسر: ${$('aytafs').textContent}`;
-    if (k === 'd') txt = `${$('dtext').textContent}\n(${$('dsrc').textContent})`;
-    if (k === 'h') txt = `قال رسول الله ﷺ: «${$('htext').textContent}»\n(${$('hsrc').textContent})`;
-    txt += `\n\nمن «سكون»: ${PUB}`; const t0 = b.textContent;
-    try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); b.textContent = 'تم النسخ للمشاركة'; } catch (err) { if (err && err.name === 'AbortError') return; b.textContent = 'ما قدرت أشارك'; }
-    setTimeout(() => { b.textContent = t0; }, 1800); });
+  // ===================== share daily items (as image) + sources =====================
+  const dayItem = k => { if (k === 'ay') return { title: 'آية اليوم', txt: $('aytext').textContent, src: $('aysrc').textContent, q: true };
+    if (k === 'd') return { title: 'دعاء اليوم', txt: $('dtext').textContent, src: $('dsrc').textContent, q: $('dtext').classList.contains('q') };
+    return { title: 'قال رسول الله ﷺ', txt: $('htext').textContent, src: $('hsrc').textContent, q: false }; };
+  document.addEventListener('click', async e => { const b = e.target.closest('[data-share]'); if (!b) return; const it = dayItem(b.dataset.share), t0 = b.textContent;
+    const caption = `${it.title}\n${it.txt}\n(${it.src})\n\nمن «سكون»: ${PUB}`; b.disabled = true; b.textContent = 'جاري التجهيز…';
+    try { const blob = await cardBlob(it.title, it.txt, it.src, it.q); const file = new File([blob], 'sukoon.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: caption }); b.textContent = 'تمت المشاركة'; }
+      else if (downloads) { await downloads.save({ filename: `سكون - ${it.title}.png`, data: blob }); try { await navigator.clipboard.writeText(caption); } catch {} b.textContent = 'تم تحميل الصورة'; }
+      else { b.textContent = 'المشاركة غير متاحة هنا'; } }
+    catch (err) { b.textContent = err && err.name === 'AbortError' ? t0 : 'ما قدرت أشارك'; }
+    finally { b.disabled = false; setTimeout(() => { b.textContent = t0; }, 2000); } });
+  const dorar = t => `https://dorar.net/hadith/search?q=${encodeURIComponent(nrm(t).split(/\s+/).slice(0, 7).join(' '))}`;
+  const qcom = t => `https://quran.com/search?q=${encodeURIComponent(nrm(t).replace(/[﴿﴾٠-٩0-9]/g, '').split(/\s+/).filter(Boolean).slice(0, 6).join(' '))}`;
+  document.addEventListener('click', e => { const b = e.target.closest('[data-srcs]'); if (!b) return; const k = b.dataset.srcs, box = $('src' + k); if (!box) return;
+    if (!box.hidden) { box.hidden = true; return; } let h = '';
+    if (k === 'ay' && ayCur) { const s2 = ayCur.s + 1, a = ayCur.a; h = `<b>الآية:</b> ${esc($('aysrc').textContent)} · نص المصحف برواية حفص · <a href="https://quran.com/${s2}/${a}" target="_blank" rel="noopener">تحقق في quran.com</a><br><b>التفسير:</b> التفسير الميسر (مجمع الملك فهد لطباعة المصحف الشريف) · <a href="https://tafsir.app/muyassar/${s2}/${a}" target="_blank" rel="noopener">افتح التفسير</a>`; }
+    if (k === 'd' && D) { const d = D.daily[dIdx % D.daily.length]; h = `<b>المصدر:</b> ${esc(d.src)} · ` + (d.q ? `<a href="${qcom(d.t)}" target="_blank" rel="noopener">تحقق من الآية في quran.com</a>` : `<a href="${dorar(d.t)}" target="_blank" rel="noopener">ابحث عن الحديث في الدرر السنية</a>`); }
+    if (k === 'h' && D && D.hadith) { const d = D.hadith[hIdx % D.hadith.length]; h = `<b>المصدر:</b> ${esc(d.src)} · <a href="${dorar(d.t)}" target="_blank" rel="noopener">ابحث عن الحديث وحكمه في الدرر السنية</a>`; }
+    h += `<br><a href="#sources">كل مصادر الموقع ←</a>`; box.innerHTML = h; box.hidden = false; });
+
+
+  // ===================== adhkar hub =====================
+  let atab = 'hub';
+  const setAT = t => { atab = t; const hub = t === 'hub'; $('ahub').hidden = !hub; $('aback').hidden = hub; document.querySelectorAll('section[data-at]').forEach(sec => { sec.hidden = sec.dataset.at !== t; }); if (t === 'azkar') renderAz(); if (t === 'mine') renderMine(); };
+  $('ahub').addEventListener('click', e => { const b = e.target.closest('[data-at]'); if (!b) return; if (b.dataset.at === 'hisn') { openMore(); return; } setAT(b.dataset.at); window.scrollTo({ top: 0 }); });
+  $('abackb').addEventListener('click', () => { setAT('hub'); window.scrollTo({ top: 0 }); });
+  // custom adhkar
+  let MINE = store.get('sk-mine', []), MC = store.get('sk-minec', {});
+  const mcFix = () => { if (MC.d !== today()) MC = { d: today(), c: {} }; };
+  const renderMine = () => { mcFix(); $('minel').innerHTML = MINE.length ? MINE.map((x, i) => { const left = MC.c[i] ?? x.n; return `<div class="dk${left === 0 ? ' done' : ''}"><div><p>${esc(x.t)}</p><small>${x.n > 1 ? `${ar(x.n)} مرات · ` : ''}<button type="button" class="mini" data-mdel2="${i}">حذف</button></small></div><button type="button" class="cnt" data-mi="${i}" aria-label="عدّ">${ar(left)}</button></div>`; }).join('') : '<p class="mnote">ما أضفت أذكار للحين.</p>'; };
+  $('minef').addEventListener('submit', e => { e.preventDefault(); const t = $('minet').value.trim(); if (!t) return; MINE.push({ t, n: Math.max(1, Math.min(1000, +$('minen').value || 1)) }); store.set('sk-mine', MINE); $('minet').value = ''; $('minen').value = 1; renderMine(); });
+  $('minel').addEventListener('click', e => { const d = e.target.closest('[data-mdel2]'); if (d) { MINE.splice(+d.dataset.mdel2, 1); store.set('sk-mine', MINE); MC = { d: today(), c: {} }; store.set('sk-minec', MC); renderMine(); return; }
+    const b = e.target.closest('[data-mi]'); if (!b) return; mcFix(); const i = +b.dataset.mi, left = MC.c[i] ?? MINE[i].n; if (left === 0) return; MC.c[i] = left - 1; store.set('sk-minec', MC); b.textContent = ar(left - 1); b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); if (left - 1 === 0) { b.closest('.dk').classList.add('done'); if (navigator.vibrate) { try { navigator.vibrate(30); } catch {} } } });
+  setAT('hub');
 
   // initial route
   { const h = location.hash; if (h.startsWith('#/')) go(h.slice(2), null, 'replace'); else { const el = h.length > 1 && document.getElementById(h.slice(1)); go(pageOf(el) || 'home', el || null, 'replace'); } }
