@@ -1980,7 +1980,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // Friday countdown (Riyadh time)
   const riyadhNow = () => { const n = new Date(); return new Date(n.getTime() + (n.getTimezoneOffset() + 180) * 60000); };
-  const weekKey = () => { const r = riyadhNow(); const d = new Date(r); d.setDate(r.getDate() + ((5 - r.getDay() + 7) % 7)); return d.toISOString().slice(0, 10); };
+  const weekKey = () => { const r = riyadhNow(); const d = new Date(r); d.setDate(r.getDate() + ((5 - r.getDay() + 7) % 7)); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
   const pad = n => String(n).padStart(2, '0');
   const tick = () => {
     const r = riyadhNow();
@@ -2055,7 +2055,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   if ($('jtabs')) $('jtabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; jtab = b.dataset.t; $('jtabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderJ(); });
 
   // istighfar counter (daily)
-  const today = () => riyadhNow().toISOString().slice(0, 10);
+  const ymdL = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const today = () => ymdL(riyadhNow());
   const C = 2 * Math.PI * 88;
 
   // watan duas
@@ -3014,12 +3015,13 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const renderFC = () => { $('efeat').innerHTML = FCASES.map((c, i) => { const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
     return `<article class="fcase"><div class="fimg">${ICO[c.icon] || ''}<img src="${esc(c.img)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0"></div>
     <div class="fbody"><span class="etag">${esc(c.tag)}</span><h3>${esc(c.title)}</h3><p class="fno">${c.no ? `رقم الحالة ${esc(c.no)}` : esc(c.org || '')}</p><p>${esc(c.desc)}</p>
-    ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">آخر تحديث للأرقام ${esc(agoAr(c.asof))} · تتحدث تلقائياً كل ساعتين</small></div>` : ''}
+    ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">آخر تحديث للأرقام ${esc(agoAr(c.asof))} · تتحدث تلقائياً كل ساعة</small></div>` : ''}
     <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.btn)} ←</a><button type="button" class="dl ghost" data-fshare="${i}">مشاركة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
   };
   const agoAr = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000)); return m < 2 ? 'الآن' : m < 60 ? `قبل ${ar(m)} دقيقة` : m < 1440 ? `قبل ${ar(Math.round(m / 60))} ساعة` : `قبل ${ar(Math.round(m / 1440))} يوم`; };
   renderFC();
-  fetch('ehsan.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(j => { if (!j || !j.cases) return; let ch = 0; FCASES.forEach(c => { const x = c.no && j.cases[c.no]; if (x && x.got >= 0 && x.left >= 0) { c.got = x.got; c.left = x.left; c.asof = x.asof; ch = 1; } }); if (ch) renderFC(); }).catch(() => {});
+  const loadEhsan = () => fetch('ehsan.json?t=' + Date.now()).then(r => r.ok ? r.json() : null).then(j => { if (!j || !j.cases) return; let ch = 0; FCASES.forEach(c => { const x = c.no && j.cases[c.no]; if (x && x.got >= 0 && x.left >= 0) { c.got = x.got; c.left = x.left; c.asof = x.asof; ch = 1; } }); if (ch) renderFC(); }).catch(() => {});
+  window.ehsanReady = loadEhsan(); setInterval(loadEhsan, 15 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) loadEhsan(); });
   $('efeat').addEventListener('click', async e => { const b = e.target.closest('[data-fshare]'); if (!b) return; const c = FCASES[+b.dataset.fshare], st = $('fst' + b.dataset.fshare), txt = `${c.title}\n${c.desc}\n\nتبرّع من هنا:\n${c.url}`;
     try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); st.textContent = 'تم نسخ الحالة مع الرابط'; } catch (err) { if (err && err.name === 'AbortError') return; st.textContent = 'ما قدرت أشارك، جرّب مرة ثانية'; } });
 
@@ -3581,12 +3583,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     const close = () => { store.set('sk-adday', today()); w.classList.remove('on'); setTimeout(() => w.remove(), 300); };
     w.addEventListener('click', e => { if (e.target === w || e.target.closest('[data-adx]') || e.target.closest('[data-adgo]')) close(); });
     document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } }); };
-  window.addEventListener('load', () => setTimeout(showAd, 1400));
+  window.addEventListener('load', () => setTimeout(() => Promise.race([window.ehsanReady || Promise.resolve(), new Promise(r => setTimeout(r, 2500))]).then(showAd), 1200));
   }
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795636912'; let pend = false;
+  const BUILD = '1795645158'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -3769,8 +3771,9 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   let lastDay = dayNo();
   const rollDay = () => { const n = dayNo(); if (n === lastDay) return; lastDay = n;
     if (D) { dIdx = n % D.daily.length; try { showD(); showW(); } catch {} if (D.hadith) { hIdx = n % D.hadith.length; try { showH(); } catch {} } try { renderJad(); } catch {} if (D.ayat) { ayIdx = n % D.ayat.length; try { showAy(); } catch {} } }
-    [renderCOD, renderFDday, renderHome, renderHC].forEach(f => { try { f(); } catch {} }); ptDay = ''; try { tickPT(); } catch {} };
+    [renderCOD, renderFDday, renderHome, renderHC, renderMW, renderAD, renderK, renderJ].forEach(f => { try { f(); } catch {} }); ptDay = ''; try { tickPT(); } catch {} };
   setInterval(rollDay, 30000);
+  setInterval(() => { try { renderMW(); } catch {} }, 10 * 60 * 1000);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) rollDay(); });
   window.addEventListener('pageshow', rollDay); window.addEventListener('focus', rollDay);
 

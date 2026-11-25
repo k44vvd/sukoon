@@ -1,7 +1,7 @@
 name: Update Ehsan numbers
 on:
   schedule:
-    - cron: "23 */2 * * *"
+    - cron: "23 * * * *"
   workflow_dispatch:
 permissions:
   contents: write
