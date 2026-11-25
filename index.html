@@ -368,6 +368,16 @@ body.qp-on .bell{bottom:calc(92px + env(safe-area-inset-bottom))}
 .hgrid .d.ev{box-shadow:inset 0 0 0 1px var(--gold)}.hgrid .d.wh{background:rgba(201,178,124,.12)}
 .hgrid .d.td{background:var(--gold);color:var(--bg)}.hgrid .d.td small{color:var(--bg)}
 .hev{margin:10px 0 0;padding:0;list-style:none;font-size:13px;color:var(--mute);display:grid;gap:4px}.hev b{color:var(--gold);font-weight:600}
+.lq{display:grid;gap:10px;padding:20px;border-radius:22px;border:1px solid rgba(201,178,124,.5);background:linear-gradient(150deg,color-mix(in srgb,var(--gold) 14%,var(--bg2)),var(--bg2))}
+.lq small{color:var(--gold);font-weight:700}.lq h3{margin:0;font:700 clamp(24px,5vw,30px)/1.3 Amiri,serif}.lq .lqm{color:var(--mute);font-size:14px}
+.lq .lqa{margin:0;font:400 20px/2 "Sukoon Quran",Amiri,serif;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lq .row{margin-top:4px}.lq .bar{height:8px}
+.ayat .shead{margin:22px 0 10px;padding:10px;border-radius:14px;border:1px solid rgba(138,109,43,.4);text-align:center;background:rgba(201,178,124,.12)}
+.ayat .shead:first-child{margin-top:0}.ayat .shead b{display:block;font:700 24px/1.4 Amiri,serif}.ayat .shead small{display:block;line-height:1.4}.ayat .shead small{font-size:13px;opacity:.7}
+.ayat .basm{text-align:center;margin:6px 0 10px}.ayat .ayp{margin:0}
+.rmark{font-size:20px!important;padding:0 10px!important}.rmark.on{background:var(--gold)!important;border-color:var(--gold)!important}
+.basm.playing{color:#8a6a25}
+.rlist li.fast span{font-family:Amiri,serif;font-size:15px;line-height:1.7}
 .mwq .iq{display:block;margin-top:6px;font-size:13px;color:var(--gold)}
 .qaudio{display:flex;flex-wrap:wrap;gap:10px;align-items:end;margin:0 0 12px}
 .qaudio label{display:grid;gap:6px;flex:1 1 220px;font-size:14px;color:var(--mute)}
@@ -788,6 +798,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </header>
 
+  <section class="band" id="lastq" data-page="home">
+    <div class="lq" id="lqbox"></div>
+  </section>
+
   <section class="band" id="mawaid" data-page="home">
     <div class="pwhead"><h2>مواعيد الصرف</h2><button type="button" class="mall" id="mwall" aria-expanded="false">عرض الكل ‹</button></div>
     <div class="mwcard" id="mwtop"></div>
@@ -834,6 +848,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="aydl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="aycopy">نسخ الآية</button>
+        <button type="button" class="dl ghost" data-share="ay">مشاركة</button>
         <button type="button" class="dl ghost" id="ayopen">اقرأ في المصحف</button>
         <button type="button" class="dl ghost" id="aynext">آية أخرى</button>
       </div>
@@ -851,6 +866,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="ddl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="dcopy">نسخ الدعاء</button>
+        <button type="button" class="dl ghost" data-share="d">مشاركة</button>
         <button type="button" class="dl ghost" id="dnext">دعاء آخر</button>
       </div>
       <p class="status" id="dstatus" aria-live="polite"></p>
@@ -915,6 +931,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="drow">
         <button type="button" class="dl" id="hdl">تحميل كصورة</button>
         <button type="button" class="dl ghost" id="hcopy">نسخ الحديث</button>
+        <button type="button" class="dl ghost" data-share="h">مشاركة</button>
         <button type="button" class="dl ghost" id="hnext">حديث آخر</button>
       </div>
       <p class="status" id="hstatus" aria-live="polite"></p>
@@ -948,7 +965,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="band" id="qmarks" data-page="quran" data-qt="qmarks">
     <h2>تقدّمي وعلاماتي</h2>
-    <p class="lead">آخر موضع قرأت فيه، وآخر ما استمعت له، وعلامات الحفظ اللي تحطها. لحفظ علامة: افتح السورة، اضغط على الآية، واختر «حفظ علامة هنا».</p>
+    <p class="lead">آخر موضع قرأت فيه، وآخر ما استمعت له، وعلامات الحفظ. لحفظ علامة على صفحة: افتح المصحف واضغط 🔖 فوق. ولحفظ آية معيّنة: اضغط على الآية واختر «حفظ علامة هنا».</p>
     <div class="qprog" id="qprog"></div>
     <h3 class="sub">علامات الحفظ</h3>
     <ul class="mklist" id="mklist"></ul>
@@ -1205,15 +1222,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <b id="rtitle"></b>
     <button type="button" id="rsm" aria-label="تصغير الخط">أ−</button>
     <button type="button" id="rlg" aria-label="تكبير الخط">أ+</button>
+    <button type="button" id="rmark" class="rmark" aria-label="حفظ علامة على هذه الصفحة" aria-pressed="false">🔖</button>
     <div class="raud"><button type="button" id="rplay" class="rplay" aria-label="استمع للسورة"></button><select class="recsel rrec" aria-label="اختر القارئ"></select></div>
   </div>
   <div class="rbody" id="rbody">
     <div class="page">
       <div class="stitle" id="stitle"></div>
       <p class="basm" id="basm">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ</p>
-      <p class="ayat" id="ayat"></p>
+      <div class="ayat" id="ayat"></div>
     </div>
-    <div class="rnav"><button type="button" id="rprev">السورة السابقة</button><button type="button" id="rnext">السورة التالية</button></div>
+    <div class="rnav"><button type="button" id="rnext">الصفحة التالية</button><button type="button" id="rprev">الصفحة السابقة</button></div>
     <p class="credit">اضغط على أي آية لقراءة تفسيرها وحفظ موضع وقوفك. التفسير من «التفسير الميسر» (مجمع الملك فهد لطباعة المصحف الشريف).</p>
     <p class="credit">نص المصحف بالرسم العثماني من <a href="https://quranenc.com" rel="noopener">موسوعة القرآن الكريم</a>، عبر مشروع quran-json (CC BY-SA 4.0).</p>
   </div>
@@ -1552,16 +1570,33 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const getMarks = () => { let m = store.get('sk-marks', null); if (!m) { const o = store.get('sk-mark', null); m = o ? [{ s: o.s, a: o.a, d: Date.now() }] : []; store.set('sk-marks', m); } return m; };
   const hasMark = (s2, a) => getMarks().some(m => m.s === s2 && m.a === a);
   const toggleMark = (s2, a) => { let m = getMarks(); const on = !m.some(x => x.s === s2 && x.a === a); m = on ? [{ s: s2, a, d: Date.now() }, ...m] : m.filter(x => !(x.s === s2 && x.a === a)); store.set('sk-marks', m.slice(0, 200)); store.set('sk-mark', m[0] ? { s: m[0].s, a: m[0].a } : null); try { renderQM(); } catch {} return on; };
-  const openS = async (i, ayah) => {
-    await loadQ(); cur = Math.max(0, Math.min(113, i)); const [name, mk, v] = Q[cur];
-    $('rtitle').textContent = `سورة ${name}`;
-    $('stitle').innerHTML = `سورة ${esc(name)}<small>${mk ? 'مكية' : 'مدنية'} · آياتها ${ar(v.length)}</small>`;
-    $('basm').hidden = cur === 0 || cur === 8;
-    $('ayat').innerHTML = v.map((t, k) => `<span class="ay${hasMark(cur, k + 1) ? ' mark' : ''}" data-a="${k + 1}">${esc(t)} <span class="m">﴿${ar(k + 1)}﴾</span></span>`).join(' ');
-    $('rprev').disabled = cur === 0; $('rnext').disabled = cur === 113;
-    store.set('sk-last', cur); renderS();
-    const r = $('reader'); r.classList.add('open'); r.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; $('rbody').scrollTop = 0; $('rclose').focus();
-    if (ayah > 1) requestAnimationFrame(() => { const el = $('ayat').querySelector(`[data-a="${ayah}"]`); if (el) { $('rbody').scrollTop += el.getBoundingClientRect().top - $('rbody').getBoundingClientRect().top - 80; } });
+  let rPage = 1;
+  const pageOfSA = (s2, a) => { const abs = CUM[s2] + a; let lo = 0, hi = 603; while (lo < hi) { const m = (lo + hi + 1) >> 1; if (PG[m] <= abs) lo = m; else hi = m - 1; } return lo + 1; };
+  const juzOf = abs => { let k = 0; while (k < 29 && JZ[k + 1] <= abs) k++; return k + 1; };
+  const hizbOf = abs => { let k = 0; while (k < 239 && HQ[k + 1] <= abs) k++; return { h: Math.floor(k / 4) + 1, q: k % 4 }; };
+  const QTR = ['', 'ربع ', 'نصف ', 'ثلاثة أرباع '];
+  const locTxt = (s2, a) => { const abs = CUM[s2] + a, hz = hizbOf(abs); return { page: pageOfSA(s2, a), juz: juzOf(abs), hizb: hz.h, q: hz.q, txt: `صفحة ${ar(pageOfSA(s2, a))} · الجزء ${ar(juzOf(abs))} · ${QTR[hz.q]}الحزب ${ar(hz.h)}` }; };
+  const openS = async (i, ayah) => { await loadQ(); const s2 = Math.max(0, Math.min(113, i)), a = Math.max(1, Math.min(VC[s2], ayah || 1)); return openP(pageOfSA(s2, a), s2, a); };
+  const openP = async (p, fs, fa) => {
+    await loadQ(); p = Math.max(1, Math.min(604, p)); rPage = p;
+    const from = PG[p - 1], to = (p < 604 ? PG[p] : 6237) - 1; const [s1, a1] = absSA(from); cur = s1;
+    let h = '', open = false;
+    for (let abs = from; abs <= to; abs++) { const [s2, a] = absSA(abs);
+      if (a === 1) { if (open) { h += '</p>'; open = false; } h += `<div class="shead"><b>سورة ${esc(Q[s2][0])}</b><small>${Q[s2][1] ? 'مكية' : 'مدنية'} · آياتها ${ar(VC[s2])}</small></div>${s2 !== 0 && s2 !== 8 ? `<p class="basm" data-bs="${s2}">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ</p>` : ''}`; }
+      if (!open) { h += '<p class="ayp">'; open = true; }
+      h += `<span class="ay${hasMark(s2, a) ? ' mark' : ''}" data-s="${s2}" data-a="${a}">${esc(Q[s2][2][a - 1])} <span class="m">﴿${ar(a)}﴾</span></span> `; }
+    if (open) h += '</p>';
+    $('ayat').innerHTML = h; $('basm').hidden = true;
+    const L0 = locTxt(s1, a1), [sL] = absSA(to);
+    $('rtitle').textContent = s1 === sL ? `سورة ${Q[s1][0]}` : `سورة ${Q[s1][0]} – ${Q[sL][0]}`;
+    $('stitle').innerHTML = `صفحة ${ar(p)}<small>الجزء ${ar(L0.juz)} · ${QTR[L0.q]}الحزب ${ar(L0.hizb)}</small>`;
+    $('rprev').disabled = p === 1; $('rnext').disabled = p === 604;
+    const pm = getMarks().some(m => pageOfSA(m.s, m.a) === p); $('rmark').setAttribute('aria-pressed', pm); $('rmark').classList.toggle('on', pm);
+    store.set('sk-last', s1); store.set('sk-pos', { s: s1, a: a1, p }); renderS();
+    const r = $('reader'); if (!r.classList.contains('open')) { r.classList.add('open'); r.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; $('rclose').focus(); }
+    $('rbody').scrollTop = 0;
+    if (fa && (fs !== s1 || fa !== a1)) requestAnimationFrame(() => { const el = $('ayat').querySelector(`[data-s="${fs}"][data-a="${fa}"]`); if (el) { $('rbody').scrollTop += el.getBoundingClientRect().top - $('rbody').getBoundingClientRect().top - 80; } });
+    try { renderQW(); } catch {}
   };
   const closeR = () => { closeT(); const r = $('reader'); r.classList.remove('open'); r.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
   const setQs = n => { qs = Math.max(20, Math.min(48, n)); $('reader').style.setProperty('--qs', qs + 'px'); store.set('sk-qs', qs); };
@@ -1570,8 +1605,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('qsearch').addEventListener('input', renderS);
   $('qcont').addEventListener('click', () => { const g = store.get('sk-mark', null) || store.get('sk-pos', null) || { s: store.get('sk-last', 0), a: 1 }; openS(g.s, g.a); });
   $('rclose').addEventListener('click', closeR);
-  $('rprev').addEventListener('click', () => openS(cur - 1));
-  $('rnext').addEventListener('click', () => openS(cur + 1));
+  $('rprev').addEventListener('click', () => openP(rPage - 1));
+  $('rnext').addEventListener('click', () => openP(rPage + 1));
+  $('rmark').addEventListener('click', () => { const [s1, a1] = absSA(PG[rPage - 1]); const ex = getMarks().find(m => pageOfSA(m.s, m.a) === rPage); if (ex) toggleMark(ex.s, ex.a); else toggleMark(s1, a1); openP(rPage); toast(ex ? 'تمت إزالة علامة الصفحة' : `تم حفظ علامة على صفحة ${ar(rPage)}`); });
+  { let tx = null, ty = 0; $('rbody').addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+    $('rbody').addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty; tx = null; if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) openP(rPage + (dx > 0 ? 1 : -1)); }, { passive: true }); }
+  document.addEventListener('keydown', e => { if (!$('reader').classList.contains('open') || $('tsheet').classList.contains('open')) return; if (e.key === 'ArrowLeft') openP(rPage + 1); else if (e.key === 'ArrowRight') openP(rPage - 1); });
   $('rsm').addEventListener('click', () => setQs(qs - 2));
   $('rlg').addEventListener('click', () => setQs(qs + 2));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('reader').classList.contains('open')) closeR(); });
@@ -1906,17 +1945,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   let tsel = null;
   const closeT = () => { $('tsheet').classList.remove('open'); document.querySelectorAll('.ay.sel').forEach(x => x.classList.remove('sel')); };
   $('ayat').addEventListener('click', async e => {
-    const el = e.target.closest('.ay'); if (!el) return; const a = +el.dataset.a; tsel = { s: cur, a };
+    const el = e.target.closest('.ay'); if (!el) return; const a = +el.dataset.a, sS = +el.dataset.s; tsel = { s: sS, a };
     document.querySelectorAll('.ay.sel').forEach(x => x.classList.remove('sel')); el.classList.add('sel');
-    $('tsh').textContent = `تفسير الآية ${ar(a)} — سورة ${Q[cur][0]}`; $('tsv').textContent = `${Q[cur][2][a - 1]} ﴿${ar(a)}﴾`; $('tst').textContent = 'جاري التحميل…';
-    $('tsmark').textContent = hasMark(cur, a) ? 'إزالة علامة الحفظ' : 'حفظ علامة هنا';
+    $('tsh').textContent = `تفسير الآية ${ar(a)} — سورة ${Q[sS][0]}`; $('tsv').textContent = `${Q[sS][2][a - 1]} ﴿${ar(a)}﴾`; $('tst').textContent = 'جاري التحميل…';
+    $('tsmark').textContent = hasMark(sS, a) ? 'إزالة علامة الحفظ' : 'حفظ علامة هنا';
     $('tsheet').classList.add('open');
-    try { const t = await loadTaf(cur + 1); if (tsel && tsel.a === a) $('tst').textContent = t[a - 1] || 'لا يوجد تفسير لهذه الآية.'; } catch { $('tst').textContent = 'ما قدرت أحمّل التفسير، تأكد من الاتصال.'; }
+    try { const t = await loadTaf(sS + 1); if (tsel && tsel.a === a) $('tst').textContent = t[a - 1] || 'لا يوجد تفسير لهذه الآية.'; } catch { $('tst').textContent = 'ما قدرت أحمّل التفسير، تأكد من الاتصال.'; }
   });
   $('tsclose').addEventListener('click', closeT);
   $('tsmark').addEventListener('click', () => {
     if (!tsel) return; const on = toggleMark(tsel.s, tsel.a);
-    const el = $('ayat').querySelector(`[data-a="${tsel.a}"]`); if (el && tsel.s === cur) el.classList.toggle('mark', on);
+    const el = $('ayat').querySelector(`[data-s="${tsel.s}"][data-a="${tsel.a}"]`); if (el) el.classList.toggle('mark', on);
     $('tsmark').textContent = on ? 'تم الحفظ ✓' : 'تمت الإزالة'; renderS(); setTimeout(closeT, 700);
   });
   $('tscopy').addEventListener('click', async () => {
@@ -1927,7 +1966,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('rbody').addEventListener('scroll', () => {
     clearTimeout(posT); posT = setTimeout(() => {
       const top = $('rbody').getBoundingClientRect().top + 60; const els = $('ayat').querySelectorAll('.ay');
-      for (const el of els) { if (el.getBoundingClientRect().bottom > top) { store.set('sk-pos', { s: cur, a: +el.dataset.a }); break; } }
+      for (const el of els) { if (el.getBoundingClientRect().bottom > top) { store.set('sk-pos', { s: +el.dataset.s, a: +el.dataset.a, p: rPage }); break; } }
       renderS();
     }, 400);
   }, { passive: true });
@@ -1985,7 +2024,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   });
   window.addEventListener('popstate', () => { const h = location.hash; if (h.startsWith('#/')) go(h.slice(2), null, 'none'); else { const el = h && document.getElementById(h.slice(1)); go(pageOf(el) || 'home', el, 'none'); } });
   const onPage = pg => {
-    if (pg === 'home') { renderHome(); renderMW(); renderQW(); }
+    if (pg === 'home') { renderHome(); renderMW(); renderQW(); renderLQ(); }
     if (pg === 'quran') { renderK(); renderQM(); fillDl(); }
     if (pg === 'adhkar') renderAz();
     if (pg === 'tasbih') renderTs();
@@ -1997,6 +2036,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== khatma =====================
   const VC=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
   const PG=[1,8,13,24,32,37,45,56,65,69,77,84,91,96,101,109,113,120,127,134,142,149,153,161,171,177,184,189,194,198,204,210,218,223,227,232,238,241,245,253,256,260,264,267,272,277,282,289,290,294,303,309,316,323,331,339,346,355,364,371,377,385,394,402,409,415,426,434,442,447,451,459,467,474,480,488,494,500,505,508,513,517,520,527,531,538,545,553,559,568,573,580,585,588,595,599,607,615,621,628,634,641,648,656,664,669,672,675,679,683,687,693,701,706,711,715,720,727,734,740,746,752,759,765,773,778,783,790,798,808,817,825,834,842,849,858,863,871,880,884,891,900,908,914,921,927,932,936,941,947,955,966,977,985,992,998,1006,1012,1022,1028,1036,1042,1050,1059,1075,1085,1092,1098,1104,1110,1114,1118,1125,1133,1142,1150,1161,1169,1177,1186,1194,1201,1206,1213,1222,1230,1236,1242,1249,1256,1262,1267,1272,1276,1283,1290,1297,1304,1308,1315,1322,1329,1335,1342,1347,1353,1358,1365,1371,1379,1385,1390,1398,1407,1418,1426,1435,1443,1453,1462,1471,1479,1486,1493,1502,1511,1519,1527,1536,1545,1555,1562,1571,1582,1591,1601,1611,1619,1627,1634,1640,1649,1660,1666,1675,1683,1692,1700,1708,1713,1721,1726,1736,1742,1750,1756,1761,1769,1775,1784,1793,1803,1818,1834,1854,1873,1893,1908,1916,1928,1936,1944,1956,1966,1974,1981,1989,1995,2004,2012,2020,2030,2037,2047,2057,2068,2079,2088,2096,2105,2116,2126,2134,2145,2156,2161,2168,2175,2186,2194,2202,2215,2224,2238,2251,2262,2276,2289,2302,2315,2327,2346,2361,2386,2400,2413,2425,2436,2447,2462,2474,2484,2494,2508,2519,2528,2541,2556,2565,2574,2585,2596,2601,2611,2619,2626,2634,2642,2651,2660,2668,2674,2691,2701,2716,2733,2748,2763,2778,2792,2802,2812,2819,2823,2828,2835,2845,2850,2853,2858,2867,2876,2888,2899,2911,2923,2933,2952,2972,2993,3016,3044,3069,3092,3116,3139,3160,3173,3182,3195,3204,3215,3223,3236,3248,3258,3266,3274,3281,3288,3296,3303,3312,3323,3330,3337,3347,3355,3364,3371,3379,3386,3393,3404,3415,3425,3434,3442,3451,3460,3470,3481,3489,3498,3504,3515,3524,3534,3540,3549,3556,3564,3569,3577,3584,3588,3596,3607,3614,3621,3629,3638,3646,3655,3664,3672,3679,3691,3699,3705,3718,3733,3746,3760,3776,3789,3813,3840,3865,3891,3915,3942,3971,3987,3997,4013,4032,4054,4064,4069,4080,4090,4099,4106,4115,4126,4133,4141,4150,4159,4167,4174,4183,4192,4200,4211,4219,4230,4239,4248,4257,4265,4273,4283,4288,4295,4304,4317,4324,4336,4348,4359,4373,4386,4399,4415,4433,4454,4474,4487,4496,4506,4516,4525,4531,4539,4546,4557,4565,4575,4584,4593,4599,4607,4612,4617,4624,4631,4646,4666,4682,4706,4727,4750,4767,4785,4811,4829,4853,4874,4896,4918,4942,4969,4996,5030,5056,5079,5087,5094,5100,5105,5111,5116,5126,5130,5136,5143,5151,5156,5162,5169,5178,5186,5193,5200,5209,5218,5223,5230,5237,5242,5254,5268,5287,5314,5332,5358,5386,5415,5430,5448,5461,5476,5495,5513,5543,5571,5597,5617,5642,5673,5703,5728,5759,5801,5830,5855,5883,5910,5932,5964,5994,6017,6044,6073,6099,6126,6138,6156,6177,6194,6208,6222];
+  const JZ=[1,149,260,386,517,641,751,900,1042,1201,1328,1479,1649,1803,2030,2215,2484,2674,2876,3215,3386,3564,3733,4090,4265,4511,4706,5105,5242,5673];
+  const HQ=[1,33,51,67,82,99,113,131,149,165,184,196,210,226,240,250,260,270,279,290,308,326,345,368,386,406,426,446,464,479,494,505,517,529,551,567,581,593,607,628,641,656,670,681,696,710,720,736,751,766,778,802,825,848,863,884,900,916,930,940,955,985,1001,1019,1042,1071,1096,1110,1125,1143,1161,1182,1201,1221,1236,1254,1269,1281,1295,1310,1328,1346,1357,1375,1390,1417,1435,1454,1479,1497,1514,1534,1557,1581,1603,1626,1649,1673,1697,1712,1726,1742,1760,1778,1803,1852,1902,1931,1952,1976,1991,2012,2030,2052,2079,2099,2128,2157,2172,2191,2215,2239,2272,2309,2349,2403,2431,2459,2484,2512,2534,2566,2596,2614,2633,2655,2674,2709,2748,2792,2812,2826,2844,2856,2876,2908,2933,2984,3043,3113,3160,3186,3215,3241,3264,3281,3303,3328,3341,3366,3386,3410,3440,3463,3491,3514,3534,3551,3564,3584,3593,3616,3630,3652,3675,3701,3733,3765,3810,3871,3933,3991,4022,4066,4090,4111,4134,4154,4174,4199,4227,4243,4265,4285,4299,4323,4349,4382,4431,4485,4511,4531,4555,4578,4601,4613,4626,4657,4706,4759,4810,4855,4902,4980,5054,5091,5105,5118,5137,5157,5178,5192,5218,5230,5242,5272,5324,5394,5448,5495,5552,5610,5673,5759,5830,5885,5949,6024,6091,6155];
   const CUM = VC.reduce((a, v) => (a.push(a[a.length - 1] + v), a), [0]);
   const absSA = n => { let s = 0; while (s < 113 && CUM[s + 1] < n) s++; return [s, n - CUM[s]]; };
   const pStart = p => absSA(PG[p - 1]), pEnd = p => absSA((p < 604 ? PG[p] : 6237) - 1);
@@ -2122,14 +2163,15 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   document.addEventListener('click', e => { const a = e.target.closest('[data-dhk]'); if (a) { TS.i = +a.dataset.dhk; tSave(); } }, true);
 
   // ===================== reminders =====================
-  const RDEF = { wird: { on: 1, t: '21:00' }, am: { on: 1, t: '06:00' }, pm: { on: 1, t: '16:30' }, witr: { on: 1, t: '22:30' }, fast: { on: 1, t: '21:00' } };
-  let RM = Object.assign({}, RDEF, store.get('sk-rem', {}));
+  const RDEF = { wird: { on: 1, t: '21:00' }, am: { on: 1, t: '06:00' }, pm: { on: 1, t: '16:30' }, witr: { on: 1, t: '22:30' }, mon: { on: 1, t: '21:00' }, thu: { on: 1, t: '21:00' } };
+  let RM = Object.assign({}, RDEF, store.get('sk-rem', {})); if (RM.fast) { RM.mon = RM.mon || { ...RM.fast }; RM.thu = RM.thu || { ...RM.fast }; delete RM.fast; }
   const RINFO = {
     wird: ['الورد اليومي من القرآن', 'تذكير يومي بقراءة وردك من الختمة', 'اقرأ وردك من القرآن اليوم'],
     am: ['أذكار الصباح', 'يومياً، بعد صلاة الفجر', 'حان وقت أذكار الصباح'],
     pm: ['أذكار المساء', 'يومياً، بعد صلاة العصر', 'حان وقت أذكار المساء'],
     witr: ['صلاة الوتر', '«اجعلوا آخر صلاتكم بالليل وتراً» متفق عليه', 'لا تنسَ صلاة الوتر قبل النوم'],
-    fast: ['صيام الإثنين والخميس', 'ليلة الإثنين وليلة الخميس · «تُعرض الأعمال يوم الإثنين والخميس، فأحب أن يُعرض عملي وأنا صائم» رواه الترمذي (747)', 'بكرة يُسن صيامه، انوِ الصيام وتسحّر']
+    mon: ['صيام يوم الإثنين', 'ليلة الإثنين (الأحد مساءً) · سُئل ﷺ عن صوم يوم الإثنين فقال: «ذاك يوم وُلدت فيه، ويوم بُعثت أو أُنزل عليّ فيه» صحيح مسلم (1162)', 'بكرة الإثنين، يُسن صيامه. انوِ الصيام وتسحّر'],
+    thu: ['صيام يوم الخميس', 'ليلة الخميس (الأربعاء مساءً) · «تُعرض الأعمال يوم الإثنين والخميس، فأحب أن يُعرض عملي وأنا صائم» رواه الترمذي (747)', 'بكرة الخميس، يُسن صيامه. انوِ الصيام وتسحّر']
   };
   const renderR = () => {
     $('rset').innerHTML = Object.keys(RINFO).map(k => `<div class="rrow"><label class="rsw"><input type="checkbox" data-rk="${k}" ${RM[k].on ? 'checked' : ''}><span></span></label><div><b>${RINFO[k][0]}</b><small>${RINFO[k][1]}</small></div><input type="time" data-rt="${k}" value="${RM[k].t}" aria-label="وقت ${RINFO[k][0]}"></div>`).join('');
@@ -2142,8 +2184,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (!on.length) { st.textContent = 'فعّل تذكير واحد على الأقل'; return; }
     const d0 = today().replace(/-/g, ''), stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
     const ev = on.map(k => { const [h, m] = RM[k].t.split(':'); let start = d0;
-      if (k === 'fast') { const wd = riyadhNow().getDay(); const add = [0, 3].map(x => (x - wd + 7) % 7); start = addDays(today(), Math.min(...add)).replace(/-/g, ''); }
-      return ['BEGIN:VEVENT', `UID:sukoon-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${start}T${h}${m}00`, 'DURATION:PT10M', k === 'fast' ? 'RRULE:FREQ=WEEKLY;BYDAY=SU,WE' : 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc('سكون · ' + RINFO[k][0])}`, `DESCRIPTION:${icsEsc(RINFO[k][2] + '\n' + SITE)}`, `URL:${SITE}`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:PT0M', `DESCRIPTION:${icsEsc(RINFO[k][2])}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'); });
+      if (k === 'mon' || k === 'thu') { const wd = riyadhNow().getDay(), tgt = k === 'mon' ? 0 : 3; start = addDays(today(), (tgt - wd + 7) % 7).replace(/-/g, ''); }
+      return ['BEGIN:VEVENT', `UID:sukoon-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${start}T${h}${m}00`, 'DURATION:PT10M', k === 'mon' ? 'RRULE:FREQ=WEEKLY;BYDAY=SU' : k === 'thu' ? 'RRULE:FREQ=WEEKLY;BYDAY=WE' : 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc('سكون · ' + RINFO[k][0])}`, `DESCRIPTION:${icsEsc(RINFO[k][2] + '\n' + SITE)}`, `URL:${SITE}`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:PT0M', `DESCRIPTION:${icsEsc(RINFO[k][2])}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'); });
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sukoon//Reminders//AR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:سكون', ...ev, 'END:VCALENDAR'].join('\r\n');
     if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
@@ -2160,7 +2202,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   setInterval(() => {
     const r = riyadhNow(), hm2 = `${String(r.getHours()).padStart(2, '0')}:${String(r.getMinutes()).padStart(2, '0')}`, d = today(), wd = r.getDay();
     Object.keys(RINFO).forEach(k => {
-      if (!RM[k].on || RM[k].t !== hm2 || notified[k] === d) return; if (k === 'fast' && wd !== 0 && wd !== 3) return;
+      if (!RM[k].on || RM[k].t !== hm2 || notified[k] === d) return; if ((k === 'mon' && wd !== 0) || (k === 'thu' && wd !== 3)) return;
       notified[k] = d; store.set('sk-ntf', notified);
       try { if ('Notification' in window && Notification.permission === 'granted') new Notification('سكون · ' + RINFO[k][0], { body: RINFO[k][2], icon: 'icon.png' }); } catch {}
       toast(RINFO[k][2]);
@@ -2183,9 +2225,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       if (!ptT || h >= ptT.asr - 0.1 || e.done) items.push({ ok: e.full, t: 'أذكار المساء', s: e.full ? 'مكتملة' : `${nd(e.pct)}٪`, href: '#/adhkar', az: 'e' }); }
     if (K && K.done < 604) { const I = kInfo(); items.push({ ok: I.doneToday, t: 'ورد القرآن', s: I.doneToday ? 'تم' : `ص ${ar(I.from)}–${ar(I.to)}`, href: '#/quran' }); }
     if (ptT && (h >= ptT.isha || h < ptT.fajr)) { const wk = h < ptT.fajr ? addDays(today(), -1) : today(); items.push({ ok: store.get('sk-witr', '') === wk, t: 'صلاة الوتر', s: store.get('sk-witr', '') === wk ? 'صليت، تقبّل الله' : 'اضغط إذا صليت', witr: wk }); }
-    if (wd === 0 || wd === 3) items.push({ t: `بكرة ${WD[wd + 1]}`, s: 'يُسن صيامه، انوِ وتسحّر', info: 1 });
-    if (wd === 1 || wd === 4) items.push({ t: `اليوم ${WD[wd]}`, s: 'يوم يُسن صيامه', info: 1 });
-    $('hrem').innerHTML = items.map(x => x.witr ? `<li class="${x.ok ? 'ok' : ''}"><button type="button" data-witr="${x.witr}"><i></i><b>${x.t}</b><span>${x.s}</span></button></li>` : x.info ? `<li class="info"><div><i></i><b>${x.t}</b><span>${x.s}</span></div></li>` : `<li class="${x.ok ? 'ok' : ''}"><a href="${x.href}"${x.az ? ` data-azp="${x.az}"` : ''}><i></i><b>${x.t}</b><span>${x.s}</span></a></li>`).join('') || '<li class="info"><div><b>ما عندك تذكيرات الحين</b></div></li>';
+    const FM = '«ذاك يوم وُلدت فيه، ويوم بُعثت أو أُنزل عليّ فيه» (مسلم)', FT = '«تُعرض الأعمال يوم الإثنين والخميس، فأحب أن يُعرض عملي وأنا صائم» (الترمذي)';
+    if (wd === 0) items.push({ t: 'بكرة الإثنين، يُسن صيامه', s: FM, info: 1, f: 1 });
+    if (wd === 3) items.push({ t: 'بكرة الخميس، يُسن صيامه', s: FT, info: 1, f: 1 });
+    if (wd === 1) items.push({ t: 'اليوم الإثنين، يوم يُسن صيامه', s: FM, info: 1, f: 1 });
+    if (wd === 4) items.push({ t: 'اليوم الخميس، يوم يُسن صيامه', s: FT, info: 1, f: 1 });
+    $('hrem').innerHTML = items.map(x => x.witr ? `<li class="${x.ok ? 'ok' : ''}"><button type="button" data-witr="${x.witr}"><i></i><b>${x.t}</b><span>${x.s}</span></button></li>` : x.info ? `<li class="info${x.f ? ' fast' : ''}"><div><i></i><b>${x.t}</b><span>${x.s}</span></div></li>` : `<li class="${x.ok ? 'ok' : ''}"><a href="${x.href}"${x.az ? ` data-azp="${x.az}"` : ''}><i></i><b>${x.t}</b><span>${x.s}</span></a></li>`).join('') || '<li class="info"><div><b>ما عندك تذكيرات الحين</b></div></li>';
     if (DZ.length) { const z = DZ[(dayNo() * 7) % DZ.length]; $('dzt').textContent = z.t; $('dzs').textContent = z.src || ''; }
     if (clips.length) { const c = clips[dayNo() % clips.length]; $('cdt').textContent = c.title; $('clipday').dataset.id = c.id; $('clipday').hidden = false; }
   };
@@ -2346,9 +2391,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   function qpUIp() { const on = QP && !AU.paused; $('qppp').innerHTML = on ? PAUSE_SVG : PLAY_SVG; $('qppp').setAttribute('aria-label', on ? 'إيقاف مؤقت' : 'تشغيل'); const rp = $('rplay'); if (rp) rp.innerHTML = (on && QP.s === cur ? PAUSE_SVG + 'إيقاف' : PLAY_SVG + 'استمع'); document.querySelectorAll('.splay').forEach(b => { const me = on && QP.s === +b.dataset.play; b.innerHTML = me ? PAUSE_SVG : PLAY_SVG; b.classList.toggle('on', !!(QP && QP.s === +b.dataset.play)); }); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = on ? 'playing' : 'paused'; }
   const qpUI = () => { if (!QP) { qpUIp(); return; } $('qpt').textContent = Q ? `سورة ${Q[QP.s][0]}` : ''; $('qps').textContent = `${QP.m === 'x' && !QP.tm ? 'السورة كاملة' : QP.b ? 'البسملة' : `الآية ${ar(QP.a)} من ${ar(VC[QP.s])}`} · ${recName()}`; $('qprep').setAttribute('aria-pressed', qpRep); if (QP.m !== 'x') $('qpprog').style.width = '0%'; qpUIp(); };
   const qpHL = () => {
-    document.querySelectorAll('.ay.playing,#basm.playing').forEach(x => x.classList.remove('playing'));
-    if (!QP || !$('reader').classList.contains('open') || cur !== QP.s || (QP.m === 'x' && !QP.tm)) return;
-    const el = QP.b ? $('basm') : $('ayat').querySelector(`[data-a="${QP.a}"]`); if (!el) return; el.classList.add('playing');
+    document.querySelectorAll('.ay.playing,.basm.playing').forEach(x => x.classList.remove('playing'));
+    if (!QP || !$('reader').classList.contains('open') || (QP.m === 'x' && !QP.tm)) return;
+    const el = QP.b ? $('ayat').querySelector(`[data-bs="${QP.s}"]`) : $('ayat').querySelector(`[data-s="${QP.s}"][data-a="${QP.a}"]`);
+    if (!el) { if (qpFollow && !QP.b) { const pg2 = pageOfSA(QP.s, QP.a); if (pg2 !== rPage) openP(pg2); } return; } el.classList.add('playing');
     if (qpFollow) { const rb = $('rbody'), r = el.getBoundingClientRect(), rr = rb.getBoundingClientRect(); if (r.top < rr.top + 70 || r.bottom > rr.bottom - 140) rb.scrollTo({ top: rb.scrollTop + r.top - rr.top - rr.height / 3, behavior: 'smooth' }); }
   };
   const qpMeta = () => { if (!('mediaSession' in navigator) || !QP || !Q) return; try { navigator.mediaSession.metadata = new MediaMetadata({ title: `سورة ${Q[QP.s][0]} — ${QP.b ? 'البسملة' : 'الآية ' + ar(QP.a)}`, artist: recName(), album: 'سكون', artwork: [{ src: 'icon.png', sizes: '512x512', type: 'image/png' }] }); } catch {} };
@@ -2365,7 +2411,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // surah list play buttons + reader + tafsir sheet
   $('slist').addEventListener('click', e => { const b = e.target.closest('.splay'); if (!b) return; e.stopPropagation(); const s = +b.dataset.play; if (QP && QP.s === s) { if (AU.paused) AU.play().catch(() => {}); else AU.pause(); } else qpPlay(s, 1); }, true);
   new MutationObserver(() => qpUIp()).observe($('slist'), { childList: true });
-  $('rplay').addEventListener('click', () => { if (QP && QP.s === cur) { if (AU.paused) AU.play().catch(() => {}); else AU.pause(); } else { const mk = store.get('sk-mark', null); qpPlay(cur, 1); } });
+  $('rplay').addEventListener('click', () => { if (QP && QP.s === cur) { if (AU.paused) AU.play().catch(() => {}); else AU.pause(); } else { const [s1, a1] = absSA(PG[rPage - 1]); qpPlay(s1, a1); } });
   $('tsplay').addEventListener('click', () => { if (tsel) { qpPlay(tsel.s, tsel.a); closeT(); } });
   $('qlisten').addEventListener('click', () => { const g = store.get('sk-qp', null); if (g) qpPlay(g.s, g.a); else qpPlay(0, 1); });
   document.addEventListener('play', e => { if (e.target.tagName === 'VIDEO') AU.pause(); }, true);
@@ -2434,7 +2480,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 - لو السؤال خارج الموقع والدين تماماً، اعتذر بلطف ووجّه لما يقدمه الموقع.`;
   const chatAdd = (cls, txt) => { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = txt; $('chat').appendChild(d); $('chat').scrollTop = $('chat').scrollHeight; return d; };
   const addActs = (el, acts) => { if (!acts.length) return; const w = document.createElement('div'); w.className = 'acts'; acts.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', fn); w.appendChild(b); }); el.appendChild(w); $('chat').scrollTop = $('chat').scrollHeight; };
-  const KW = [[['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية، ورابط منصة إحسان مع حالة مميزة، ومشروع جمعية نجاة.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
+  const KW = [[['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية، ورابط منصة إحسان مع حالة مميزة، ومشروع جمعية نجاة.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه (الورد، الأذكار، الوتر، صيام الإثنين، صيام الخميس) وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
   const localAnswer = async q => {
     const n = nrm(q), el = chatAdd('a', ''); const acts = []; let txt = '';
     await loadQ(); const wantS = /سوره|شغل|اسمع|استمع|افتح|اقرا|تلاو/.test(n) || Q.some(x => nrm(x[0]) === n.trim() || 'سوره ' + nrm(x[0]) === n.trim()); const si = wantS ? findSurah(q) : -1;
@@ -2499,12 +2545,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const renderQM = () => { if (!$('qprog')) return; if (!Q) { loadQ().then(renderQM); return; }
     const ps = store.get('sk-pos', null) || (store.get('sk-last', null) !== null ? { s: store.get('sk-last', 0), a: 1 } : null), lq = store.get('sk-qp', null);
     const cards = [];
-    cards.push(ps ? `<div class="qpc2"><small>آخر قراءة</small><b>سورة ${esc(sNm(ps.s))}</b><span>الآية ${ar(ps.a)}</span><button type="button" class="dl" data-qo="${ps.s}:${ps.a}">تابع القراءة</button></div>` : `<div class="qpc2"><small>آخر قراءة</small><b>ما بدأت بعد</b><span>افتح أي سورة من المصحف</span></div>`);
+    cards.push(ps ? `<div class="qpc2"><small>آخر قراءة</small><b>سورة ${esc(sNm(ps.s))}</b><span>الآية ${ar(ps.a)} · ${esc(locTxt(ps.s, ps.a).txt)}</span><button type="button" class="dl" data-qo="${ps.s}:${ps.a}">تابع القراءة</button></div>` : `<div class="qpc2"><small>آخر قراءة</small><b>ما بدأت بعد</b><span>افتح أي سورة من المصحف</span></div>`);
     cards.push(lq ? `<div class="qpc2"><small>آخر استماع</small><b>سورة ${esc(sNm(lq.s))}</b><span>الآية ${ar(lq.a)} · ${esc(recName())}</span><button type="button" class="dl ghost" data-qp="${lq.s}:${lq.a}">▶ تابع الاستماع</button></div>` : `<div class="qpc2"><small>آخر استماع</small><b>ما استمعت بعد</b><span>اضغط ▶ بجانب أي سورة</span></div>`);
     if (K) { const I = kInfo(); cards.push(`<div class="qpc2"><small>الختمة</small><b>${nd(I.pct)}٪</b><span>${ar(K.done)} من ٦٠٤ صفحة</span><div class="bar"><i style="width:${I.pct}%"></i></div></div>`); }
     $('qprog').innerHTML = cards.join('');
     const m = getMarks();
-    $('mklist').innerHTML = m.length ? m.map((x, i) => `<li><div><b>سورة ${esc(sNm(x.s))} · الآية ${ar(x.a)}</b><span>${esc(Q[x.s][2][x.a - 1].slice(0, 70))}…</span><small>${esc(fmtD(new Date(x.d).toISOString().slice(0, 10), { day: 'numeric', month: 'long' }))}</small></div><div class="mkb"><button type="button" data-qo="${x.s}:${x.a}">فتح</button><button type="button" data-qp="${x.s}:${x.a}" aria-label="استمع">▶</button><button type="button" data-mdel="${i}" aria-label="حذف العلامة">✕</button></div></li>`).join('') : '<li class="mkempty">ما عندك علامات حفظ. افتح سورة، اضغط على الآية، واختر «حفظ علامة هنا».</li>';
+    $('mklist').innerHTML = m.length ? m.map((x, i) => `<li><div><b>سورة ${esc(sNm(x.s))} · الآية ${ar(x.a)}</b><small>${esc(locTxt(x.s, x.a).txt)}</small><span>${esc(Q[x.s][2][x.a - 1].slice(0, 70))}…</span><small>${esc(fmtD(new Date(x.d).toISOString().slice(0, 10), { day: 'numeric', month: 'long' }))}</small></div><div class="mkb"><button type="button" data-qo="${x.s}:${x.a}">فتح</button><button type="button" data-qp="${x.s}:${x.a}" aria-label="استمع">▶</button><button type="button" data-mdel="${i}" aria-label="حذف العلامة">✕</button></div></li>`).join('') : '<li class="mkempty">ما عندك علامات حفظ. افتح سورة، اضغط على الآية، واختر «حفظ علامة هنا».</li>';
   };
   document.addEventListener('click', e => {
     const o = e.target.closest('[data-qo]'); if (o) { const [a1, a2] = o.dataset.qo.split(':').map(Number); openS(a1, a2); return; }
@@ -2581,6 +2627,23 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     $('hcal').innerHTML = `<div class="hch"><button type="button" data-h="1" aria-label="الشهر التالي">‹</button><b>${HM[h0.m - 1]} ${ar(h0.y)} هـ<small>${g0 === g1.split(' ')[0] ? g1 : `${g0} – ${g1}`}</small></b><button type="button" data-h="-1" aria-label="الشهر السابق">›</button></div><div class="hgrid">${cells}</div><ul class="hev">${evs.join('')}<li><b>الأيام البيض</b> · ١٣ و١٤ و١٥ من الشهر (مظلّلة)</li><li>حسب تقويم أم القرى، ودخول رمضان والأعياد يُعتمد برؤية الهلال وإعلان المحكمة العليا.</li></ul>${hOff ? '<button type="button" class="reset" data-h="0">الرجوع للشهر الحالي</button>' : ''}`; };
   $('hcal').addEventListener('click', e => { const b = e.target.closest('[data-h]'); if (!b) return; const v = +b.dataset.h; hOff = v === 0 ? 0 : hOff + v; renderHC(); });
   renderHC();
+
+
+  // ===================== home: last Mushaf progress =====================
+  const renderLQ = async () => { const box = $('lqbox'); if (!box) return; const ps = store.get('sk-pos', null);
+    if (!ps) { box.innerHTML = `<small>آخر تقدّمك في المصحف</small><h3>ابدأ القراءة</h3><span class="lqm">افتح المصحف من سورة الفاتحة، والموقع يحفظ لك وين وقفت</span><div class="row"><button type="button" class="dl" data-qo="0:1">ابدأ من الفاتحة</button></div>`; return; }
+    await loadQ(); const L0 = locTxt(ps.s, ps.a), pct = Math.floor(L0.page / 604 * 100);
+    box.innerHTML = `<small>آخر تقدّمك في المصحف</small><h3>سورة ${esc(Q[ps.s][0])} · الآية ${ar(ps.a)}</h3><span class="lqm">${esc(L0.txt)}</span><p class="lqa">${esc(Q[ps.s][2][ps.a - 1])}</p><div class="bar"><i style="width:${pct}%"></i></div><span class="lqm">وصلت لصفحة ${ar(L0.page)} من ٦٠٤ (${ar(pct)}٪)</span><div class="row"><button type="button" class="dl" data-qo="${ps.s}:${ps.a}">تابع القراءة</button><button type="button" class="dl ghost" data-qp="${ps.s}:${ps.a}">▶ استمع من هنا</button></div>`; };
+  new MutationObserver(() => { if (!$('reader').classList.contains('open') && page === 'home') renderLQ(); }).observe($('reader'), { attributes: true, attributeFilter: ['class'] });
+
+  // ===================== share daily items =====================
+  document.addEventListener('click', async e => { const b = e.target.closest('[data-share]'); if (!b) return; const k = b.dataset.share; let txt = '';
+    if (k === 'ay') txt = `﴿${$('aytext').textContent}﴾\n${$('aysrc').textContent}\n\nالتفسير الميسر: ${$('aytafs').textContent}`;
+    if (k === 'd') txt = `${$('dtext').textContent}\n(${$('dsrc').textContent})`;
+    if (k === 'h') txt = `قال رسول الله ﷺ: «${$('htext').textContent}»\n(${$('hsrc').textContent})`;
+    txt += `\n\nمن «سكون»: ${PUB}`; const t0 = b.textContent;
+    try { if (navigator.share) { await navigator.share({ text: txt }); return; } await navigator.clipboard.writeText(txt); b.textContent = 'تم النسخ للمشاركة'; } catch (err) { if (err && err.name === 'AbortError') return; b.textContent = 'ما قدرت أشارك'; }
+    setTimeout(() => { b.textContent = t0; }, 1800); });
 
   // initial route
   { const h = location.hash; if (h.startsWith('#/')) go(h.slice(2), null, 'replace'); else { const el = h.length > 1 && document.getElementById(h.slice(1)); go(pageOf(el) || 'home', el || null, 'replace'); } }
