@@ -3155,6 +3155,16 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     setTimeout(() => URL.revokeObjectURL(url), 4000); return { status: 'saved' };
   } };
   render(); renderA();
+
+  // ===================== daily rollover: refresh daily items at midnight without reload =====================
+  let lastDay = dayNo();
+  const rollDay = () => { const n = dayNo(); if (n === lastDay) return; lastDay = n;
+    if (D) { dIdx = n % D.daily.length; try { showD(); showW(); } catch {} if (D.hadith) { hIdx = n % D.hadith.length; try { showH(); } catch {} } try { renderJad(); } catch {} if (D.ayat) { ayIdx = n % D.ayat.length; try { showAy(); } catch {} } }
+    [renderCOD, renderFDday, renderHome, renderHC].forEach(f => { try { f(); } catch {} }); ptDay = ''; try { tickPT(); } catch {} };
+  setInterval(rollDay, 30000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) rollDay(); });
+  window.addEventListener('pageshow', rollDay); window.addEventListener('focus', rollDay);
+
 }
 </script>
 </body>
