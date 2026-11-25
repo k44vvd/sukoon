@@ -713,6 +713,48 @@ body[data-pg="guide"] [data-page]:not([data-page="guide"]){display:none!importan
 body[data-pg="anbiya"] [data-page]:not([data-page="anbiya"]){display:none!important}
 body[data-pg="sources"] [data-page]:not([data-page="sources"]){display:none!important}
 body[data-pg="fadail"] [data-page]:not([data-page="fadail"]){display:none!important}
+body[data-pg="dawah"] [data-page]:not([data-page="dawah"]){display:none!important}
+.dwl{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:16px}
+.dwl::-webkit-scrollbar{display:none}
+.dwl button{flex:none;background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 16px;font:inherit;font-size:15px;cursor:pointer}
+.dwl button[aria-pressed="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold);font-weight:600}
+.dwhero{background:linear-gradient(140deg,#0d3f3b,var(--bg2) 70%);border:1px solid rgba(201,178,124,.4);border-radius:22px;padding:22px;margin-bottom:14px}
+.dwhero h3{margin:0 0 6px;font:700 28px/1.3 Amiri,serif;color:var(--gold)}
+[dir=ltr] .dwhero h3{font-family:inherit;font-size:26px}
+.dwhero p{margin:0 0 14px;color:var(--ink);line-height:1.9}
+.dwhero .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dwt{display:grid;gap:10px}
+.dwt details{background:var(--bg2);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:border-color .3s}
+.dwt details[open]{border-color:rgba(201,178,124,.55)}
+.dwt summary{list-style:none;display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer}
+.dwt summary::-webkit-details-marker{display:none}
+.dwt .dwi{flex:none;width:46px;height:46px;border-radius:14px;background:rgba(201,178,124,.14);display:grid;place-items:center;color:var(--gold)}
+.dwt .dwi svg{width:24px;height:24px}
+.dwt summary div{flex:1;min-width:0}
+.dwt summary b{display:block;font-size:18px;line-height:1.4}
+.dwt summary small{display:block;color:var(--mute);font-size:14px;line-height:1.7;margin-top:2px}
+.dwt summary::after{content:"";flex:none;width:9px;height:9px;border:solid var(--gold);border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .25s;margin-inline:4px}
+.dwt details[open] summary::after{transform:rotate(-135deg)}
+.dwb{padding:0 18px 18px;line-height:2;font-size:15.5px}
+.dwb p{margin:0 0 10px}
+.dwb ol{margin:0;padding-inline-start:22px;display:grid;gap:8px}
+.dwb ol b{color:var(--gold)}
+.dwb dl{margin:0;display:grid;gap:12px}.dwb dt{font-weight:700;color:var(--gold)}.dwb dd{margin:2px 0 0}
+.dwsh{background:var(--bg);border:1px solid rgba(201,178,124,.45);border-radius:14px;padding:14px;margin:6px 0 12px;text-align:center}
+.dwsh .a{font:700 24px/1.9 "Sukoon Quran",Amiri,serif;direction:rtl;color:var(--ink)}
+.dwsh .t{font-style:italic;color:var(--gold);font-size:14px;direction:ltr;margin-top:6px}
+.dwsh .m{color:var(--mute);font-size:14px;margin-top:6px}
+.dwlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.adh{background:var(--bg2);border:1px solid rgba(201,178,124,.45);border-radius:18px;padding:16px 18px;margin-bottom:18px;max-width:620px}
+.adh h3{margin:0 0 4px;font:700 22px/1.3 Amiri,serif;color:var(--gold)}
+.adh>p{margin:0 0 12px;color:var(--mute);font-size:14px}
+.adrows{display:grid;gap:8px}
+.adrow{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.adrow:last-child{border-bottom:0}
+.adrow b{flex:1;font-size:16px}.adrow span{color:var(--gold);font-variant-numeric:tabular-nums}
+.adopt{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px;font-size:14px}
+.adopt select{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font:inherit}
+.adopt label{display:flex;gap:8px;align-items:center;cursor:pointer}
 .fdtop{display:grid;gap:12px;margin-bottom:18px}
 .fdday{background:linear-gradient(135deg,#0d3f3b,var(--bg2));border:1px solid rgba(201,178,124,.45);border-radius:20px;padding:18px 20px}
 .fdday small{color:var(--gold);font-size:13px;letter-spacing:.02em}
@@ -828,7 +870,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 <body>
 <div class="wrap">
   <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai" class="aink">المساعد الذكي</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/fadail" data-go="fadail" data-more="1"><b>الفضائل</b><span>فضل الأعمال من الأحاديث الصحيحة</span></a><a href="#/anbiya" data-go="anbiya" data-more="1"><b>قصص الأنبياء</b><span>٢٥ نبياً من القرآن، مع تحميل PDF</span></a><a href="#/sources" data-go="sources" data-more="1"><b>المصادر</b><span>من وين أخذنا كل محتوى في الموقع</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/live" data-go="live" data-more="1"><b>بث الحرمين</b><span>مكة والمدينة مباشرة</span></a><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/dawah" data-go="dawah" data-more="1"><b>دعوة الجاليات</b><span>تعريف بالإسلام بـ٧ لغات للمشاركة</span></a><a href="#/fadail" data-go="fadail" data-more="1"><b>الفضائل</b><span>فضل الأعمال من الأحاديث الصحيحة</span></a><a href="#/anbiya" data-go="anbiya" data-more="1"><b>قصص الأنبياء</b><span>٢٥ نبياً من القرآن، مع تحميل PDF</span></a><a href="#/sources" data-go="sources" data-more="1"><b>المصادر</b><span>من وين أخذنا كل محتوى في الموقع</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -1239,6 +1281,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   <section class="band" id="remind" data-page="remind">
     <h2>التذكيرات</h2>
     <p class="lead">فعّل التذكيرات اللي تبيها وحدد وقتها. أضمن طريقة إنك تضيفها لتقويم جوالك، وتوصلك حتى لو الموقع مقفل.</p>
+    <div class="adh" id="adh">
+      <h3>تنبيه الأذان</h3>
+      <p id="adsub">لكل الصلوات حسب مدينتك في الإعدادات.</p>
+      <div class="adrows" id="adrows"></div>
+      <div class="adopt">
+        <label>التنبيه <select id="adpre"><option value="0">عند الأذان</option><option value="5">قبله بـ٥ دقائق</option><option value="10">قبله بـ١٠ دقائق</option><option value="15">قبله بـ١٥ دقيقة</option></select></label>
+        <label><input type="checkbox" id="adsnd"> صوت تنبيه</label>
+      </div>
+      <div class="row" style="margin-top:14px"><button type="button" class="dl" id="adics">أضف تنبيهات الأذان لتقويم جوالك (٣٠ يوم)</button><button type="button" class="dl ghost" id="adtest">جرّب التنبيه</button></div>
+      <p class="status" id="adst" aria-live="polite" style="text-align:start"></p>
+    </div>
     <div class="rset" id="rset"></div>
     <div class="row" style="max-width:620px;margin-top:18px">
       <button type="button" class="dl" id="rics">أضف التذكيرات لتقويم جوالك</button>
@@ -1267,6 +1320,13 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <p>غايتنا أن يصل القرآن الكريم إلى أكبر عدد من الناس: مقاطع تُحمَّل وتُنشر، ودعاء وحديث يتجددان كل يوم، ومصحف بين يديك، وأدعية وأذكار تذكّر بالله. كل ما في الموقع مجاني ومتاح للجميع، فانشره بنية صالحة، ونسأل الله أن يكتب أجره لكل من ساهم فيه.</p>
       <p>نسألك دعوة صادقة بظهر الغيب، والله الموفق.</p>
     </div>
+  </section>
+
+  <section class="band" id="dawah" data-page="dawah">
+    <h2>دعوة الجاليات</h2>
+    <p class="lead">تعريف مختصر بالإسلام بلغات الجاليات. اختر لغة زميلك أو جارك، وشاركه الصفحة بلغته.</p>
+    <div class="dwl" id="dwl" role="group" aria-label="اللغة"></div>
+    <div id="dwbox"></div>
   </section>
 
   <section class="band" id="fadail" data-page="fadail">
@@ -2178,7 +2238,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // ===================== pages =====================
-  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail'];
+  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail', 'dawah'];
   let page = '';
   const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); };
   $('pmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
@@ -2633,7 +2693,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
@@ -2851,6 +2911,64 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const dorar = t => `https://dorar.net/hadith/search?q=${encodeURIComponent(nrm(t).split(/\s+/).slice(0, 7).join(' '))}`;
   const qcom = t => `https://quran.com/search?q=${encodeURIComponent(nrm(t).replace(/[﴿﴾٠-٩0-9]/g, '').split(/\s+/).filter(Boolean).slice(0, 6).join(' '))}`;
 
+
+  // ===================== adhan alerts =====================
+  const ADP = [['fajr', 'الفجر'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']];
+  const ADH = Object.assign({ on: { fajr: 1, dhuhr: 1, asr: 1, maghrib: 1, isha: 1 }, pre: 0, snd: 1 }, store.get('sk-adh', {}));
+  const adSave = () => store.set('sk-adh', ADH);
+  const adTimes = (dt = riyadhNow()) => PT(dt.getFullYear(), dt.getMonth() + 1, dt.getDate(), CITY[1], CITY[2], 3, isRamadan());
+  const renderAD = () => { if (!$('adrows')) return; const t = adTimes();
+    $('adsub').textContent = `أوقات اليوم في ${CITY[0]} بتقويم أم القرى. غيّر المدينة من الإعدادات.`;
+    $('adrows').innerHTML = ADP.map(([k, n]) => `<div class="adrow"><label class="rsw"><input type="checkbox" data-adk="${k}" ${ADH.on[k] ? 'checked' : ''}><span></span></label><b>أذان ${n}</b><span>${hm(t[k])}</span></div>`).join('');
+    $('adpre').value = String(ADH.pre); $('adsnd').checked = !!ADH.snd; };
+  let actx = null;
+  const chime = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const t0 = actx.currentTime;
+    [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => { const o = actx.createOscillator(), g = actx.createGain(); o.type = 'sine'; o.frequency.value = f; o.connect(g); g.connect(actx.destination);
+      const st = t0 + i * 0.35; g.gain.setValueAtTime(0, st); g.gain.linearRampToValueAtTime(0.25, st + 0.03); g.gain.exponentialRampToValueAtTime(0.001, st + 1.6); o.start(st); o.stop(st + 1.7); }); } catch {} };
+  document.addEventListener('pointerdown', () => { if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch {} } }, { once: true });
+  const adFire = (n, pre) => { const msg = pre ? `باقي ${ar(pre)} دقائق على أذان ${n}` : `حان الآن موعد أذان ${n} حسب توقيت ${CITY[0]}`;
+    try { if ('Notification' in window && Notification.permission === 'granted') new Notification('سكون · أذان ' + n, { body: msg, icon: 'icon.png', tag: 'adhan' }); } catch {}
+    toast(msg); if (ADH.snd) chime(); };
+  $('adrows').addEventListener('change', e => { const k = e.target.dataset.adk; if (!k) return; ADH.on[k] = e.target.checked ? 1 : 0; adSave(); });
+  $('adpre').addEventListener('change', e => { ADH.pre = +e.target.value; adSave(); });
+  $('adsnd').addEventListener('change', e => { ADH.snd = e.target.checked ? 1 : 0; adSave(); if (ADH.snd) chime(); });
+  $('adtest').addEventListener('click', async () => { if ('Notification' in window && Notification.permission === 'default') { try { await Notification.requestPermission(); } catch {} } adFire('الظهر', 0); bellUI && bellUI();
+    $('adst').textContent = 'Notification' in window && Notification.permission === 'granted' ? 'تمام، التنبيه شغّال. يوصلك والموقع مفتوح، وللتنبيه الدائم أضفه للتقويم.' : 'التنبيه يظهر داخل الموقع. للتنبيه حتى والموقع مقفل، أضفه للتقويم.'; });
+  const adDone = store.get('sk-adn', {});
+  setInterval(() => { const r = riyadhNow(), now = r.getHours() * 60 + r.getMinutes(), d = today(), t = adTimes(r);
+    ADP.forEach(([k, n]) => { if (!ADH.on[k]) return; const tm = Math.round(t[k] * 60) - ADH.pre, key = d + k; if (now !== tm || adDone[key]) return;
+      adDone[key] = 1; Object.keys(adDone).forEach(x => { if (!x.startsWith(d)) delete adDone[x]; }); store.set('sk-adn', adDone); adFire(n, ADH.pre); }); }, 15000);
+  $('adics').addEventListener('click', async () => {
+    const st = $('adst'), on = ADP.filter(([k]) => ADH.on[k]); if (!on.length) { st.textContent = 'فعّل صلاة وحدة على الأقل'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
+    if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
+    const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', base = riyadhNow(), ev = [];
+    const z = ms => new Date(ms).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    for (let i = 0; i < 30; i++) { const dt = new Date(base.getFullYear(), base.getMonth(), base.getDate() + i), t = adTimes(dt);
+      const ds = `${dt.getFullYear()}${String(dt.getMonth() + 1).padStart(2, '0')}${String(dt.getDate()).padStart(2, '0')}`;
+      on.forEach(([k, n]) => { const ms = Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()) + (Math.round(t[k] * 60) - 180) * 60000;
+        ev.push('BEGIN:VEVENT', `UID:sukoon-adhan-${ds}-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${z(ms)}`, 'DURATION:PT10M', `SUMMARY:${icsEsc('أذان ' + n + ' · ' + CITY[0])}`, `DESCRIPTION:${icsEsc('حان موعد أذان ' + n + '\n' + SITE)}`, 'TRANSP:TRANSPARENT', 'BEGIN:VALARM', 'ACTION:DISPLAY', `DESCRIPTION:${icsEsc('أذان ' + n)}`, `TRIGGER:${ADH.pre ? '-PT' + ADH.pre + 'M' : 'PT0M'}`, 'END:VALARM', 'END:VEVENT'); }); }
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sukoon//Adhan//AR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', `X-WR-CALNAME:${icsEsc('أذان · ' + CITY[0])}`, ...ev, 'END:VCALENDAR'].join('\r\n');
+    st.textContent = 'جاري التجهيز…';
+    try { await downloads.save({ filename: `أذان ${CITY[0]} - سكون.ics`, data: new Blob([ics], { type: 'text/calendar' }) }); st.textContent = 'تم. افتح الملف واختر «إضافة الكل». الملف لـ٣٠ يوم، ارجع حمّله كل شهر عشان تتحدث الأوقات.'; }
+    catch (err) { st.textContent = err && err.code === 'declined' ? 'تم الإلغاء' : 'صار خطأ، جرب مرة ثانية'; }
+  });
+  renderAD(); setInterval(renderAD, 60 * 60 * 1000);
+
+  // ===================== dawah (community outreach) =====================
+  const DWI = { mosque: '<path d="M4 21V11l8-6 8 6v10"/><path d="M9 21v-5a3 3 0 0 1 6 0v5"/><path d="M12 2v3"/>', sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>', user: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>', compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>', pillars: '<path d="M3 9l9-5 9 5"/><path d="M5 9v9M10 9v9M14 9v9M19 9v9M3 21h18"/>', book: '<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h7"/>', help: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"/>', heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>' };
+  let DW = null, dwl = new URLSearchParams(location.search).get('l') || store.get('sk-dwl', 'ar');
+  const renderDW = () => { if (!DW || !$('dwbox')) return; if (!DW.langs[dwl]) dwl = 'ar'; const L0 = DW.langs[dwl], u = L0.ui;
+    $('dwl').innerHTML = DW.order.map(k => `<button type="button" data-dwl="${k}" aria-pressed="${k === dwl}" lang="${k}">${esc(DW.langs[k].name)}</button>`).join('');
+    const sh = L0.shahada, body = t => t.p.map(x => x === 'SHAHADA' ? `<div class="dwsh"><div class="a">${esc(sh.ar)}</div><div class="t">${esc(sh.tr)}</div>${dwl !== 'ar' ? `<div class="m"><b>${esc(u.mean)}:</b> ${esc(sh.m)}</div>` : ''}</div>` : `<p>${dwl === 'ar' ? qf(x) : esc(x)}</p>`).join('')
+      + (t.l ? (t.i === 'help' ? `<dl>${t.l.map(([q, a]) => `<div><dt>${esc(q)}</dt><dd>${dwl === 'ar' ? qf(a) : esc(a)}</dd></div>`).join('')}</dl>` : `<ol>${t.l.map(([a, b]) => `<li><b>${esc(a)}:</b> ${esc(b)}</li>`).join('')}</ol>`) : '');
+    $('dwbox').innerHTML = `<div lang="${dwl}" dir="${L0.dir}"><div class="dwhero"><h3>${esc(u.t)}</h3><p>${esc(u.lead)}</p><div class="row"><button type="button" class="dl" id="dwshare">${esc(u.share)}</button><p class="status" aria-live="polite" style="margin:0"></p></div></div>
+      <div class="dwt">${L0.topics.map((t, i) => `<details${i === 0 ? ' open' : ''}><summary><span class="dwi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${DWI[t.i] || ''}</svg></span><div><b>${esc(t.h)}</b><small>${esc(t.s)}</small></div></summary><div class="dwb">${body(t)}</div></details>`).join('')}</div>
+      <div class="dwlinks"><a class="dl ghost" href="https://quran.com" target="_blank" rel="noopener">${esc(u.more)} ←</a><a class="dl ghost" href="https://islamhouse.com/${dwl}/" target="_blank" rel="noopener">IslamHouse ←</a></div></div>`; };
+  fetch('dawah.json').then(r => r.json()).then(d => { DW = d; renderDW(); }).catch(() => {});
+  $('dwl').addEventListener('click', e => { const b = e.target.closest('[data-dwl]'); if (!b) return; dwl = b.dataset.dwl; store.set('sk-dwl', dwl); renderDW(); });
+  $('dwbox').addEventListener('click', async e => { const b = e.target.closest('#dwshare'); if (!b) return; const u = DW.langs[dwl].ui, st = b.nextElementSibling, url = `${PUB}?l=${dwl}#/dawah`;
+    try { if (navigator.share) { await navigator.share({ title: u.t, text: u.lead, url }); return; } await navigator.clipboard.writeText(`${u.t}\n${u.lead}\n${url}`); st.textContent = u.copied; } catch (err) { if (!(err && err.name === 'AbortError')) st.textContent = url; } });
   // ===================== fadail =====================
   let FAD = [], fdc = 0;
   const fdItem = (ci, ii, n) => { const x = FAD[ci].items[ii]; return `<div class="fdit" style="animation-delay:${Math.min(n, 10) * 35}ms"><h4><i>${ar(n + 1)}</i>${esc(x.h)}</h4><p>${qf(x.t)}</p><div class="fdft"><span class="src">${esc(x.s)}</span><button type="button" data-share="fd:${ci}:${ii}">مشاركة كصورة</button><button type="button" data-fdcp="${ci}:${ii}">نسخ</button><a href="${dorar(x.t)}" target="_blank" rel="noopener">تحقّق من الحديث</a></div></div>`; };
