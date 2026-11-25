@@ -11,10 +11,6 @@ for no, url in CASES.items():
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36", "Accept-Language": "ar"})
         h = urllib.request.urlopen(req, timeout=40).read().decode("utf-8", "ignore")
-        print("html length", len(h))
-        for k in ("تم جمع", "المبلغ المتبقي"):
-            for m in re.finditer(k, h):
-                print("CTX", k, repr(h[m.start():m.start() + 160]))
         got = re.search(r"تم جمع\s*</span>\s*<label[^>]*>\s*([\d][\d,]*)", h)
         left = re.search(r"المبلغ المتبقي\s*</span>\s*<label[^>]*>\s*([\d][\d,]*)", h)
         if not (got and left):
