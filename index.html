@@ -602,6 +602,7 @@ body.qp-on .rbody{padding-bottom:110px}
 body[data-pg="home"] [data-page]:not([data-page="home"]){display:none!important}
 body[data-pg="ai"] [data-page]:not([data-page="ai"]){display:none!important}
 body[data-pg="watan"] [data-page]:not([data-page="watan"]){display:none!important}
+body[data-pg="jumuah"] [data-page]:not([data-page="jumuah"]){display:none!important}
 body[data-pg="salah"] [data-page]:not([data-page="salah"]){display:none!important}
 body[data-pg="quran"] [data-page]:not([data-page="quran"]){display:none!important}
 body[data-pg="adhkar"] [data-page]:not([data-page="adhkar"]){display:none!important}
@@ -697,7 +698,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 <body>
 <div class="wrap">
   <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai" class="aink">المساعد الذكي</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><a href="#/jumuah" data-go="jumuah" data-more="1"><b>يوم الجمعة</b><span>سنن الجمعة والصلاة على النبي ﷺ</span></a><a href="#/tasbih" data-go="tasbih" data-more="1"><b>المسبحة</b><span>هدفك اليومي وسجلك</span></a><a href="#/clips" data-go="clips" data-more="1"><b>المقاطع</b><span>تلاوات قصيرة للتحميل والنشر</span></a><a href="#/studio" data-go="studio" data-more="1"><b>استوديو التصاميم</b><span>بطاقة آية أو دعاء أو حديث باسمك</span></a><a href="#/sadaqa" data-go="sadaqa" data-more="1"><b>الصدقة</b><span>بطاقة صدقة جارية، إحسان، ومشاريع خيرية</span></a><a href="#/watan" data-go="watan" data-more="1"><b>الوطن</b><span>دعاء للسعودية وولاة أمرها وجنودها</span></a><a href="#/remind" data-go="remind" data-more="1"><b>التذكيرات</b><span>الورد والأذكار والوتر والصيام</span></a><a href="#/guide" data-go="guide" data-more="1"><b>الإرشادات وعن سكون</b><span>طريقة الاستخدام ولماذا سكون</span></a></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -734,7 +735,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <a class="opt" href="#/salah"><b>الصلاة</b><span>المواقيت والإقامة والقبلة</span></a>
         <a class="opt" href="#/adhkar"><b>الأذكار والأدعية</b><span>الصباح والمساء، والأدعية</span></a>
       </div>
-      <button type="button" class="moreall" id="moreall">المزيد من الخدمات <span>المسبحة، المقاطع، التصاميم، الصدقة، الوطن، التذكيرات</span></button>
+      <button type="button" class="moreall" id="moreall">المزيد من الخدمات <span>يوم الجمعة، المسبحة، المقاطع، التصاميم، الصدقة، الوطن، التذكيرات</span></button>
     </div>
   </header>
 
@@ -908,7 +909,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <div id="lbody"></div>
   </section>
 
-  <section class="band" id="jumuah" data-page="adhkar">
+  <section class="band" id="jumuah" data-page="jumuah">
     <h2>يوم الجمعة</h2>
     <p class="lead">سنن ثابتة ليوم الجمعة. علّم على اللي سويته، وتنحفظ علاماتك لين الجمعة الجاية.</p>
     <div class="jbar"><b id="jtitle">باقي على الجمعة</b><div class="cd" id="cd" aria-live="off"></div></div>
@@ -926,10 +927,6 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <button class="reset" id="treset">تصفير العدّاد</button>
       </div>
     </div>
-    <div class="head" id="jhead" style="margin-top:34px"><h2 style="font-size:clamp(24px,3vw,32px)">مقاطع وأذكار للنشر يوم الجمعة</h2>
-      <div class="seg" id="jtabs"><button type="button" data-t="clips" aria-pressed="true">مقاطع</button><button type="button" data-t="adhkar" aria-pressed="false">أذكار</button></div>
-    </div>
-    <div class="grid" id="jmedia"></div>
   </section>
 
   <section class="band" id="tasbih" data-page="tasbih">
@@ -1375,12 +1372,12 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     catch { $('sstatus').textContent = 'ما قدرت أنسخ، جرّب من متصفح ثاني'; }
   });
 
-  $('jmedia').addEventListener('click', e => {
+  if ($('jmedia')) $('jmedia').addEventListener('click', e => {
     const b = e.target.closest('.dl'); if (!b) return;
     if (b.dataset.id) { const c = clips.find(x => x.id === b.dataset.id); if (c) save(b, c.file, c.title); }
     else { const a = adhkar.find(x => x.id === b.dataset.aid); if (a) save(b, a.file, a.title || 'ذكر'); }
   });
-  $('jtabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; jtab = b.dataset.t; $('jtabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderJ(); });
+  if ($('jtabs')) $('jtabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; jtab = b.dataset.t; $('jtabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderJ(); });
 
   // istighfar counter (daily)
   const today = () => riyadhNow().toISOString().slice(0, 10);
@@ -1859,7 +1856,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // ===================== pages =====================
-  const PAGE_IDS = ['home', 'ai', 'watan', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide'];
+  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide'];
   let page = '';
   const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); };
   $('pmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
@@ -2305,7 +2302,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة والمصحف والاستماع)', adhkar: 'الأذكار والأدعية', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'المساعد الذكي', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة والمصحف والاستماع)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'التذكيرات', guide: 'الإرشادات وعن سكون' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
