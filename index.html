@@ -166,6 +166,20 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .cd div{min-width:64px;text-align:center;background:rgba(0,0,0,.25);border-radius:12px;padding:8px 6px}
 .cd strong{display:block;font-size:24px;font-variant-numeric:tabular-nums;line-height:1.2}
 .cd small{color:var(--mute);font-size:13px}
+.jfgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:820px){.jfgrid{grid-template-columns:1fr}}
+.jfcol{background:var(--bg2);border:1px solid var(--line);border-radius:18px;padding:20px}
+.jfcol h3{margin:0 0 12px;color:var(--gold);font:700 22px/1.3 Amiri,serif}
+.jflist{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:jf}
+.jflist li{counter-increment:jf;position:relative;padding-inline-start:38px}
+.jflist li::before{content:counter(jf,arabic-indic);position:absolute;inset-inline-start:0;top:2px;width:26px;height:26px;border:1px solid rgba(201,178,124,.6);border-radius:8px;display:grid;place-items:center;font-size:13px;color:var(--gold)}
+.jflist b{display:block;font-size:17px}
+.jflist p{margin:4px 0;color:var(--ink);font-size:15px;line-height:1.9}
+.jflist small{color:var(--mute);font-size:13px}
+.pst{display:grid;gap:14px;margin-top:6px}
+.pst h4{margin:0 0 4px;color:var(--gold);font-size:17px}
+.pst p{margin:0;line-height:2}
+.pst .pq{margin-top:6px;display:inline-block;color:var(--gold);background:none;border:1px solid rgba(201,178,124,.5);border-radius:10px;padding:4px 10px;font:inherit;font-size:13px;cursor:pointer}
 .jgrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:18px}
 @media(max-width:820px){.jgrid{grid-template-columns:1fr}}
 .todo{display:grid;gap:12px}
@@ -1066,6 +1080,22 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
+  <section class="band" id="jfadl" data-page="jumuah">
+    <h2>فضل يوم الجمعة وسننها</h2>
+    <p class="lead">أحاديث صحيحة في فضل الجمعة، وسننها اللي كان يحرص عليها النبي ﷺ، مع مصدر كل حديث.</p>
+    <div class="jfgrid">
+      <div class="jfcol"><h3>فضل يوم الجمعة</h3><ol class="jflist"><li><b>خير يوم طلعت عليه الشمس</b><p>«خير يوم طلعت عليه الشمس يوم الجمعة، فيه خُلق آدم، وفيه أُدخل الجنة، وفيه أُخرج منها، ولا تقوم الساعة إلا في يوم الجمعة»</p><small>صحيح مسلم (854)</small></li><li><b>عيد الأسبوع</b><p>«إن هذا يوم عيد جعله الله للمسلمين، فمن جاء إلى الجمعة فليغتسل، وإن كان طيب فليمس منه، وعليكم بالسواك»</p><small>سنن ابن ماجه (1098) وحسّنه الألباني</small></li><li><b>تكفير الذنوب</b><p>«من اغتسل ثم أتى الجمعة فصلى ما قُدّر له، ثم أنصت حتى يفرغ الإمام من خطبته، ثم يصلي معه، غُفر له ما بينه وبين الجمعة الأخرى وفضل ثلاثة أيام»</p><small>صحيح مسلم (857)</small></li><li><b>ساعة الإجابة</b><p>«فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه». وأرجى الأقوال أنها آخر ساعة بعد العصر</p><small>صحيح البخاري (935)، سنن أبي داود (1048)</small></li></ol></div>
+      <div class="jfcol"><h3>سنن يوم الجمعة</h3><ol class="jflist"><li><b>الاغتسال</b><p>«غسل يوم الجمعة واجب على كل محتلم»</p><small>صحيح البخاري (858)، صحيح مسلم (846)</small></li><li><b>التطيّب والسواك ولبس أحسن الثياب</b><p>«لا يغتسل رجل يوم الجمعة ويتطهر ما استطاع من طهر، ويدّهن من دهنه، أو يمس من طيب بيته… إلا غُفر له ما بينه وبين الجمعة الأخرى»</p><small>صحيح البخاري (883)</small></li><li><b>التبكير إلى المسجد</b><p>«من اغتسل يوم الجمعة غسل الجنابة ثم راح فكأنما قرّب بدنة، ومن راح في الساعة الثانية فكأنما قرّب بقرة…»</p><small>صحيح البخاري (881)، صحيح مسلم (850)</small></li><li><b>المشي إليها والدنوّ من الإمام والإنصات</b><p>«من غسّل يوم الجمعة واغتسل، وبكّر وابتكر، ومشى ولم يركب، ودنا من الإمام فاستمع ولم يلغُ، كان له بكل خطوة عمل سنة أجر صيامها وقيامها»</p><small>سنن أبي داود (345)، سنن الترمذي (496) وصححه الألباني</small></li><li><b>الإنصات للخطبة</b><p>«إذا قلت لصاحبك يوم الجمعة: أنصت، والإمام يخطب، فقد لغوت»</p><small>صحيح البخاري (934)، صحيح مسلم (851)</small></li><li><b>قراءة سورة الكهف</b><p>«من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين»</p><small>صحيح الجامع (6470)</small></li><li><b>الإكثار من الصلاة على النبي ﷺ</b><p>«إن من أفضل أيامكم يوم الجمعة… فأكثروا عليّ من الصلاة فيه، فإن صلاتكم معروضة عليّ»</p><small>سنن أبي داود (1047) وصححه الألباني</small></li><li><b>قراءة السجدة والإنسان في فجرها</b><p>كان النبي ﷺ يقرأ في الفجر يوم الجمعة: ﴿الٓمٓ تَنزِيلُ﴾ السجدة، و﴿هَلۡ أَتَىٰ عَلَى ٱلۡإِنسَٰنِ﴾</p><small>صحيح البخاري (891)، صحيح مسلم (880)</small></li><li><b>الدعاء وتحرّي ساعة الإجابة</b><p>خصوصاً آخر ساعة بعد العصر إلى المغرب</p><small>سنن أبي داود (1048)</small></li></ol></div>
+    </div>
+    <p class="mnote">المصادر: صحيح البخاري، صحيح مسلم، سنن أبي داود، سنن الترمذي، سنن ابن ماجه. تقدر تتأكد من أي حديث في <a href="https://dorar.net/hadith" target="_blank" rel="noopener">الدرر السنية</a>.</p>
+  </section>
+
+  <section class="band" id="jclipsec" data-page="jumuah" hidden>
+    <h2>مقاطع الجمعة</h2>
+    <p class="lead">مقاطع مختارة ليوم الجمعة. حمّلها وانشرها بنية صالحة.</p>
+    <div class="grid" id="jclips"></div>
+  </section>
+
   <section class="band" id="tasbih" data-page="tasbih">
     <h2>المسبحة الإلكترونية</h2>
     <p class="lead">اختر الذكر وحدد هدفك. العدد ينحفظ حتى لو قفلت الموقع، وكل يوم يتسجل في السجل.</p>
@@ -1397,14 +1427,13 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
           <p class="status" aria-live="polite"></p>
         </div>
       </article>`;
+  const SURN = ["الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم", "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر", "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة", "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج", "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس", "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد", "الإخلاص", "الفلق", "الناس"];
   let jtab = 'clips';
   const renderJ = () => {
-    const el = $('jmedia'); if (!el) return;
-    const ad0 = typeof adhkar !== 'undefined' ? adhkar : []; let jc = clips.filter(c => c.jumuah), ja = ad0.filter(a => a.jumuah); if (!jc.length) jc = clips; if (!ja.length) ja = ad0;
-    const jh = $('jhead'); if (jh) { jh.hidden = !jc.length && !ja.length; el.hidden = jh.hidden; }
-    const list = jtab === 'clips' ? jc : ja;
-    el.className = jtab === 'clips' ? 'grid' : 'agrid';
-    el.innerHTML = list.length ? list.map(jtab === 'clips' ? clipCard : aCard).join('') : '';
+    const el = $('jclips'); if (!el) return;
+    const jc = clips.filter(c => c.jumuah);
+    $('jclipsec').hidden = !jc.length;
+    el.innerHTML = jc.map(clipCard).join('');
   };
   const renderCOD = () => { const box = $('codbox'); if (!box) return; if (!clips.length) { $('clipofday').hidden = true; return; }
     const c = clips[dayNo() % clips.length]; if (box.dataset.id === c.id && box.dataset.dl === String(downloads)) return; box.dataset.id = c.id; box.dataset.dl = String(downloads);
@@ -1554,11 +1583,11 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     catch { $('sstatus').textContent = 'ما قدرت أنسخ، جرّب من متصفح ثاني'; }
   });
 
-  if ($('jmedia')) $('jmedia').addEventListener('click', e => {
+  ['jmedia', 'jclips'].forEach(id => $(id) && $(id).addEventListener('click', e => {
     const b = e.target.closest('.dl'); if (!b) return;
     if (b.dataset.id) { const c = clips.find(x => x.id === b.dataset.id); if (c) save(b, c.file, c.title); }
     else { const a = adhkar.find(x => x.id === b.dataset.aid); if (a) save(b, a.file, a.title || 'ذكر'); }
-  });
+  }));
   if ($('jtabs')) $('jtabs').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; jtab = b.dataset.t; $('jtabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderJ(); });
 
   // istighfar counter (daily)
@@ -1789,7 +1818,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (c.type === 'names') h += `<div class="names">${c.items.map((n, i) => `<div class="nm" style="animation-delay:${Math.min(i, 40) * 18}ms"><i>${ar(i + 1)}</i><b>${esc(n)}</b></div>`).join('')}</div>`;
     else if (c.type === 'dhikr') h += `<div class="alist">${c.items.map((d, i) => [d, i]).filter(([d]) => !c.toggle || !d.only || d.only === period).map(([d, i], j) => dkCard(d, `${c.id}-${c.toggle ? period : ''}-${i}`, j)).join('')}</div><button type="button" class="reset" id="lreset">تصفير العدّادات</button>`;
     else if (c.type === 'list') h += `${c.nahy && ptT ? `<table class="ftable"><thead><tr><th colspan="2">أوقات النهي اليوم في ${CITY[0]} (تقريبية)</th></tr></thead><tbody><tr><td style="font-size:17px">بعد صلاة الفجر</td><td>حتى ${hm(ptT.sunrise + .25)}</td></tr><tr><td style="font-size:17px">قبيل الظهر</td><td>${hm(ptT.dhuhr - 1 / 6)} – ${hm(ptT.dhuhr)}</td></tr><tr><td style="font-size:17px">بعد صلاة العصر</td><td>حتى ${hm(ptT.maghrib)}</td></tr></tbody></table>` : ''}<div class="alist">${c.items.map(listCard).join('')}</div>`;
-    else if (c.type === 'prophets') h += `<div class="proph">${c.items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p><p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
+    else if (c.type === 'prophets') h += `<div class="proph">${c.items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p>${x.f ? `<div class="pst">${x.f.map(([h0, t, r]) => `<div><h4>${esc(h0)}</h4><p>${esc(t)}</p>${r ? `<button type="button" class="pq" data-qo="${r[0] - 1}:${r[1]}">سورة ${esc(SURN[r[0] - 1])} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''} · اقرأ ←</button>` : ''}</div>`).join('')}</div>` : ''}<p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
     else if (c.type === 'prayers') h += `<table class="ftable"><thead><tr><th>الصلاة</th><th>الركعات</th><th>القراءة</th></tr></thead><tbody>${c.rows.map(([n, k, q]) => `<tr><td>${esc(n)}</td><td>${ar(k)}</td><td>${esc(q)}</td></tr>`).join('')}</tbody></table>${c.items.length ? `<div class="lgroup"><h3>صلاة الوتر</h3><div class="alist">${c.items.map(listCard).join('')}</div></div>` : ''}${(c.extra || []).map(g => `<div class="lgroup"><h3>${esc(g.title)}</h3>${g.nahy && ptT ? `<table class="ftable"><thead><tr><th colspan="2">أوقات النهي اليوم في ${CITY[0]} (تقريبية)</th></tr></thead><tbody><tr><td style="font-size:17px">بعد صلاة الفجر</td><td>حتى ${hm(ptT.sunrise + .25)}</td></tr><tr><td style="font-size:17px">قبيل الظهر</td><td>${hm(ptT.dhuhr - 1 / 6)} – ${hm(ptT.dhuhr)}</td></tr><tr><td style="font-size:17px">بعد صلاة العصر</td><td>حتى ${hm(ptT.maghrib)}</td></tr></tbody></table>` : ''}<div class="alist">${g.items.map(listCard).join('')}</div></div>`).join('')}`;
     else if (c.type === 'rawatib') {
       const day = store.get('sk-raw', {}); const td = today(); const st = day.d === td ? day : { d: td };
