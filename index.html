@@ -673,7 +673,6 @@ body.pgx [data-page]:not(.pcard):not([hidden]){animation:pgin .5s cubic-bezier(.
 .acard2{display:flex;align-items:center;gap:14px;width:100%;padding:14px;margin:4px 0 6px;border-radius:18px;border:1px solid rgba(201,178,124,.45);background:linear-gradient(135deg,rgba(201,178,124,.14),transparent);color:var(--ink);font:inherit;text-align:start;cursor:pointer}
 .aav{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#d8bd7f,#9b7a35);color:#1b2a28;font:700 21px/1 inherit}
 .aav.big{width:72px;height:72px;font-size:30px;margin:0 auto 8px}
-.aidt{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}.aidt button{flex:1;border:0;background:none;color:var(--ink);font:inherit;font-size:14px;padding:8px;border-radius:999px;cursor:pointer}.aidt button[aria-pressed="true"]{background:var(--gold);color:#1d1a12;font-weight:700}
 .aform{display:grid;gap:12px;margin-top:14px}
 .aform label{display:grid;gap:6px;font-size:14px;color:var(--mute)}
 .aform input{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
@@ -1864,9 +1863,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   <div class="seg" id="atabs"><button type="button" data-at2="up" aria-pressed="true">إنشاء حساب</button><button type="button" data-at2="in" aria-pressed="false">تسجيل دخول</button></div>
   <form class="aform" id="aform" novalidate>
     <label id="auw"><span>اسم المستخدم</span><input type="text" id="au" autocomplete="username" maxlength="30" placeholder="مثلاً: khalid"></label>
-    <div class="aidt" id="aidt" role="group" aria-label="طريقة الدخول"><button type="button" data-aid="em" aria-pressed="true">بالإيميل</button><button type="button" data-aid="ph" aria-pressed="false">برقم الجوال</button></div>
     <label id="aew"><span>البريد الإلكتروني</span><input type="email" id="ae" autocomplete="email" dir="ltr" placeholder="name@email.com"></label>
-    <label id="aphw" hidden><span>رقم الجوال</span><input type="tel" id="aph" autocomplete="tel" inputmode="tel" dir="ltr" placeholder="05xxxxxxxx"></label>
     <label><span>كلمة المرور</span><input type="password" id="ap" autocomplete="new-password" dir="ltr" minlength="6" placeholder="٦ أحرف أو أكثر"></label>
     <button type="submit" class="dl" id="asub2">إنشاء حساب</button>
     <button type="button" class="alink" id="aforgot" hidden>نسيت كلمة المرور؟</button>
@@ -3501,7 +3498,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const sess = j => ({ at: j.access_token, rt: j.refresh_token, exp: Date.now() + (j.expires_in || 3600) * 1000 - 60000, id: j.user.id, email: j.user.email, name: (j.user.user_metadata && j.user.user_metadata.username) || (AU && AU.name) || j.user.email.split('@')[0], last: AU && AU.last });
   const fresh = async () => { if (!AU) throw new Error('no session'); if (Date.now() < AU.exp) return; const j = await sbf('/auth/v1/token?grant_type=refresh_token', { method: 'POST', body: { refresh_token: AU.rt }, auth: false }); auSave(sess(j)); };
   const localData = () => { const d = {}; Object.keys(localStorage).filter(k => k.startsWith('sk-') && !SKIP.includes(k)).forEach(k => { d[k] = localStorage.getItem(k); }); return d; };
-  const AERR = m => /already registered|already exists/i.test(m) ? 'هذا الإيميل أو رقم الجوال مسجّل من قبل، جرّب تسجيل الدخول.' : /invalid login|invalid credentials/i.test(m) ? 'الإيميل أو رقم الجوال أو كلمة المرور غلط.' : /not confirmed/i.test(m) ? 'أكّد بريدك أول من الرسالة اللي وصلتك.' : /password/i.test(m) ? 'كلمة المرور لازم تكون ٦ أحرف أو أكثر.' : /rate|too many/i.test(m) ? 'محاولات كثيرة، انتظر شوي وجرّب.' : /fetch|network|load failed/i.test(m) ? 'ما قدرنا نتصل، تأكد من الإنترنت.' : 'صار خطأ: ' + m;
+  const AERR = m => /already registered|already exists/i.test(m) ? 'البريد هذا مسجّل من قبل، جرّب تسجيل الدخول.' : /invalid login|invalid credentials/i.test(m) ? 'البريد أو كلمة المرور غلط.' : /not confirmed/i.test(m) ? 'أكّد بريدك أول من الرسالة اللي وصلتك.' : /password/i.test(m) ? 'كلمة المرور لازم تكون ٦ أحرف أو أكثر.' : /rate|too many/i.test(m) ? 'محاولات كثيرة، انتظر شوي وجرّب.' : /fetch|network|load failed/i.test(m) ? 'ما قدرنا نتصل، تأكد من الإنترنت.' : 'صار خطأ: ' + m;
   let syncing = false, dirty = false, syncT = 0;
   const push = async (keepalive = false) => { if (!SBON || !AU) return; await fresh();
     await sbf('/rest/v1/progress?on_conflict=user_id', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, body: { user_id: AU.id, username: AU.name, data: localData(), updated_at: new Date().toISOString() }, keepalive });
@@ -3523,22 +3520,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     $('aav').textContent = ini; $('aname').textContent = AU ? AU.name : 'سجّل دخولك'; $('asub').textContent = AU ? `${showId(AU.email)} · ${fmtAgo(AU.last)}` : 'احفظ تقدمك وزامنه بين أجهزتك (اختياري)';
     $('acout').hidden = !!AU; $('acin').hidden = !AU; $('actitle').textContent = AU ? 'حسابي' : 'الحساب';
     if (AU) { $('aav2').textContent = ini; $('aname2').textContent = AU.name; $('amail').textContent = showId(AU.email); $('async').textContent = fmtAgo(AU.last); } }
-  let amode = 'up', aid = 'em';
+  let amode = 'up';
   const PHD = '@phone.sukoon.app';
-  const phNorm = v => { let d = String(v || '').replace(/[٠-٩]/g, c => '٠١٢٣٤٥٦٧٨٩'.indexOf(c)).replace(/[۰-۹]/g, c => '۰۱۲۳۴۵۶۷۸۹'.indexOf(c)).replace(/[\s\-()]/g, '');
-    if (d.startsWith('00')) d = d.slice(2); else if (d.startsWith('+')) d = d.slice(1); else if (/^05\d{8}$/.test(d)) d = '966' + d.slice(1); else if (/^5\d{8}$/.test(d)) d = '966' + d;
-    return /^\d{8,15}$/.test(d) ? d : null; };
   const showId = e => e && e.endsWith(PHD) ? '+' + e.slice(1, -PHD.length) : e;
-  $('aidt').addEventListener('click', e => { const b = e.target.closest('[data-aid]'); if (!b) return; aid = b.dataset.aid; $('aidt').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); $('aew').hidden = aid !== 'em'; $('aphw').hidden = aid !== 'ph'; $('ast').textContent = ''; (aid === 'em' ? $('ae') : $('aph')).focus(); });
   $('atabs').addEventListener('click', e => { const b = e.target.closest('[data-at2]'); if (!b) return; amode = b.dataset.at2; $('atabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
     $('auw').hidden = amode !== 'up'; $('asub2').textContent = amode === 'up' ? 'إنشاء حساب' : 'تسجيل دخول'; $('aforgot').hidden = amode === 'up'; $('ap').autocomplete = amode === 'up' ? 'new-password' : 'current-password'; $('ast').textContent = ''; });
   const offline = () => { if (window.claude && claude.use) { $('ast').innerHTML = 'تسجيل الدخول متاح في الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/" target="_blank" rel="noopener" style="color:var(--gold)">افتحه هنا</a>.'; return true; }
     if (!SBON) { $('ast').textContent = 'الحسابات قيد التفعيل وبتشتغل قريباً بإذن الله. الموقع يشتغل كامل بدونها، وتقدّمك محفوظ على جهازك.'; return true; } return false; };
   $('aform').addEventListener('submit', async e => { e.preventDefault(); const st = $('ast'); if (offline()) return;
     const u = $('au').value.trim(), pw = $('ap').value; let em = $('ae').value.trim().toLowerCase();
-    if (aid === 'ph') { const d = phNorm($('aph').value); if (!d) { st.textContent = 'اكتب رقم جوال صحيح، مثل 05xxxxxxxx'; $('aph').focus(); return; } em = 'p' + d + PHD; }
     if (amode === 'up' && !/^[\p{L}\p{N}_.\- ]{2,30}$/u.test(u)) { st.textContent = 'اكتب اسم مستخدم من حرفين أو أكثر'; $('au').focus(); return; }
-    if (aid === 'em' && !/^\S+@\S+\.\S+$/.test(em)) { st.textContent = 'اكتب بريد إلكتروني صحيح'; $('ae').focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(em)) { st.textContent = 'اكتب بريد إلكتروني صحيح'; $('ae').focus(); return; }
     if (pw.length < 6) { st.textContent = 'كلمة المرور لازم تكون ٦ أحرف أو أكثر'; $('ap').focus(); return; }
     const b = $('asub2'); b.disabled = true; st.textContent = 'لحظة…';
     try { if (amode === 'up') { const j = await sbf('/auth/v1/signup', { method: 'POST', auth: false, body: { email: em, password: pw, data: { username: u } } });
@@ -3547,7 +3539,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       else { auSave(sess(await sbf('/auth/v1/token?grant_type=password', { method: 'POST', auth: false, body: { email: em, password: pw } }))); }
       $('ap').value = ''; st.textContent = ''; await afterLogin(); }
     catch (err) { st.textContent = AERR(err.message); } finally { b.disabled = false; } });
-  $('aforgot').addEventListener('click', async () => { const st = $('ast'); if (offline()) return; if (aid === 'ph') { st.textContent = 'استرجاع كلمة المرور يكون عن طريق الإيميل. لو سجّلت برقم جوالك ونسيت كلمة المرور، تواصل معنا من «شاركنا تجربتك» في الإعدادات.'; return; } const em = $('ae').value.trim(); if (!/^\S+@\S+\.\S+$/.test(em)) { st.textContent = 'اكتب بريدك فوق أول'; return; }
+  $('aforgot').addEventListener('click', async () => { const st = $('ast'); if (offline()) return; const em = $('ae').value.trim(); if (!/^\S+@\S+\.\S+$/.test(em)) { st.textContent = 'اكتب بريدك فوق أول'; return; }
     try { await sbf('/auth/v1/recover', { method: 'POST', auth: false, body: { email: em } }); st.textContent = 'أرسلنا لك رابط لتغيير كلمة المرور.'; } catch (err) { st.textContent = AERR(err.message); } });
   $('askip').addEventListener('click', () => { spShow(null); });
   $('asyncnow').addEventListener('click', async () => { const st = $('ast2'); st.textContent = 'جاري المزامنة…'; try { await push(); st.textContent = 'تمت المزامنة ✓'; } catch (e) { st.textContent = AERR(e.message); } });
@@ -3807,7 +3799,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795663427'; let pend = false;
+  const BUILD = '1795663586'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
