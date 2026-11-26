@@ -9,15 +9,15 @@
 <meta property="og:site_name" content="سكون">
 <meta property="og:title" content="سكون">
 <meta property="og:description" content="سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.">
-<meta property="og:url" content="https://k44vvd.github.io/sukoon/">
-<meta property="og:image" content="https://k44vvd.github.io/sukoon/og.jpg">
+<meta property="og:url" content="https://sukoon-app.github.io/sukoon/">
+<meta property="og:image" content="https://sukoon-app.github.io/sukoon/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ar_SA">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="سكون">
 <meta name="twitter:description" content="سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.">
-<meta name="twitter:image" content="https://k44vvd.github.io/sukoon/og.jpg">
+<meta name="twitter:image" content="https://sukoon-app.github.io/sukoon/og.jpg">
 <meta name="description" content="سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة، في مساحة واحدة تعينك على ذكر الله والاستمرار على الطاعات.">
 <link rel="icon" href="icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2194,7 +2194,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('treset').addEventListener('click', () => { cnt = 0; $('tcount').textContent = 0; store.set('sk-salawat', 0); });
 
   // sadaqa card
-  const SITE = 'https://k44vvd.github.io/sukoon/';
+  const SITE = 'https://sukoon-app.github.io/sukoon/';
   let g = 'm'; const cv = $('cv'), cx = cv.getContext('2d'); const logo = new Image(); logo.src = 'logo.png';
   const duaFor = () => g === 'f' ? 'اللهم اغفر لها وارحمها، ونوّر قبرها، واجعل القرآن أنيسها' : g === 'me' ? 'اللهم اجعله في ميزان حسناتي، وتقبّله مني' : 'اللهم اغفر له وارحمه، ونوّر قبره، واجعل القرآن أنيسه';
   const nameTxt = () => ($('sname').value || '').trim();
@@ -3012,7 +3012,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       if (k === 'mon' || k === 'thu') { const wd = riyadhNow().getDay(), tgt = k === 'mon' ? 0 : 3; start = addDays(today(), (tgt - wd + 7) % 7).replace(/-/g, ''); }
       return ['BEGIN:VEVENT', `UID:sukoon-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${start}T${h}${m}00`, 'DURATION:PT10M', k === 'mon' ? 'RRULE:FREQ=WEEKLY;BYDAY=SU' : k === 'thu' ? 'RRULE:FREQ=WEEKLY;BYDAY=WE' : 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc('سكون · ' + RINFO[k][0])}`, `DESCRIPTION:${icsEsc(RINFO[k][2] + '\n' + SITE)}`, `URL:${SITE}`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:PT0M', `DESCRIPTION:${icsEsc(RINFO[k][2])}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'); });
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sukoon//Reminders//AR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:سكون', ...ev, 'END:VCALENDAR'].join('\r\n');
-    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
     st.textContent = 'جاري التجهيز…';
     try { await downloads.save({ filename: 'تذكيرات سكون.ics', data: new Blob([ics], { type: 'text/calendar' }) }); st.textContent = 'تم. افتح الملف واختر «إضافة الكل» عشان تنضاف لتقويمك.'; }
@@ -3212,7 +3212,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       if (cur2) { const p = (t - cur2[0]) / Math.max(0.1, cur2[1] - cur2[0]); $('qpprog').style.width = Math.max(0, Math.min(100, p * 100)) + '%'; } return; }
     if (AU.duration) $('qpprog').style.width = (AU.currentTime / AU.duration * 100) + '%'; });
   AU.addEventListener('error', () => { if (QP && isX() && RX[REC].alt) { const r = RX[REC], tried = +(AU.dataset.alt || 0); if (tried < r.alt.length) { AU.dataset.alt = tried + 1; const u = r.alt[tried](QP.s); XT[REC + ':' + QP.s] = { url: u, tm: null }; AU.src = u; AU.play().catch(() => {}); return; } } AU.dataset.alt = 0; if (!QP || !AU.getAttribute('src')) return; const e = $('qperr'); e.hidden = false;
-    e.innerHTML = window.claude && claude.use ? 'الصوت ما يشتغل داخل هذه الصفحة. <a href="https://k44vvd.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتح الموقع من الرابط الرئيسي</a> واستمع من هناك.' : 'تعذّر تحميل الصوت، تأكد من اتصال الإنترنت وجرب مرة ثانية.'; qpUIp(); });
+    e.innerHTML = window.claude && claude.use ? 'الصوت ما يشتغل داخل هذه الصفحة. <a href="https://sukoon-app.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتح الموقع من الرابط الرئيسي</a> واستمع من هناك.' : 'تعذّر تحميل الصوت، تأكد من اتصال الإنترنت وجرب مرة ثانية.'; qpUIp(); });
   function qpUIp() { const on = QP && !AU.paused; $('qppp').innerHTML = on ? PAUSE_SVG : PLAY_SVG; $('qppp').setAttribute('aria-label', on ? 'إيقاف مؤقت' : 'تشغيل'); const rp = $('rplay'); if (rp) rp.innerHTML = (on && QP.s === cur ? PAUSE_SVG + 'إيقاف' : PLAY_SVG + 'استمع'); document.querySelectorAll('.splay').forEach(b => { const me = on && QP.s === +b.dataset.play; b.innerHTML = me ? PAUSE_SVG : PLAY_SVG; b.classList.toggle('on', !!(QP && QP.s === +b.dataset.play)); }); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = on ? 'playing' : 'paused'; }
   const qpUI = () => { if (!QP) { qpUIp(); return; } $('qpt').textContent = Q ? `سورة ${Q[QP.s][0]}` : ''; $('qps').textContent = `${QP.m === 'x' && !QP.tm ? 'السورة كاملة' : QP.b ? 'البسملة' : `الآية ${ar(QP.a)} من ${ar(VC[QP.s])}`} · ${recName()}`; $('qprep').setAttribute('aria-pressed', qpRep); if (QP.m !== 'x') $('qpprog').style.width = '0%'; qpUIp(); };
   const qpHL = () => {
@@ -3442,7 +3442,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const fillDl = async () => { if ($('dlsur').options.length) return; await loadQ(); $('dlsur').innerHTML = Q.map((q, i) => `<option value="${i}">${ar(i + 1)}. سورة ${q[0]}</option>`).join(''); };
   $('dlgo').addEventListener('click', async () => {
     const st = $('dlst'), s2 = +$('dlsur').value, b = $('dlgo');
-    if (window.claude && claude.use) { st.innerHTML = 'تحميل السور يشتغل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتحه هنا</a> واضغط «تحميل السورة».'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'تحميل السور يشتغل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتحه هنا</a> واضغط «تحميل السورة».'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح في هذا المتصفح.'; return; }
     b.disabled = true; $('dlbarw').hidden = false; $('dlbar').style.width = '0%'; let blob;
     try {
@@ -3493,7 +3493,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   bellUI();
 
   // ===================== share + rate =====================
-  const PUB = 'https://k44vvd.github.io/sukoon/'; $('slink').value = PUB;
+  const PUB = 'https://sukoon-app.github.io/sukoon/'; $('slink').value = PUB;
   $('sshare').addEventListener('click', async () => { const t = 'سكون، منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والأعمال الصالحة.'; try { if (navigator.share) { await navigator.share({ title: 'سكون', text: t, url: PUB }); return; } await navigator.clipboard.writeText(`${t}\n${PUB}`); $('sshst').textContent = 'تم نسخ الرابط، انشره ولك الأجر بإذن الله'; } catch (err) { if (err && err.name === 'AbortError') return; $('sshst').textContent = 'انسخ الرابط من الخانة'; } });
   $('scopyl').addEventListener('click', async () => { try { await navigator.clipboard.writeText(PUB); $('sshst').textContent = 'تم نسخ الرابط'; } catch { $('slink').select(); $('sshst').textContent = 'حدد الرابط وانسخه'; } });
   const rateUI = () => { const r = store.get('sk-rate', 0); document.querySelectorAll('#stars button').forEach(b => { const on = +b.dataset.r <= r; b.classList.toggle('on', on); b.setAttribute('aria-checked', +b.dataset.r === r); });
@@ -3597,7 +3597,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const showId = e => e && e.endsWith(PHD) ? '+' + e.slice(1, -PHD.length) : e;
   $('atabs').addEventListener('click', e => { const b = e.target.closest('[data-at2]'); if (!b) return; amode = b.dataset.at2; $('atabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
     $('auw').hidden = amode !== 'up'; $('asub2').textContent = amode === 'up' ? 'إنشاء حساب' : 'تسجيل دخول'; $('aforgot').hidden = amode === 'up'; $('ap').autocomplete = amode === 'up' ? 'new-password' : 'current-password'; $('ast').textContent = ''; });
-  const offline = () => { if (window.claude && claude.use) { $('ast').innerHTML = 'تسجيل الدخول متاح في الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/" target="_blank" rel="noopener" style="color:var(--gold)">افتحه هنا</a>.'; return true; }
+  const offline = () => { if (window.claude && claude.use) { $('ast').innerHTML = 'تسجيل الدخول متاح في الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/" target="_blank" rel="noopener" style="color:var(--gold)">افتحه هنا</a>.'; return true; }
     if (!SBON) { $('ast').textContent = 'الحسابات قيد التفعيل وبتشتغل قريباً بإذن الله. الموقع يشتغل كامل بدونها، وتقدّمك محفوظ على جهازك.'; return true; } return false; };
   $('aform').addEventListener('submit', async e => { e.preventDefault(); const st = $('ast'); if (offline()) return;
     const u = $('au').value.trim(), pw = $('ap').value; let em = $('ae').value.trim().toLowerCase();
@@ -3803,7 +3803,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     x.fillStyle = '#fffaf0'; x.font = '400 50px "Sukoon Quran", Amiri, serif'; x.fillText('رَبَّنَا تَقَبَّلۡ مِنَّآۖ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلۡعَلِيمُ', W / 2, 935);
     x.fillStyle = '#a9bcb7'; x.font = '400 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سورة البقرة · الآية ١٢٧', W / 2, 995);
     x.fillStyle = '#eeede6'; x.font = '400 38px Amiri, serif'; x.fillText('اللهم اجعل القرآن العظيم ربيع قلوبنا ونور صدورنا', W / 2, 1100);
-    x.direction = 'ltr'; x.fillStyle = '#c9b27c'; x.font = '500 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سكون · k44vvd.github.io/sukoon', W / 2, H - 110);
+    x.direction = 'ltr'; x.fillStyle = '#c9b27c'; x.font = '500 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سكون · sukoon-app.github.io/sukoon', W / 2, H - 110);
     return c; };
   window.kCardUI = (box, st) => { box.insertAdjacentHTML('beforeend', `<div class="kshare"><input type="text" id="kcname" maxlength="30" placeholder="اسمك على البطاقة (اختياري)"><div id="kcprev"></div><div class="row"><button type="button" class="dl" id="kcshare">مشاركة بطاقة الختمة</button><button type="button" class="dl ghost" id="kcsave">حفظ الصورة</button></div><p class="status" id="kcst" aria-live="polite"></p><small style="color:var(--mute)">بطاقة شخصية للفرح بإتمام الختمة، بدون أرقام ولا مقارنات.</small></div>`);
     const en = today(); const draw = async () => { const c = await kCard($('kcname').value.trim(), st, en); c.style.cssText = ''; $('kcprev').innerHTML = ''; $('kcprev').appendChild(c); return c; };
@@ -3925,7 +3925,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795717392'; let pend = false;
+  const BUILD = '1795722896'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -4045,7 +4045,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       adDone[key] = 1; Object.keys(adDone).forEach(x => { if (!x.startsWith(d)) delete adDone[x]; }); store.set('sk-adn', adDone); adFire(n, ADH.pre); }); }, 15000);
   $('adics').addEventListener('click', async () => {
     const st = $('adst'), on = ADP.filter(([k]) => ADH.on[k]); if (!on.length) { st.textContent = 'فعّل صلاة وحدة على الأقل'; return; }
-    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://k44vvd.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', base = riyadhNow(), ev = [];
     const z = ms => new Date(ms).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';

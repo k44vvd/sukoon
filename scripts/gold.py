@@ -2,7 +2,7 @@
 # Sources are tried in order; the file is left untouched if all fail or values look wrong.
 import json, urllib.request, datetime, sys
 OZ = 31.1034768; SAR = 3.75  # SAR is pegged to USD at 3.75
-UA = {'User-Agent': 'Mozilla/5.0 (sukoon-bot; +https://k44vvd.github.io/sukoon/)', 'Accept': 'application/json'}
+UA = {'User-Agent': 'Mozilla/5.0 (sukoon-bot; +https://sukoon-app.github.io/sukoon/)', 'Accept': 'application/json'}
 def get(u):
     with urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=25) as r:
         return json.loads(r.read().decode())
