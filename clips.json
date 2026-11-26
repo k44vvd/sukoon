@@ -69,5 +69,47 @@
   "poster": "videos/clip-05.jpg",
   "ratio": "16/9",
   "date": "2026-09-24"
+ },
+ {
+  "id": "tur-48",
+  "title": "واصبر لحكم ربك فإنك بأعيننا",
+  "surah": "سورة الطور",
+  "file": "videos/tur-48.mp4",
+  "poster": "videos/tur-48.jpg",
+  "ratio": "16/9",
+  "date": "2026-11-24"
+ },
+ {
+  "id": "ibrahim-35",
+  "title": "رب اجعل هذا البلد آمناً",
+  "surah": "سورة إبراهيم",
+  "file": "videos/ibrahim-35.mp4",
+  "poster": "videos/ibrahim-35.jpg",
+  "ratio": "16/9",
+  "date": "2026-11-17"
+ },
+ {
+  "id": "musafer-night",
+  "title": "تلاوة خاشعة",
+  "file": "videos/musafer-night.mp4",
+  "poster": "videos/musafer-night.jpg",
+  "ratio": "16/9",
+  "date": "2026-10-25"
+ },
+ {
+  "id": "quba-night",
+  "title": "مسجد قباء ليلاً — المدينة المنورة",
+  "file": "videos/quba-night.mp4",
+  "poster": "videos/quba-night.jpg",
+  "ratio": "9/16",
+  "date": "2026-10-22"
+ },
+ {
+  "id": "mawiza-01",
+  "title": "موعظة مؤثرة",
+  "file": "videos/mawiza-01.mp4",
+  "poster": "videos/mawiza-01.jpg",
+  "ratio": "1/1",
+  "date": "2026-10-15"
  }
 ]
