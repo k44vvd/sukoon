@@ -134,7 +134,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(20px,4vw,56px);align-items:center}
 .about img{width:100%;max-width:340px;border-radius:24px;justify-self:center}
 .about p{margin:0 0 12px;font-size:17px}
-@media(max-width:700px){.about{grid-template-columns:1fr}.about img{max-width:200px}}
+@media(max-width:700px){.about{grid-template-columns:1fr}.about img{max-width:200px}.about img.ablogo{max-width:300px}}
+.about img.ablogo{max-width:420px;height:auto;border-radius:0}.about .ablogo.lt{display:none}:root[data-skin=light] .about .ablogo.ld,:root[data-skin=sand] .about .ablogo.ld{display:none}:root[data-skin=light] .about .ablogo.lt,:root[data-skin=sand] .about .ablogo.lt{display:block}
 .faq{max-width:760px;display:grid;gap:10px}
 .faq details{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:0 18px}
 .faq summary{cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;list-style:none}
@@ -1790,7 +1791,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   <section class="band" id="about" data-page="guide">
     <div class="about">
-      <img src="icon.png" alt="شعار سكون">
+      <img class="ablogo ld" src="logo-full.png" alt="شعار سكون SUKOON" width="900" height="371"><img class="ablogo lt" src="logo-full-dark.png" alt="شعار سكون SUKOON" width="900" height="371">
       <div>
         <h2>عن سكون</h2>
         <p>سكون منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والخدمات التي تعين المسلم على الاستمرار في الطاعات ونشر الخير.</p>
@@ -3829,7 +3830,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795711378'; let pend = false;
+  const BUILD = '1795714641'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
