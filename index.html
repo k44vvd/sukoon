@@ -3962,7 +3962,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795724194'; let pend = false;
+  const BUILD = '1795725654'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
