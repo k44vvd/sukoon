@@ -264,6 +264,15 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 .dsrc{margin:12px 0 0;color:var(--mute);font-size:15px}
 .drow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:22px}
 .drow .dl{flex:0 1 200px;margin:0}
+.dact{display:grid;gap:12px;justify-items:center;margin-top:20px}
+.dact .dshare{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:360px;margin:0}.dact .dshare svg{width:20px;height:20px}
+.dics{display:flex;justify-content:center;gap:6px;flex-wrap:nowrap;width:100%;max-width:420px}
+.dic{flex:1 1 0;min-width:0;max-width:84px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px 8px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);font:inherit;font-size:12px;cursor:pointer;transition:border-color .2s,color .2s}
+.dic svg{width:21px;height:21px}.dic:hover,.dic:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+.dic.on{color:var(--gold);border-color:var(--gold)}.dic.on svg{fill:currentColor}
+.dnx{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--gold);font:inherit;font-size:14.5px;cursor:pointer;padding:4px 8px}.dnx svg{width:17px;height:17px}
+:root[data-skin=light] .dic,:root[data-skin=sand] .dic{background:rgba(0,0,0,.02)}
+
 .wnote{display:inline-block;margin-bottom:16px;padding:4px 12px;border:1px solid rgba(201,178,124,.4);border-radius:999px;color:var(--gold);font-size:14px}
 
 .cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:18px;scrollbar-width:thin}
@@ -1279,14 +1288,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <p class="dtext q" id="aytext">…</p>
       <p class="aytr" id="aytr" dir="auto" hidden></p>
       <div class="tafs" id="aytaf"><b>التفسير الميسر</b><span id="aytafs">…</span></div>
-      <div class="drow">
-        <button type="button" class="dl" id="aydl">تحميل كصورة</button>
-        <button type="button" class="dl ghost" id="aycopy">نسخ الآية</button>
-        <button type="button" class="dl" data-share="ay">مشاركة كصورة</button>
-        <button type="button" class="dl ghost" data-fav="ay">♡ المفضلة</button>
-        <button type="button" class="dl ghost" data-srcs="ay">المصدر</button>
-        <button type="button" class="dl ghost" id="ayopen">اقرأ في المصحف</button>
-        <button type="button" class="dl ghost" id="aynext">آية أخرى</button>
+      <div class="drow dact">
+        <button type="button" class="dl dshare" data-share="ay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg>مشاركة كصورة</button>
+        <div class="dics"><button type="button" class="dic" id="aydl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>تحميل</span></button><button type="button" class="dic" id="aycopy" aria-label="نسخ الآية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>نسخ</span></button><button type="button" class="dic" data-fav="ay" aria-label="المفضلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>المفضلة</span></button><button type="button" class="dic" data-srcs="ay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>المصدر</span></button><button type="button" class="dic" id="ayopen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M8 7h7M8 11h5"/></svg><span>المصحف</span></button></div>
+        <button type="button" class="dnx" id="aynext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg>آية أخرى</button>
       </div>
       <div class="srcbox" id="srcay" hidden></div>
       <p class="status" id="aystatus" aria-live="polite"></p>
@@ -1300,13 +1305,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="dmeta"><span id="dhijri"></span><span id="dgreg"></span></div>
       <p class="dtext" id="dtext">…</p>
       <p class="dsrc" id="dsrc"></p>
-      <div class="drow">
-        <button type="button" class="dl" id="ddl">تحميل كصورة</button>
-        <button type="button" class="dl ghost" id="dcopy">نسخ الدعاء</button>
-        <button type="button" class="dl" data-share="d">مشاركة كصورة</button>
-        <button type="button" class="dl ghost" data-fav="d">♡ المفضلة</button>
-        <button type="button" class="dl ghost" data-srcs="d">المصدر</button>
-        <button type="button" class="dl ghost" id="dnext">دعاء آخر</button>
+      <div class="drow dact">
+        <button type="button" class="dl dshare" data-share="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg>مشاركة كصورة</button>
+        <div class="dics"><button type="button" class="dic" id="ddl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>تحميل</span></button><button type="button" class="dic" id="dcopy" aria-label="نسخ الدعاء"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>نسخ</span></button><button type="button" class="dic" data-fav="d" aria-label="المفضلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>المفضلة</span></button><button type="button" class="dic" data-srcs="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>المصدر</span></button></div>
+        <button type="button" class="dnx" id="dnext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg>دعاء آخر</button>
       </div>
       <div class="srcbox" id="srcd" hidden></div>
       <p class="status" id="dstatus" aria-live="polite"></p>
@@ -1373,13 +1375,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="dmeta"><span>قال رسول الله صلى الله عليه وسلم</span></div>
       <p class="dtext" id="htext">…</p>
       <p class="dsrc" id="hsrc"></p>
-      <div class="drow">
-        <button type="button" class="dl" id="hdl">تحميل كصورة</button>
-        <button type="button" class="dl ghost" id="hcopy">نسخ الحديث</button>
-        <button type="button" class="dl" data-share="h">مشاركة كصورة</button>
-        <button type="button" class="dl ghost" data-fav="h">♡ المفضلة</button>
-        <button type="button" class="dl ghost" data-srcs="h">المصدر</button>
-        <button type="button" class="dl ghost" id="hnext">حديث آخر</button>
+      <div class="drow dact">
+        <button type="button" class="dl dshare" data-share="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg>مشاركة كصورة</button>
+        <div class="dics"><button type="button" class="dic" id="hdl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span>تحميل</span></button><button type="button" class="dic" id="hcopy" aria-label="نسخ الحديث"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>نسخ</span></button><button type="button" class="dic" data-fav="h" aria-label="المفضلة"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>المفضلة</span></button><button type="button" class="dic" data-srcs="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>المصدر</span></button></div>
+        <button type="button" class="dnx" id="hnext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4.5h-4.5"/></svg>حديث آخر</button>
       </div>
       <div class="srcbox" id="srch" hidden></div>
       <p class="status" id="hstatus" aria-live="polite"></p>
@@ -1800,7 +1799,6 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
         <ul class="soonf"><li>نشر خواطر وفوائد</li><li>إعجاب وتعليق</li><li>إعادة نشر</li><li>محتوى نظيف ومراجَع</li></ul>
       </article>
     </div>
-    <div class="soon2"><article><span class=pri>أولوية عالية</span><h3><i aria-hidden="true">📖</i>أكاديمية حفظ القرآن</h3><p>خطة حفظ يومية تمشي معك خطوة بخطوة.</p><ul><li>تحديد السور والآيات</li><li>جدول مراجعة</li><li>تسجيل ما حفظته</li><li>تذكير بالمراجعة</li></ul></article><article><h3><i aria-hidden="true">🗂️</i>مكتبتي الخاصة</h3><p>مكان واحد لكل ما تحب حفظه، مقسّم بتصنيفاتك.</p><ul><li>آيات وأدعية وأحاديث</li><li>تصاميمك المفضلة</li><li>تصنيفات خاصة فيك</li></ul></article><article><h3><i aria-hidden="true">🎧</i>وضع الاستماع المتقدم</h3><p>تحكّم كامل في التلاوة وأنت تحفظ أو تراجع.</p><ul><li>تشغيل متتابع للسور</li><li>تكرار آية محددة وعدد مرات</li><li>مؤقت إيقاف</li><li>متابعة آخر موضع</li></ul></article><article><h3><i aria-hidden="true">🌙</i>التقويم الإسلامي</h3><p>مواسم الطاعات في مكان واحد مع تنبيهات اختيارية.</p><ul><li>رمضان وعشر ذي الحجة</li><li>يوم عرفة وعاشوراء</li><li>الأيام البيض</li></ul></article><article><h3><i aria-hidden="true">🤲</i>دليل أبواب الخير</h3><p>روابط الجهات الرسمية الموثوقة للتبرع.</p><ul><li>إطعام الطعام</li><li>سقيا الماء</li><li>كفالة الأيتام</li><li>منصات رسمية فقط</li></ul></article><article><h3><i aria-hidden="true">🔎</i>البحث القرآني المتقدم</h3><p>ابحث بكلمة أو جزء من آية ووصل للمصحف مباشرة.</p><ul><li>اسم السورة ورقم الآية</li><li>التفسير الميسر</li><li>الانتقال للمصحف</li></ul></article><article><h3><i aria-hidden="true">❓</i>سؤال اليوم</h3><p>سؤال يومي عن القرآن والسيرة والأنبياء.</p><ul><li>الإجابة مع الشرح</li><li>المصدر</li><li>سجل إجاباتك</li></ul></article><article><h3><i aria-hidden="true">🖼️</i>خلفيات إسلامية</h3><p>خلفيات للجوال من آيات وأدعية وأذكار.</p><ul><li>تتجدد باستمرار</li><li>مقاسات مختلفة</li><li>تحميل مباشر</li></ul></article><article><h3><i aria-hidden="true">🕌</i>تعلّم الصلاة والعبادات</h3><p>شروحات مبسطة للوضوء والصلاة والحج والعمرة.</p><ul><li>مصادر موثوقة</li><li>بيان مسائل الخلاف الفقهي</li><li>خطوة بخطوة</li></ul></article><article><h3><i aria-hidden="true">👨‍👩‍👧</i>ختمة جماعية للعائلة</h3><p>ختمة تتوزع أجزاؤها بين أفراد العائلة.</p><ul><li>توزيع الأجزاء</li><li>متابعة الإنجاز</li><li>خاصة بالعائلة فقط، بدون نشر</li></ul></article></div>
     <div class="row" style="margin-top:14px"><button type="button" class="dl" id="soonme">نبّهني عند الإطلاق</button><p class="status" id="soonst" aria-live="polite" style="margin:0"></p></div>
   </section>
 
@@ -3461,14 +3459,14 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (k === 'ay') return { title: 'آية اليوم', txt: $('aytext').textContent, src: $('aysrc').textContent, q: true };
     if (k === 'd') return { title: 'دعاء اليوم', txt: $('dtext').textContent, src: $('dsrc').textContent, q: $('dtext').classList.contains('q') };
     return { title: 'قال رسول الله ﷺ', txt: $('htext').textContent, src: $('hsrc').textContent, q: false }; };
-  document.addEventListener('click', async e => { const b = e.target.closest('[data-share]'); if (!b) return; const it = dayItem(b.dataset.share), t0 = b.textContent;
+  document.addEventListener('click', async e => { const b = e.target.closest('[data-share]'); if (!b) return; const it = dayItem(b.dataset.share), t0 = b.innerHTML;
     const caption = `${it.title}\n${it.txt}\n(${it.src})\n\nمن «سكون»: ${PUB}`; b.disabled = true; b.textContent = 'جاري التجهيز…';
     try { const blob = await cardBlob(it.title, it.txt, it.src, it.q); const file = new File([blob], 'sukoon.png', { type: 'image/png' });
       if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], text: caption }); b.textContent = 'تمت المشاركة'; }
       else if (downloads) { await downloads.save({ filename: `سكون - ${it.title}.png`, data: blob }); try { await navigator.clipboard.writeText(caption); } catch {} b.textContent = 'تم تحميل الصورة'; }
       else { b.textContent = 'المشاركة غير متاحة هنا'; } }
-    catch (err) { b.textContent = err && err.name === 'AbortError' ? t0 : 'ما قدرت أشارك'; }
-    finally { b.disabled = false; setTimeout(() => { b.textContent = t0; }, 2000); } });
+    catch (err) { (err && err.name === 'AbortError') ? (b.innerHTML = t0) : (b.textContent = 'ما قدرت أشارك'); }
+    finally { b.disabled = false; setTimeout(() => { b.innerHTML = t0; }, 2000); } });
   const dorar = t => `https://dorar.net/hadith/search?q=${encodeURIComponent(nrm(t).split(/\s+/).slice(0, 7).join(' '))}`;
   const qcom = t => `https://quran.com/search?q=${encodeURIComponent(nrm(t).replace(/[﴿﴾٠-٩0-9]/g, '').split(/\s+/).filter(Boolean).slice(0, 6).join(' '))}`;
 
@@ -3560,7 +3558,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     const it = dayItem(k); if (!it || !it.txt) return null; const t = k.startsWith('fd:') ? 'فضيلة' : FVT[k] || 'ذكر';
     const o = { k: t, t: it.txt.trim(), s: (it.src || '').trim(), q: it.q ? 1 : 0 }; if (k.startsWith('fd:')) o.h = it.title; return o; };
   window.fvItem = itemFor;
-  function fvMark() { document.querySelectorAll('[data-fav]').forEach(b => { let it = null; try { it = itemFor(b.dataset.fav); } catch {} const on = !!(it && fvHas(it)); b.classList.toggle('on', on); if (b.textContent.includes('المفضلة')) b.textContent = on ? '♥ في المفضلة' : '♡ المفضلة'; else b.textContent = on ? '♥' : '♡'; });
+  function fvMark() { document.querySelectorAll('[data-fav]').forEach(b => { let it = null; try { it = itemFor(b.dataset.fav); } catch {} const on = !!(it && fvHas(it)); b.classList.toggle('on', on); if (b.classList.contains('dic')) { const sp = b.querySelector('span'); if (sp) sp.textContent = on ? 'محفوظة' : 'المفضلة'; } else if (b.textContent.includes('المفضلة')) b.textContent = on ? '♥ في المفضلة' : '♡ المفضلة'; else b.textContent = on ? '♥' : '♡'; });
     document.querySelectorAll('[data-fvj]').forEach(b => { try { const on = fvHas(JSON.parse(b.dataset.fvj)); b.classList.toggle('on', on); b.textContent = on ? '♥' : '♡'; } catch {} });
     const tb = $('tsfav'); if (tb) { const it = itemFor('ts'); const on = !!(it && fvHas(it)); tb.classList.toggle('on', on); tb.textContent = on ? '♥ في المفضلة' : '♡ المفضلة'; } }
   window.fvMark = fvMark; window.fvToggle = fvToggle; window.fvHas = fvHas;
@@ -3798,7 +3796,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795658273'; let pend = false;
+  const BUILD = '1795658730'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
