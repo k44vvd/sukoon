@@ -1227,6 +1227,23 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 @media(max-width:520px){.tstats{grid-template-columns:repeat(2,1fr)}.sw{grid-template-columns:repeat(4,1fr)}.rrow{grid-template-columns:auto 1fr}.rrow input[type=time]{grid-column:2}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}.rv{opacity:1;transform:none}body::before,body::after{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.wt{margin-top:6px}.wt .wtbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+.wt input[type=search]{flex:1 1 220px;min-width:0;padding:11px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.wt .wtrg{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;scrollbar-width:none}.wt .wtrg::-webkit-scrollbar{display:none}
+.wt .wtrg button{flex:0 0 auto;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:inherit;font-size:13.5px;cursor:pointer}
+.wt .wtrg button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.wtg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:10px}
+.wtc{display:block;width:100%;text-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .2s}
+.wtc:hover,.wtc[aria-expanded=true]{border-color:var(--gold)}
+.wtc .wth{display:flex;align-items:center;gap:10px}.wtc .wtf{font-size:26px;line-height:1}.wtc .wtn{flex:1;min-width:0}.wtc .wtn b{display:block;font-size:15.5px}.wtc .wtn small{color:var(--mute);font-size:12.5px}
+.wtc .wtnow{font-variant-numeric:tabular-nums;font-size:13px;color:var(--mute);text-align:end}
+.wtc .wtnx{margin-top:8px;font-size:13.5px;display:flex;justify-content:space-between;gap:8px}.wtc .wtnx b{color:var(--gold)}
+.wtc .wtall{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.wtc .wtall span{display:flex;flex-direction:column;align-items:center;padding:6px 2px;border-radius:10px;background:rgba(127,127,127,.07);font-size:12px;color:var(--mute)}
+.wtc .wtall span b{font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums}.wtc .wtall span.on{outline:1.5px solid var(--gold)}
+.wtc .wtm{grid-column:1/-1;font-size:11.5px;color:var(--mute);text-align:center;margin-top:2px}
+.wtempty{color:var(--mute);padding:10px 0}
 </style>
 </head>
 <body>
@@ -1385,6 +1402,15 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <p class="mnote" id="mcalc"></p>
   </section>
 
+
+  <section class="band wt" id="wtimes" data-page="salah">
+    <h2>مواقيت الصلاة في الدول العربية والإسلامية</h2>
+    <p class="lead">أوقات الأذان اليوم في عواصم ٥٧ دولة، كل دولة بتوقيتها المحلي وبطريقة الحساب المعمول بها فيها. اضغط على أي دولة تطلع لك مواقيتها كاملة.</p>
+    <div class="wtbar"><input type="search" id="wtq" placeholder="ابحث عن دولة أو مدينة…" aria-label="ابحث عن دولة"></div>
+    <div class="wtrg" id="wtrg"></div>
+    <div class="wtg" id="wtg"></div>
+    <p class="mnote">المواقيت محسوبة فلكياً لعاصمة كل دولة (وللسعودية مكة والرياض)، وقد تختلف دقائق عن تقويم الجهة الرسمية في بلدك أو عن بقية مدنها. في الدول اللي تعتمد المذهب الحنفي حُسب العصر بظل المثلين.</p>
+  </section>
   <section class="band" id="qibla" data-page="salah">
     <h2>اتجاه القبلة</h2>
     <p class="lead">اتجاه الكعبة المشرفة من مكانك. اضغط «حدد موقعي» لحساب الاتجاه بدقة، و«البوصلة» عشان يتحرك السهم مع اتجاه جوالك.</p>
@@ -1797,6 +1823,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <h3 class="srch">المواقيت والتقويم</h3>
     <ul class="srclist">
       <li><b>مواقيت الصلاة والضحى</b>: محسوبة بطريقة تقويم أم القرى المعتمدة في السعودية، والإقامة حسب المدد المعتمدة من <a href="https://www.moia.gov.sa" target="_blank" rel="noopener">وزارة الشؤون الإسلامية</a>.</li>
+      <li><b>مواقيت الدول العربية والإسلامية</b>: محسوبة فلكياً لعاصمة كل دولة بطريقة الحساب المعمول بها هناك (رابطة العالم الإسلامي، الهيئة المصرية العامة للمساحة، جامعة العلوم الإسلامية بكراتشي، أم القرى وغيرها)، والتوقيت المحلي من قاعدة بيانات المناطق الزمنية في متصفحك.</li>
       <li><b>التاريخ الهجري</b>: تقويم أم القرى.</li>
       <li><b>مواعيد الصرف</b>: جدول <a href="https://www.mof.gov.sa" target="_blank" rel="noopener">وزارة المالية</a> للرواتب، والقاعدة المعلنة لبقية المواعيد (تقديم الصرف إذا وافق إجازة).</li>
     </ul>
@@ -2623,6 +2650,86 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const PN = [['fajr', 'الفجر'], ['sunrise', 'الشروق'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']];
   const hm = h => { h = ((h % 24) + 24) % 24; let H = Math.floor(h), Mi = Math.round((h - H) * 60); if (Mi === 60) { H++; Mi = 0; } if (SET0.h24) return `${nd(String(H).padStart(2, '0'))}:${nd(String(Mi).padStart(2, '0'))}`; const ap = isAr() ? (H < 12 ? 'ص' : 'م') : (H < 12 ? 'AM' : 'PM'); const h12 = H % 12 || 12; return `${nd(h12)}:${nd(String(Mi).padStart(2, '0'))} ${ap}`; };
   const isRamadan = () => { try { return new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { month: 'numeric', timeZone: 'Asia/Riyadh' }).format(new Date()).startsWith('9'); } catch { return false; } };
+
+  // ===== world prayer times (Arab & OIC countries) =====
+  const WTM = { UQ: [18.5, 0, 90, 'أم القرى'], EG: [19.5, 17.5, 0, 'الهيئة المصرية العامة للمساحة'], MWL: [18, 17, 0, 'رابطة العالم الإسلامي'], KR: [18, 18, 0, 'جامعة العلوم الإسلامية بكراتشي'], AE: [18.2, 18.2, 0, 'الهيئة العامة للشؤون الإسلامية والأوقاف'], KW: [18, 17.5, 0, 'وزارة الأوقاف الكويتية'], QA: [18, 0, 90, 'وزارة الأوقاف القطرية'], SEA: [20, 18, 0, 'الجهات الدينية في جنوب شرق آسيا'], TR: [18, 17, 0, 'رئاسة الشؤون الدينية التركية'], IR: [17.7, 14, 0, 'معهد الجيوفيزياء بطهران', 4.5], MA: [19, 17, 0, 'وزارة الأوقاف المغربية'], JO: [18, 18, 0, 'وزارة الأوقاف الأردنية'], TN: [18, 18, 0, 'وزارة الشؤون الدينية التونسية'], OM: [18, 18, 0, 'وزارة الأوقاف العمانية'] };
+  const WTR = [['all', 'الكل'], ['g', 'الخليج واليمن'], ['s', 'الشام والعراق'], ['n', 'مصر والسودان والقرن الأفريقي'], ['m', 'المغرب العربي'], ['a', 'آسيا'], ['f', 'أفريقيا'], ['o', 'أوروبا والأمريكتين']];
+  // [flag, country, city, lat, lng, zone, method, region, hanafi]
+  const WTC = [
+    ['SA', 'السعودية', 'مكة المكرمة', 21.4225, 39.8262, 'Asia/Riyadh', 'UQ', 'g'], ['SA', 'السعودية', 'الرياض', 24.7136, 46.6753, 'Asia/Riyadh', 'UQ', 'g'],
+    ['AE', 'الإمارات', 'أبوظبي', 24.4539, 54.3773, 'Asia/Dubai', 'AE', 'g'], ['KW', 'الكويت', 'الكويت', 29.3759, 47.9774, 'Asia/Kuwait', 'KW', 'g'],
+    ['QA', 'قطر', 'الدوحة', 25.2854, 51.531, 'Asia/Qatar', 'QA', 'g'], ['BH', 'البحرين', 'المنامة', 26.2285, 50.586, 'Asia/Bahrain', 'UQ', 'g'],
+    ['OM', 'عُمان', 'مسقط', 23.588, 58.3829, 'Asia/Muscat', 'OM', 'g'], ['YE', 'اليمن', 'صنعاء', 15.3694, 44.191, 'Asia/Aden', 'MWL', 'g'],
+    ['IQ', 'العراق', 'بغداد', 33.3152, 44.3661, 'Asia/Baghdad', 'MWL', 's'], ['SY', 'سوريا', 'دمشق', 33.5138, 36.2765, 'Asia/Damascus', 'EG', 's'],
+    ['JO', 'الأردن', 'عمّان', 31.9454, 35.9284, 'Asia/Amman', 'JO', 's'], ['LB', 'لبنان', 'بيروت', 33.8938, 35.5018, 'Asia/Beirut', 'EG', 's'],
+    ['PS', 'فلسطين', 'القدس', 31.7767, 35.2345, 'Asia/Hebron', 'EG', 's'],
+    ['EG', 'مصر', 'القاهرة', 30.0444, 31.2357, 'Africa/Cairo', 'EG', 'n'], ['SD', 'السودان', 'الخرطوم', 15.5007, 32.5599, 'Africa/Khartoum', 'EG', 'n'],
+    ['SO', 'الصومال', 'مقديشو', 2.0469, 45.3182, 'Africa/Mogadishu', 'MWL', 'n'], ['DJ', 'جيبوتي', 'جيبوتي', 11.5721, 43.1456, 'Africa/Djibouti', 'MWL', 'n'],
+    ['KM', 'جزر القمر', 'موروني', -11.7172, 43.2473, 'Indian/Comoro', 'MWL', 'n'],
+    ['LY', 'ليبيا', 'طرابلس', 32.8872, 13.1913, 'Africa/Tripoli', 'EG', 'm'], ['TN', 'تونس', 'تونس', 36.8065, 10.1815, 'Africa/Tunis', 'TN', 'm'],
+    ['DZ', 'الجزائر', 'الجزائر', 36.7538, 3.0588, 'Africa/Algiers', 'MWL', 'm'], ['MA', 'المغرب', 'الرباط', 34.0209, -6.8416, 'Africa/Casablanca', 'MA', 'm'],
+    ['MR', 'موريتانيا', 'نواكشوط', 18.0735, -15.9582, 'Africa/Nouakchott', 'MWL', 'm'],
+    ['TR', 'تركيا', 'أنقرة', 39.9334, 32.8597, 'Europe/Istanbul', 'TR', 'a'], ['IR', 'إيران', 'طهران', 35.6892, 51.389, 'Asia/Tehran', 'IR', 'a'],
+    ['AF', 'أفغانستان', 'كابل', 34.5553, 69.2075, 'Asia/Kabul', 'KR', 'a', 1], ['PK', 'باكستان', 'إسلام آباد', 33.6844, 73.0479, 'Asia/Karachi', 'KR', 'a', 1],
+    ['BD', 'بنغلاديش', 'دكا', 23.8103, 90.4125, 'Asia/Dhaka', 'KR', 'a', 1], ['MV', 'المالديف', 'ماليه', 4.1755, 73.5093, 'Indian/Maldives', 'MWL', 'a'],
+    ['ID', 'إندونيسيا', 'جاكرتا', -6.2088, 106.8456, 'Asia/Jakarta', 'SEA', 'a'], ['MY', 'ماليزيا', 'كوالالمبور', 3.139, 101.6869, 'Asia/Kuala_Lumpur', 'SEA', 'a'],
+    ['BN', 'بروناي', 'بندر سري بكاوان', 4.9031, 114.9398, 'Asia/Brunei', 'SEA', 'a'], ['AZ', 'أذربيجان', 'باكو', 40.4093, 49.8671, 'Asia/Baku', 'MWL', 'a'],
+    ['KZ', 'كازاخستان', 'أستانا', 51.1694, 71.4491, 'Asia/Almaty', 'MWL', 'a', 1], ['UZ', 'أوزبكستان', 'طشقند', 41.2995, 69.2401, 'Asia/Tashkent', 'MWL', 'a', 1],
+    ['TM', 'تركمانستان', 'عشق آباد', 37.9601, 58.3261, 'Asia/Ashgabat', 'MWL', 'a', 1], ['TJ', 'طاجيكستان', 'دوشنبه', 38.5598, 68.787, 'Asia/Dushanbe', 'MWL', 'a', 1],
+    ['KG', 'قيرغيزستان', 'بشكيك', 42.8746, 74.5698, 'Asia/Bishkek', 'MWL', 'a', 1],
+    ['NG', 'نيجيريا', 'أبوجا', 9.0765, 7.3986, 'Africa/Lagos', 'MWL', 'f'], ['SN', 'السنغال', 'داكار', 14.7167, -17.4677, 'Africa/Dakar', 'MWL', 'f'],
+    ['ML', 'مالي', 'باماكو', 12.6392, -8.0029, 'Africa/Bamako', 'MWL', 'f'], ['NE', 'النيجر', 'نيامي', 13.5116, 2.1254, 'Africa/Niamey', 'MWL', 'f'],
+    ['BF', 'بوركينا فاسو', 'واغادوغو', 12.3714, -1.5197, 'Africa/Ouagadougou', 'MWL', 'f'], ['TD', 'تشاد', 'نجامينا', 12.1348, 15.0557, 'Africa/Ndjamena', 'MWL', 'f'],
+    ['GN', 'غينيا', 'كوناكري', 9.6412, -13.5784, 'Africa/Conakry', 'MWL', 'f'], ['GW', 'غينيا بيساو', 'بيساو', 11.8817, -15.617, 'Africa/Bissau', 'MWL', 'f'],
+    ['GM', 'غامبيا', 'بانجول', 13.4549, -16.579, 'Africa/Banjul', 'MWL', 'f'], ['SL', 'سيراليون', 'فريتاون', 8.4657, -13.2317, 'Africa/Freetown', 'MWL', 'f'],
+    ['CI', 'ساحل العاج', 'أبيدجان', 5.36, -4.0083, 'Africa/Abidjan', 'MWL', 'f'], ['BJ', 'بنين', 'بورتو نوفو', 6.4969, 2.6289, 'Africa/Porto-Novo', 'MWL', 'f'],
+    ['TG', 'توغو', 'لومي', 6.1375, 1.2123, 'Africa/Lome', 'MWL', 'f'], ['CM', 'الكاميرون', 'ياوندي', 3.848, 11.5021, 'Africa/Douala', 'MWL', 'f'],
+    ['GA', 'الغابون', 'ليبرفيل', 0.4162, 9.4673, 'Africa/Libreville', 'MWL', 'f'], ['UG', 'أوغندا', 'كمبالا', 0.3476, 32.5825, 'Africa/Kampala', 'MWL', 'f'],
+    ['MZ', 'موزمبيق', 'مابوتو', -25.9692, 32.5732, 'Africa/Maputo', 'MWL', 'f'],
+    ['AL', 'ألبانيا', 'تيرانا', 41.3275, 19.8187, 'Europe/Tirane', 'MWL', 'o'], ['GY', 'غيانا', 'جورج تاون', 6.8013, -58.1551, 'America/Guyana', 'MWL', 'o'],
+    ['SR', 'سورينام', 'باراماريبو', 5.852, -55.2038, 'America/Paramaribo', 'MWL', 'o']];
+  const wtFlag = c => c.replace(/./g, ch => String.fromCodePoint(127397 + ch.charCodeAt(0)));
+  const wtZone = (zone, date) => { try { const p = new Intl.DateTimeFormat('en-US', { timeZone: zone, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' }).formatToParts(date); const g = t => +p.find(x => x.type === t).value; const u = Date.UTC(g('year'), g('month') - 1, g('day'), g('hour') % 24, g('minute'), g('second')); return { off: Math.round((u - date.getTime()) / 9e5) / 4, y: g('year'), m: g('month'), d: g('day'), h: (g('hour') % 24) + g('minute') / 60 + g('second') / 3600 }; } catch { return null; } };
+  const PTW = (y, m, d, lat, lng, tz, M, hanafi, ramadan) => {
+    const D2R = Math.PI / 180, R2D = 180 / Math.PI;
+    let Y = y, Mo = m; if (Mo <= 2) { Y -= 1; Mo += 12; }
+    const A = Math.floor(Y / 100), B = 2 - A + Math.floor(A / 4);
+    const jd = Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (Mo + 1)) + d + B - 1524.5;
+    const sun = j => { const D = j - 2451545, g = (357.529 + 0.98560028 * D) % 360, q = (280.459 + 0.98564736 * D) % 360, L = (q + 1.915 * Math.sin(g * D2R) + 0.020 * Math.sin(2 * g * D2R)) % 360, e = 23.439 - 0.00000036 * D;
+      let RA = Math.atan2(Math.cos(e * D2R) * Math.sin(L * D2R), Math.cos(L * D2R)) * R2D / 15; RA = ((RA % 24) + 24) % 24;
+      const decl = Math.asin(Math.sin(e * D2R) * Math.sin(L * D2R)) * R2D; let eqt = q / 15 - RA; eqt = (((eqt + 12) % 24) + 24) % 24 - 12; return { decl, eqt }; };
+    const J = jd - lng / 360, mid = t => 12 - sun(J + t / 24).eqt;
+    const at = (ang, t, ccw) => { const { decl } = sun(J + t / 24); const v = Math.acos((-Math.sin(ang * D2R) - Math.sin(decl * D2R) * Math.sin(lat * D2R)) / (Math.cos(decl * D2R) * Math.cos(lat * D2R))) * R2D / 15; return mid(t) + (ccw ? -v : v); };
+    const asr = t => { const { decl } = sun(J + t / 24); return at(-Math.atan(1 / ((hanafi ? 2 : 1) + Math.tan(Math.abs(lat - decl) * D2R))) * R2D, t); };
+    const [fa, ia, im, , ma] = M;
+    const run = T0 => ({ fajr: at(fa, T0.fajr, 1), sunrise: at(0.833, T0.sunrise, 1), dhuhr: mid(T0.dhuhr), asr: asr(T0.asr), sunset: at(0.833, T0.sunset), maghrib: ma ? at(ma, T0.maghrib) : at(0.833, T0.maghrib), isha: ia ? at(ia, T0.isha) : NaN });
+    let T = run({ fajr: 5, sunrise: 6, dhuhr: 12, asr: 13, sunset: 18, maghrib: 18, isha: 19.5 }); T = run(Object.fromEntries(Object.entries(T).map(([k, v]) => [k, isFinite(v) ? v : 12])));
+    const night = 24 - (T.sunset - T.sunrise);
+    if (!isFinite(T.fajr)) T.fajr = T.sunrise - night / 7;
+    if (im) T.isha = T.maghrib + (im + (ramadan ? 30 : 0)) / 60; else if (!isFinite(T.isha)) T.isha = T.sunset + night / 7;
+    const adj = tz - lng / 15 + 1 / 60; const out = {}; for (const k of ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha']) out[k] = T[k] + adj; return out;
+  };
+  const wtCalc = (c, now = new Date()) => { const z = wtZone(c[5], now); if (!z) return null; const T = PTW(z.y, z.m, z.d, c[3], c[4], z.off, WTM[c[6]], c[8], c[6] === 'UQ' && c[0] === 'SA' && isRamadan()); return { z, T }; };
+  const wtNext = (T, h) => { for (const k of ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha']) if (T[k] > h) return [k, T[k], T[k] - h]; return ['fajr', T.fajr, T.fajr + 24 - h]; };
+  const wtDur = x => { const mi = Math.max(0, Math.round(x * 60)), H = Math.floor(mi / 60), Mi = mi % 60; return H ? `${nd(H)} س ${nd(Mi)} د` : `${nd(Mi)} د`; };
+  const PNM = Object.fromEntries(PN);
+  const wtN = x => String(x).replace(/[\u064B-\u0652\u0640]/g, '').replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
+  let wtR = 'all', wtOpen = '';
+  const wtRender = () => {
+    const g = $('wtg'); if (!g) return; const q = wtN(($('wtq').value || '').trim()); const now = new Date();
+    const list = WTC.filter(c => (wtR === 'all' || c[7] === wtR) && (!q || wtN(c[1] + ' ' + c[2]).includes(q)));
+    g.innerHTML = list.length ? list.map(c => { const r = wtCalc(c, now); if (!r) return ''; const { z, T } = r; const [nk, nt, nl] = wtNext(T, z.h); const id = c[0] + c[2]; const op = wtOpen === id;
+      return `<button type="button" class="wtc" data-wt="${id}" aria-expanded="${op}"><span class="wth"><span class="wtf" aria-hidden="true">${wtFlag(c[0])}</span><span class="wtn"><b>${c[1]}</b><small>${c[2]}</small></span><span class="wtnow">الآن<br>${hm(z.h)}</span></span><span class="wtnx"><span>${PNM[nk]} <b>${hm(nt)}</b></span><span>بعد ${wtDur(nl)}</span></span>${op ? `<span class="wtall">${PN.map(([k, n]) => `<span${k === nk ? ' class="on"' : ''}>${n}<b>${hm(T[k])}</b></span>`).join('')}<span class="wtm">طريقة الحساب: ${WTM[c[6]][3]}${c[8] ? '، والعصر على المذهب الحنفي' : ''}</span></span>` : ''}</button>`; }).join('') : '<p class="wtempty">ما لقينا دولة بهالاسم. جرّب اسم الدولة أو العاصمة.</p>';
+  };
+  const wtInit = () => {
+    if (!$('wtg')) return;
+    $('wtrg').innerHTML = WTR.map(([k, n]) => `<button type="button" data-wr="${k}" aria-pressed="${k === wtR}">${n}</button>`).join('');
+    $('wtrg').addEventListener('click', e => { const b = e.target.closest('[data-wr]'); if (!b) return; wtR = b.dataset.wr; $('wtrg').querySelectorAll('[data-wr]').forEach(x => x.setAttribute('aria-pressed', x === b)); wtRender(); });
+    $('wtq').addEventListener('input', () => { wtR = 'all'; $('wtrg').querySelectorAll('[data-wr]').forEach(x => x.setAttribute('aria-pressed', x.dataset.wr === 'all')); wtRender(); });
+    $('wtg').addEventListener('click', e => { const b = e.target.closest('[data-wt]'); if (!b) return; e.stopPropagation(); wtOpen = wtOpen === b.dataset.wt ? '' : b.dataset.wt; wtRender(); });
+    wtRender(); setInterval(() => { if (document.body.dataset.pg === 'salah' && !document.hidden) wtRender(); }, 30000);
+  };
+  window.skWorld = { WTC, wtCalc, wtNext };
   let ptDay = '', ptT = null, CITY = ['جدة', 21.4858, 39.1925];
   const tickPT = () => {
     const r = riyadhNow(), key = r.toDateString();
@@ -2728,6 +2835,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     ptDay = ''; applyS(); try { showAyTr(); } catch {}
   };
   applyS();
+  try { wtInit(); } catch (e) { console.warn(e); }
   if (LANG !== 'ar') setLang(LANG);
 
 
@@ -3284,7 +3392,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'دَليل (دليلك إلى الخير في سكون)', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'الأذان والتذكيرات (صوت الأذان، المؤذن، تنبيه الصلوات، الورد والأذكار والوتر والصيام)', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', archive: 'الأرشيف (كل المقاطع وصور الأذكار المنشورة بالتاريخ)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع', backup: 'النسخة الاحتياطية (حفظ تقدّمك واسترجاعه، أو تسجيل الدخول للمزامنة)', mawaid: 'مواعيد الصرف والمناسبات (الرواتب، الضمان، حساب المواطن، الدعم السكني، رمضان، العيدين، عرفة، عاشوراء، اليوم الوطني ويوم التأسيس)', ibadat: 'العبادات (كيف تصلي، الاستخارة، فقه الصلاة، القبلة، المساجد القريبة، المسافر، حاسبة الزكاة، صلاة الليل، قضاء رمضان، متابعة العبادات، المطوّف، الحج والعمرة وأدعيتها)' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'دَليل (دليلك إلى الخير في سكون)', salah: 'الصلاة (المواقيت والإقامة والضحى والقبلة، ومواقيت الصلاة في الدول العربية والإسلامية)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'الأذان والتذكيرات (صوت الأذان، المؤذن، تنبيه الصلوات، الورد والأذكار والوتر والصيام)', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', archive: 'الأرشيف (كل المقاطع وصور الأذكار المنشورة بالتاريخ)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع', backup: 'النسخة الاحتياطية (حفظ تقدّمك واسترجاعه، أو تسجيل الدخول للمزامنة)', mawaid: 'مواعيد الصرف والمناسبات (الرواتب، الضمان، حساب المواطن، الدعم السكني، رمضان، العيدين، عرفة، عاشوراء، اليوم الوطني ويوم التأسيس)', ibadat: 'العبادات (كيف تصلي، الاستخارة، فقه الصلاة، القبلة، المساجد القريبة، المسافر، حاسبة الزكاة، صلاة الليل، قضاء رمضان، متابعة العبادات، المطوّف، الحج والعمرة وأدعيتها)' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
@@ -3340,6 +3448,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (fatwa) txt = 'أنا «دَليل»، أدلّك على محتوى الموقع وما أعطي فتوى ولا أحكم في المسائل الشرعية. اسأل أهل العلم: الرئاسة العامة للإفتاء على alifta.gov.sa، أو إمام مسجدك.';
     if (fatwa) acts.push(['موقع الإفتاء', () => window.open('https://www.alifta.gov.sa', '_blank', 'noopener')]);
     const add = t => { txt += (txt ? '\n\n' : '') + t; };
+    if (!fatwa && /(مواقيت|اذان|أذان|وقت|صلا|فجر|ظهر|عصر|مغرب|عشاء)/.test(n)) { const W = window.skWorld; const hit = W && W.WTC.find(c => c[0] !== 'SA' && (n.includes(wtN(c[1])) || n.includes(wtN(c[2])))); if (hit) { const r = W.wtCalc(hit); if (r) { const [nk, nt, nl] = W.wtNext(r.T, r.z.h); add(`مواقيت الصلاة اليوم في ${hit[2]} (${hit[1]}) بتوقيتها المحلي:\n${PN.map(([k, nm]) => `${nm}: ${hm(r.T[k])}`).join('\n')}\n\nالصلاة الجاية هناك ${PNM[nk]} الساعة ${hm(nt)}، بعد ${wtDur(nl)}.`); src.push(`محسوبة فلكياً بطريقة ${WTM[hit[6]][3]}، وقد تختلف دقائق عن التقويم الرسمي هناك`); acts.push(['مواقيت كل الدول', () => { go('salah'); setTimeout(() => $('wtimes')?.scrollIntoView({ behavior: 'smooth' }), 300); }]); } } }
     // 1) how are you feeling → a fitting dua from the library + an ayah of comfort
     const FEEL = [[/حزين|حزن|متضايق|ضايق|ضيقه|مهموم|هم |همي|مكتئب|طفشان/, 'الهم والحزن', 'اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن، وضلع الدين وغلبة الرجال', 'البخاري ٦٣٦٩', '﴿ألا بذكر الله تطمئن القلوب﴾ الرعد ٢٨'],
       [/قلق|خايف|خوف|متوتر|توتر|مرعوب/, 'الخوف والقلق', 'حسبنا الله ونعم الوكيل', 'البخاري ٤٥٦٣', '﴿لا تحزن إن الله معنا﴾ التوبة ٤٠'],
@@ -3962,7 +4071,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795726387'; let pend = false;
+  const BUILD = '1795726974'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
