@@ -3097,7 +3097,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== audio quran =====================
   const RECS = [['ar.alafasy', 'مشاري العفاسي', 128], ['ar.mahermuaiqly', 'ماهر المعيقلي', 128], ['ar.abdurrahmaansudais', 'عبدالرحمن السديس', 192], ['ar.saoodshuraym', 'سعود الشريم', 64], ['ar.husary', 'محمود خليل الحصري', 128], ['ar.minshawi', 'محمد صديق المنشاوي', 128], ['ar.abdulsamad', 'عبدالباسط عبدالصمد', 64], ['ar.muhammadayyoub', 'محمد أيوب', 128], ['ar.hudhaify', 'علي الحذيفي', 128], ['ar.ahmedajamy', 'أحمد العجمي', 128], ['ar.shaatree', 'أبو بكر الشاطري', 128], ['ar.abdullahbasfar', 'عبدالله بصفر', 192], ['ar.muhammadjibreel', 'محمد جبريل', 128], ['ar.hanirifai', 'هاني الرفاعي', 192]];
-  const RX = { 'x.baleela': { n: 'بندر بليلة', qdc: 160 }, 'x.juhany': { n: 'عبدالله الجهني', url: s => `https://download.quranicaudio.com/quran/abdullaah_3awwaad_al-juhaynee//${String(s + 1).padStart(3, '0')}.mp3` } };
+  const RX = { 'x.baleela': { n: 'بندر بليلة', qdc: 160 }, 'x.juhany': { n: 'عبدالله الجهني', url: s => `https://download.quranicaudio.com/quran/abdullaah_3awwaad_al-juhaynee//${String(s + 1).padStart(3, '0')}.mp3` }, 'x.jaber': { n: 'علي جابر', url: s => `https://download.quranicaudio.com/quran/ali_jaber/${String(s + 1).padStart(3, '0')}.mp3`, alt: [s => `https://server11.mp3quran.net/a_jbr/${String(s + 1).padStart(3, '0')}.mp3`] } };
   let REC = store.get('sk-rec', 'ar.alafasy'); if (!RECS.some(r => r[0] === REC) && !RX[REC]) REC = 'ar.alafasy';
   const isX = () => !!RX[REC];
   const recName = () => (RX[REC] ? RX[REC].n : RECS.find(r => r[0] === REC)[1]);
@@ -3146,7 +3146,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       const a = xAyahAt(t); if (a !== QP.a) { QP.a = a; store.set('sk-qp', { s: QP.s, a }); qpUI(); qpHL(); qpMeta(); }
       if (cur2) { const p = (t - cur2[0]) / Math.max(0.1, cur2[1] - cur2[0]); $('qpprog').style.width = Math.max(0, Math.min(100, p * 100)) + '%'; } return; }
     if (AU.duration) $('qpprog').style.width = (AU.currentTime / AU.duration * 100) + '%'; });
-  AU.addEventListener('error', () => { if (!QP || !AU.getAttribute('src')) return; const e = $('qperr'); e.hidden = false;
+  AU.addEventListener('error', () => { if (QP && isX() && RX[REC].alt) { const r = RX[REC], tried = +(AU.dataset.alt || 0); if (tried < r.alt.length) { AU.dataset.alt = tried + 1; const u = r.alt[tried](QP.s); XT[REC + ':' + QP.s] = { url: u, tm: null }; AU.src = u; AU.play().catch(() => {}); return; } } AU.dataset.alt = 0; if (!QP || !AU.getAttribute('src')) return; const e = $('qperr'); e.hidden = false;
     e.innerHTML = window.claude && claude.use ? 'الصوت ما يشتغل داخل هذه الصفحة. <a href="https://k44vvd.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتح الموقع من الرابط الرئيسي</a> واستمع من هناك.' : 'تعذّر تحميل الصوت، تأكد من اتصال الإنترنت وجرب مرة ثانية.'; qpUIp(); });
   function qpUIp() { const on = QP && !AU.paused; $('qppp').innerHTML = on ? PAUSE_SVG : PLAY_SVG; $('qppp').setAttribute('aria-label', on ? 'إيقاف مؤقت' : 'تشغيل'); const rp = $('rplay'); if (rp) rp.innerHTML = (on && QP.s === cur ? PAUSE_SVG + 'إيقاف' : PLAY_SVG + 'استمع'); document.querySelectorAll('.splay').forEach(b => { const me = on && QP.s === +b.dataset.play; b.innerHTML = me ? PAUSE_SVG : PLAY_SVG; b.classList.toggle('on', !!(QP && QP.s === +b.dataset.play)); }); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = on ? 'playing' : 'paused'; }
   const qpUI = () => { if (!QP) { qpUIp(); return; } $('qpt').textContent = Q ? `سورة ${Q[QP.s][0]}` : ''; $('qps').textContent = `${QP.m === 'x' && !QP.tm ? 'السورة كاملة' : QP.b ? 'البسملة' : `الآية ${ar(QP.a)} من ${ar(VC[QP.s])}`} · ${recName()}`; $('qprep').setAttribute('aria-pressed', qpRep); if (QP.m !== 'x') $('qpprog').style.width = '0%'; qpUIp(); };
@@ -3614,7 +3614,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     'ar.muhammadjibreel': ['مصر', 'مرتّل', 'قارئ ومقرئ، اشتهر بإمامة التراويح.'],
     'ar.hanirifai': ['السعودية', 'مرتّل', 'إمام وخطيب، معروف بتلاوته الخاشعة.'],
     'x.baleela': ['السعودية', 'مرتّل', 'إمام وخطيب المسجد الحرام. تلاوة السورة كاملة مع تتبّع الآيات.'],
-    'x.juhany': ['السعودية', 'مرتّل', 'إمام في المسجد الحرام. تلاوة السورة كاملة.']
+    'x.juhany': ['السعودية', 'مرتّل', 'إمام في المسجد الحرام. تلاوة السورة كاملة.'],
+    'x.jaber': ['السعودية', 'مرتّل', 'إمام سابق في المسجد الحرام، رحمه الله، اشتهر بصوته الخاشع. تلاوة السورة كاملة.']
   };
   const PAL = [['#1f6f66', '#0b3532'], ['#7a5a1e', '#3b2a0c'], ['#2e4a7a', '#121f3b'], ['#6a2e4a', '#2c1020'], ['#3e6a2e', '#18300f'], ['#5a3e7a', '#221438']];
   const qrList = () => [...RECS.map(r => [r[0], r[1]]), ...Object.entries(RX).map(([k, v]) => [k, v.n])];
@@ -3790,10 +3791,9 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   {
   const AUTH = () => { try { return !!localStorage.getItem('sukoon-auth'); } catch { return false; } };
   const showLogin = () => { if (AUTH() || document.querySelector('.adpop')) return; let snz = null; try { snz = localStorage.getItem('sukoon-lgsn'); if (sessionStorage.getItem('sk-lgss')) return; sessionStorage.setItem('sk-lgss', '1'); } catch {}
-    if (snz && (Date.parse(today()) - Date.parse(snz)) / 864e5 < 30) return;
     const w = document.createElement('div'); w.className = 'adpop lgpop'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'تسجيل الدخول');
     w.innerHTML = `<div class="in"><button type="button" class="adx" data-lgx="1" aria-label="إغلاق">✕</button><div class="adb"><span class="lgic" aria-hidden="true">🔐</span><h3>احفظ تقدّمك</h3><p>سجّل دخولك بإيميلك عشان تنحفظ ختمتك وأذكارك ومفضلتك، وترجع لها من أي جهاز. التسجيل اختياري ومجاني.</p>
-      <div class="row"><button type="button" class="dl" data-lggo="1">تسجيل الدخول</button><button type="button" class="dl ghost" data-lgx="1">لاحقاً</button></div><button type="button" class="lgno" data-lgno="1">لا تذكّرني لمدة شهر</button></div></div>`;
+      <div class="row"><button type="button" class="dl" data-lggo="1">تسجيل الدخول</button><button type="button" class="dl ghost" data-lgx="1">لاحقاً</button></div></div></div>`;
     document.body.appendChild(w); requestAnimationFrame(() => w.classList.add('on'));
     const close = () => { w.classList.remove('on'); setTimeout(() => w.remove(), 300); };
     w.addEventListener('click', e => { if (e.target.closest('[data-lggo]')) { close(); try { openSet(true); spShow('acct'); } catch { location.hash = '#/backup'; } return; }
@@ -3817,7 +3817,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795706507'; let pend = false;
+  const BUILD = '1795708415'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
