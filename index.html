@@ -978,6 +978,7 @@ body[data-pg="quran"] [data-page]:not([data-page="quran"]){display:none!importan
 body[data-pg="adhkar"] [data-page]:not([data-page="adhkar"]){display:none!important}
 body[data-pg="tasbih"] [data-page]:not([data-page="tasbih"]){display:none!important}
 body[data-pg="clips"] [data-page]:not([data-page="clips"]){display:none!important}
+body[data-pg="reels"] [data-page]:not([data-page="reels"]){display:none!important}
 body[data-pg="studio"] [data-page]:not([data-page="studio"]){display:none!important}
 body[data-pg="sadaqa"] [data-page]:not([data-page="sadaqa"]){display:none!important}
 body[data-pg="remind"] [data-page]:not([data-page="remind"]){display:none!important}
@@ -1268,13 +1269,58 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 .msg .atools{display:flex;gap:4px;margin-top:8px;justify-content:flex-end}
 .msg .atools button{border:0;background:transparent;color:var(--mute);font-size:13px;padding:4px 8px;border-radius:8px;cursor:pointer}.msg .atools button:hover{color:var(--gold)}
 .aihead{display:flex;justify-content:flex-end;margin:-6px 0 8px}.aihead button{border:1px solid var(--line);background:transparent;color:var(--mute);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+
+.reels .rlhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.reels .rlhead h2{margin:0}.rlbtns{display:flex;gap:8px;flex-wrap:wrap;margin-inline-start:auto}.rlbtns .dl{margin:0}
+.rlplay{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:6px 0 14px}.rlplay .dl{margin:0}
+.rltabs{display:flex;gap:6px}.rltabs button{padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);font:inherit;font-size:13.5px;cursor:pointer}.rltabs button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.rlgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}@media(min-width:820px){.rlgrid{grid-template-columns:repeat(5,1fr)}}
+.rlg{position:relative;aspect-ratio:9/16;border:0;padding:0;border-radius:10px;overflow:hidden;background:#0b1f1e;cursor:pointer}
+.rlg img{width:100%;height:100%;object-fit:cover;display:block}.rlg span{position:absolute;inset:auto 6px 6px auto;color:#fff;font-size:12px;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.rlg i{position:absolute;inset:6px 6px auto auto;font-style:normal;font-size:11px;color:#fff;background:rgba(0,0,0,.55);padding:2px 7px;border-radius:999px}
+.rlg b{position:absolute;inset:auto 6px 6px 6px;text-align:start;color:#fff;font-size:11.5px;font-weight:600;line-height:1.4;text-shadow:0 1px 3px rgba(0,0,0,.9);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;padding-inline-end:34px}
+.rlempty{grid-column:1/-1;color:var(--mute);padding:18px 0}
+.rview{position:fixed;inset:0;z-index:70;background:#000;color:#fff}.rview[hidden]{display:none}
+.rvtop{position:absolute;inset:0 0 auto 0;z-index:3;display:flex;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top)) 14px 10px;background:linear-gradient(rgba(0,0,0,.55),transparent)}
+.rvtop b{flex:1;text-align:center;font-size:17px}.rvtop button{width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.rvs{height:100%;overflow-y:scroll;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none}.rvs::-webkit-scrollbar{display:none}
+.rvi{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;display:grid;place-items:center;overflow:hidden}
+.rvbg{position:absolute;inset:-30px;background-size:cover;background-position:center;filter:blur(28px) brightness(.45);transform:scale(1.1)}
+.rvf{position:relative;max-width:100%;max-height:100%;width:100%;overflow:hidden;background:transparent}
+.rvf video{width:100%;height:100%;display:block}
+.rvcap{position:absolute;inset:18% 8% auto 8%;text-align:center;font:700 clamp(18px,5vw,28px)/1.5 Amiri,serif;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.85);pointer-events:none}
+.rvmeta{position:absolute;inset:auto 16px max(22px,env(safe-area-inset-bottom)) 76px;z-index:2;text-shadow:0 1px 6px rgba(0,0,0,.9)}
+.rvmeta b{display:block;font-size:16px;line-height:1.5}.rvmeta small{display:block;opacity:.85;font-size:13px;margin-top:3px}
+.rvact{position:absolute;inset:auto auto max(26px,env(safe-area-inset-bottom)) 10px;z-index:2;display:flex;flex-direction:column;gap:16px;align-items:center}
+.rvact button{background:none;border:0;color:#fff;display:flex;flex-direction:column;align-items:center;gap:3px;font:inherit;font-size:12px;cursor:pointer;text-shadow:0 1px 4px rgba(0,0,0,.8)}
+.rvact svg{width:30px;height:30px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.6))}.rvact .on svg{fill:#ff3b5c;stroke:#ff3b5c}.rvact .sv.on svg{fill:#fff;stroke:#fff}
+.rvheart{position:absolute;inset:0;margin:auto;width:110px;height:110px;z-index:2;pointer-events:none;opacity:0;transform:scale(.6);transition:opacity .25s,transform .25s}.rvheart.on{opacity:1;transform:scale(1)}
+.rvpause{position:absolute;inset:0;margin:auto;width:70px;height:70px;border-radius:50%;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:2;pointer-events:none;opacity:0;transition:opacity .2s}.rvi.paused .rvpause{opacity:1}
+.rvbar{position:absolute;inset:auto 0 0 0;height:3px;background:rgba(255,255,255,.18);z-index:3}.rvbar i{display:block;height:100%;width:0;background:#fff}
+.rup{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.6);display:grid;place-items:end center}.rup[hidden]{display:none}
+.rupin{width:min(560px,100%);max-height:94dvh;overflow:auto;background:var(--bg2);color:var(--ink);border-radius:22px 22px 0 0;padding:16px 16px max(18px,env(safe-area-inset-bottom))}
+@media(min-width:700px){.rup{place-items:center}.rupin{border-radius:22px}}
+.ruphd{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.ruphd h3{margin:0}.ruphd button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.rupdrop{display:grid;place-items:center;gap:8px;text-align:center;padding:34px 16px;border:2px dashed var(--line);border-radius:18px;cursor:pointer;color:var(--mute)}.rupdrop b{color:var(--ink);font-size:17px}
+.rupv{position:relative;margin:0 auto 12px;background:#000;border-radius:14px;overflow:hidden;max-height:52dvh}
+.rupv video{width:100%;height:100%;display:block}
+.rupl{display:block;margin:12px 0 6px;font-size:13.5px;color:var(--mute)}
+.ruprow{display:flex;align-items:center;gap:8px}.ruprow input[type=range]{flex:1;accent-color:var(--gold)}.ruprow output{min-width:52px;text-align:center;font-variant-numeric:tabular-nums;font-size:13px}
+.rupseg{display:flex;flex-wrap:wrap;gap:6px}.rupseg button{padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13.5px;cursor:pointer}.rupseg button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.rupin input[type=text]{width:100%;padding:11px 13px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;box-sizing:border-box}
+.rupchk{display:flex;gap:8px;align-items:flex-start;margin:14px 0 4px;font-size:13.5px;line-height:1.7}
+.rupprog{height:8px;border-radius:99px;background:rgba(127,127,127,.2);overflow:hidden;margin:10px 0}.rupprog i{display:block;height:100%;width:0;background:var(--gold);transition:width .2s}
+.rupst{font-size:14px;margin:8px 0;min-height:1.4em}
+.rupcov{display:flex;align-items:center;gap:10px;margin-top:6px}.rupcov img{width:54px;aspect-ratio:9/16;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.rvlist{display:grid;gap:12px}.rvli{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:14px;padding:10px;background:var(--card)}
+.rvli video{width:96px;aspect-ratio:9/16;object-fit:cover;border-radius:10px;background:#000}.rvli b{display:block}.rvli small{color:var(--mute);display:block;margin:2px 0 8px;font-size:12.5px}.rvli .acts{display:flex;gap:6px;flex-wrap:wrap}.rvli .acts button{padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:13px;cursor:pointer}.rvli .acts .ok{background:#16a34a;border-color:#16a34a;color:#fff}.rvli .acts .no{color:#dc2626;border-color:#dc2626}
+.rvst{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:999px;margin-inline-start:6px}.rvst.p{background:#f59e0b22;color:#b45309}.rvst.a{background:#16a34a22;color:#15803d}.rvst.r{background:#dc262622;color:#dc2626}
 </style>
 </head>
 <body>
 <noscript><h1>سكون: منصة إسلامية</h1><p>سكون منصة إسلامية مجانية تجمع القرآن الكريم كاملاً مع التلاوة والتفسير الميسر، وأذكار الصباح والمساء، والأدعية، ومواقيت الصلاة واتجاه القبلة، والختمة والمسبحة، وقصص الأنبياء، وفضائل الأعمال من الأحاديث الصحيحة، وحاسبة الزكاة، ودليل الحج والعمرة، والصدقة الجارية.</p></noscript>
 <div class="wrap">
   <nav class="pnav" id="pnav" aria-label="أقسام الموقع"><a href="#/home" data-go="home">الرئيسية</a><a href="#/ai" data-go="ai" class="aink">دَليل</a><a href="#/quran" data-go="quran">القرآن</a><a href="#/salah" data-go="salah">الصلاة</a><a href="#/adhkar" data-go="adhkar">الأذكار</a><button type="button" class="pmore" id="pmore" aria-expanded="false" aria-controls="mpanel">المزيد <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></nav>
-  <div class="mpanel" id="mpanel" hidden><div class="mpin"><h4 class="mgh">العبادات والقرآن</h4><div class="mng"><a href="#/ibadat" data-go="ibadat" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V11l8-5 8 5v10M9 21v-4.5a3 3 0 0 1 6 0V21M12 6V2.5M2.5 21h19"/></svg></i><b>العبادات</b></a><a href="#/remind" data-go="remind" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></i><b>الأذان والتذكيرات</b></a><a href="#/anbiya" data-go="anbiya" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5.5 4 9 4 12 6c3-2 6.5-2 9-.5V19c-2.5-1.5-6-1.5-9 .5-3-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/></svg></i><b>قصص الأنبياء</b></a><a href="#/fadail" data-go="fadail" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4l-5.3 3 1.2-6-4.5-4.1 6-.7z"/></svg></i><b>الفضائل</b></a><a href="#/jumuah" data-go="jumuah" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2"/></svg></i><b>يوم الجمعة</b></a><a href="#/tasbih" data-go="tasbih" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6"/><circle cx="16.8" cy="6.8" r="1.6"/><circle cx="17.6" cy="12" r="1.6"/><circle cx="7.2" cy="6.8" r="1.6"/><circle cx="6.4" cy="12" r="1.6"/><circle cx="12" cy="15" r="1.6"/><path d="M12 16.6V21M10 21h4"/></svg></i><b>المسبحة</b></a></div><h4 class="mgh">المحتوى</h4><div class="mng"><a href="#/clips" data-go="clips" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></i><b>المقاطع</b></a><a href="#/archive" data-go="archive" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg></i><b>الأرشيف</b></a><a href="#/studio" data-go="studio" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg></i><b>استوديو التصاميم</b></a><a href="#/fav" data-go="fav" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></i><b>المفضلة</b></a><a href="#/live" data-go="live" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg></i><b>بث الحرمين</b></a><a href="#/dawah" data-go="dawah" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></i><b>دعوة الجاليات</b></a></div><h4 class="mgh">خدمات</h4><div class="mng"><a href="#/sadaqa" data-go="sadaqa" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9c-1-2-4.2-1.8-4.2.6 0 2 4.2 4.6 4.2 4.6s4.2-2.6 4.2-4.6C16.2 7.2 13 7 12 9z"/><path d="M2.5 15.5H6l4.5 2.2h5a1.8 1.8 0 0 0 0-3.6h-3M6 15.5v5H2.5"/></svg></i><b>الصدقة</b></a><a href="#/mawaid" data-go="mawaid" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17M8 3v4M16 3v4M9 15h6"/></svg></i><b>مواعيد الصرف</b></a><a href="#/watan" data-go="watan" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h13l-2.5 4.5L18 13H5"/></svg></i><b>الوطن</b></a><a href="#/backup" data-go="backup" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.5 1.5A3.8 3.8 0 0 1 17 18z"/><path d="M12 16v-5.5M9.5 13 12 10.5l2.5 2.5"/></svg></i><b>النسخة الاحتياطية</b></a><a href="#/sources" data-go="sources" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M9 7.5h6M9 11h4"/></svg></i><b>المصادر</b></a><a href="#/guide" data-go="guide" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></i><b>عن سكون</b></a></div></div></div>
+  <div class="mpanel" id="mpanel" hidden><div class="mpin"><h4 class="mgh">العبادات والقرآن</h4><div class="mng"><a href="#/ibadat" data-go="ibadat" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V11l8-5 8 5v10M9 21v-4.5a3 3 0 0 1 6 0V21M12 6V2.5M2.5 21h19"/></svg></i><b>العبادات</b></a><a href="#/remind" data-go="remind" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></svg></i><b>الأذان والتذكيرات</b></a><a href="#/anbiya" data-go="anbiya" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5.5C5.5 4 9 4 12 6c3-2 6.5-2 9-.5V19c-2.5-1.5-6-1.5-9 .5-3-2-6.5-2-9-.5z"/><path d="M12 6v13.5"/></svg></i><b>قصص الأنبياء</b></a><a href="#/fadail" data-go="fadail" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4l-5.3 3 1.2-6-4.5-4.1 6-.7z"/></svg></i><b>الفضائل</b></a><a href="#/jumuah" data-go="jumuah" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17M8 3v4M16 3v4"/><circle cx="12" cy="15" r="2"/></svg></i><b>يوم الجمعة</b></a><a href="#/tasbih" data-go="tasbih" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.6"/><circle cx="16.8" cy="6.8" r="1.6"/><circle cx="17.6" cy="12" r="1.6"/><circle cx="7.2" cy="6.8" r="1.6"/><circle cx="6.4" cy="12" r="1.6"/><circle cx="12" cy="15" r="1.6"/><path d="M12 16.6V21M10 21h4"/></svg></i><b>المسبحة</b></a></div><h4 class="mgh">المحتوى</h4><div class="mng"><a href="#/reels" data-go="reels" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="m10.5 9.5 4 2.5-4 2.5z"/></svg></i><b>ريلز</b></a><a href="#/clips" data-go="clips" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></i><b>المقاطع</b></a><a href="#/archive" data-go="archive" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v10h14V9M10 13h4"/></svg></i><b>الأرشيف</b></a><a href="#/studio" data-go="studio" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg></i><b>استوديو التصاميم</b></a><a href="#/fav" data-go="fav" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></i><b>المفضلة</b></a><a href="#/live" data-go="live" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M8.2 8.2a5.4 5.4 0 0 0 0 7.6M15.8 8.2a5.4 5.4 0 0 1 0 7.6M5.3 5.3a9.5 9.5 0 0 0 0 13.4M18.7 5.3a9.5 9.5 0 0 1 0 13.4"/></svg></i><b>بث الحرمين</b></a><a href="#/dawah" data-go="dawah" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></i><b>دعوة الجاليات</b></a></div><h4 class="mgh">خدمات</h4><div class="mng"><a href="#/sadaqa" data-go="sadaqa" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9c-1-2-4.2-1.8-4.2.6 0 2 4.2 4.6 4.2 4.6s4.2-2.6 4.2-4.6C16.2 7.2 13 7 12 9z"/><path d="M2.5 15.5H6l4.5 2.2h5a1.8 1.8 0 0 0 0-3.6h-3M6 15.5v5H2.5"/></svg></i><b>الصدقة</b></a><a href="#/mawaid" data-go="mawaid" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17M8 3v4M16 3v4M9 15h6"/></svg></i><b>مواعيد الصرف</b></a><a href="#/watan" data-go="watan" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h13l-2.5 4.5L18 13H5"/></svg></i><b>الوطن</b></a><a href="#/backup" data-go="backup" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.5 1.5A3.8 3.8 0 0 1 17 18z"/><path d="M12 16v-5.5M9.5 13 12 10.5l2.5 2.5"/></svg></i><b>النسخة الاحتياطية</b></a><a href="#/sources" data-go="sources" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3M9 7.5h6M9 11h4"/></svg></i><b>المصادر</b></a><a href="#/guide" data-go="guide" data-more="1"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg></i><b>عن سكون</b></a></div></div></div>
   <div class="pcard" id="pcard" data-sky="night" data-page="home">
     <div class="sky" aria-hidden="true"><i class="stars"></i><i class="stars s2"></i><i class="orb"></i><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i></div>
     <div class="ptop">
@@ -1369,6 +1415,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     <div class="head">
       <h2>المقاطع</h2>
       <span class="count" id="count"></span>
+      <a class="dl ghost" href="#/reels" data-go="reels" style="margin-inline-start:auto">شاهدها كريلز ▸</a>
     </div>
     <p class="lead">ننشر مقطعاً جديداً باستمرار. أحدث مقطع فوق، وتحته أرشيف كل المقاطع السابقة بتاريخ نشرها.</p>
     <div class="ctoday" id="cptw" hidden><span class="dlab">مقطع اليوم · الأحدث</span><div class="codbox" id="cpday"></div></div>
@@ -1894,27 +1941,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </section>
 
 
-  <section class="band" id="soon" data-page="home">
-    <h2>ميزات قادمة</h2>
-    <p class="lead">نشتغل عليها الحين، وبتنزل قريباً بإذن الله.</p>
-    <div class="soong">
-      <article class="soonc">
-        <span class="soonb">قريباً</span>
-        <div class="soonv reel" aria-hidden="true"><div class="rph"><i class="rpl"></i><div class="rside"><span><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><small>١٫٢ألف</small></span><span><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><small>٨٤</small></span><span><svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg><small>٣١٠</small></span></div><b class="rcap">﴿أَلَا بِذِكۡرِ ٱللَّهِ تَطۡمَئِنُّ ٱلۡقُلُوبُ﴾</b></div></div>
-        <h3>ريلز القرآن</h3>
-        <p>مقاطع تلاوة قصيرة تتصفحها بالسحب مثل الريلز، بدون موسيقى ولا محتوى يشتتك.</p>
-        <ul class="soonf"><li>إعجاب بالمقطع</li><li>تعليقات</li><li>إعادة نشر</li><li>حفظ ومشاركة</li></ul>
-      </article>
-      <article class="soonc">
-        <span class="soonb">قريباً</span>
-        <div class="soonv post" aria-hidden="true"><div class="pst1"><i></i><div><b>سكون</b><small><bdi dir="ltr">@sukoon</bdi> · الآن</small></div></div><p>«أحب الأعمال إلى الله أدومها وإن قلّ» 🤍</p><div class="pst2"><span>♡ ٢٤٠</span><span>💬 ١٨</span><span>⟲ ٥٢</span></div></div>
-        <h3>منشورات وتغريدات</h3>
-        <p>مساحة تكتب فيها خاطرة أو فائدة أو دعاء، ويتفاعل معها غيرك بالخير.</p>
-        <ul class="soonf"><li>نشر خواطر وفوائد</li><li>إعجاب وتعليق</li><li>إعادة نشر</li><li>محتوى نظيف ومراجَع</li></ul>
-      </article>
-    </div>
-    <div class="row" style="margin-top:14px"><button type="button" class="dl" id="soonme">نبّهني عند الإطلاق</button><p class="status" id="soonst" aria-live="polite" style="margin:0"></p></div>
-  </section>
+
 
   <section class="dua" data-page="home">
     <p>اللهم اجعل هذا العمل خالصاً لوجهك الكريم، واجعله صدقةً جاريةً لكل من ساهم في نشره</p>
@@ -1929,6 +1956,14 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     </div>
   </section>
 
+
+  <section class="band reels" id="reels" data-page="reels">
+    <div class="rlhead"><h2>ريلز سكون</h2><div class="rlbtns"><button type="button" class="dl" id="rlup">＋ ارفع مقطعك</button><button type="button" class="dl ghost" id="rlmine" hidden>مقاطعي</button><button type="button" class="dl ghost" id="rlrev" hidden>المراجعة</button></div></div>
+    <p class="lead">مقاطع تلاوة قصيرة تتصفحها بالسحب، بدون موسيقى ولا شي يشتتك. ترفع مقطعك وتعدّله، وينزل بعد ما نراجعه.</p>
+    <div class="rlplay"><button type="button" class="dl" id="rlstart">▶ ابدأ المشاهدة</button><div class="rltabs" id="rltabs"><button type="button" data-rlt="all" aria-pressed="true">الكل</button><button type="button" data-rlt="saved" aria-pressed="false">المحفوظة</button><button type="button" data-rlt="liked" aria-pressed="false">أعجبتني</button></div></div>
+    <div class="rlgrid" id="rlgrid"></div>
+    <p class="mnote" id="rlnote">المقاطع المرفوعة تُراجع قبل النشر: تلاوة أو موعظة أو ذكر، بدون موسيقى، ومن حقك تنشرها.</p>
+  </section>
   <section class="band" id="save" data-page="clips">
     <h2>طريقة حفظ المقطع في الألبوم</h2>
     <p class="lead">اضغط «تحميل المقطع» تحت أي فيديو، وبعدها حسب جهازك:</p>
@@ -1940,6 +1975,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </section>
 </div>
 
+
+<div class="rview" id="rview" role="dialog" aria-modal="true" aria-label="ريلز سكون" hidden>
+  <div class="rvtop"><button type="button" id="rvx" aria-label="إغلاق">✕</button><b>ريلز سكون</b><button type="button" id="rvup" aria-label="ارفع مقطعك">＋</button></div>
+  <div class="rvs" id="rvs"></div>
+</div>
+<div class="rup" id="rup" role="dialog" aria-modal="true" aria-labelledby="ruph" hidden>
+  <div class="rupin">
+    <div class="ruphd"><h3 id="ruph">ارفع مقطعك</h3><button type="button" id="rupx" aria-label="إغلاق">✕</button></div>
+    <div id="rupbody"></div>
+  </div>
+</div>
 <div class="reader" id="reader" role="dialog" aria-modal="true" aria-labelledby="rtitle" aria-hidden="true">
   <div class="rbar">
     <button type="button" id="rclose" aria-label="إغلاق">إغلاق</button>
@@ -2990,7 +3036,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
 
   // ===================== pages =====================
-  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail', 'dawah', 'fav', 'archive', 'ibadat', 'mawaid', 'backup'];
+  const PAGE_IDS = ['home', 'ai', 'watan', 'jumuah', 'live', 'salah', 'quran', 'adhkar', 'tasbih', 'clips', 'studio', 'sadaqa', 'remind', 'guide', 'anbiya', 'sources', 'fadail', 'dawah', 'fav', 'archive', 'ibadat', 'mawaid', 'backup', 'reels'];
   let page = '';
   const moreOpen = o => { const pnl = $('mpanel'); if (!pnl) return; pnl.hidden = !o; $('pmore').setAttribute('aria-expanded', o); if ($('tbmore')) $('tbmore').setAttribute('aria-expanded', o); };
   $('tbmore').addEventListener('click', e => { e.stopPropagation(); moreOpen($('mpanel').hidden); });
@@ -3029,6 +3075,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     if (pg === 'studio') stuUI();
     if (pg === 'remind') renderR();
     if (pg === 'ai') aiInit();
+    if (pg === 'reels' && window.rlInit) window.rlInit();
   };
 
   // ===================== khatma =====================
@@ -3452,7 +3499,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   // ===================== AI assistant =====================
   let SAMPLE = null, aiHist = [], aiBusy = false, aiCtl = null;
   if (window.claude && claude.use) claude.use('sample').then(s => { SAMPLE = s || null; }).catch(() => {});
-  const PG_NAMES = { home: 'الرئيسية', ai: 'دَليل (دليلك إلى الخير في سكون: تفسير الآيات، فتح صفحة أو جزء، الأذان الجاي، والسؤال بالصوت)', salah: 'الصلاة (المواقيت والإقامة، واختيار الدولة والمدينة والضحى والقبلة، ومواقيت الصلاة في الدول العربية والإسلامية)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'الأذان والتذكيرات (صوت الأذان، المؤذن، تنبيه الصلوات، الورد والأذكار والوتر والصيام)', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', archive: 'الأرشيف (كل المقاطع وصور الأذكار المنشورة بالتاريخ)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع', backup: 'النسخة الاحتياطية (حفظ تقدّمك واسترجاعه، أو تسجيل الدخول للمزامنة)', mawaid: 'مواعيد الصرف والمناسبات (الرواتب، الضمان، حساب المواطن، الدعم السكني، رمضان، العيدين، عرفة، عاشوراء، اليوم الوطني ويوم التأسيس)', ibadat: 'العبادات (كيف تصلي، الاستخارة، فقه الصلاة، القبلة، المساجد القريبة، المسافر، حاسبة الزكاة، صلاة الليل، قضاء رمضان، متابعة العبادات، المطوّف، الحج والعمرة وأدعيتها)' };
+  const PG_NAMES = { home: 'الرئيسية', ai: 'دَليل (دليلك إلى الخير في سكون: تفسير الآيات، فتح صفحة أو جزء، الأذان الجاي، والسؤال بالصوت)', salah: 'الصلاة (المواقيت والإقامة، واختيار الدولة والمدينة والضحى والقبلة، ومواقيت الصلاة في الدول العربية والإسلامية)', quran: 'القرآن (الختمة، علامات الحفظ والتقدم، المصحف، الاستماع، تحميل السور)', adhkar: 'الأذكار والأدعية', jumuah: 'يوم الجمعة (سنن الجمعة وعداد الصلاة على النبي ﷺ)', live: 'بث الحرمين المباشر (مكة والمدينة)', tasbih: 'المسبحة', clips: 'المقاطع وطريقة حفظها', studio: 'استوديو التصاميم', sadaqa: 'الصدقة (بطاقة صدقة، إحسان وحالة مميزة منها، مشروع جمعية نجاة، صدقة جدّي جمعان)', watan: 'الوطن (دعاء للسعودية)', remind: 'الأذان والتذكيرات (صوت الأذان، المؤذن، تنبيه الصلوات، الورد والأذكار والوتر والصيام)', guide: 'الإرشادات وعن سكون', anbiya: 'قصص الأنبياء (مع تحميل PDF)', archive: 'الأرشيف (كل المقاطع وصور الأذكار المنشورة بالتاريخ)', fav: 'المفضلة (الآيات والأدعية والأحاديث المحفوظة)', dawah: 'دعوة الجاليات (تعريف بالإسلام بعدة لغات)', fadail: 'الفضائل (فضل الذكر والقرآن والصلاة والصيام والصدقة وغيرها)', sources: 'مصادر محتوى الموقع', backup: 'النسخة الاحتياطية (حفظ تقدّمك واسترجاعه، أو تسجيل الدخول للمزامنة)', reels: 'ريلز سكون (تصفح مقاطع التلاوة بالسحب، الإعجاب والحفظ والمشاركة، ورفع مقطعك مع تعديله: قص ومقاس وغلاف ونص وفلاتر، وينشر بعد المراجعة)', mawaid: 'مواعيد الصرف والمناسبات (الرواتب، الضمان، حساب المواطن، الدعم السكني، رمضان، العيدين، عرفة، عاشوراء، اليوم الوطني ويوم التأسيس)', ibadat: 'العبادات (كيف تصلي، الاستخارة، فقه الصلاة، القبلة، المساجد القريبة، المسافر، حاسبة الزكاة، صلاة الليل، قضاء رمضان، متابعة العبادات، المطوّف، الحج والعمرة وأدعيتها)' };
   const nrm = t => String(t || '').replace(/[ً-ٰٟۖ-ۭـ]/g, '').replace(/[أإآٱ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').toLowerCase();
   const findSurah = q => { if (!Q) return -1; const n = nrm(q); let best = -1, bl = 0; Q.forEach((x, i) => { const nm = nrm(x[0]); if (nm.length > 1 && n.includes(nm) && nm.length > bl) { best = i; bl = nm.length; } }); return best; };
   const searchDuas = async q => { if (!MORE) { try { MORE = await (await fetch('more.json')).json(); } catch { MORE = []; } }
@@ -3490,7 +3537,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 - للبحث عن آية بكلماتها استخدم search_quran، ولفضل عمل استخدم search_fadail.`;
   const chatAdd = (cls, txt) => { const d = document.createElement('div'); d.className = 'msg ' + cls; d.textContent = txt; $('chat').appendChild(d); $('chat').scrollTop = $('chat').scrollHeight; return d; };
   const addActs = (el, acts) => { if (!acts.length) return; const w = document.createElement('div'); w.className = 'acts'; acts.forEach(([label, fn]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.addEventListener('click', fn); w.appendChild(b); }); el.appendChild(w); $('chat').scrollTop = $('chat').scrollHeight; };
-  const KW = [[['مواعيد', 'راتب', 'رواتب', 'الصرف', 'الضمان', 'حساب المواطن', 'الدعم السكني', 'التقاعد'], 'mawaid', 'مواعيد الرواتب والضمان وحساب المواطن والدعم السكني في صفحة «مواعيد الصرف والمناسبات» من المزيد.'], [['نسخه احتياطيه', 'نسخه', 'احتياطي', 'استرجاع', 'تقدمي'], 'backup', 'تقدّمك محفوظ على جهازك. من صفحة «النسخة الاحتياطية» تحفظ ملف وتسترجعه على أي جهاز، أو تسجّل دخول ويتزامن تلقائياً.'], [['ارشيف', 'المقاطع السابقه', 'صور الاذكار'], 'archive', 'كل المقاطع وصور الأذكار المنشورة بتاريخها في الأرشيف.'], [['بث', 'الحرم', 'مباشر'], 'live', 'بث الحرمين المباشر (مكة والمدينة) في المزيد.'], [['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية، ورابط منصة إحسان مع حالة مميزة، ومشروع جمعية نجاة.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه (الورد، الأذكار، الوتر، صيام الإثنين، صيام الخميس) وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
+  const KW = [[['مواعيد', 'راتب', 'رواتب', 'الصرف', 'الضمان', 'حساب المواطن', 'الدعم السكني', 'التقاعد'], 'mawaid', 'مواعيد الرواتب والضمان وحساب المواطن والدعم السكني في صفحة «مواعيد الصرف والمناسبات» من المزيد.'], [['نسخه احتياطيه', 'نسخه', 'احتياطي', 'استرجاع', 'تقدمي'], 'backup', 'تقدّمك محفوظ على جهازك. من صفحة «النسخة الاحتياطية» تحفظ ملف وتسترجعه على أي جهاز، أو تسجّل دخول ويتزامن تلقائياً.'], [['ريلز', 'ريل', 'ارفع مقطع', 'انشر مقطع'], 'reels', 'ريلز سكون: تتصفح مقاطع التلاوة بالسحب، وتقدر ترفع مقطعك وتعدّله (قص، مقاس، غلاف، نص، فلتر) وينزل بعد المراجعة.'], [['ارشيف', 'المقاطع السابقه', 'صور الاذكار'], 'archive', 'كل المقاطع وصور الأذكار المنشورة بتاريخها في الأرشيف.'], [['بث', 'الحرم', 'مباشر'], 'live', 'بث الحرمين المباشر (مكة والمدينة) في المزيد.'], [['ختم', 'ختمه', 'ورد', 'صفحات'], 'quran', 'الختمة في قسم القرآن: اختر ٣٠ أو ٦٠ يوماً أو حدد عدد الصفحات، ويطلع لك ورد كل يوم ونسبة الإنجاز.'], [['اقامه', 'الاقامه', 'مواقيت', 'اذان', 'الضحي', 'ضحي', 'قبله', 'القبله'], 'salah', 'المواقيت والإقامة والضحى واتجاه القبلة كلها في قسم الصلاة.'], [['تسبيح', 'مسبحه', 'سبحه', 'استغفار', 'عداد'], 'tasbih', 'المسبحة: اختر الذكر وحدد الهدف، والعدد ينحفظ مع سجل يومي.'], [['تصميم', 'اصمم', 'بطاقه', 'استوديو'], 'studio', 'استوديو التصاميم: اختر آية أو دعاء أو حديث، والمقاس والخلفية، وأضف الاسم وحمّل بجودة عالية.'], [['حاله', 'حالة', 'ستوري'], 'sadaqa', 'تتجدد يومياً مع الرابط.'], [['صدقه', 'احسان', 'جدي', 'جمعان'], 'sadaqa', 'قسم الصدقة فيه بطاقة صدقة جارية، ورابط منصة إحسان مع حالة مميزة، ومشروع جمعية نجاة.'], [['وطن', 'السعوديه', 'جنود', 'شهداء', 'ولاه'], 'watan', 'دعاء الوطن في قسم الوطن، ويتجدد كل يوم.'], [['تذكير', 'منبه', 'تقويم', 'صيام', 'الاثنين', 'الخميس', 'الوتر'], 'remind', 'التذكيرات: فعّل اللي تبيه (الورد، الأذكار، الوتر، صيام الإثنين، صيام الخميس) وحدد الوقت، وأضفها لتقويم جوالك.'], [['مقطع', 'مقاطع', 'فيديو', 'البوم', 'احفظ', 'تحميل'], 'clips', 'المقاطع في قسمها، وتحتها طريقة الحفظ في الألبوم حسب جهازك.'], [['الصباح', 'المساء', 'اذكار', 'الاذكار'], 'adhkar', 'أذكار الصباح والمساء مع مؤشر التقدم في قسم الأذكار والأدعية.'], [['لغه', 'اللغه', 'مظهر', 'لون', 'الخط', 'مدينه'], null, 'من زر الترس تحت تقدر تغيّر اللغة والمظهر وحجم الخط والمدينة.']];
   let aiPick = 0;
   const qn = t => nrm(t).replace(/[اٰۥۦ]/g, '').replace(/ـ/g, '').replace(/\s+/g, ' ').trim();
   let QI = null; const searchQuran = async q => { await loadQ(); if (!QI) QI = Q.map(x => x[2].map(qn));
@@ -3864,6 +3911,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     try { await fresh(); await sbf(`/rest/v1/progress?user_id=eq.${AU.id}`, { method: 'DELETE' }); st.textContent = 'تم حذف بياناتك من الحساب. تقدّمك باقي على هذا الجهاز.'; } catch (err) { st.textContent = AERR(err.message); } });
   acUI();
   if (SBON && AU) { (async () => { try { const row = await pull(); if (row && AU.last && Date.parse(row.updated_at) > AU.last + 5000) applyRemote(row); } catch {} })(); }
+  window.skSB = { SB, SBON, sbf, fresh, get AU() { return AU; } };
   }
 
   // ===================== favorites =====================
@@ -4169,16 +4217,150 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795730482'; let pend = false;
+  const BUILD = '1795732800'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
   }
-  // ===================== coming soon + feedback =====================
-  const soonUI = () => { const on = store.get('sk-soon', 0); $('soonme').textContent = on ? 'تم، بننبّهك ✓' : 'نبّهني عند الإطلاق'; };
-  $('soonme').addEventListener('click', async () => { store.set('sk-soon', 1); soonUI(); if ('Notification' in window && Notification.permission === 'default') { try { await Notification.requestPermission(); } catch {} }
-    $('soonst').innerHTML = 'بنعلن عنها هنا وفي إنستقرام <a href="https://instagram.com/6amx9" target="_blank" rel="noopener" style="color:var(--gold)">‎@6amx9</a> أول ما تنزل.'; });
-  soonUI();
+  // ===================== Reels: feed, viewer, upload editor, review =====================
+  {
+    const SKB = window.skSB || {}; const SB = SKB.SB || {}, SBON = !!SKB.SBON, sbf = SKB.sbf, fresh = SKB.fresh, AUg = () => SKB.AU;
+    const RL = { list: [], user: [], tab: 'all', loaded: false, admin: false, muted: true };
+    const PUB = p => `${SB.url}/storage/v1/object/public/reels/${p}`;
+    const FIL = { n: ['عادي', ''], w: ['دافئ', 'sepia(.22) saturate(1.2) brightness(1.03)'], c: ['بارد', 'hue-rotate(-10deg) saturate(1.1) brightness(1.04)'], v: ['حيوي', 'contrast(1.15) saturate(1.3)'], f: ['باهت', 'contrast(.9) brightness(1.08) saturate(.75)'], b: ['أبيض وأسود', 'grayscale(1) contrast(1.05)'] };
+    const RAT = { '9/16': '٩:١٦', '4/5': '٤:٥', '1/1': 'مربع', o: 'الأصلي' };
+    const lk = () => store.get('sk-rlike', []), svd = () => store.get('sk-rsave', []);
+    const icon = { h: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.3A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20z"/></svg>', s: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3.5h12v17l-6-4.2-6 4.2z"/></svg>', sh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg>', m: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 4 6M21 9l-4 6"/></svg>', u: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' };
+    // official clips + approved user reels → one list, newest first
+    const build = () => {
+      const off = (clips || []).map(c => ({ id: 'c-' + c.id, off: 1, src: c.file, poster: c.poster, title: c.title, sub: [c.surah, c.reciter].filter(Boolean).join(' · '), by: 'سكون', ratio: c.ratio || '16/9', edit: {}, likes: 0, date: c.date || '' }));
+      const us = RL.user.map(r => ({ id: r.id, off: 0, src: PUB(r.path), poster: r.poster ? PUB(r.poster) : '', title: r.title, sub: [r.surah, r.reciter].filter(Boolean).join(' · '), by: '@' + (r.username || 'مستخدم'), ratio: (r.edit && r.edit.ratio) || '9/16', edit: r.edit || {}, likes: r.likes || 0, date: (r.created_at || '').slice(0, 10) }));
+      RL.list = [...us, ...off].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+    };
+    const shown = () => RL.tab === 'saved' ? RL.list.filter(x => svd().includes(x.id)) : RL.tab === 'liked' ? RL.list.filter(x => lk().includes(x.id)) : RL.list;
+    const grid = () => { const L = shown(); $('rlgrid').innerHTML = L.length ? L.map((x, i) => `<button type="button" class="rlg" data-rli="${i}" aria-label="${esc(x.title)}">${x.poster ? `<img src="${esc(x.poster)}" alt="" loading="lazy">` : ''}${x.off ? '' : '<i>جديد</i>'}<b>${esc(x.title)}</b>${x.likes ? `<span>♥ ${nd(x.likes)}</span>` : ''}</button>`).join('') : `<p class="rlempty">${RL.tab === 'saved' ? 'ما حفظت مقاطع للحين. اضغط 🔖 على أي ريل.' : RL.tab === 'liked' ? 'ما فيه مقاطع أعجبتك للحين.' : 'ما فيه مقاطع للحين.'}</p>`; };
+    const fetchUser = async () => { if (!SBON) return; try { const d = await sbf('/rest/v1/reels?status=eq.approved&select=id,username,path,poster,title,surah,reciter,edit,likes,created_at&order=created_at.desc&limit=200', { auth: false }); RL.user = Array.isArray(d) ? d : []; } catch { RL.user = []; } };
+    const checkAdmin = async () => { RL.admin = false; if (!SBON || !AUg()) return; try { await fresh(); RL.admin = (await sbf('/rest/v1/rpc/is_reel_admin', { method: 'POST', body: {} })) === true; } catch {} };
+    const headUI = () => { $('rlmine').hidden = !AUg(); $('rlrev').hidden = !RL.admin; };
+    let started = false;
+    const load = async () => { if (!clips || !clips.length) { try { clips = await fetch('clips.json').then(r => r.json()); } catch {} } await Promise.all([fetchUser(), checkAdmin()]); build(); grid(); headUI(); RL.loaded = true; };
+    window.rlInit = () => { headUI(); if (!started) { started = true; load().then(() => { const id = new URLSearchParams(location.search).get('r'); if (id) { const i = RL.list.findIndex(x => x.id === id); if (i >= 0) openV(RL.list, i); } }); } else grid(); };
+    $('rltabs').addEventListener('click', e => { const b = e.target.closest('[data-rlt]'); if (!b) return; RL.tab = b.dataset.rlt; $('rltabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); grid(); });
+    $('rlgrid').addEventListener('click', e => { const b = e.target.closest('[data-rli]'); if (b) openV(shown(), +b.dataset.rli); });
+    $('rlstart').addEventListener('click', () => { if (RL.list.length) openV(shown().length ? shown() : RL.list, 0); });
+
+    // ---------- viewer ----------
+    let VL = [], io = null;
+    const applyEdit = (v, x) => { const E = x.edit || {}; v.style.objectFit = x.off ? 'contain' : 'cover'; v.style.objectPosition = `${E.x ?? 50}% ${E.y ?? 50}%`; v.style.filter = (FIL[E.f] || FIL.n)[1]; if (E.mute) v.dataset.mute = '1'; };
+    const ratioCss = x => x.off ? 'auto' : ((x.edit && x.edit.ratio && x.edit.ratio !== 'o') ? x.edit.ratio : 'auto');
+    const item = (x, i) => { const E = x.edit || {}; const liked = lk().includes(x.id), saved = svd().includes(x.id);
+      return `<div class="rvi" data-vi="${i}">${x.poster ? `<div class="rvbg" style="background-image:url('${esc(x.poster)}')"></div>` : ''}<div class="rvf" style="aspect-ratio:${ratioCss(x)};${ratioCss(x) === 'auto' ? 'height:100%' : ''}"><video playsinline loop preload="none" muted data-src="${esc(x.src)}" ${x.poster ? `poster="${esc(x.poster)}"` : ''}></video>${E.cap ? `<div class="rvcap">${esc(E.cap)}</div>` : ''}</div>
+        <svg class="rvheart" viewBox="0 0 24 24" fill="#fff"><path d="M12 20s-7.5-4.6-7.5-10.3A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20z"/></svg><div class="rvpause"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M8 5.5v13l11-6.5z"/></svg></div>
+        <div class="rvmeta"><b>${esc(x.title)}</b>${x.sub ? `<small>${esc(x.sub)}</small>` : ''}<small>${esc(x.by)}</small></div>
+        <div class="rvact"><button type="button" data-ra="like" class="${liked ? 'on' : ''}" aria-label="إعجاب">${icon.h}<span>${x.off ? (liked ? 'أعجبني' : 'إعجاب') : nd(x.likes || 0)}</span></button><button type="button" data-ra="save" class="sv ${saved ? 'on' : ''}" aria-label="حفظ">${icon.s}<span>${saved ? 'محفوظ' : 'حفظ'}</span></button><button type="button" data-ra="share" aria-label="مشاركة">${icon.sh}<span>مشاركة</span></button><button type="button" data-ra="mute" aria-label="الصوت">${RL.muted ? icon.m : icon.u}<span>${RL.muted ? 'بدون صوت' : 'الصوت'}</span></button></div>
+        <div class="rvbar"><i></i></div></div>`; };
+    const vidOf = el => el.querySelector('video');
+    const prime = el => { if (!el) return; const v = vidOf(el); if (v && !v.src) { v.src = v.dataset.src; v.preload = 'auto'; } };
+    const startT = (v, x) => (x.edit && +x.edit.s) || 0, endT = (v, x) => (x.edit && +x.edit.e) || 0;
+    const openV = (list, i) => { VL = list; const box = $('rvs'); box.innerHTML = list.map(item).join(''); $('rview').hidden = false; document.body.style.overflow = 'hidden';
+      box.querySelectorAll('.rvi').forEach(el => { const x = VL[+el.dataset.vi], v = vidOf(el); applyEdit(v, x);
+        v.addEventListener('loadedmetadata', () => { const s0 = startT(v, x); if (s0) v.currentTime = s0; });
+        v.addEventListener('timeupdate', () => { const s0 = startT(v, x), e0 = endT(v, x) || v.duration; if (e0 && v.currentTime >= e0 - .05) v.currentTime = s0; const bar = el.querySelector('.rvbar i'); if (bar && e0) bar.style.width = Math.min(100, (v.currentTime - s0) / (e0 - s0) * 100) + '%'; }); });
+      io && io.disconnect(); io = new IntersectionObserver(es => es.forEach(en => { const el = en.target, v = vidOf(el), k = +el.dataset.vi;
+        if (en.isIntersecting && en.intersectionRatio > .6) { prime(el); prime(box.children[k + 1]); prime(box.children[k - 1]); v.muted = RL.muted || v.dataset.mute === '1'; el.classList.remove('paused'); v.play().catch(() => { el.classList.add('paused'); }); if (VL[k] && /^c-|^[0-9a-f-]{36}$/.test(VL[k].id)) { try { history.replaceState(null, '', '?r=' + encodeURIComponent(VL[k].id) + '#/reels'); } catch {} } }
+        else { v.pause(); } }), { root: box, threshold: [0, .6, 1] });
+      box.querySelectorAll('.rvi').forEach(el => io.observe(el));
+      requestAnimationFrame(() => { box.scrollTop = i * box.clientHeight; }); };
+    const closeV = () => { $('rvs').querySelectorAll('video').forEach(v => { v.pause(); v.removeAttribute('src'); v.load(); }); io && io.disconnect(); $('rview').hidden = true; document.body.style.overflow = ''; $('rvs').innerHTML = ''; try { history.replaceState(null, '', location.pathname + '#/reels'); } catch {} grid(); };
+    $('rvx').addEventListener('click', closeV);
+    document.addEventListener('keydown', e => { if ($('rview').hidden) return; if (e.key === 'Escape') closeV(); const box = $('rvs'); if (e.key === 'ArrowDown') box.scrollBy({ top: box.clientHeight, behavior: 'smooth' }); if (e.key === 'ArrowUp') box.scrollBy({ top: -box.clientHeight, behavior: 'smooth' }); });
+    const toggleLike = async (el, x, force) => { const L = lk(), has = L.includes(x.id); if (force && has) return; const on = !has; store.set('sk-rlike', on ? [...L, x.id] : L.filter(y => y !== x.id));
+      const b = el.querySelector('[data-ra=like]'); b.classList.toggle('on', on);
+      if (x.off) b.querySelector('span').textContent = on ? 'أعجبني' : 'إعجاب'; else { x.likes = Math.max(0, (x.likes || 0) + (on ? 1 : -1)); b.querySelector('span').textContent = nd(x.likes);
+        if (SBON && AUg()) { try { await fresh(); if (on) await sbf('/rest/v1/reel_likes', { method: 'POST', body: { reel_id: x.id }, headers: { Prefer: 'return=minimal' } }); else await sbf(`/rest/v1/reel_likes?reel_id=eq.${x.id}&user_id=eq.${AUg().id}`, { method: 'DELETE' }); } catch {} } } };
+    let lastTap = 0, tapT = 0;
+    $('rvs').addEventListener('click', async e => { const el = e.target.closest('.rvi'); if (!el) return; const x = VL[+el.dataset.vi], v = vidOf(el); const a = e.target.closest('[data-ra]');
+      if (a) { const k = a.dataset.ra;
+        if (k === 'like') toggleLike(el, x);
+        if (k === 'save') { const S2 = svd(), on = !S2.includes(x.id); store.set('sk-rsave', on ? [...S2, x.id] : S2.filter(y => y !== x.id)); a.classList.toggle('on', on); a.querySelector('span').textContent = on ? 'محفوظ' : 'حفظ'; toast(on ? 'انحفظ في «المحفوظة»' : 'انشال من المحفوظة'); }
+        if (k === 'share') { const url = SITE.split('#')[0].split('?')[0] + '?r=' + encodeURIComponent(x.id) + '#/reels'; const t = `${x.title}${x.sub ? ' · ' + x.sub : ''}\nمن ريلز سكون`; if (navigator.share) navigator.share({ title: x.title, text: t, url }).catch(() => {}); else { try { await navigator.clipboard.writeText(t + '\n' + url); toast('انسخ الرابط'); } catch {} } }
+        if (k === 'mute') { RL.muted = !RL.muted; $('rvs').querySelectorAll('.rvi').forEach(r => { const vv = vidOf(r); vv.muted = RL.muted || vv.dataset.mute === '1'; const mb = r.querySelector('[data-ra=mute]'); mb.innerHTML = `${RL.muted ? icon.m : icon.u}<span>${RL.muted ? 'بدون صوت' : 'الصوت'}</span>`; }); }
+        return; }
+      const now = Date.now(); if (now - lastTap < 300) { clearTimeout(tapT); lastTap = 0; toggleLike(el, x, true); const h = el.querySelector('.rvheart'); h.classList.add('on'); setTimeout(() => h.classList.remove('on'), 650); return; }
+      lastTap = now; tapT = setTimeout(() => { if (RL.muted && v.paused === false && v.muted) { RL.muted = false; v.muted = v.dataset.mute === '1'; el.querySelector('[data-ra=mute]').innerHTML = `${icon.u}<span>الصوت</span>`; return; } if (v.paused) { v.play().catch(() => {}); el.classList.remove('paused'); } else { v.pause(); el.classList.add('paused'); } }, 300); });
+
+    // ---------- upload + editor ----------
+    let U = null;
+    const fmtT = t => { t = Math.max(0, t || 0); const m = Math.floor(t / 60), s2 = Math.floor(t % 60); return nd(m) + ':' + nd(String(s2).padStart(2, '0')); };
+    const rupOpen = () => { if (!SBON) { toast('الرفع قيد التفعيل'); return; } $('rup').hidden = false; document.body.style.overflow = 'hidden'; if (!AUg()) { $('ruph').textContent = 'ارفع مقطعك'; $('rupbody').innerHTML = '<p>لازم تسجّل دخولك أول عشان ترفع مقطع، وينحفظ باسمك.</p><button type="button" class="dl" id="ruplogin">سجّل دخولك</button>'; $('ruplogin').onclick = () => { rupClose(); try { openSet(true); spShow('acct'); } catch {} }; return; } pickUI(); };
+    const rupClose = () => { const v = $('rupvid'); if (v) { v.pause(); } if (U && U.url) URL.revokeObjectURL(U.url); U = null; $('rup').hidden = true; if ($('rview').hidden) document.body.style.overflow = ''; };
+    $('rupx').addEventListener('click', rupClose); $('rup').addEventListener('click', e => { if (e.target === $('rup')) rupClose(); });
+    $('rlup').addEventListener('click', rupOpen); $('rvup').addEventListener('click', () => { closeV(); rupOpen(); });
+    const pickUI = () => { $('ruph').textContent = 'ارفع مقطعك'; $('rupbody').innerHTML = `<label class="rupdrop"><input type="file" id="rupf" accept="video/mp4,video/quicktime,video/webm,video/*" hidden><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M12 8v7M9 11l3-3 3 3"/></svg><b>اختر مقطع من جوالك</b><span>تلاوة أو موعظة أو ذكر، بدون موسيقى. حتى ٥٠ ميقا، وتقدر تقصّه لدقيقة.</span></label>`;
+      $('rupf').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; if (f.size > 50 * 1048576) { toast('المقطع أكبر من ٥٠ ميقا، صوّره بجودة أقل أو قصّه من جوالك أول'); return; } U = { file: f, url: URL.createObjectURL(f), s: 0, e: 0, dur: 0, ratio: '9/16', x: 50, y: 50, f: 'n', mute: 0, cap: '', cover: null, coverT: 0 }; editUI(); }); };
+    const drawCover = () => new Promise(res => { const v = $('rupvid'); const R = U.ratio === 'o' ? v.videoWidth / v.videoHeight : (r => { const [a, b] = r.split('/').map(Number); return a / b; })(U.ratio); const H = 960, W = Math.round(H * R); const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
+      const vw = v.videoWidth, vh = v.videoHeight, sc = Math.max(W / vw, H / vh), sw = W / sc, sh = H / sc, sx = (vw - sw) * U.x / 100, sy = (vh - sh) * U.y / 100; try { g.filter = FIL[U.f][1] || 'none'; } catch {} g.drawImage(v, sx, sy, sw, sh, 0, 0, W, H);
+      if (U.cap) { g.filter = 'none'; g.font = `700 ${Math.round(W / 14)}px Amiri, serif`; g.fillStyle = '#fff'; g.textAlign = 'center'; g.shadowColor = 'rgba(0,0,0,.85)'; g.shadowBlur = 14; g.fillText(U.cap, W / 2, H * .24, W * .86); }
+      c.toBlob(b => res(b), 'image/jpeg', .82); });
+    const editUI = () => { $('ruph').textContent = 'عدّل مقطعك';
+      $('rupbody').innerHTML = `<div class="rupv" id="rupvw"><video id="rupvid" playsinline muted loop src="${U.url}"></video><div class="rvcap" id="rupcap" hidden></div></div>
+        <span class="rupl">القص: البداية والنهاية (حد أقصى دقيقة)</span>
+        <div class="ruprow"><span>من</span><input type="range" id="rups" min="0" max="1" step="0.1" value="0"><output id="rupso">٠:٠٠</output></div>
+        <div class="ruprow"><span>إلى</span><input type="range" id="rupe" min="0" max="1" step="0.1" value="1"><output id="rupeo">٠:٠٠</output></div>
+        <span class="rupl">المقاس</span><div class="rupseg" id="ruprat">${Object.entries(RAT).map(([k, n]) => `<button type="button" data-r="${k}" aria-pressed="${k === U.ratio}">${n}</button>`).join('')}</div>
+        <span class="rupl">تحريك الكادر</span><div class="ruprow"><span>↔</span><input type="range" id="rupx2" min="0" max="100" value="50"></div><div class="ruprow"><span>↕</span><input type="range" id="rupy2" min="0" max="100" value="50"></div>
+        <span class="rupl">الفلتر</span><div class="rupseg" id="rupfil">${Object.entries(FIL).map(([k, v]) => `<button type="button" data-f="${k}" aria-pressed="${k === U.f}">${v[0]}</button>`).join('')}</div>
+        <span class="rupl">الصوت</span><div class="rupseg" id="rupmu"><button type="button" data-m="0" aria-pressed="true">صوت المقطع</button><button type="button" data-m="1" aria-pressed="false">بدون صوت</button></div>
+        <span class="rupl">نص على المقطع (اختياري)</span><input type="text" id="rupcapin" maxlength="60" placeholder="مثل: ﴿ألا بذكر الله تطمئن القلوب﴾">
+        <span class="rupl">الغلاف</span><div class="rupcov"><img id="rupcovi" alt="" hidden><button type="button" class="dl ghost" id="rupcovb" style="margin:0">اختر الغلاف من اللقطة الحالية</button></div>
+        <span class="rupl">العنوان *</span><input type="text" id="ruptitle" maxlength="120" placeholder="مثل: تلاوة خاشعة من سورة الرحمن">
+        <div class="ruprow" style="gap:8px;margin-top:8px"><input type="text" id="rupsurah" maxlength="60" placeholder="السورة (اختياري)"><input type="text" id="ruprec" maxlength="60" placeholder="القارئ (اختياري)"></div>
+        <label class="rupchk"><input type="checkbox" id="rupok"> <span>أؤكد إن المقطع بدون موسيقى، ومحتواه تلاوة أو ذكر أو موعظة، ومن حقي أنشره.</span></label>
+        <div class="rupprog" id="rupprog" hidden><i></i></div><p class="rupst" id="rupst" aria-live="polite"></p>
+        <button type="button" class="dl" id="rupsend" style="width:100%">إرسال للمراجعة</button>`;
+      const v = $('rupvid'), frame = $('rupvw');
+      const look = () => { frame.style.aspectRatio = U.ratio === 'o' ? `${v.videoWidth || 9}/${v.videoHeight || 16}` : U.ratio; frame.style.width = U.ratio === '9/16' || U.ratio === '4/5' ? 'min(100%, 300px)' : '100%'; v.style.objectFit = 'cover'; v.style.objectPosition = `${U.x}% ${U.y}%`; v.style.filter = FIL[U.f][1]; const cp = $('rupcap'); cp.hidden = !U.cap; cp.textContent = U.cap; };
+      v.addEventListener('loadedmetadata', () => { U.dur = v.duration || 0; U.e = Math.min(U.dur, 60); ['rups', 'rupe'].forEach(id => { $(id).max = U.dur.toFixed(1); }); $('rupe').value = U.e; $('rupso').textContent = fmtT(0); $('rupeo').textContent = fmtT(U.e); look(); v.play().catch(() => {}); });
+      v.addEventListener('timeupdate', () => { if (U && U.e && v.currentTime >= U.e) v.currentTime = U.s; });
+      const trim = which => { let s0 = +$('rups').value, e0 = +$('rupe').value; if (which === 's') { if (e0 - s0 > 60) e0 = s0 + 60; if (e0 <= s0 + 1) e0 = Math.min(U.dur, s0 + 1); } else { if (e0 - s0 > 60) s0 = e0 - 60; if (e0 <= s0 + 1) s0 = Math.max(0, e0 - 1); } U.s = s0; U.e = e0; $('rups').value = s0; $('rupe').value = e0; $('rupso').textContent = fmtT(s0); $('rupeo').textContent = fmtT(e0); v.currentTime = which === 's' ? s0 : Math.max(s0, e0 - 1.5); };
+      $('rups').addEventListener('input', () => trim('s')); $('rupe').addEventListener('input', () => trim('e'));
+      $('ruprat').addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (!b) return; U.ratio = b.dataset.r; $('ruprat').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); look(); });
+      $('rupfil').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (!b) return; U.f = b.dataset.f; $('rupfil').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); look(); });
+      $('rupmu').addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (!b) return; U.mute = +b.dataset.m; $('rupmu').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); v.muted = true; });
+      $('rupx2').addEventListener('input', e => { U.x = +e.target.value; look(); }); $('rupy2').addEventListener('input', e => { U.y = +e.target.value; look(); });
+      $('rupcapin').addEventListener('input', e => { U.cap = e.target.value.trim(); look(); });
+      $('rupcovb').addEventListener('click', async () => { U.coverT = v.currentTime; U.cover = await drawCover(); const im = $('rupcovi'); im.src = URL.createObjectURL(U.cover); im.hidden = false; toast('انحفظ الغلاف'); });
+      $('rupvw').addEventListener('click', () => { v.muted = !v.muted; });
+      $('rupsend').addEventListener('click', send); };
+    const putObj = (path, blob, onp) => new Promise((res, rej) => { const x = new XMLHttpRequest(); x.open('POST', `${SB.url}/storage/v1/object/reels/${path}`); x.setRequestHeader('apikey', SB.key); x.setRequestHeader('Authorization', 'Bearer ' + AUg().at); x.setRequestHeader('Content-Type', blob.type || 'video/mp4'); x.setRequestHeader('x-upsert', 'false'); if (onp) x.upload.onprogress = e => e.lengthComputable && onp(e.loaded / e.total); x.onload = () => x.status < 300 ? res() : rej(new Error(x.responseText || ('HTTP ' + x.status))); x.onerror = () => rej(new Error('network')); x.send(blob); });
+    const send = async () => { const st = $('rupst'), title = $('ruptitle').value.trim();
+      if (title.length < 2) { st.textContent = 'اكتب عنوان للمقطع.'; $('ruptitle').focus(); return; }
+      if (!$('rupok').checked) { st.textContent = 'أكّد إن المقطع بدون موسيقى ومن حقك تنشره.'; return; }
+      const btn = $('rupsend'); btn.disabled = true; $('rupprog').hidden = false; const bar = $('rupprog').querySelector('i');
+      try { await fresh(); if (!U.cover) { const v = $('rupvid'); v.currentTime = U.s + Math.min(1, (U.e - U.s) / 2); await new Promise(r => v.addEventListener('seeked', r, { once: true })); U.cover = await drawCover(); }
+        const id = (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)); const ext = (U.file.name.split('.').pop() || 'mp4').toLowerCase().replace(/[^a-z0-9]/g, '') || 'mp4';
+        const vp = `${AUg().id}/${id}.${ext}`, pp = `${AUg().id}/${id}.jpg`;
+        st.textContent = 'يرفع المقطع…'; await putObj(vp, U.file, p => { bar.style.width = Math.round(p * 92) + '%'; st.textContent = `يرفع المقطع… ${nd(Math.round(p * 100))}٪`; });
+        st.textContent = 'يرفع الغلاف…'; await putObj(pp, U.cover); bar.style.width = '97%';
+        const edit = { s: +U.s.toFixed(1), e: +U.e.toFixed(1), ratio: U.ratio, x: U.x, y: U.y, f: U.f, mute: U.mute, cap: U.cap || undefined };
+        await sbf('/rest/v1/reels', { method: 'POST', headers: { Prefer: 'return=minimal' }, body: { path: vp, poster: pp, title, surah: $('rupsurah').value.trim() || null, reciter: $('ruprec').value.trim() || null, edit, username: AUg().name } });
+        bar.style.width = '100%'; $('ruph').textContent = 'وصلنا مقطعك 🤍'; $('rupbody').innerHTML = '<p>جزاك الله خير. مقطعك الحين في المراجعة، وأول ما نوافق عليه ينزل في الريلز باسمك. تتابع حالته من «مقاطعي».</p><button type="button" class="dl" id="rupdone">تمام</button>'; $('rupdone').onclick = rupClose; headUI();
+      } catch (err) { btn.disabled = false; const m = String(err && err.message || ''); st.textContent = /relation|reels|404|bucket/i.test(m) ? 'الرفع قيد التفعيل وبيشتغل قريباً بإذن الله.' : /size|large|413/i.test(m) ? 'المقطع أكبر من المسموح (٥٠ ميقا).' : 'ما تم الرفع، تأكد من اتصالك وجرّب مرة ثانية.'; } };
+
+    // ---------- my reels + admin review ----------
+    const sheetList = (h, rows, admin) => { $('rup').hidden = false; document.body.style.overflow = 'hidden'; $('ruph').textContent = h;
+      const lab = { pending: ['p', 'بانتظار المراجعة'], approved: ['a', 'منشور'], rejected: ['r', 'مرفوض'] };
+      $('rupbody').innerHTML = rows.length ? `<div class="rvlist">${rows.map(r => `<div class="rvli" data-id="${r.id}"><video src="${esc(PUB(r.path))}#t=${(r.edit && r.edit.s) || 0.1}" poster="${r.poster ? esc(PUB(r.poster)) : ''}" playsinline controls preload="none" style="filter:${(FIL[(r.edit || {}).f] || FIL.n)[1]};object-position:${(r.edit || {}).x ?? 50}% ${(r.edit || {}).y ?? 50}%"></video><div><b>${esc(r.title)}</b><small>${esc([r.surah, r.reciter].filter(Boolean).join(' · '))}${admin ? ' · @' + esc(r.username || '') : ''}<span class="rvst ${lab[r.status][0]}">${lab[r.status][1]}</span></small>${(r.edit || {}).cap ? `<small>النص: ${esc(r.edit.cap)}</small>` : ''}<div class="acts">${admin ? '<button type="button" class="ok" data-op="approved">نشر ✓</button><button type="button" data-op="rejected">رفض</button>' : ''}<button type="button" class="no" data-op="del">حذف</button></div></div></div>`).join('')}</div>` : `<p>${admin ? 'ما فيه مقاطع بانتظار المراجعة 🤍' : 'ما رفعت مقاطع للحين.'}</p>`;
+      $('rupbody').onclick = async e => { const b = e.target.closest('[data-op]'); if (!b) return; const li = b.closest('[data-id]'), id = li.dataset.id, r = rows.find(x => x.id === id), op = b.dataset.op;
+        if (op === 'del' && !confirm('تحذف المقطع نهائياً؟')) return; b.disabled = true;
+        try { await fresh(); if (op === 'del') { await sbf(`/rest/v1/reels?id=eq.${id}`, { method: 'DELETE' }); for (const p of [r.path, r.poster].filter(Boolean)) { try { await sbf(`/storage/v1/object/reels/${p}`, { method: 'DELETE' }); } catch {} } li.remove(); }
+          else { await sbf(`/rest/v1/reels?id=eq.${id}`, { method: 'PATCH', body: { status: op }, headers: { Prefer: 'return=minimal' } }); li.remove(); toast(op === 'approved' ? 'انتشر في الريلز' : 'ترفض'); }
+          await fetchUser(); build(); grid(); } catch { b.disabled = false; toast('ما تمت العملية، جرّب مرة ثانية'); } }; };
+    $('rlmine').addEventListener('click', async () => { if (!AUg()) return; try { await fresh(); const d = await sbf(`/rest/v1/reels?user_id=eq.${AUg().id}&select=*&order=created_at.desc`); sheetList('مقاطعي', d || [], false); } catch { toast('ما قدرت أجيب مقاطعك'); } });
+    $('rlrev').addEventListener('click', async () => { try { await fresh(); const d = await sbf('/rest/v1/reels?status=eq.pending&select=*&order=created_at.asc'); sheetList('المراجعة', d || [], true); } catch { toast('ما قدرت أجيب المراجعة'); } });
+    if (document.body.dataset.pg === 'reels') window.rlInit();
+  }
+  // ===================== feedback =====================
   let fbType = 'رأي';
   $('fbt').addEventListener('click', e => { const b = e.target.closest('[data-fbt]'); if (!b) return; fbType = b.dataset.fbt; $('fbt').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); });
   const fbText = () => { const t = $('fbtx').value.trim(), r = store.get('sk-rate', 0); return t ? `«سكون» · ${fbType}${r ? ` · تقييمي ${'★'.repeat(r)}` : ''}\n\n${t}` : ''; };
