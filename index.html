@@ -1285,11 +1285,11 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   </section>
 
   <section class="band" id="clipofday" data-page="home" hidden>
-    <div class="pwhead"><h2>جديد سكون</h2><a class="mall" href="#/archive">الأرشيف كامل ‹</a></div>
+    <div class="pwhead"><h2>مقطع اليوم</h2><a class="mall" href="#/archive">الأرشيف كامل ‹</a></div>
     <p class="lead dnew">محتوى إيماني يتجدد يومياً، شارك الخير وكن سبباً في نشره.</p>
     <div class="dgrid">
-      <div><span class="dlab">أحدث مقطع</span><div class="codbox" id="codbox"></div></div>
-      <div id="iodw" hidden><span class="dlab">أحدث صورة ذكر</span><div class="codbox" id="iodbox"></div></div>
+      <div><span class="dlab">مقطع اليوم · الأحدث</span><div class="codbox" id="codbox"></div></div>
+      <div id="iodw" hidden><span class="dlab">صورة الذكر اليوم</span><div class="codbox" id="iodbox"></div></div>
     </div>
   </section>
 
@@ -3885,10 +3885,20 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   dayCard(); tick(); setInterval(tick, 1000); setInterval(dayCard, 60000);
   }
 
+  // ===================== «حديث اليوم» on the home page too (the same card moves between home and the adhkar page)
+  {
+  const H = $('hadith'), home = $('daily'), anchor = document.createComment('hadith-home');
+  if (H && home) { H.parentNode.insertBefore(anchor, H);
+    const place = () => { const pg = document.body.dataset.pg || 'home';
+      if (pg === 'home') { if (H.dataset.page !== 'home') { home.after(H); H.dataset.page = 'home'; } H.hidden = false; }
+      else if (pg !== 'home' && H.dataset.page === 'home') { anchor.after(H); H.dataset.page = 'adhkar'; } };
+    new MutationObserver(place).observe(document.body, { attributes: true, attributeFilter: ['data-pg'] }); place(); setTimeout(place, 0); window.addEventListener('load', place); }
+  }
+
   // ===================== sadaqa popup (once a day) =====================
   {
   const AUTH = () => { try { return !!localStorage.getItem('sukoon-auth'); } catch { return false; } };
-  const showLogin = () => { if (AUTH() || document.querySelector('.adpop')) return; let snz = null; try { snz = localStorage.getItem('sukoon-lgsn'); if (sessionStorage.getItem('sk-lgss')) return; sessionStorage.setItem('sk-lgss', '1'); } catch {}
+  const showLogin = () => { if (AUTH() || document.querySelector('.adpop')) return; let snz = null; try { snz = localStorage.getItem('sukoon-lgsn'); if (Date.now() - (+localStorage.getItem('sukoon-lgts') || 0) < 30 * 60e3) return; localStorage.setItem('sukoon-lgts', String(Date.now())); } catch {}
     const w = document.createElement('div'); w.className = 'adpop lgpop'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'تسجيل الدخول');
     w.innerHTML = `<div class="in"><button type="button" class="adx" data-lgx="1" aria-label="إغلاق">✕</button><div class="adb"><span class="lgic" aria-hidden="true">🔐</span><h3>احفظ تقدّمك</h3><p>سجّل دخولك بإيميلك عشان تنحفظ ختمتك وأذكارك ومفضلتك، وترجع لها من أي جهاز. التسجيل اختياري ومجاني.</p>
       <div class="row"><button type="button" class="dl" data-lggo="1">تسجيل الدخول</button><button type="button" class="dl ghost" data-lgx="1">لاحقاً</button></div></div></div>`;
@@ -3897,7 +3907,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     w.addEventListener('click', e => { if (e.target.closest('[data-lggo]')) { close(); try { openSet(true); spShow('acct'); } catch { location.hash = '#/backup'; } return; }
       if (e.target.closest('[data-lgno]')) { try { localStorage.setItem('sukoon-lgsn', today()); } catch {} close(); return; }
       if (e.target === w || e.target.closest('[data-lgx]')) close(); }); };
-  const showAd = () => { let seen = false; try { seen = !!sessionStorage.getItem('sk-adss'); sessionStorage.setItem('sk-adss', '1'); } catch {} if (seen) { setTimeout(showLogin, 600); return; } const c = FCASES.find(x => x.no) || FCASES[0]; if (!c) { showLogin(); return; }
+  const showAd = () => { let seen = false; try { const t = +localStorage.getItem('sukoon-adts') || 0; seen = Date.now() - t < 30 * 60e3; localStorage.setItem('sukoon-adts', String(Date.now())); } catch {} if (seen) { setTimeout(showLogin, 600); return; } const c = FCASES.find(x => x.no) || FCASES[0]; if (!c) { showLogin(); return; }
     const tot = (c.got || 0) + (c.left || 0), pct = tot ? Math.round(c.got / tot * 100) : 0;
     const w = document.createElement('div'); w.className = 'adpop'; w.setAttribute('role', 'dialog'); w.setAttribute('aria-modal', 'true'); w.setAttribute('aria-label', 'فرصة صدقة');
     w.innerHTML = `<div class="in"><button type="button" class="adx" data-adx="1" aria-label="إغلاق">✕</button>
@@ -3915,7 +3925,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795716777'; let pend = false;
+  const BUILD = '1795717392'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
