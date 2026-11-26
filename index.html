@@ -946,6 +946,7 @@ body[data-pg="fadail"] [data-page]:not([data-page="fadail"]){display:none!import
 .anrb{margin:12px 0 4px}
 .anr .in{max-width:760px;max-height:94vh}
 .anrh{display:flex;align-items:center;gap:10px;position:sticky;top:-18px;background:var(--bg2);padding:4px 0 10px;border-bottom:1px solid var(--line);z-index:2}.anrh h4{flex:1;margin:0!important}.anrh span{color:var(--gold);font-size:13px}
+.anrt{display:flex;gap:6px;margin:12px 0 0;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}.anrt button{flex:1;border:0;background:none;color:var(--ink);font:inherit;font-size:14px;padding:8px;border-radius:999px;cursor:pointer}.anrt button[aria-pressed="true"]{background:var(--gold);color:#1d1a12;font-weight:700}
 .anrs{color:var(--mute);margin:12px 0 6px!important;line-height:1.9}.anrsu{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}.anrsu span{border:1px solid var(--line);border-radius:999px;padding:1px 10px}
 .anrst{padding:14px 0;border-bottom:1px solid var(--line)}.anrst h5{display:flex;gap:10px;align-items:center;margin:0 0 6px;font:700 19px/1.5 Amiri,serif}.anrst h5 em{font-style:normal;font-size:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:rgba(201,178,124,.15);color:var(--gold);flex:none}
 .anrst>p{margin:0!important;color:var(--ink)!important;font-size:16px!important;line-height:2}
@@ -2439,7 +2440,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   };
   const listCard = (d, i) => `<div class="acd" style="animation-delay:${i * 40}ms"><p class="${d.q ? 'q' : ''}">${esc(d.t)}</p><div class="foot"><small>${esc(d.src)}</small>${d.src === 'خلاصة' ? '' : `<button type="button" class="mini" data-card="1">بطاقة</button><button type="button" class="mini" data-fvj="${esc(JSON.stringify({ k: 'دعاء', t: d.t, s: d.src, q: d.q ? 1 : 0 }))}">♡</button>`}</div></div>`;
   const qf = t => esc(t).replace(/﴿[^﴾]*﴾/g, m => `<span class="qf">${m}</span>`);
-  const propH = items => `<div class="proph">${items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p>${x.f ? `<div class="pst">${x.f.map(([h0, t, r]) => `<div><h4>${esc(h0)}</h4><p>${qf(t)}</p>${r ? `<div class="pqs"><button type="button" class="pq" data-ayx="${r.join(':')}">اعرض الآيات: سورة ${esc(SURN[r[0] - 1])} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''}</button><button type="button" class="pq" data-qo="${r[0] - 1}:${r[1]}">افتح في المصحف ←</button></div>` : ''}</div>`).join('')}</div>` : ''}<button type="button" class="dl anrb" data-anr="${i}">اقرأ القصة كاملة مع الآيات</button><p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
+  const propH = items => `<div class="proph">${items.map((x, i) => `<details style="animation-delay:${Math.min(i, 12) * 40}ms"><summary><i><span>${ar(i + 1)}</span></i><b>${esc(x.n)}</b></summary><div class="pb"><p>${esc(x.s)}</p>${x.f ? `<div class="pst">${x.f.map(([h0, t, r]) => `<div><h4>${esc(h0)}</h4><p>${qf(t)}</p>${r ? `<div class="pqs"><button type="button" class="pq" data-ayx="${r.join(':')}">اعرض الآيات: سورة ${esc(SURN[r[0] - 1])} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''}</button><button type="button" class="pq" data-qo="${r[0] - 1}:${r[1]}">افتح في المصحف ←</button></div>` : ''}</div>`).join('')}</div>` : ''}<button type="button" class="dl anrb" data-anr="${i}">اقرأ القصة كاملة</button><p class="pv">${esc(x.v)}</p><small style="color:var(--mute)">${esc(x.vs)}</small><div class="pr">ذُكرت قصته في: ${x.r.map(r => `<span>${esc(r)}</span>`).join('')}<a href="#quran" data-open="${x.o}">اقرأ في المصحف ←</a></div></div></details>`).join('')}</div>`;
   document.addEventListener('click', async e => {
     const b = e.target.closest('[data-ayx]'); if (!b) return;
     const nx = b.parentElement.nextElementSibling; if (nx && nx.classList.contains('ayx')) { nx.remove(); b.setAttribute('aria-expanded', 'false'); return; }
@@ -2449,17 +2450,17 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   const renderAnb = () => { const c = L.find(x => x.type === 'prophets'); if (c && $('anbody')) $('anbody').innerHTML = (c.note ? `<p class="lnote">${esc(c.note)}</p>` : '') + propH(c.items); };
   $('anpdf').addEventListener('click', e => save(e.currentTarget, 'anbiya.pdf', 'قصص الأنبياء'));
   // full in-site story reader with the ayat written out
-  const openAnr = async i => { const c = L.find(x => x.type === 'prophets'); if (!c) return; await loadQ(); const P = c.items; i = Math.max(0, Math.min(P.length - 1, i)); const x = P[i];
+  const openAnr = async (i, keep) => { const c = L.find(x => x.type === 'prophets'); if (!c) return; await loadQ(); const P = c.items; i = Math.max(0, Math.min(P.length - 1, i)); const x = P[i];
     const nm = /محمد/.test(x.n) ? x.n : `${x.n} عليه السلام`;
     let w = document.querySelector('.anr'); if (!w) { w = document.createElement('div'); w.className = 'qpick anr'; w.setAttribute('role', 'dialog'); document.body.appendChild(w);
-      w.addEventListener('click', e => { e.stopPropagation(); if (e.target === w || e.target.closest('[data-x]')) { w.remove(); return; } const n = e.target.closest('[data-anrn]'); if (n) { openAnr(+n.dataset.anrn); return; } const o = e.target.closest('[data-anro]'); if (o) { const [s1, a1] = o.dataset.anro.split(':').map(Number); w.remove(); openS(s1 - 1, a1); } }); }
-    w.setAttribute('aria-label', 'قصة ' + nm);
+      w.addEventListener('click', e => { e.stopPropagation(); if (e.target === w || e.target.closest('[data-x]')) { w.remove(); return; } const n = e.target.closest('[data-anrn]'); if (n) { openAnr(+n.dataset.anrn); return; } const t2 = e.target.closest('[data-anay]'); if (t2) { store.set('sk-anay', +t2.dataset.anay); openAnr(+w.dataset.i, true); return; } const o = e.target.closest('[data-anro]'); if (o) { const [s1, a1] = o.dataset.anro.split(':').map(Number); w.remove(); openS(s1 - 1, a1); } }); }
+    w.setAttribute('aria-label', 'قصة ' + nm); w.dataset.i = i; const ay = !!store.get('sk-anay', 0); const sc = keep ? w.querySelector('.in').scrollTop : 0;
     const suras = [...new Set(x.f.filter(f => f[2]).map(f => SURN[f[2][0] - 1]))];
     w.innerHTML = `<div class="in"><div class="anrh"><span>${ar(i + 1)} / ${ar(P.length)}</span><h4>${esc(nm)}</h4><button type="button" class="spx" data-x="1" aria-label="إغلاق">✕</button></div>
-      <p class="anrs">${esc(x.s)}</p><p class="anrsu">السور: ${suras.map(n => `<span>${esc(n)}</span>`).join('')}</p>
-      ${x.f.map(([h0, t, r], k) => `<section class="anrst"><h5><em>${ar(k + 1)}</em>${esc(h0)}</h5><p>${qf(t)}</p>${r ? `<div class="anray">${Q[r[0] - 1][2].slice(r[1] - 1, r[2]).map((v, j) => `${esc(v)} <i>﴿${ar(r[1] + j)}﴾</i>`).join(' ')}</div><button type="button" class="anref" data-anro="${r[0]}:${r[1]}">سورة ${esc(SURN[r[0] - 1])} · ${r[2] > r[1] ? 'الآيات' : 'الآية'} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''} · افتح في المصحف ←</button>` : ''}</section>`).join('')}
+      <div class="anrt" role="group" aria-label="طريقة العرض"><button type="button" data-anay="0" aria-pressed="${!ay}">القصة فقط</button><button type="button" data-anay="1" aria-pressed="${ay}">القصة مع الآيات</button></div><p class="anrs">${esc(x.s)}</p><p class="anrsu">السور: ${suras.map(n => `<span>${esc(n)}</span>`).join('')}</p>
+      ${x.f.map(([h0, t, r], k) => `<section class="anrst"><h5><em>${ar(k + 1)}</em>${esc(h0)}</h5><p>${qf(t)}</p>${r && ay ? `<div class="anray">${Q[r[0] - 1][2].slice(r[1] - 1, r[2]).map((v, j) => `${esc(v)} <i>﴿${ar(r[1] + j)}﴾</i>`).join(' ')}</div><button type="button" class="anref" data-anro="${r[0]}:${r[1]}">سورة ${esc(SURN[r[0] - 1])} · ${r[2] > r[1] ? 'الآيات' : 'الآية'} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''} · افتح في المصحف ←</button>` : r ? `<button type="button" class="anref" data-anro="${r[0]}:${r[1]}">سورة ${esc(SURN[r[0] - 1])} · ${r[2] > r[1] ? 'الآيات' : 'الآية'} ${ar(r[1])}${r[2] > r[1] ? '–' + ar(r[2]) : ''}</button>` : ''}</section>`).join('')}
       <div class="anrnav">${i > 0 ? `<button type="button" class="dl ghost" data-anrn="${i - 1}">→ ${esc(P[i - 1].n)}</button>` : '<span></span>'}${i < P.length - 1 ? `<button type="button" class="dl" data-anrn="${i + 1}">${esc(P[i + 1].n)} ←</button>` : ''}</div></div>`;
-    w.querySelector('.in').scrollTop = 0; store.set('sk-anl', i); };
+    w.querySelector('.in').scrollTop = sc; store.set('sk-anl', i); };
   window.openAnr = openAnr;
   document.addEventListener('click', e => { const b = e.target.closest('[data-anr]'); if (b) openAnr(+b.dataset.anr); });
   $('anread').addEventListener('click', () => openAnr(store.get('sk-anl', 0)));
@@ -3796,7 +3797,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795658730'; let pend = false;
+  const BUILD = '1795662905'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
