@@ -1618,7 +1618,8 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <div class="adrows" id="adrows"></div>
       <div class="adopt">
         <label>التنبيه <select id="adpre"><option value="0">عند الأذان</option><option value="5">قبله بـ٥ دقائق</option><option value="10">قبله بـ١٠ دقائق</option><option value="15">قبله بـ١٥ دقيقة</option></select></label>
-        <label>صوت الأذان <select id="adsel"><option value="mk">أذان الحرم المكي</option><option value="md">أذان المسجد النبوي</option><option value="ch">نغمة هادئة</option><option value="0">بدون صوت</option></select></label>
+        <label>صوت الأذان <select id="adsel"><option value="mk">الحرم المكي · علي ملا</option><option value="md">المسجد النبوي</option><option value="n1">المسجد النبوي · ١٤٣٤هـ</option><option value="n2">من رحاب المسجد النبوي</option><option value="ch">نغمة هادئة</option><option value="0">بدون صوت</option></select></label>
+        <label>أذان الفجر <select id="adself"><option value="sq">هاشم السقاف · الحرم المكي</option><option value="mkf">الحرم المكي</option><option value="same">نفس صوت الأذان</option></select></label>
         <label>صوت التذكيرات <select id="rmsel"><option value="ch">نغمة هادئة</option><option value="bl">جرس</option><option value="0">بدون صوت</option></select></label>
         <input type="checkbox" id="adsnd" hidden>
       </div>
@@ -1731,7 +1732,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       <li><b>التفسير</b>: التفسير الميسر، إصدار مجمع الملك فهد. للمراجعة: <a href="https://tafsir.app" target="_blank" rel="noopener">tafsir.app</a>.</li>
       <li><b>التلاوات الصوتية وتحميل السور</b>: من <a href="https://alquran.cloud" target="_blank" rel="noopener">alquran.cloud</a> و<a href="https://quranicaudio.com" target="_blank" rel="noopener">quranicaudio.com</a> و<a href="https://quran.com" target="_blank" rel="noopener">quran.com</a>.</li>
       <li><b>خطوط المصحف</b>: «أميري قرآن» و«شهرزاد الجديد» (Scheherazade New من SIL)، وكلاهما برخصة الخطوط المفتوحة OFL.</li>
-      <li><b>أصوات الأذان</b>: أذان الحرم المكي بصوت الشيخ علي بن أحمد ملا، وأذان الفجر بالحرم المكي، وأذان المسجد النبوي، من مجموعة <a href="https://github.com/Kiwifu/adhan-mp3" target="_blank" rel="noopener">Adhan MP3</a> المتاحة مجاناً للتطبيقات الإسلامية.</li>
+      <li><b>أصوات الأذان</b>: أذان الحرم المكي بصوت الشيخ علي بن أحمد ملا، وأذان الفجر بالحرم المكي، وأذان المسجد النبوي، من مجموعة <a href="https://github.com/Kiwifu/adhan-mp3" target="_blank" rel="noopener">Adhan MP3</a> المتاحة مجاناً للتطبيقات الإسلامية. وأذان الفجر بصوت المؤذن هاشم السقاف من الحرم المكي (٢٨ شوال ١٤٤٠هـ)، وتسجيلان من المسجد النبوي، أرسلها لنا صاحب الموقع.</li>
     </ul>
     <h3 class="srch">الحديث والأذكار والقصص</h3>
     <ul class="srclist">
@@ -3817,7 +3818,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795708415'; let pend = false;
+  const BUILD = '1795710686'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -3894,13 +3895,13 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
     catch { st.textContent = 'الملف هذا مو نسخة احتياطية من سكون.'; } finally { e.target.value = ''; } });
   // ===================== adhan alerts =====================
   const ADP = [['fajr', 'الفجر'], ['dhuhr', 'الظهر'], ['asr', 'العصر'], ['maghrib', 'المغرب'], ['isha', 'العشاء']];
-  const ADH = Object.assign({ on: { fajr: 1, dhuhr: 1, asr: 1, maghrib: 1, isha: 1 }, pre: 0, snd: 1, sv: 'mk', rs: 'ch' }, store.get('sk-adh', {})); if (!ADH.snd && !store.get('sk-adh', {}).sv) ADH.sv = '0';
+  const ADH = Object.assign({ on: { fajr: 1, dhuhr: 1, asr: 1, maghrib: 1, isha: 1 }, pre: 0, snd: 1, sv: 'mk', svf: 'sq', rs: 'ch' }, store.get('sk-adh', {})); if (!ADH.snd && !store.get('sk-adh', {}).sv) ADH.sv = '0';
   const adSave = () => store.set('sk-adh', ADH);
   const adTimes = (dt = riyadhNow()) => PT(dt.getFullYear(), dt.getMonth() + 1, dt.getDate(), CITY[1], CITY[2], 3, isRamadan());
   const renderAD = () => { if (!$('adrows')) return; const t = adTimes();
     $('adsub').textContent = `أوقات اليوم في ${CITY[0]} بتقويم أم القرى. غيّر المدينة من الإعدادات.`;
     $('adrows').innerHTML = ADP.map(([k, n]) => `<div class="adrow"><label class="rsw"><input type="checkbox" data-adk="${k}" ${ADH.on[k] ? 'checked' : ''}><span></span></label><b>أذان ${n}</b><span>${hm(t[k])}</span></div>`).join('');
-    $('adpre').value = String(ADH.pre); $('adsnd').checked = !!ADH.snd; $('adsel').value = ADH.sv; $('rmsel').value = ADH.rs; };
+    $('adpre').value = String(ADH.pre); $('adsnd').checked = !!ADH.snd; $('adsel').value = ADH.sv; $('adself').value = ADH.svf || 'sq'; $('rmsel').value = ADH.rs; };
   let actx = null;
   const chime = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const t0 = actx.currentTime;
     [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => { const o = actx.createOscillator(), g = actx.createGain(); o.type = 'sine'; o.frequency.value = f; o.connect(g); g.connect(actx.destination);
@@ -3910,9 +3911,10 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
       const st = t0 + d; g.gain.setValueAtTime(0, st); g.gain.linearRampToValueAtTime(0.22, st + 0.01); g.gain.exponentialRampToValueAtTime(0.001, st + 2.2); o.start(st); o.stop(st + 2.3); }); } catch {} };
   let adAud = null, adBar = null;
   const adStop = () => { if (adAud) { try { adAud.pause(); } catch {} adAud = null; } if (adBar) { adBar.remove(); adBar = null; } };
-  const playAdhan = (fajr) => { adStop(); const src = ADH.sv === 'md' ? 'adhan/madinah.mp3' : fajr ? 'adhan/fajr.mp3' : 'adhan/makkah.mp3';
+  const playAdhan = (fajr) => { adStop(); const AF = { mk: ['adhan/makkah.mp3', 'أذان الحرم المكي · علي ملا'], md: ['adhan/madinah.mp3', 'أذان المسجد النبوي'], n1: ['adhan/nabawi1.mp3', 'أذان المسجد النبوي'], n2: ['adhan/nabawi2.mp3', 'أذان المسجد النبوي'], sq: ['adhan/saqqaf-fajr.mp3', 'أذان الفجر · هاشم السقاف'], mkf: ['adhan/fajr.mp3', 'أذان الفجر · الحرم المكي'] };
+    const key = fajr && ADH.svf !== 'same' ? (ADH.svf || 'sq') : (AF[ADH.sv] ? ADH.sv : 'mk'), src = AF[key][0];
     adAud = new Audio(src); adAud.volume = 1; adAud.addEventListener('ended', adStop);
-    adBar = document.createElement('div'); adBar.className = 'adbar'; adBar.setAttribute('role', 'status'); adBar.innerHTML = `<span>🕌 ${ADH.sv === 'md' ? 'أذان المسجد النبوي' : 'أذان الحرم المكي'}</span><button type="button">إيقاف الأذان</button>`; adBar.querySelector('button').addEventListener('click', adStop); document.body.appendChild(adBar);
+    adBar = document.createElement('div'); adBar.className = 'adbar'; adBar.setAttribute('role', 'status'); adBar.innerHTML = `<span>🕌 ${AF[key][1]}</span><button type="button">إيقاف الأذان</button>`; adBar.querySelector('button').addEventListener('click', adStop); document.body.appendChild(adBar);
     adAud.play().catch(() => { adStop(); chime(); }); };
   // one entry point for every alert sound on the site
   window.skSound = (kind, opt) => { if (kind === 'adhan') { if (ADH.sv === '0') return; if (ADH.sv === 'ch' || opt === 'pre') chime(); else playAdhan(opt === 'fajr'); return; }
@@ -3926,6 +3928,7 @@ a.dl{display:inline-flex;align-items:center;justify-content:center;text-decorati
   $('adpre').addEventListener('change', e => { ADH.pre = +e.target.value; adSave(); });
   $('adsnd').addEventListener('change', e => { ADH.snd = e.target.checked ? 1 : 0; adSave(); });
   $('adsel').addEventListener('change', e => { ADH.sv = e.target.value; ADH.snd = ADH.sv === '0' ? 0 : 1; adSave(); adStop(); if (ADH.sv === 'ch') chime(); else if (ADH.sv !== '0') { playAdhan(false); setTimeout(() => { if (adAud && adAud.currentTime > 6) adStop(); }, 7000); } });
+  $('adself').addEventListener('change', e => { ADH.svf = e.target.value; adSave(); adStop(); if (ADH.sv !== '0' && ADH.sv !== 'ch') { playAdhan(true); setTimeout(() => { if (adAud && adAud.currentTime > 6) adStop(); }, 7000); } });
   $('rmsel').addEventListener('change', e => { ADH.rs = e.target.value; adSave(); window.skSound('rem'); });
   $('adtest').addEventListener('click', async () => { if ('Notification' in window && Notification.permission === 'default') { try { await Notification.requestPermission(); } catch {} } adFire('الظهر', 0); bellUI && bellUI();
     $('adst').textContent = 'Notification' in window && Notification.permission === 'granted' ? 'تمام، التنبيه شغّال. يوصلك والموقع مفتوح، وللتنبيه الدائم أضفه للتقويم.' : 'التنبيه يظهر داخل الموقع. للتنبيه حتى والموقع مقفل، أضفه للتقويم.'; });
