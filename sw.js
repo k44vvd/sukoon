@@ -1,6 +1,6 @@
 // سكون: service worker (offline basics, share-to-Wamda, push notifications)
 const V = 'sukoon-v1';
-const STATIC = /\/(fonts|images|tafsir|frames|adhan)\/|quran\.json$|\.(png|jpg|woff2?|ttf)$/;
+const STATIC = /\/(fonts|images|tafsir|frames|adhan|js\/ort)\/|quran\.json$|\.(png|jpg|woff2?|ttf)$/;
 self.addEventListener('install', e => { self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil((async () => { const ks = await caches.keys(); await Promise.all(ks.filter(k => k.startsWith('sukoon-') && k !== V && k !== 'sukoon-share').map(k => caches.delete(k))); await self.clients.claim(); })()); });
 self.addEventListener('fetch', e => {
