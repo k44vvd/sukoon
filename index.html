@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
-<script>try{const S=JSON.parse(localStorage.getItem("sk-set")||"{}");if(S.skin)document.documentElement.dataset.skin=S.skin;if(S.zoom)document.documentElement.style.setProperty("--zoom",S.zoom);if(S.motion===0)document.documentElement.classList.add("still");if(S.lang&&S.lang!=="ar"){document.documentElement.lang=S.lang;document.documentElement.dir=["ur","fa"].includes(S.lang)?"rtl":"ltr"}}catch(e){}</script>
+<script>try{const S=JSON.parse(localStorage.getItem("sk-set")||"{}");if(S.skin){const q=String(S.skin).split(":");document.documentElement.dataset.skin=q[0];if(q[1])document.documentElement.dataset.tone=q[1];}if(S.zoom)document.documentElement.style.setProperty("--zoom",S.zoom);if(S.motion===0)document.documentElement.classList.add("still");if(S.lang&&S.lang!=="ar"){document.documentElement.lang=S.lang;document.documentElement.dir=["ur","fa"].includes(S.lang)?"rtl":"ltr"}}catch(e){}</script>
 <style>
 @font-face{font-family:"Sukoon Sch";src:url(fonts/scheherazade.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Sukoon Quran";src:url(fonts/amiri-quran.woff2) format("woff2");font-display:swap}
@@ -563,6 +563,12 @@ body.qp-on .rbody{padding-bottom:110px}
 
 /* skins */
 :root[data-skin=light]{color-scheme:light;--bg:#f6f1e4;--bg2:#fffaf0;--card:#fffdf8;--ink:#12322f;--mute:#5b6e6a;--line:rgba(18,50,47,.14);--gold:#8a6a22}
+:root[data-skin=sidra]{--bg:#16352A;--bg2:#1c4134;--card:#1c4134;--ink:#f4efe4;--mute:#b5c2b8;--line:rgba(244,239,228,.13);--gold:#C3A15B}
+:root[data-skin=night]{--bg:#0c1a14;--bg2:#13261d;--card:#13261d;--ink:#efe9dc;--mute:#9fb0a5;--line:rgba(239,233,220,.12);--gold:#C3A15B}
+:root[data-skin=olive]{--bg:#232a1b;--bg2:#2e3624;--card:#2e3624;--ink:#f2eee2;--mute:#b8b9a4;--line:rgba(242,238,226,.12);--gold:#C9A95E}
+:root[data-skin=light][data-tone=sidra]{--bg:#f4efe4;--bg2:#fffaf0;--card:#fffaf0;--ink:#16352A;--mute:#5b6a62;--line:rgba(22,53,42,.14);--gold:#8f6f2e}
+:root[data-skin=light][data-tone=mint]{--bg:#eef2ea;--bg2:#f8faf5;--card:#fbfcf8;--ink:#16352A;--mute:#55665b;--line:rgba(22,53,42,.13);--gold:#8a6a26}
+img.logo.lgd{display:none}:root[data-skin=light] img.logo.lgl,:root[data-skin=sand] img.logo.lgl{display:none}:root[data-skin=light] img.logo.lgd,:root[data-skin=sand] img.logo.lgd{display:block}
 :root[data-skin=navy]{--bg:#0b1630;--bg2:#13234a;--card:#13234a;--ink:#eef0f6;--mute:#a6b0c8;--line:rgba(255,255,255,.12);--gold:#d4b97a}
 :root[data-skin=purple]{--bg:#1d1430;--bg2:#2a1f42;--card:#2a1f42;--ink:#f1ecf7;--mute:#b6a9c9;--line:rgba(255,255,255,.12);--gold:#d8b878}
 :root[data-skin=maroon]{--bg:#260d15;--bg2:#3a1622;--card:#3a1622;--ink:#f5eaea;--mute:#c9a9ae;--line:rgba(255,255,255,.12);--gold:#d9b46f}
@@ -1437,7 +1443,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
     <div class="tds"><a class="tdt" id="tdt1" href="#/adhkar"></a><a class="tdt" id="tdt2" href="#/quran"></a></div>
   </div>
   <header data-page="home">
-    <img class="logo" src="logo.png" alt="سدرة SIDRA">
+    <img class="logo lgl" src="logo.png" alt="سدرة SIDRA"><img class="logo lgd" src="logo-full-dark.png" alt="سدرة SIDRA">
     <div class="waves" aria-hidden="true"><i style="animation-delay:-0s"></i><i style="animation-delay:-.3s"></i><i style="animation-delay:-.7s"></i><i style="animation-delay:-.1s"></i><i style="animation-delay:-.5s"></i><i style="animation-delay:-.9s"></i><i style="animation-delay:-.2s"></i><i style="animation-delay:-.6s"></i><i style="animation-delay:-.4s"></i><i style="animation-delay:-.8s"></i><i style="animation-delay:-.15s"></i><i style="animation-delay:-.55s"></i><i style="animation-delay:-.35s"></i></div>
     <nav class="social" aria-label="حسابات سدرة">
       <a href="https://www.instagram.com/6amx9" rel="noopener">
@@ -2212,7 +2218,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
 </div>
 </div><div class="spn" data-spn="look" hidden><button type="button" class="spback" data-spback>‹ الإعدادات</button><h4>المظهر</h4><div class="srow"><b>لون الموقع</b>
       <div class="skins" id="skins">
-        <button type="button" data-skin=""><i style="background:#022b2a"></i>الأخضر</button>
+        <button type="button" data-skin="sidra"><i style="background:#16352A;box-shadow:inset 0 0 0 3px #C3A15B"></i>سِدرة</button><button type="button" data-skin="night"><i style="background:#0c1a14;box-shadow:inset 0 0 0 3px #C3A15B"></i>ليل السدر</button><button type="button" data-skin="olive"><i style="background:#232a1b;box-shadow:inset 0 0 0 3px #C9A95E"></i>زيتوني</button><button type="button" data-skin="light:sidra"><i style="background:#f4efe4;box-shadow:inset 0 0 0 3px #16352A"></i>رملي سدرة</button><button type="button" data-skin="light:mint"><i style="background:#eef2ea;box-shadow:inset 0 0 0 3px #16352A"></i>نعناعي</button><button type="button" data-skin=""><i style="background:#022b2a"></i>الأخضر</button>
         <button type="button" data-skin="light"><i style="background:#f6f1e4"></i>فاتح</button>
         <button type="button" data-skin="black"><i style="background:#050505"></i>أسود</button>
         <button type="button" data-skin="navy"><i style="background:#0b1630"></i>كحلي</button>
@@ -3073,7 +3079,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
   { const cq = new URLSearchParams(location.search).get('c'); if (cq) { if (/^sa-\d+$/.test(cq) && CITIES[+cq.slice(3)]) { S.country = 'SA'; S.zone = 'Asia/Riyadh'; S.city = +cq.slice(3); } else { const co = WTC.find(x => x[0] === cq.toUpperCase() && x[0] !== 'SA'); if (co) { S.country = co[0]; S.zone = co[5]; } } store.set('sk-set', S); try { history.replaceState(null, '', location.pathname + location.hash); } catch {} } }
   const applyS = () => {
     const R = document.documentElement;
-    if (S.skin) R.dataset.skin = S.skin; else delete R.dataset.skin;
+    { const [k0, t0] = String(S.skin || '').split(':'); if (k0) R.dataset.skin = k0; else delete R.dataset.skin; if (t0) R.dataset.tone = t0; else delete R.dataset.tone; }
     R.style.setProperty('--zoom', S.zoom); R.classList.toggle('still', !S.motion);
     const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#022b2a';
     document.querySelectorAll('#skins button').forEach(b => b.setAttribute('aria-pressed', b.dataset.skin === S.skin));
@@ -4775,7 +4781,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795844591'; let pend = false;
+  const BUILD = '1795844717'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
