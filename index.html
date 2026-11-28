@@ -928,7 +928,7 @@ footer .fdesc{max-width:560px;margin:10px auto 4px;line-height:1.9}footer .fdua{
 .wrow svg{width:14px;height:14px;margin-inline-end:6px}
 .pdate{text-align:center;text-shadow:0 1px 6px rgba(0,0,0,.5);padding-top:4px}
 .pdate b{display:block;font:700 19px/1.3 Amiri,serif}
-.pdate span{font-size:13px;opacity:.85}.pdate .pclk{display:inline-block;margin-top:6px;padding:3px 12px;border-radius:999px;background:rgba(0,0,0,.22);font-size:13.5px;font-weight:500;opacity:1;font-variant-numeric:tabular-nums}
+.pdate span{font-size:13px;opacity:.85}.pdate .pclk{display:block;margin-top:2px;font-size:12px;opacity:.7;letter-spacing:.2px;font-variant-numeric:tabular-nums}
 .plabel{margin:14px 0 0;text-align:center;font:700 clamp(26px,6vw,34px)/1.3 Amiri,serif;color:color-mix(in srgb,var(--gold) 55%,#fff);text-shadow:0 2px 10px rgba(0,0,0,.5)}
 .pcd{text-align:center;direction:ltr;font-size:clamp(54px,14vw,80px);font-weight:700;line-height:1.15;color:color-mix(in srgb,var(--gold) 75%,#fff);text-shadow:0 4px 18px rgba(0,0,0,.45);font-variant-numeric:tabular-nums;letter-spacing:1px}
 .plow{padding:14px clamp(18px,5vw,32px) 16px}
@@ -3023,7 +3023,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
     $('mwq').innerHTML = PN.map(([k, n]) => `<div class="pt${k === nx[0] ? ' next' : ''}${k === 'sunrise' ? ' sun' : ''}"><b>${T(n)}</b><strong>${hm(ptT[k])}</strong>${IQ[k] ? `<small class="iq">${k === 'dhuhr' && fri ? 'صلاة الجمعة' : `${isAr() ? 'الإقامة' : 'Iqama'} ${hm(Math.round(ptT[k] * 60) / 60 + IQ[k] / 60)}`}</small>` : ''}</div>${k === 'sunrise' ? `<div class="pt duha${now >= duS && now < duE ? ' now' : ''}"><b>${isAr() ? 'الضحى' : 'Duha'}</b><strong>${hm(duS)}</strong><small class="iq">${isAr() ? 'إلى' : 'until'} ${hm(duE)}</small></div>` : ''}`).join('');
     $('mnext').textContent = duWait ? (isAr() ? 'الضحى بعد' : 'Duha in') : iqP ? (isAr() ? `إقامة ${iqP[1]} بعد` : `Iqama ${T(iqP[1])}`) : isAr() ? `${nx[1]} بعد` : `${T('بعد')}: ${T(nx[1])}`;
     $('tbn').textContent = duWait ? (isAr() ? 'الضحى' : 'Duha') : iqP ? (isAr() ? `إقامة ${iqP[1]}` : `Iqama ${T(iqP[1])}`) : T(nx[1]); $('tbc').textContent = isAr() ? `مواقيت ${CITY[0]} · ${CC.code === 'SA' ? 'تغيير المدينة' : 'تغيير الدولة'}` : `${T(CITY[0])} · `; updCard(now, nx);
-    { const H = r.getHours(), Mi = r.getMinutes(), Se = r.getSeconds(), p2 = x => String(x).padStart(2, '0'); const h24 = SET0.h24; const hh = h24 ? p2(H) : String(H % 12 || 12); const t = nd(`${hh}:${p2(Mi)}:${p2(Se)}`) + (h24 ? '' : isAr() ? (H < 12 ? ' ص' : ' م') : (H < 12 ? ' AM' : ' PM')); const c = $('tbclk'); if (c) c.textContent = isAr() ? `🕰️ الوقت الآن في ${CITY[0]}: ${t}` : `🕰️ Time in ${T(CITY[0])}: ${t}`; }
+    { const H = r.getHours(), Mi = r.getMinutes(), Se = r.getSeconds(), p2 = x => String(x).padStart(2, '0'); const h24 = SET0.h24; const hh = h24 ? p2(H) : String(H % 12 || 12); const t = nd(`${hh}:${p2(Mi)}`) + (h24 ? '' : isAr() ? (H < 12 ? ' ص' : ' م') : (H < 12 ? ' AM' : ' PM')); const c = $('tbclk'); if (c) c.textContent = isAr() ? `${CITY[0]} · ${t}` : `${T(CITY[0])} · ${t}`; }
     const sec = Math.max(0, Math.floor(rem * 3600)); $('mcd').textContent = `${String(Math.floor(sec / 3600)).padStart(2, '0')}:${String(Math.floor(sec % 3600 / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`; $('tbcd').textContent = nd($('mcd').textContent);
   };
   tickPT(); const ptTimer = setInterval(tickPT, 1000);
@@ -4782,7 +4782,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795846693'; let pend = false;
+  const BUILD = '1795846819'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
