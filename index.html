@@ -4812,7 +4812,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795848331'; let pend = false;
+  const BUILD = '1795849526'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -5210,7 +5210,7 @@ self.onmessage = async e => { const m = e.data;
   }
   // ===================== PWA: install + real push notifications =====================
   {
-    const VAPID = 'BMMpaLKQQ4M6gw17fcD_nVB5Vq5Mqu1QLwuN3PyNkmYsDUovrZNFk94IEbtxRzJnaRTFfadu5G9UUYCePpidHk0';
+    // VAPID public key is fetched from the server (push_public_key) when subscribing
     const canSW = 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost') && /github\.io$|^localhost$|(^|\.)sidraapp\.com$/.test(location.hostname);
     let swReg = null, dpr = null;
     const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
@@ -5241,7 +5241,7 @@ self.onmessage = async e => { const m = e.data;
     document.addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - lastSy > 6 * 3600e3) pushSync(); });
     const pushToggle = async () => { const b = $('pushbtn'); if (store.get('sk-push', 0) === 1 && Notification.permission === 'granted') { try { const sub = await swReg.pushManager.getSubscription(); if (sub) { const S = window.skSB; try { await S.sbf('/rest/v1/rpc/push_off', { method: 'POST', body: { endpoint: sub.endpoint }, auth: false }); } catch {} await sub.unsubscribe(); } } catch {} store.set('sk-push', 0); pushUI(); toast('وقّفت الإشعارات الحقيقية'); return; }
       b.disabled = true; pushSt('يفعّل…'); try { const perm = await Notification.requestPermission(); if (perm !== 'granted') { pushSt('ما سمحت بالإشعارات. فعّلها من إعدادات المتصفح للموقع وجرّب مرة ثانية.'); b.disabled = false; return; }
-        swReg = swReg || await navigator.serviceWorker.ready; let sub = await swReg.pushManager.getSubscription(); if (!sub) sub = await swReg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(VAPID) }); store.set('sk-push', 1); await pushSync(true); toast('تفعّلت الإشعارات الحقيقية 🔔'); } catch (e) { pushSt('ما قدرت أفعّلها: ' + (e && e.message || 'خطأ')); } b.disabled = false; pushUI(); };
+        swReg = swReg || await navigator.serviceWorker.ready; let sub = await swReg.pushManager.getSubscription(); if (!sub) { let key = null; try { key = await window.skSB.sbf('/rest/v1/rpc/push_public_key', { method: 'POST', body: {}, auth: false }); } catch {} if (!key) { pushSt('خدمة الإشعارات تتجهّز، جرّب بعد دقيقة.'); b.disabled = false; return; } sub = await swReg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(key) }); } store.set('sk-push', 1); await pushSync(true); toast('تفعّلت الإشعارات الحقيقية 🔔'); } catch (e) { pushSt('ما قدرت أفعّلها: ' + (e && e.message || 'خطأ')); } b.disabled = false; pushUI(); };
     document.addEventListener('click', e => { if (e.target.closest('#pushbtn')) pushToggle(); });
     // ---- share-to-Wamda (from the phone's share sheet)
     const takeShared = async () => { if (!new URLSearchParams(location.search).has('shared')) return; try { const c = await caches.open('sukoon-share'); const r = await c.match('./__shared-video'); if (!r) return; const blob = await r.blob(); const name = decodeURIComponent(r.headers.get('X-Name') || 'video.mp4'); await c.delete('./__shared-video'); history.replaceState(null, '', location.pathname + '#/reels'); const f = new File([blob], name, { type: blob.type || 'video/mp4' }); setTimeout(() => window.rlUpload && window.rlUpload(f), 1200); } catch {} };
