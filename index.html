@@ -2479,7 +2479,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
   $('treset').addEventListener('click', () => { cnt = 0; $('tcount').textContent = 0; store.set('sk-salawat', 0); });
 
   // sadaqa card
-  const SITE = 'https://sukoon-app.github.io/sukoon/';
+  const SITE = 'https://sidraapp.com/';
   let g = 'm'; const cv = $('cv'), cx = cv.getContext('2d'); const logo = new Image(); logo.src = 'logo-h.png';
   const duaFor = () => g === 'f' ? 'اللهم اغفر لها وارحمها، ونوّر قبرها، واجعل القرآن أنيسها' : g === 'me' ? 'اللهم اجعله في ميزان حسناتي، وتقبّله مني' : 'اللهم اغفر له وارحمه، ونوّر قبره، واجعل القرآن أنيسه';
   const nameTxt = () => ($('sname').value || '').trim();
@@ -3427,7 +3427,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
       if (k === 'mon' || k === 'thu' || k === 'kahf') { const wd = riyadhNow().getDay(), tgt = k === 'mon' ? 0 : k === 'thu' ? 3 : 5; start = addDays(today(), (tgt - wd + 7) % 7).replace(/-/g, ''); }
       return ['BEGIN:VEVENT', `UID:sukoon-${k}@k44vvd.github.io`, `DTSTAMP:${stamp}`, `DTSTART:${start}T${h}${m}00`, 'DURATION:PT10M', k === 'mon' ? 'RRULE:FREQ=WEEKLY;BYDAY=SU' : k === 'thu' ? 'RRULE:FREQ=WEEKLY;BYDAY=WE' : k === 'kahf' ? 'RRULE:FREQ=WEEKLY;BYDAY=FR' : 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc('سدرة · ' + RINFO[k][0])}`, `DESCRIPTION:${icsEsc(RINFO[k][2] + '\n' + SITE)}`, `URL:${SITE}`, 'BEGIN:VALARM', 'ACTION:DISPLAY', 'TRIGGER:PT0M', `DESCRIPTION:${icsEsc(RINFO[k][2])}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'); });
     const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Sidra//Reminders//AR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:سدرة', ...ev, 'END:VCALENDAR'].join('\r\n');
-    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sidraapp.com/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
     st.textContent = 'جاري التجهيز…';
     try { await downloads.save({ filename: 'تذكيرات سدرة.ics', data: new Blob([ics], { type: 'text/calendar' }) }); st.textContent = 'تم. افتح الملف واختر «إضافة الكل» عشان تنضاف لتقويمك.'; }
@@ -3628,7 +3628,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
       if (cur2) { const p = (t - cur2[0]) / Math.max(0.1, cur2[1] - cur2[0]); $('qpprog').style.width = Math.max(0, Math.min(100, p * 100)) + '%'; } return; }
     if (AU.duration) $('qpprog').style.width = (AU.currentTime / AU.duration * 100) + '%'; });
   AU.addEventListener('error', () => { if (QP && isX() && RX[REC].alt) { const r = RX[REC], tried = +(AU.dataset.alt || 0); if (tried < r.alt.length) { AU.dataset.alt = tried + 1; const u = r.alt[tried](QP.s); XT[REC + ':' + QP.s] = { url: u, tm: null }; AU.src = u; AU.play().catch(() => {}); return; } } AU.dataset.alt = 0; if (!QP || !AU.getAttribute('src')) return; const e = $('qperr'); e.hidden = false;
-    e.innerHTML = window.claude && claude.use ? 'الصوت ما يشتغل داخل هذه الصفحة. <a href="https://sukoon-app.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتح الموقع من الرابط الرئيسي</a> واستمع من هناك.' : 'تعذّر تحميل الصوت، تأكد من اتصال الإنترنت وجرب مرة ثانية.'; qpUIp(); });
+    e.innerHTML = window.claude && claude.use ? 'الصوت ما يشتغل داخل هذه الصفحة. <a href="https://sidraapp.com/#/quran" target="_blank" rel="noopener">افتح الموقع من الرابط الرئيسي</a> واستمع من هناك.' : 'تعذّر تحميل الصوت، تأكد من اتصال الإنترنت وجرب مرة ثانية.'; qpUIp(); });
   function qpUIp() { const on = QP && !AU.paused; $('qppp').innerHTML = on ? PAUSE_SVG : PLAY_SVG; $('qppp').setAttribute('aria-label', on ? 'إيقاف مؤقت' : 'تشغيل'); const rp = $('rplay'); if (rp) rp.innerHTML = (on && QP.s === cur ? PAUSE_SVG + 'إيقاف' : PLAY_SVG + 'استمع'); document.querySelectorAll('.splay').forEach(b => { const me = on && QP.s === +b.dataset.play; b.innerHTML = me ? PAUSE_SVG : PLAY_SVG; b.classList.toggle('on', !!(QP && QP.s === +b.dataset.play)); }); if ('mediaSession' in navigator) navigator.mediaSession.playbackState = on ? 'playing' : 'paused'; }
   const qpUI = () => { if (!QP) { qpUIp(); return; } $('qpt').textContent = Q ? `سورة ${Q[QP.s][0]}` : ''; $('qps').textContent = `${QP.m === 'x' && !QP.tm ? 'السورة كاملة' : QP.b ? 'البسملة' : `الآية ${ar(QP.a)} من ${ar(VC[QP.s])}`} · ${recName()}`; $('qprep').setAttribute('aria-pressed', qpRep); if (QP.m !== 'x') $('qpprog').style.width = '0%'; qpUIp(); };
   const qpHL = () => {
@@ -4080,7 +4080,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
   const fillDl = async () => { if ($('dlsur').options.length) return; await loadQ(); $('dlsur').innerHTML = Q.map((q, i) => `<option value="${i}">${ar(i + 1)}. سورة ${q[0]}</option>`).join(''); };
   $('dlgo').addEventListener('click', async () => {
     const st = $('dlst'), s2 = +$('dlsur').value, b = $('dlgo');
-    if (window.claude && claude.use) { st.innerHTML = 'تحميل السور يشتغل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/quran" target="_blank" rel="noopener">افتحه هنا</a> واضغط «تحميل السورة».'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'تحميل السور يشتغل من رابط الموقع الرئيسي: <a href="https://sidraapp.com/#/quran" target="_blank" rel="noopener">افتحه هنا</a> واضغط «تحميل السورة».'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح في هذا المتصفح.'; return; }
     b.disabled = true; $('dlbarw').hidden = false; $('dlbar').style.width = '0%'; let blob;
     try {
@@ -4131,7 +4131,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
   bellUI();
 
   // ===================== share + rate =====================
-  const PUB = 'https://sukoon-app.github.io/sukoon/'; $('slink').value = PUB;
+  const PUB = 'https://sidraapp.com/'; $('slink').value = PUB;
   const SHT = ['سدرة، منصة إسلامية تجمع القرآن الكريم والأذكار ومواقيت الصلاة والأعمال الصالحة. جرّبه ولك الأجر بإذن الله 🤍', 'اقرأ القرآن واستمع لأشهر القرّاء مع التفسير الميسر، وتابع ختمتك وحفظك في سدرة 📖', 'مواقيت الصلاة لمدينتك مع تنبيه الأذان والأذكار، كلها في سدرة 🕌', 'شارك سدرة صدقة جارية عنك وعن والديك، «من دل على خير فله مثل أجر فاعله» 🤍'];
   const shURL = () => { if ($('shrefck') && $('shrefck').checked) { const c = store.get('sk-ref', ''); if (c) return PUB + '?ref=' + c; } return PUB; };
   const shMsg = () => (($('shmsg') && $('shmsg').value.trim()) || SHT[0]);
@@ -4245,7 +4245,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
   const showId = e => e && e.endsWith(PHD) ? '+' + e.slice(1, -PHD.length) : e;
   $('atabs').addEventListener('click', e => { const b = e.target.closest('[data-at2]'); if (!b) return; amode = b.dataset.at2; $('atabs').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
     $('auw').hidden = amode !== 'up'; $('asub2').textContent = amode === 'up' ? 'إنشاء حساب' : 'تسجيل دخول'; $('aforgot').hidden = amode === 'up'; $('ap').autocomplete = amode === 'up' ? 'new-password' : 'current-password'; $('ast').textContent = ''; });
-  const offline = () => { if (window.claude && claude.use) { $('ast').innerHTML = 'تسجيل الدخول متاح في الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/" target="_blank" rel="noopener" style="color:var(--gold)">افتحه هنا</a>.'; return true; }
+  const offline = () => { if (window.claude && claude.use) { $('ast').innerHTML = 'تسجيل الدخول متاح في الموقع الرئيسي: <a href="https://sidraapp.com/" target="_blank" rel="noopener" style="color:var(--gold)">افتحه هنا</a>.'; return true; }
     if (!SBON) { $('ast').textContent = 'الحسابات قيد التفعيل وبتشتغل قريباً بإذن الله. الموقع يشتغل كامل بدونها، وتقدّمك محفوظ على جهازك.'; return true; } return false; };
   $('aform').addEventListener('submit', async e => { e.preventDefault(); const st = $('ast'); if (offline()) return;
     const u = $('au').value.trim(), pw = $('ap').value; let em = $('ae').value.trim().toLowerCase();
@@ -4433,7 +4433,7 @@ self.onmessage = async e => { const m = e.data;
       WK.onerror = e => { console.warn('[tasmee] worker', e.message); $('tmdl').hidden = true; wkLoading = null; res(false); }; WK.postMessage({ t: 'load' }); }); return wkLoading; };
     const wkNext = () => { if (wkBusy || !wkQ.length || !wkReady) return; wkBusy = true; $('tmthink').hidden = false; const a = wkQ.shift(); WK.postMessage({ t: 'asr', id: ++wkId, a }, [a.buffer]); };
     let mic = null;
-    const aiStart = async (gum, ctx) => { let st; try { st = await gum; } catch (err) { const nm = err && err.name; status(nm === 'NotAllowedError' ? 'رفضت إذن المايك. اسمح للموقع بالمايك من إعدادات المتصفح (على الآيفون: الإعدادات ← سفاري ← الميكروفون).' : nm === 'NotFoundError' ? 'ما لقيت مايك في جهازك.' : 'المتصفح ما سمح بالمايك هنا. افتح الموقع من sukoon-app.github.io/sukoon'); return false; }
+    const aiStart = async (gum, ctx) => { let st; try { st = await gum; } catch (err) { const nm = err && err.name; status(nm === 'NotAllowedError' ? 'رفضت إذن المايك. اسمح للموقع بالمايك من إعدادات المتصفح (على الآيفون: الإعدادات ← سفاري ← الميكروفون).' : nm === 'NotFoundError' ? 'ما لقيت مايك في جهازك.' : 'المتصفح ما سمح بالمايك هنا. افتح الموقع من sidraapp.com'); return false; }
       status('نجهّز نموذج ترتيل…'); const ok = await wkLoad(); if (!ok) { st.getTracks().forEach(t => t.stop()); status('ما قدرت أحمّل نموذج ترتيل. تأكد من الاتصال، أو استخدم الوضع السريع ⚡.'); return false; }
       try { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') { try { await ctx.resume(); } catch {} } const src = ctx.createMediaStreamSource(st); const pr = ctx.createScriptProcessor(4096, 1, 1); const R = ctx.sampleRate;
         let buf = [], len = 0, speech = false, sil = 0, floor = .01; const flush = () => { if (len < R * .6) { buf = []; len = 0; return; } const all = new Float32Array(len); let o = 0; buf.forEach(b => { all.set(b, o); o += b.length; }); buf = []; len = 0; const ratio = R / 16000, n = Math.floor(all.length / ratio), out = new Float32Array(n); for (let i = 0; i < n; i++) { const a = Math.floor(i * ratio), b = Math.min(all.length, Math.floor((i + 1) * ratio)); let s = 0; for (let j = a; j < b; j++) s += all[j]; out[i] = s / Math.max(1, b - a); } wkQ.push(out); wkNext(); };
@@ -4442,7 +4442,7 @@ self.onmessage = async e => { const m = e.data;
         src.connect(pr); pr.connect(ctx.destination); mic = { st, ctx, pr, src, flush }; return true; } catch (err) { status('اسمح للموقع باستخدام المايك'); return false; } };
     const stopAll = () => { if (S) S.on = false; if (rec) { try { rec.onend = null; rec.abort(); } catch {} rec = null; } if (mic) { try { mic.flush(); } catch {} try { mic.pr.disconnect(); mic.src.disconnect(); mic.st.getTracks().forEach(t => t.stop()); mic.ctx.close(); } catch {} mic = null; } if (au) { try { au.pause(); } catch {} } micUI(); };
     const micUI = () => { const on = !!(S && S.on); $('tmmic').classList.toggle('on', on); $('tmmic').setAttribute('aria-pressed', String(on)); $('tmmicl').textContent = on ? 'إيقاف مؤقت' : 'ابدأ'; $('tmlvlw').hidden = !(on && SET.eng === 'ai'); };
-    const go1 = () => { if (!S) return; if (S.on) { stopAll(); status('موقف مؤقتاً. اضغط المايك وكمّل'); return; } if (window.top !== window && /claude\.ai|claudeusercontent/.test(document.referrer + location.host)) status('لو المايك ما اشتغل هنا، افتح الموقع من sukoon-app.github.io/sukoon');
+    const go1 = () => { if (!S) return; if (S.on) { stopAll(); status('موقف مؤقتاً. اضغط المايك وكمّل'); return; } if (window.top !== window && /claude\.ai|claudeusercontent/.test(document.referrer + location.host)) status('لو المايك ما اشتغل هنا، افتح الموقع من sidraapp.com');
       S.on = true; micUI(); if (au) { try { au.pause(); } catch {} }
       if (SET.eng === 'live') { if (!liveStart()) { S.on = false; micUI(); } return; }
       let ctx = null; try { ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.resume) ctx.resume().catch(() => {}); } catch {}
@@ -4659,7 +4659,7 @@ self.onmessage = async e => { const m = e.data;
     x.fillStyle = '#fffaf0'; x.font = '400 50px "Sukoon Quran", Amiri, serif'; x.fillText('رَبَّنَا تَقَبَّلۡ مِنَّآۖ إِنَّكَ أَنتَ ٱلسَّمِيعُ ٱلۡعَلِيمُ', W / 2, 935);
     x.fillStyle = '#a9bcb7'; x.font = '400 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سورة البقرة · الآية ١٢٧', W / 2, 995);
     x.fillStyle = '#eeede6'; x.font = '400 38px Amiri, serif'; x.fillText('اللهم اجعل القرآن العظيم ربيع قلوبنا ونور صدورنا', W / 2, 1100);
-    x.direction = 'ltr'; x.fillStyle = '#c9b27c'; x.font = '500 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سدرة · sukoon-app.github.io/sukoon', W / 2, H - 110);
+    x.direction = 'ltr'; x.fillStyle = '#c9b27c'; x.font = '500 28px "IBM Plex Sans Arabic", sans-serif'; x.fillText('سدرة · sidraapp.com', W / 2, H - 110);
     return c; };
   window.kCardUI = (box, st) => { box.insertAdjacentHTML('beforeend', `<div class="kshare"><input type="text" id="kcname" maxlength="30" placeholder="اسمك على البطاقة (اختياري)"><div id="kcprev"></div><div class="row"><button type="button" class="dl" id="kcshare">مشاركة بطاقة الختمة</button><button type="button" class="dl ghost" id="kcsave">حفظ الصورة</button></div><p class="status" id="kcst" aria-live="polite"></p><small style="color:var(--mute)">بطاقة شخصية للفرح بإتمام الختمة، بدون أرقام ولا مقارنات.</small></div>`);
     const en = today(); const draw = async () => { const c = await kCard($('kcname').value.trim(), st, en); c.style.cssText = ''; $('kcprev').innerHTML = ''; $('kcprev').appendChild(c); return c; };
@@ -4781,7 +4781,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795844717'; let pend = false;
+  const BUILD = '1795846151'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -5045,7 +5045,7 @@ self.onmessage = async e => { const m = e.data;
           const u = Math.max(W, H) / 1280, pw = Math.round(250 * u), ph = Math.round(52 * u), px = W - pw - Math.round(18 * u), py = H - ph - Math.round(18 * u);
           g.globalAlpha = .78; g.fillStyle = '#022b2a'; g.beginPath(); if (g.roundRect) g.roundRect(px, py, pw, ph, ph / 2); else g.rect(px, py, pw, ph); g.fill(); g.globalAlpha = 1;
           let tx = px + pw - Math.round(14 * u); if (logo) { const lh = ph - Math.round(14 * u), lw = lh * logo.width / logo.height; g.drawImage(logo, tx - lw, py + (ph - lh) / 2, lw, lh); tx -= lw + Math.round(8 * u); }
-          g.fillStyle = 'rgba(255,255,255,.92)'; g.textAlign = 'right'; g.font = `600 ${Math.round(14 * u)}px system-ui, sans-serif`; g.fillText('sukoon-app.github.io/sukoon', tx, py + ph / 2 + Math.round(5 * u)); };
+          g.fillStyle = 'rgba(255,255,255,.92)'; g.textAlign = 'right'; g.font = `600 ${Math.round(14 * u)}px system-ui, sans-serif`; g.fillText('sidraapp.com', tx, py + ph / 2 + Math.round(5 * u)); };
         const bar = P.querySelector('.rupprog i'), lab = P.querySelector('#rvdlt');
         await new Promise((res, rej) => { let raf = 0, fin = false, wd = 0; const finish = () => { if (fin) return; fin = true; clearInterval(wd); v.pause(); if (sq) sq.stop(); draw(); setTimeout(() => { try { rec.state !== 'inactive' && rec.stop(); } catch { res(); } }, 150); }; if (sq) { sq.onCycle = () => { finish(); return false; }; } else v.addEventListener('ended', finish); const t0 = Date.now(); wd = setInterval(() => { if (cancel) { clearInterval(wd); return; } if (sq) { const pr = Math.min(.99, (Date.now() - t0) / 1000 / Math.max(5, sq.list.length * 9)); bar.style.width = Math.round(pr * 100) + '%'; return; } if (v.ended || v.currentTime >= e0 - .06) finish(); else if (v.paused && !fin) v.play().catch(() => {}); }, 250); const step = () => { if (fin) return; if (cancel) { clearInterval(wd); v.pause(); rec.state !== 'inactive' && rec.stop(); return rej(new Error('cancel')); } draw(); if (!sq) { const p = Math.min(1, (v.currentTime - s0) / Math.max(.1, e0 - s0)); bar.style.width = Math.round(p * 100) + '%'; lab.textContent = `${nd(Math.round(p * 100))}٪`; if (v.currentTime >= e0 - .04 || v.ended) { finish(); return; } } else lab.textContent = 'يسجّل مع التلاوة…'; raf = v.requestVideoFrameCallback ? v.requestVideoFrameCallback(step) : requestAnimationFrame(step); };
           rec.onstop = res; rec.start(500); if (ac && ac.state === 'suspended') ac.resume(); if (sq) sq.play(); v.play().then(() => { raf = v.requestVideoFrameCallback ? v.requestVideoFrameCallback(step) : requestAnimationFrame(step); }).catch(rej); });
@@ -5053,7 +5053,7 @@ self.onmessage = async e => { const m = e.data;
         const type = (mt || 'video/webm').split(';')[0], ext = type.includes('mp4') ? 'mp4' : 'webm', name = `wamda-sukoon-${String(x.id).replace(/^c-/, '').slice(0, 12)}.${ext}`, blob = new Blob(chunks, { type }), file = new File([blob], name, { type });
         P.innerHTML = `<div><b>جاهز 🤍</b><p style="margin:8px 0 0;opacity:.8;font-size:14px">المقطع عليه شعار سدرة ورابط الموقع${ext === 'webm' ? '. صيغته WebM، وتيك توك وواتساب يقبلونها، ولو ما قبلها تطبيق حوّلها من الاستوديو.' : '.'}</p><div class="row">${navigator.canShare && navigator.canShare({ files: [file] }) ? '<button type="button" data-sh>مشاركة (الحالة، تيك توك…)</button>' : ''}<button type="button" class="${navigator.canShare && navigator.canShare({ files: [file] }) ? 'gh' : ''}" data-sv>حفظ في الجهاز</button><button type="button" class="gh" data-c>إغلاق</button></div></div>`;
         P.querySelector('[data-c]').onclick = done;
-        const sh = P.querySelector('[data-sh]'); if (sh) sh.onclick = () => navigator.share({ files: [file], title: x.title, text: `${x.title}\nمن وَمضة في سدرة: https://sukoon-app.github.io/sukoon/` }).catch(() => {});
+        const sh = P.querySelector('[data-sh]'); if (sh) sh.onclick = () => navigator.share({ files: [file], title: x.title, text: `${x.title}\nمن وَمضة في سدرة: https://sidraapp.com/` }).catch(() => {});
         P.querySelector('[data-sv]').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); toast('انحفظ المقطع'); };
       } catch (err) { if (err && err.message === 'cancel') { done(); return; } P.innerHTML = `<div><b>ما قدرت أجهّز المقطع</b><p style="opacity:.8;font-size:14px">${err && err.message === 'unsupported' ? 'متصفحك ما يدعم هذي الميزة. جرّب Chrome أو Safari محدّث.' : 'صار خطأ أثناء التجهيز، جرّب مرة ثانية.'}</p><div class="row"><button type="button" data-c>تمام</button></div></div>`; P.querySelector('[data-c]').onclick = done; } };
     // ---------- profiles ----------
@@ -5098,7 +5098,7 @@ self.onmessage = async e => { const m = e.data;
     $('rmpng').addEventListener('click', () => { const I = rmInfo(), L = days30(I); const W = 1200, rh = 46, H = 260 + rh * (L.length + 1) + 90; const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d'); g.fillStyle = '#f6f1e7'; g.fillRect(0, 0, W, H); g.fillStyle = '#022b2a'; g.fillRect(0, 0, W, 200); g.textAlign = 'center'; g.fillStyle = '#f0d38a'; g.font = '700 54px Amiri, serif'; g.fillText(`إمساكية رمضان ${ar(I.hy)}هـ`, W / 2, 95); g.fillStyle = '#fff'; g.font = '600 32px system-ui, sans-serif'; g.fillText(CITY[0], W / 2, 150);
       const cols = ['رمضان', 'اليوم', 'الفجر', 'الشروق', 'الظهر', 'العصر', 'المغرب', 'العشاء'], cw = [90, 220, 130, 130, 130, 130, 130, 130], x0 = W - 50; const y0 = 230; g.font = '700 22px system-ui, sans-serif'; let x = x0; g.fillStyle = '#022b2a'; g.fillRect(50, y0, W - 100, rh); g.fillStyle = '#fff'; cols.forEach((t, i) => { g.fillText(t, x - cw[i] / 2, y0 + 31); x -= cw[i]; });
       g.font = '500 21px system-ui, sans-serif'; L.forEach((dt, i) => { const T = tm(dt), y = y0 + rh * (i + 1); g.fillStyle = i % 2 ? '#fff' : '#efe8d8'; if (i >= 20 && (i + 1) % 2) g.fillStyle = '#f6e7bd'; g.fillRect(50, y, W - 100, rh); g.fillStyle = '#1d2b2a'; const vals = [ar(i + 1), `${fmtW(dt)} ${fmtG(dt)}`, hm(T.fajr), hm(T.sunrise), hm(T.dhuhr), hm(T.asr), hm(T.maghrib), hm(T.isha)]; let xx = x0; vals.forEach((t, j) => { g.fillText(t, xx - cw[j] / 2, y + 31); xx -= cw[j]; }); });
-      g.fillStyle = '#5b6b69'; g.font = '500 20px system-ui, sans-serif'; g.fillText('الإمساك عند أذان الفجر · محسوبة بتقويم أم القرى · سدرة: sukoon-app.github.io/sukoon', W / 2, H - 40);
+      g.fillStyle = '#5b6b69'; g.font = '500 20px system-ui, sans-serif'; g.fillText('الإمساك عند أذان الفجر · محسوبة بتقويم أم القرى · سدرة: sidraapp.com', W / 2, H - 40);
       c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `imsakiya-${CITY[0]}-${I.hy}.png`; document.body.appendChild(a); a.click(); a.remove(); toast('تحمّلت الإمساكية'); }, 'image/png'); });
     window.rmRender = () => { render(); clearInterval(rmT); rmT = setInterval(() => { if (document.body.dataset.pg === 'ramadan') render(); }, 30000); };
     window.rmHome = homeCard;
@@ -5128,7 +5128,7 @@ self.onmessage = async e => { const m = e.data;
     window.swRender = swRender;
     // ---- referral link
     const S2 = window.skSB || {}; let code = store.get('sk-ref', ''); if (!code) { code = Math.random().toString(36).slice(2, 10); store.set('sk-ref', code); }
-    const base = 'https://sukoon-app.github.io/sukoon/'; const refURL = () => `${base}?ref=${store.get('sk-ref', code)}`;
+    const base = 'https://sidraapp.com/'; const refURL = () => `${base}?ref=${store.get('sk-ref', code)}`;
     const refUI = async () => { if (!$('refurl')) return; $('refurl').value = refURL(); if (!S2.SBON) return; try { const n = await S2.sbf('/rest/v1/rpc/ref_count', { method: 'POST', body: { code: store.get('sk-ref', code) }, auth: false }); $('refn').textContent = ar(+n || 0); } catch {} };
     $('refcp').addEventListener('click', async () => { try { await navigator.clipboard.writeText(refURL()); toast('انسخ رابطك'); } catch { $('refurl').select(); } });
     $('refsh').addEventListener('click', () => { const t = 'سدرة: القرآن والأذكار ومواقيت الصلاة والأذان، مجاني وبدون إعلانات 🤍'; if (navigator.share) navigator.share({ title: 'سدرة', text: t, url: refURL() }).catch(() => {}); else window.open('https://wa.me/?text=' + encodeURIComponent(t + '\n' + refURL()), '_blank', 'noopener'); });
@@ -5151,7 +5151,7 @@ self.onmessage = async e => { const m = e.data;
     const wkText = W => `ملخص أسبوعي في سدرة 🤍\n📖 ${ar(W.pages)} صفحة من القرآن\n☀️ أذكار الصباح ${ar(W.azm)} من ٧ أيام\n🌇 أذكار المساء ${ar(W.aze)} من ٧ أيام\n📿 ${ar(W.tsb)} تسبيحة\n🌙 ${ar(W.sw)} ${W.sw === 1 ? 'يوم' : 'أيام'} صيام تطوع`;
     const wkImage = W => new Promise(res => { const c = document.createElement('canvas'); c.width = 1080; c.height = 1350; const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 1350); gr.addColorStop(0, '#022b2a'); gr.addColorStop(1, '#0b4a46'); g.fillStyle = gr; g.fillRect(0, 0, 1080, 1350); g.textAlign = 'center'; g.fillStyle = '#f0d38a'; g.font = '700 70px Amiri, serif'; g.fillText('ملخص أسبوعي', 540, 170); g.fillStyle = 'rgba(255,255,255,.75)'; g.font = '500 32px system-ui, sans-serif'; g.fillText(`${W.from} — ${W.to}`, 540, 230);
       const items = [['📖', ar(W.pages), 'صفحة من القرآن'], ['☀️', `${ar(W.azm)}/٧`, 'أذكار الصباح'], ['🌇', `${ar(W.aze)}/٧`, 'أذكار المساء'], ['📿', ar(W.tsb), 'تسبيحة'], ['🌙', ar(W.sw), 'صيام تطوع']]; items.forEach((it, i) => { const y = 330 + i * 180; g.fillStyle = 'rgba(255,255,255,.07)'; g.beginPath(); if (g.roundRect) g.roundRect(110, y, 860, 150, 30); else g.rect(110, y, 860, 150); g.fill(); g.font = '64px system-ui'; g.fillStyle = '#fff'; g.textAlign = 'right'; g.fillText(it[0], 930, y + 98); g.fillStyle = '#f0d38a'; g.font = '700 66px system-ui, sans-serif'; g.fillText(it[1], 820, y + 100); g.fillStyle = 'rgba(255,255,255,.85)'; g.font = '500 38px system-ui, sans-serif'; g.textAlign = 'left'; g.fillText(it[2], 170, y + 92); });
-      g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '500 30px system-ui, sans-serif'; g.fillText('سدرة · sukoon-app.github.io/sukoon', 540, 1290); c.toBlob(b => res(b), 'image/png'); });
+      g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '500 30px system-ui, sans-serif'; g.fillText('سدرة · sidraapp.com', 540, 1290); c.toBlob(b => res(b), 'image/png'); });
     const wkShare = async () => { const W = weekStats(), b = await wkImage(W), f = new File([b], 'sukoon-week.png', { type: 'image/png' }); if (navigator.canShare && navigator.canShare({ files: [f] })) navigator.share({ files: [f], text: wkText(W) }).catch(() => {}); else { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'sukoon-week.png'; document.body.appendChild(a); a.click(); a.remove(); } };
     const wkCard = () => { const c = $('wkcard'); if (!c) return; const wd = riyadhNow().getDay(); if (wd !== 5 && wd !== 6) { c.hidden = true; return; } const W = weekStats(); c.innerHTML = `<h3>🗓️ ملخص أسبوعك</h3><div class="wkg"><div><b>${ar(W.pages)}</b><small>صفحة قرآن</small></div><div><b>${ar(W.azm)}/٧</b><small>أذكار الصباح</small></div><div><b>${ar(W.aze)}/٧</b><small>أذكار المساء</small></div><div><b>${ar(W.tsb)}</b><small>تسبيحة</small></div><div><b>${ar(W.sw)}</b><small>صيام تطوع</small></div></div><div class="row"><button type="button" class="dl" data-wks>شارك كبطاقة</button></div>`; c.hidden = false; };
     document.addEventListener('click', e => { if (e.target.closest('[data-wks]')) wkShare(); });
@@ -5180,7 +5180,7 @@ self.onmessage = async e => { const m = e.data;
   // ===================== PWA: install + real push notifications =====================
   {
     const VAPID = 'BMMpaLKQQ4M6gw17fcD_nVB5Vq5Mqu1QLwuN3PyNkmYsDUovrZNFk94IEbtxRzJnaRTFfadu5G9UUYCePpidHk0';
-    const canSW = 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost') && /github\.io$|^localhost$/.test(location.hostname);
+    const canSW = 'serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost') && /github\.io$|^localhost$|(^|\.)sidraapp\.com$/.test(location.hostname);
     let swReg = null, dpr = null;
     const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent), standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
     const b64 = s => { const p = '='.repeat((4 - s.length % 4) % 4), r = atob((s + p).replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from([...r].map(c => c.charCodeAt(0))); };
@@ -5328,7 +5328,7 @@ self.onmessage = async e => { const m = e.data;
       adDone[key] = 1; Object.keys(adDone).forEach(x => { if (!x.startsWith(d)) delete adDone[x]; }); store.set('sk-adn', adDone); adFire(n, ADH.pre); }); }, 15000);
   $('adics').addEventListener('click', async () => {
     const st = $('adst'), on = ADP.filter(([k]) => ADH.on[k]); if (!on.length) { st.textContent = 'فعّل صلاة وحدة على الأقل'; return; }
-    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sukoon-app.github.io/sukoon/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
+    if (window.claude && claude.use) { st.innerHTML = 'ملف التقويم يتحمّل من رابط الموقع الرئيسي: <a href="https://sidraapp.com/#/remind" target="_blank" rel="noopener">افتح التذكيرات هنا</a> واضغط الزر مرة ثانية.'; return; }
     if (!downloads) { st.textContent = 'التحميل غير متاح هنا، افتح الصفحة من المتصفح.'; return; }
     const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z', base = riyadhNow(), ev = [];
     const z = ms => new Date(ms).toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';

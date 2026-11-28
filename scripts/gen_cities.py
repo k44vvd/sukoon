@@ -1,5 +1,5 @@
 import re, json, math, html, datetime, os
-SRC='/home/claude/sukoon/index.html'; OUT='/home/claude/sukoon/mawaqit'; BASE='https://sukoon-app.github.io/sukoon/'
+SRC='/home/claude/sukoon/index.html'; OUT='/home/claude/sukoon/mawaqit'; BASE='https://sidraapp.com/'
 s=open(SRC,encoding='utf-8').read()
 cities=json.loads(re.search(r"const CITIES = (\[.*?\]\]);",s).group(1).replace("'",'"'))
 wtc_raw=re.search(r"const WTC = \[(.*?)\]\];",s,re.S).group(1)+']'
