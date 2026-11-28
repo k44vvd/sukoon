@@ -124,7 +124,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .about img{width:100%;max-width:340px;border-radius:24px;justify-self:center}
 .about p{margin:0 0 12px;font-size:17px}
 @media(max-width:700px){.about{grid-template-columns:1fr}.about img{max-width:200px}.about img.ablogo{max-width:300px}}
-.about img.ablogo{max-width:420px;height:auto;border-radius:0}.about .ablogo.lt{display:none}:root[data-skin=light] .about .ablogo.ld,:root[data-skin=sand] .about .ablogo.ld{display:none}:root[data-skin=light] .about .ablogo.lt,:root[data-skin=sand] .about .ablogo.lt{display:block}
+.about img.ablogo{max-width:240px;height:auto;border-radius:0}.about .ablogo.lt{display:none}:root[data-skin=light] .about .ablogo.ld,:root[data-skin=sand] .about .ablogo.ld{display:none}:root[data-skin=light] .about .ablogo.lt,:root[data-skin=sand] .about .ablogo.lt{display:block}
 .faq{max-width:760px;display:grid;gap:10px}
 .faq details{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:0 18px}
 .faq summary{cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:600;list-style:none}
@@ -352,7 +352,7 @@ header .social{animation-delay:.15s}.topnav{animation-delay:.25s}.intro{animatio
 body.noclips a[data-go="clips"],body.noclips #clipday{display:none!important}
 .niyyab .niyya{margin-top:0}
 :root[data-skin=light] header .logo,:root[data-skin=sand] header .logo{background:#022b2a;border-radius:26px;padding:16px 22px;box-sizing:border-box}
-header .logo,:root[data-skin] header .logo{-webkit-mask-image:none!important;mask-image:none!important;border:0!important;aspect-ratio:auto!important;width:min(420px,84vw)!important;height:auto;box-shadow:none}
+header .logo,:root[data-skin] header .logo{-webkit-mask-image:none!important;mask-image:none!important;border:0!important;aspect-ratio:auto!important;width:min(230px,56vw)!important;height:auto;box-shadow:none;background:transparent!important;padding:0!important}
 .pwhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.pwhead h2{margin:0;white-space:nowrap}.pwhead .mall{flex:none;white-space:nowrap}
 .mall{background:none;border:0;color:var(--gold);font-size:15px;padding:8px}
 .mwcard{display:flex;align-items:center;gap:16px;padding:20px;border-radius:22px;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 75%,#6b4a1f),color-mix(in srgb,var(--gold) 55%,#3d2a12));color:#fff;box-shadow:0 14px 30px rgba(0,0,0,.25)}
@@ -2043,7 +2043,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
 
   <section class="band" id="about" data-page="guide">
     <div class="about">
-      <img class="ablogo ld" src="logo-full.png" alt="شعار سدرة SIDRA" width="900" height="371"><img class="ablogo lt" src="logo-full-dark.png" alt="شعار سدرة SIDRA" width="900" height="371">
+      <img class="ablogo ld" src="logo-full.png" alt="شعار سدرة SIDRA" width="640" height="820"><img class="ablogo lt" src="logo-full-dark.png" alt="شعار سدرة SIDRA" width="640" height="820">
       <div>
         <h2>عن سدرة</h2>
         <p>سدرة منصة إسلامية تجمع القرآن الكريم والأذكار والأدعية والخدمات التي تعين المسلم على الاستمرار في الطاعات ونشر الخير.</p>
@@ -2474,7 +2474,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
 
   // sadaqa card
   const SITE = 'https://sukoon-app.github.io/sukoon/';
-  let g = 'm'; const cv = $('cv'), cx = cv.getContext('2d'); const logo = new Image(); logo.src = 'logo.png';
+  let g = 'm'; const cv = $('cv'), cx = cv.getContext('2d'); const logo = new Image(); logo.src = 'logo-h.png';
   const duaFor = () => g === 'f' ? 'اللهم اغفر لها وارحمها، ونوّر قبرها، واجعل القرآن أنيسها' : g === 'me' ? 'اللهم اجعله في ميزان حسناتي، وتقبّله مني' : 'اللهم اغفر له وارحمه، ونوّر قبره، واجعل القرآن أنيسه';
   const nameTxt = () => ($('sname').value || '').trim();
   const draw = () => {
@@ -4775,7 +4775,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795844379'; let pend = false;
+  const BUILD = '1795844591'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);
@@ -4818,7 +4818,7 @@ self.onmessage = async e => { const m = e.data;
     const item = (x, i) => { const E = x.edit || {}; const liked = lk().includes(x.id), saved = svd().includes(x.id);
       return `<div class="rvi" data-vi="${i}">${x.poster ? `<div class="rvbg" style="background-image:url('${esc(x.poster)}')"></div>` : ''}<div class="rvf" style="aspect-ratio:${ratioCss(x)};${ratioCss(x) === 'auto' ? 'height:100%' : ''}">${E.fit === 'blur' && x.poster ? `<div class="rvfb" style="background-image:url('${esc(x.poster)}')"></div>` : ''}<video playsinline loop preload="none" muted data-src="${esc(x.src)}" ${x.poster ? `poster="${esc(x.poster)}"` : ''}></video>${E.cap ? `<div class="rvcap" style="${capCss(E)}">${esc(E.cap)}</div>` : ''}</div>
         <svg class="rvheart" viewBox="0 0 24 24" fill="#fff"><path d="M12 20s-7.5-4.6-7.5-10.3A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.7C19.5 15.4 12 20 12 20z"/></svg><div class="rvpause"><svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M8 5.5v13l11-6.5z"/></svg></div>
-        <div class="rvmeta"><div class="rvav"><i${x.off ? ' style="background-image:url(logo-full.png);background-size:80%;background-color:#022b2a"' : ''}>${x.off ? '' : esc((x.by.replace('@', '')[0] || 'س'))}</i><span>${esc(x.by)}</span></div><b>${esc(x.title)}</b>${x.sub ? `<small>${esc(x.sub)}</small>` : ''}</div>
+        <div class="rvmeta"><div class="rvav"><i${x.off ? ' style="background-image:url(icon.png);background-size:cover;background-color:#16352A"' : ''}>${x.off ? '' : esc((x.by.replace('@', '')[0] || 'س'))}</i><span>${esc(x.by)}</span></div><b>${esc(x.title)}</b>${x.sub ? `<small>${esc(x.sub)}</small>` : ''}</div>
         <div class="rvact"><button type="button" data-ra="like" class="${liked ? 'on' : ''}" aria-label="إعجاب">${icon.h}<span>${x.off ? (liked ? 'أعجبني' : 'إعجاب') : nd(x.likes || 0)}</span></button><button type="button" data-ra="rx" aria-label="تفاعل">${icon.rx}<span>${rxTotal(x.id) ? nd(rxTotal(x.id)) : 'تفاعل'}</span></button>${x.ay ? `<button type="button" data-ra="taf" aria-label="تفسير الآية">${icon.tf}<span>تفسير</span></button>` : ''}<button type="button" data-ra="save" class="sv ${saved ? 'on' : ''}" aria-label="حفظ">${icon.s}<span>${saved ? 'محفوظ' : 'حفظ'}</span></button><button type="button" data-ra="share" aria-label="مشاركة">${icon.sh}<span>مشاركة</span></button><button type="button" data-ra="dl" aria-label="تحميل">${icon.dl}<span>تحميل</span></button>${x.off ? '' : `<button type="button" data-ra="rep" aria-label="إبلاغ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg><span>إبلاغ</span></button>`}</div>
         <div class="rvlis"><span class="eq"><i></i><i></i><i></i><i></i><i></i></span><b>${esc(x.title)}</b><small>${esc(x.sub || x.by)}</small></div><div class="rvbar"><i></i></div></div>`; };
     const vidOf = el => el.querySelector('video');
@@ -5017,7 +5017,7 @@ self.onmessage = async e => { const m = e.data;
     $('rllisten').addEventListener('click', async () => { await load(); RL.listen = true; RL.muted = false; openV(shown().length ? shown() : RL.list, 0); setListen(true); });
     const mSess = x => { if (!x || !('mediaSession' in navigator)) return; try { navigator.mediaSession.metadata = new MediaMetadata({ title: x.title, artist: x.sub || x.by, album: 'وَمضة · سدرة', artwork: x.poster ? [{ src: new URL(x.poster, location.href).href, sizes: '512x512' }] : [] }); navigator.mediaSession.setActionHandler('nexttrack', nextItem); navigator.mediaSession.setActionHandler('previoustrack', () => { const box = $('rvs'); box.scrollTop = Math.max(0, box.scrollTop - box.clientHeight); }); } catch {} };
     // ---------- download with the Sukoon watermark ----------
-    let LOGO = null; const logoImg = () => LOGO || (LOGO = new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = 'logo-full.png'; }));
+    let LOGO = null; const logoImg = () => LOGO || (LOGO = new Promise(r => { const im = new Image(); im.onload = () => r(im); im.onerror = () => r(null); im.src = 'logo-h.png'; }));
     const dlClip = async x => { const P = $('rvdl'); let cancel = false; const box = $('rvs'); box.querySelectorAll('video').forEach(v => v.pause());
       P.hidden = false; P.innerHTML = '<div><b>يجهّز المقطع مع شعار سدرة…</b><div class="rupprog"><i></i></div><small id="rvdlt">لا تقفل الصفحة، ياخذ نفس مدة المقطع</small><div class="row"><button type="button" class="gh" data-c>إلغاء</button></div></div>';
       P.querySelector('[data-c]').onclick = () => { cancel = true; };
