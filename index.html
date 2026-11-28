@@ -96,7 +96,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .acard .meta{padding:12px 14px 14px}
 .acard h3{font-size:19px}
 .efeat{display:grid;gap:14px;margin-top:18px}.efeat:empty{display:none}
-.fcase{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:center;padding:clamp(16px,3vw,24px);border-radius:24px;border:1px solid var(--gold);background:linear-gradient(160deg,color-mix(in srgb,var(--gold) 10%,var(--bg2)),var(--bg2))}
+.fdone{color:#16a34a;font-weight:700;align-self:center}.fcase{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:center;padding:clamp(16px,3vw,24px);border-radius:24px;border:1px solid var(--gold);background:linear-gradient(160deg,color-mix(in srgb,var(--gold) 10%,var(--bg2)),var(--bg2))}
 @media(max-width:700px){.fcase{grid-template-columns:1fr}}
 .fimg{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/10;background:linear-gradient(150deg,#b23a48,#5e1622);display:grid;place-items:center}
 .fimg img{width:100%;height:100%;object-fit:cover;display:block}.fimg svg{width:34%;color:#fff}
@@ -3685,7 +3685,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
 
   // featured Ehsan cases (added manually from links Khalid sends)
   const FCASES = [
-    { tag: 'حالة مميزة من إحسان', btn: 'تبرّع لهذه الحالة', title: 'الأدوية الطبية لمرضى السكري', no: 'P84148', desc: 'ساهم في تقديم الرعاية الصحية لمرضى السكري، بتبرعك توفّر لهم الأدوية الطبية اللازمة لاستمرار علاجهم واستقرار صحتهم.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/Health/Medicines.png', url: 'https://ehsan.sa/referral/95B15550F7', got: 143827, left: 144173, asof: '2026-11-25T17:10:00Z', icon: 'heart' },
+    { tag: 'حالة مميزة من إحسان', btn: 'تبرّع لهذه الحالة', title: 'الأجهزة الكهربائية للمتعففين', no: 'P83913', desc: 'ساهم في توفير الأجهزة الكهربائية الأساسية للأسر المتعففة، عشان تعيش باستقرار وراحة في بيتها. المشروع يقبل الزكاة.', img: 'https://ehsan-2.s3.us-east-1.amazonaws.com/161597651.png', url: 'https://ehsan.sa/referral/EEBBC77A4C', got: 210319, left: 33431, asof: '2026-11-28T04:40:00Z', icon: 'house' },
     { tag: 'مشروع من جمعية نجاة', btn: 'تبرّع للمشروع', title: 'المبنى الاستثماري', org: 'جمعية نجاة للدعوة والإرشاد وتوعية الجاليات بمركز الحميراء بجازان', desc: 'مشروع المبنى الاستثماري لجمعية نجاة، يدعم استدامة برامجها في الدعوة والإرشاد وتوعية الجاليات. التبرع من متجر الجمعية الرسمي، وتحدد المبلغ اللي تبيه.', img: 'images/najah-building.jpg', url: 'https://store.najah-h.sa/', icon: 'house', wide: 1 }
   ];
   const nf = n => ar(Math.round(n).toLocaleString('en'));
@@ -3693,7 +3693,7 @@ body.rvopen{overflow:hidden}body.rvopen .gear,body.rvopen .bell{display:none!imp
     return `<article class="fcase"><div class="fimg">${ICO[c.icon] || ''}<img src="${esc(c.img)}" alt="${esc(c.title)}" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0"></div>
     <div class="fbody"><span class="etag">${esc(c.tag)}</span><h3>${esc(c.title)}</h3><p class="fno">${c.no ? `رقم الحالة ${esc(c.no)}` : esc(c.org || '')}</p><p>${esc(c.desc)}</p>
     ${tot ? `<div class="fprog"><div class="bar"><i style="width:${pct}%"></i></div><div class="nums"><span>تم جمع <b>${nf(c.got)} ﷼</b> (${ar(pct)}٪)</span><span>المتبقي ${nf(c.left)} ﷼</span></div><small style="color:var(--mute);font-size:12px">آخر تحديث للأرقام ${esc(agoAr(c.asof))} · تتحدث تلقائياً كل ساعة</small></div>` : ''}
-    <div class="row"><a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.btn)} ←</a><button type="button" class="dl ghost" data-fshare="${i}">مشاركة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
+    <div class="row">${tot && !c.left ? '<span class="fdone">✓ اكتملت الحالة، جزى الله المتبرعين خير</span>' : `<a class="dl" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.btn)} ←</a>`}<button type="button" class="dl ghost" data-fshare="${i}">مشاركة</button></div><p class="status" id="fst${i}" aria-live="polite"></p></div></article>`; }).join('');
   };
   const agoAr = iso => { const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000)); return m < 2 ? 'الآن' : m < 60 ? `قبل ${ar(m)} دقيقة` : m < 1440 ? `قبل ${ar(Math.round(m / 60))} ساعة` : `قبل ${ar(Math.round(m / 1440))} يوم`; };
   renderFC();
@@ -4792,7 +4792,7 @@ self.onmessage = async e => { const m = e.data;
 
   // ===================== auto-update: reload when a new version is published =====================
   {
-  const BUILD = '1795777882'; let pend = false;
+  const BUILD = '1795840627'; let pend = false;
   const busy = () => (typeof QP !== 'undefined' && QP && !AU.paused) || document.querySelector('.adpop,.adbar,.qpick,.lmode:not([hidden]),#sheet.open,#reader.open') || document.activeElement && /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   const check = async () => { if (BUILD.startsWith('__')) return; try { const j = await (await fetch('version.json?t=' + Date.now(), { cache: 'no-store' })).json(); if (j && j.v && j.v !== BUILD) { pend = true; if (!busy()) location.reload(); } } catch {} };
   setInterval(check, 5 * 60 * 1000); document.addEventListener('visibilitychange', () => { if (!document.hidden) { if (pend && !busy()) location.reload(); else check(); } }); setTimeout(check, 8000);

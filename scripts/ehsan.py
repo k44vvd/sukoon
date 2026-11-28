@@ -1,6 +1,6 @@
 # Fetches live numbers for featured Ehsan cases and writes ehsan.json (run by GitHub Actions).
 import json, re, urllib.request, datetime
-CASES = {"P84148": "https://ehsan.sa/projects/0/83149"}
+CASES = {"P83913": "https://ehsan.sa/projects/0/82914"}
 out = {"updated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), "cases": {}}
 try:
     old = json.load(open("ehsan.json", encoding="utf-8"))
